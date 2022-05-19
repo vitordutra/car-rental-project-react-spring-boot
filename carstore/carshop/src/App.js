@@ -1,5 +1,5 @@
 import React from 'react';
-import Routes from './routes/Routes';
+import Rotas from './routes/Rotas';
 import Footer from './component/Footer/Footer';
 import Header from './component/Header/Header';
 
@@ -9,7 +9,7 @@ const App = () => {
   return (
     <>
         <Header />
-        <Routes />
+        <Rotas />
         <Footer />
     </>    
   )

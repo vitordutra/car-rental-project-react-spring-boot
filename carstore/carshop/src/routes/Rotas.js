@@ -14,12 +14,11 @@ import Esportivos from '../component/Esportivos';
 
 
 
-function Routess(){
+function Rotas(){
     return(
         <BrowserRouter>
             
             <Routes>
-                
                     <Route path="/" exact component={Home} />
                     <Route path="/sobre-empresa" component={SobreEmpresa} />
                     <Route path="/contato" component={Contato} /> 
@@ -28,12 +27,11 @@ function Routess(){
                     <Route path="/eletricos" component={Eletricos} />
                     <Route path="/esportivos" component={Esportivos} />
                     <Route path="*" component={Error} />
-
-               
+   
             </Routes>
-                   
+                
         </BrowserRouter>
     );
 };
 
-export default Routess;
+export default Rotas;
