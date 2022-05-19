@@ -8,13 +8,7 @@ const Economicos = () => {
         
         
         <div> <p> carros economicos </p> 
-        
-        
-        
-        
-        
-        
-        
+  
         </div>
         
         )

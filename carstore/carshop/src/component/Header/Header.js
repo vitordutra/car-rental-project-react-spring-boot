@@ -1,22 +1,30 @@
 import React from 'react';
-import {Nav,  Container, Navbar} from 'react-bootstrap';
+/* import {Nav, Navbar, Link, Container} from 'react-bootstrap' */
+import './Header.css'
 
 const Header = () => {
+
+
   return (
-    <header className="header"  >
-      <Navbar bg="dark" variant="dark">
-    <Container>
-    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-    <Nav className="me-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
-    </Nav>
-    </Container>
-  </Navbar>
+  
+    
       
-    </header>
-  )
+    <div className='header'>
+           <img src='' alt='Logo, lá do figma' />
+    <div className="header-right">
+            <a className="active" href="#home">Home</a>
+            <a href='/eletricos'>Elétricos</a>
+            <a href='/economicos'>Econômicos</a>
+            <a href='/suvs'>Suvs</a>
+            <a href='/esportivos'>Esportivos</a>
+
+          <button className='btn-login'>login</button>
+    </div>
+  </div>
+    
+    
+  
+  );
 }
 
 export default Header;
