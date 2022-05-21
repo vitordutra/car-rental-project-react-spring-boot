@@ -4,7 +4,9 @@ import React from 'react';
 const Footer = (props) => {
   return (
    <>
+    
    <div id='footer'>
+
         <div className='container text-center'>
           <p>
             &copy; 2022 Fulano. Design by{' '}
