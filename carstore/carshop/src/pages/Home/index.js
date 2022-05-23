@@ -2,7 +2,7 @@ import React from 'react';
 
 function Home(){
     return(
-        <h1>Página inicial</h1>
+        <h1>Página inicial. teste</h1>
     );
 };
 
