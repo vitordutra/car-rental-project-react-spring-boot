@@ -1,4 +1,4 @@
-import Paginas from './routes/Paginas';
+import Paginas from './routes';
 
 
 
@@ -6,6 +6,7 @@ const App = () => {
   return (
     <> 
       <Paginas />
+      
     </>
   );
 }
