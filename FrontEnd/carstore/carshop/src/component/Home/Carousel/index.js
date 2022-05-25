@@ -9,7 +9,7 @@ const Carrousel = () => {
 
   
     var maxItemsPage = 3;
-    var maxItems = 6;
+    var maxItems = 10;
   
 
   const [categories, setCategories] = useState([]);
@@ -44,7 +44,7 @@ const Carrousel = () => {
         ); 
         
       }
-      
+
       
 
       console.log("roberto1")
