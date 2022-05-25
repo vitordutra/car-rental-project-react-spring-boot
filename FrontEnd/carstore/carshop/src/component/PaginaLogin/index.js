@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 
 import { AuthContext } from "../../../src/context/auth";
 
-import './index.css';
+import './styles.css';
 
 const PaginaLogin = () => {
     const { authenticated, login } = useContext(AuthContext);
