@@ -1,5 +1,6 @@
 import React from "react";
 import './styles.css';
+import carrousel from "./Carousel";
 
 
 const home = (props) => {
