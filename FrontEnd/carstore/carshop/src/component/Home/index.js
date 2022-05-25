@@ -1,18 +1,20 @@
 import React from "react";
 import './styles.css';
-import carrousel from "./Carousel";
+import Carrousel from "./Carousel";
+import BannerHome from "./BannerHome";
 
 
 const home = (props) => {
     return (
      <>
       
-     <div id='footer'>
+     <div id='home'>
   
-          <div className='container text-center'>
+          <div id="HomeBase">
             <p>
-              Aqui é a homepage, maluco
               
+              <BannerHome />
+              <Carrousel />
             </p>
           </div>
         </div>

@@ -4,8 +4,9 @@ const carrousel = (props) => {
       
   
           <div className='container text-center'>
+              
             <p>
-              Aqui é a homepage, maluco
+              Carrossel doido
               
             </p>
           </div>
