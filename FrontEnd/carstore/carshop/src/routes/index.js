@@ -1,18 +1,14 @@
 import  React, { useContext } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from '../component/Header/Header';
-import HomePage from '../pages/HomePage';
+import Panel from '../pages/Panel';
 import Login from '../pages/Login';
-import SobreEmpresa from '../pages/SobreEmpresa';
-import Contato from '../pages/Contato'
-import Economicos from '../component/Economicos';
-import Suvs from '../component/Suvs';
-import Eletricos from '../component/Eletricos';
-import Esportivos from '../component/Esportivos';
 import Footer from '../component/Footer/Footer';
 import Error from '../component/Error';
 
 import { AuthProvider, AuthContext } from "../context/auth";
+import Homepage from '../pages/Homepage';
+
 
 
 
@@ -39,21 +35,17 @@ const Paginas = () => {
                     <Routes>
                         
                         <Route path="/login" element={<Login />} />
+                        <Route path="/" element={<Homepage />} />
                         <Route
-                        path="/"
+                        path="/userpanel"
                         element=
                         {
                             <Private>
-                                <HomePage />
+                                <Panel />
                             </Private>
                         }
                         />
-                        <Route path="/sobre-empresa" element={<SobreEmpresa />} />
-                        <Route path="/contato" element={<Contato />} /> 
-                        <Route path="/economicos" element={<Economicos />} />
-                        <Route path="/suvs" element={<Suvs />} />
-                        <Route path="/eletricos" element={<Eletricos />} />
-                        <Route path="/esportivos" element={<Esportivos />} />
+                        
                         <Route path="*"element={<Error />} />
 
                     </Routes>

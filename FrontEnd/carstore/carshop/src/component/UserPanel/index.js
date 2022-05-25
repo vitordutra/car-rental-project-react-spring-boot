@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import { AuthContext } from "../../context/auth";
 
-const HomeLogin = () => {
+const UserPanel = () => {
     const { authenticated, logout } = useContext (AuthContext);
 
     const handlelogout = () => {
@@ -12,7 +12,7 @@ const HomeLogin = () => {
         
    // eslint-disable-next-line no-unreachable
     <>
-            <h1>HomeLogin</h1>;
+            <h1>User       Panel</h1>;
             <p>{String(authenticated) }</p>
             <button onClick={handlelogout}>Logout</button>
     </>
@@ -20,4 +20,4 @@ const HomeLogin = () => {
     );  
 };
 
-export default HomeLogin;
+export default UserPanel;
