@@ -7,6 +7,7 @@ import Footer from '../component/Footer/Footer';
 import Error from '../component/Error';
 
 import { AuthProvider, AuthContext } from "../context/auth";
+import Homepage from '../pages/Homepage';
 
 
 
@@ -34,8 +35,9 @@ const Paginas = () => {
                     <Routes>
                         
                         <Route path="/login" element={<Login />} />
+                        <Route path="/" element={<Homepage />} />
                         <Route
-                        path="/"
+                        path="/userpanel"
                         element=
                         {
                             <Private>
