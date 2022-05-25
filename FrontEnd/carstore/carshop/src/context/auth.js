@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
 
         const loggedUser = {
             id: "123",
+            name:"Bethilda",
             email,
         };
 

@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/auth";
 
 const UserPanel = () => {
     const { authenticated, logout } = useContext (AuthContext);
-
+    
     const handlelogout = () => {
         logout();
     };
