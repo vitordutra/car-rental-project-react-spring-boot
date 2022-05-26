@@ -8,6 +8,7 @@ import Error from '../component/Error';
 
 import { AuthProvider, AuthContext } from "../context/auth";
 import Homepage from '../pages/Homepage';
+import Register from '../pages/Register';
 
 
 
@@ -44,7 +45,9 @@ const Paginas = () => {
                                 <Panel />
                             </Private>
                         }
+                    
                         />
+                        <Route path="/Registro" element={<Register />} />
                         
                         <Route path="*"element={<Error />} />
 
