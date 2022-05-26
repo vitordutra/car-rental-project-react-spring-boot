@@ -5,25 +5,30 @@
 }
 .header {
   overflow: hidden;
-  background-color: #f1f1f1;
-  padding: 20px 10px;
+  background-color: #F6A52A;
+  padding: 15px 10px;
   width: 100%;
 }
 
 
 .header a {
+  background-color: #f5d6a7;
   float: left;
   color: black;
   text-align: center;
-  padding: 12px;
+  padding: 10px;
   text-decoration: none;
   font-size: 18px;
-  line-height: 25px;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 80px;
+  margin-block: 20px;
+  line-height: 15px;
   border-radius: 4px;
 }
 
 .header a.logo {
-  font-size: 25px;
+  font-size: 40px;
   font-weight: bold;
 }
 
@@ -38,6 +43,8 @@
   float: right;
 }
 
+
+
 .btn-login{
   margin: 10px;
   border: 1px solid;
@@ -45,6 +52,7 @@
   padding : 5px 5px 5px 5px;
   color: dodgerblue;
 } 
+
 
 
 @media screen and (max-width: 500px) {

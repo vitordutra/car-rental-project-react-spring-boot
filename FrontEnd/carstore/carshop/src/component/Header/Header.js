@@ -1,8 +1,9 @@
 
 import React, { useContext } from "react";
-import './Header.css'
-import { AuthContext } from "../../context/auth";
 
+import { AuthContext } from "../../context/auth";
+import logo from "../../assets/logo.png"
+import './Header.css';
 
 const Header = () => {
   
@@ -24,12 +25,14 @@ const Header = () => {
     
       
     <div className='header'>
-           <img src='' alt='Logo, lá do figma' />
+      <img src={logo} alt='' width={100} />
+      
     <div className="header-right">   
-    
+    <a href='/Registro'>Criar conta</a> 
      {!(estaLogado() === false) ? <>Bem vindo, {estaLogado()} !</> : <a href='/login'>Login</a>}
-            
-    </div>
+        
+      </div>
+      
   </div>
 
     
