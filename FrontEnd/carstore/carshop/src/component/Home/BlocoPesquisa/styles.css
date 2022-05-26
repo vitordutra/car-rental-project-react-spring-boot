@@ -1,0 +1,44 @@
+.pesquisa-itens-duplos{
+    display: inline-block;
+    margin: 0px 5%;
+    
+
+}
+
+.pesquisa-container{
+    background-color: #F6ECDD;
+    padding: 30px;
+}
+
+.pesquisa-titulo-texto{
+
+
+    text-align: center;
+}
+
+#pesquisa-devolucao-checkbox{
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+
+.pesquisa-inputs{
+    border-radius: 7px;
+}
+
+#pesquisa-botao-buscar {
+    font-weight: 700;
+    border-radius: 20px;
+    font-size: 24pt;
+    background-color: #F6A52A;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  #pesquisa-botao-buscar {
+    opacity: 0.8;
+  }

@@ -2,6 +2,7 @@ import React from "react";
 import './styles.css';
 import Carrousel from "./Carousel";
 import BannerHome from "./BannerHome";
+import BlocoPesquisa from "./BlocoPesquisa";
 
 
 const home = (props) => {
@@ -12,7 +13,7 @@ const home = (props) => {
   
           <div id="HomeBase">
             <p>
-              
+              <BlocoPesquisa />
               <BannerHome />
               <Carrousel />
             </p>
@@ -24,3 +25,4 @@ const home = (props) => {
   }
   
   export default home; 
+  
