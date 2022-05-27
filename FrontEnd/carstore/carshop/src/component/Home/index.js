@@ -4,7 +4,6 @@ import Carrousel from "./Carousel";
 import BannerHome from "./BannerHome";
 import BlocoPesquisa from "./BlocoPesquisa";
 
-
 const home = (props) => {
     return (
      <>
@@ -25,4 +24,3 @@ const home = (props) => {
   }
   
   export default home; 
-  

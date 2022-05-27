@@ -3,6 +3,7 @@ package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.OffsetDateTime;
 
 /*
 * TODO: Timestamp não está funcionando
@@ -22,18 +23,18 @@ public class Category implements Serializable {
 
     // Timestamps automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Instant criado;
+    private OffsetDateTime criado;
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private Instant atualizado;
+    private OffsetDateTime atualizado;
 
     @PrePersist
     public void antesDeSalvar() {
-        criado = Instant.now();
+        criado = OffsetDateTime.now();
     }
 
     @PreUpdate
     public void antesDeAtualizar() {
-        atualizado = Instant.now();
+        atualizado = OffsetDateTime.now();
     }
 
     public Category() {
