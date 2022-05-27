@@ -2,3 +2,4 @@
 .vscode
 .DS_Store
 Backend/src/main/resources/application.properties
+FrontEnd/carstore/carshop/node_modules
