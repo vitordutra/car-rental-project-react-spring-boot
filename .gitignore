@@ -2,8 +2,4 @@
 .vscode
 .DS_Store
 Backend/src/main/resources/application.properties
-<<<<<<< HEAD
-FrontEnd/node_modules
-=======
 FrontEnd/carstore/carshop/node_modules
->>>>>>> eec94ef7e8562c3788aa834056ce0a4b933836fa
