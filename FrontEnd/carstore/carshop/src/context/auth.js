@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
     };
     return (
         <AuthContext.Provider
-            // user != null
+            // user =/= null
     // authenticated == true
     //ou
     //user == null

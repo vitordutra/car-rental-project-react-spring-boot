@@ -1,15 +1,16 @@
-import  React, { useContext } from 'react';
+import React, { useContext } from 'react';
+import { AuthProvider, AuthContext } from "../context/auth";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from '../component/Header/Header';
 import Panel from '../pages/Panel';
 import Login from '../pages/Login';
 import Footer from '../component/Footer/Footer';
-import Error from '../component/Error';
-
-import { AuthProvider, AuthContext } from "../context/auth";
 import Homepage from '../pages/Homepage';
 import Register from '../pages/Register';
-
+import Error from '../component/Error';
+import Products from '../pages/Products';
+import Details from '../pages/Details';
+import ProductsCategory from '../pages/ProductsCategory';
 
 
 
@@ -33,10 +34,11 @@ const Paginas = () => {
             <Header />
            <AuthProvider>
                     <Routes>
-                        
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/" element={<Homepage />} />
-                        <Route
+                    <Route path="/" element={<Homepage />} />
+                    <Route path="/Produtos" element={<Products />} />
+                    <Route path="/Registro" element={<Register />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route
                         path="/userpanel"
                         element=
                         {
@@ -44,11 +46,10 @@ const Paginas = () => {
                                 <Panel />
                             </Private>
                         }
-                        />
-
-                        <Route path="/Registro" element={<Register />} />
-
-                        <Route path="*"element={<Error />} />
+                    />
+                    <Route path="/detalhes/:id" element={<Details />} />
+                    <Route path="/categorias/:id" element={<ProductsCategory />} />
+                    <Route path="*" element={<Error />} />
 
                     </Routes>
            </AuthProvider>      

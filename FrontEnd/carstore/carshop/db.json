@@ -64,19 +64,21 @@
   "products": [
     {
       "id": 1,
-      "descricao": "Configuração do ambiente",
-      "projeto": {
-        "id": 1,
-        "nome": "Alura Tracker 3.0"
-      }
+      "descricao": "Configuração do ambiente"
+     
+      
     },
     {
-      "descricao": "Refatoração do vuex 4",
-      "projeto": {
-        "id": 1,
-        "nome": "Alura Tracker 3.1"
-      },
-      "id": 2
+      "id": 2,
+      "descricao": "Refatoração do vuex 4" 
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "teste@teste.com",
+      "password": "secret"
+      
     }
   ]
 }
