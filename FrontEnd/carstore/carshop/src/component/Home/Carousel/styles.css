@@ -1,12 +1,43 @@
 #carrossel {
-
-   
+    background-color: gainsboro;
 }
 
 #carrossel h2 {
-    padding: 5% 5px 5px 5px;  
+    padding: 5% 5px 5px 5px;
+    color: black;
     text-align: center;
     font-size: 40px;
     font-weight: bold;
 }
 
+#destaques img{  
+        border-radius:10px;
+        cursor: pointer;
+        box-shadow: 5px 5px 5px 0 gainsboro;
+        text-align: center;
+}
+
+#destaques h5{
+        margin:4%;
+        color: var(--green-dark);
+        text-align: center;
+    }
+    
+    
+    #destaques.carousel-indicators{
+        margin-bottom: -30px;
+    }
+
+    #destaques.carousel-indicators button{
+        border-radius: 50%;
+        height: 15px;
+        width: 15px;
+    }
+
+    #destaques.carousel-inner{
+        width: 80%;
+        margin: 0 auto;
+    }
+
+
+    

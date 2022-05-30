@@ -1,0 +1,19 @@
+.item-list-products-body{
+    text-decoration:none;
+    background:#e5e5e5;
+    padding: 0 20px
+}
+
+.item-list-products-h1{
+    font-size:50px;
+    color:black;  
+}
+.item-list-products-ul{
+    display: flex;
+    align-items: center;
+}
+.item-list-products-li{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

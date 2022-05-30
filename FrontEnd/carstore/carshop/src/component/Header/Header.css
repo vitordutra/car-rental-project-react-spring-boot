@@ -10,7 +10,6 @@
   width: 100%;
 }
 
-
 .header a {
   background-color: #f5d6a7;
   float: left;
@@ -27,10 +26,17 @@
   border-radius: 4px;
 }
 
-.header a.logo {
+.logo a  {
+  background-color: #F6A52A;
   font-size: 40px;
   font-weight: bold;
 }
+
+.header .logo a:hover {
+  background-color: #F6A52A;
+  color: black;
+}
+
 
 .header a:hover {
   background-color: #ddd;

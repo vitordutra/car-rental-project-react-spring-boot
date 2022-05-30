@@ -1,0 +1,21 @@
+.ProCategory-body{
+    text-decoration:none;
+    background:#e5e5e5;
+    padding: 0 20px;
+}
+
+.ProCategory-h1{
+    font-size: 50px;
+    color:black; 
+}
+
+.ProCategory-ul{
+    display: flex;
+    align-items: center
+}
+
+.ProCategory-li{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
