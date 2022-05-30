@@ -34,23 +34,35 @@ public class City implements Serializable {
     }
 
 
-    public City(Integer id, String nome, String pais) {
+    public City(Integer id, String nome, String estado) {
         this.id = id;
         this.nome = nome;
-        this.estado = pais;
+        this.estado = estado;
     }
 
-    public Integer getId() { return id; }
+    public Integer getId() {
+        return id;
+    }
 
-    public void setId(Integer id) { this.id = id; }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    public String getNome() {  return nome; }
+    public String getNome() {
+        return nome;
+    }
 
-    public void setNome(String nome) { this.nome = nome; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public String getPais() {  return estado;  }
+    public String getEstado() {
+        return estado;
+    }
 
-    public void setPais(String pais) { this.estado = pais; }
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     @Override
     public String toString() {
