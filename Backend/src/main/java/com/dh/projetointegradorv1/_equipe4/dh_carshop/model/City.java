@@ -14,7 +14,7 @@ public class City implements Serializable {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-    private String pais;
+    private String estado;
 
     //Timestamps Automáticos
 
@@ -37,7 +37,7 @@ public class City implements Serializable {
     public City(Integer id, String nome, String pais) {
         this.id = id;
         this.nome = nome;
-        this.pais = pais;
+        this.estado = pais;
     }
 
     public Integer getId() { return id; }
@@ -48,16 +48,16 @@ public class City implements Serializable {
 
     public void setNome(String nome) { this.nome = nome; }
 
-    public String getPais() {  return pais;  }
+    public String getPais() {  return estado;  }
 
-    public void setPais(String pais) { this.pais = pais; }
+    public void setPais(String pais) { this.estado = pais; }
 
     @Override
     public String toString() {
         return "City{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", pais='" + pais + '\'' +
+                ", estado='" + estado + '\'' +
                 ", criado=" + criado +
                 ", atualizado=" + atualizado +
                 '}';
