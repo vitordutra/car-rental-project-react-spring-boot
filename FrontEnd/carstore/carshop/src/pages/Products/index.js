@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import api from "../../services/api";
-import ProductItem from "../../component/ProductItem";
+import ProdCategory from "../../component/ProdCategory";
 import './styles.css';
 export default function Products() {
 
@@ -9,6 +9,7 @@ export default function Products() {
   useEffect(() => {
     callApi();
   }, []);
+
 
   async function callApi() {
     try {
@@ -27,9 +28,11 @@ export default function Products() {
           <ul className="item-list-products-ul" >
             <li className="item-list-products-li" >
             {products.map((item) => (
-            <ProductItem key={item.id} prmProduct={item}/>
+              <ProdCategory key={item.id} prmProduct={item} />  
             ))}
+             
           </li>
+        
           
         </ul>
         

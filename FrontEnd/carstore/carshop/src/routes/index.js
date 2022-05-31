@@ -49,6 +49,8 @@ const Paginas = () => {
                     />
                     <Route path="/detalhes/:id" element={<Details />} />
                     <Route path="/categorias/:id" element={<ProductsCategory />} />
+                    
+                   
                     <Route path="*" element={<Error />} />
 
                     </Routes>

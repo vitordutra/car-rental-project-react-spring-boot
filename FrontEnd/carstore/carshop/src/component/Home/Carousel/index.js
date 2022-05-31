@@ -53,7 +53,7 @@ async function callApi() {
 
     <section id="carrossel">
       
-        <h2>Categorias populares</h2>
+        <h2>Grupos de carros</h2>
 
         <Carousel variant="dark" id= "destaques">
           {categories.map((dataBatch, index) => {
