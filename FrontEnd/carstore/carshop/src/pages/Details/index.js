@@ -8,7 +8,7 @@ import './styles.css';
 
 export default function Details() {
 
-    const [product, setProduct] = useState([]);
+    const [products, setProducts] = useState([]);
     useEffect(() => {
         callApiDetails();
     }, []);    
@@ -21,7 +21,7 @@ export default function Details() {
         
         try {
           const response = await api.get(`/products/${parametro.id}`);
-            setProduct(response.data);
+            setProducts(response.data);
         
         }
         catch (error) {      
@@ -30,10 +30,9 @@ export default function Details() {
     return (
         <>
             
-            <img src={product.url_imagem} />
-            <h1>{product.title}</h1>
-            <p>{product.descricao}</p>
-            <h2>{product.localizacao}</h2>
+            <img src={products.url_imagem} />
+            <h1>{products.qualificacao}</h1>
+          
             
         </>
     );

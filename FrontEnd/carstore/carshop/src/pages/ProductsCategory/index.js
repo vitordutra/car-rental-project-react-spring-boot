@@ -4,7 +4,7 @@
 import { useEffect, useState } from "react";
 import ProductItem from "../../component/ProductItem";
 import api from "../../services/api";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './styles.css';
 
 
@@ -31,7 +31,7 @@ export default function ProductsCategory() {
   return (
     <>
       <body className="ProCategory-body" >
-      <h1 className="ProCategory-h1">Produtos da categoria</h1>
+      <h1 className="ProCategory-h1">Categorias</h1>
       <ul className="ProCategory-ul">
         <li className="ProCategory-li">
         {product.map((item) => (
