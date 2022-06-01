@@ -21,6 +21,11 @@ public class Category implements Serializable {
     private String descricao;
     private String url_imagem;
 
+    @ManyToOne
+    private Product product;
+
+
+
     // Timestamps automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private OffsetDateTime criado;
@@ -36,6 +41,12 @@ public class Category implements Serializable {
     public void antesDeAtualizar() {
         atualizado = OffsetDateTime.now();
     }
+
+
+
+
+
+
 
     public Category() {
     }

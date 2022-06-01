@@ -5,6 +5,9 @@ import com.sun.jdi.PrimitiveValue;
 import javax.persistence.*;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -18,6 +21,13 @@ public class Product implements Serializable{
     private Integer id;
     private String nome;
     private String descricao;
+
+    @OneToMany
+    @JoinTable(name = "CategoriasProdutos",
+        joinColumns = @JoinColumn(name = "id_produto"),
+        inverseJoinColumns = @JoinColumn(name = "id_categoria")
+    )
+    Set<Category> category = new HashSet<>();
 
 
     //Timestamps Automáticos
@@ -33,6 +43,15 @@ public class Product implements Serializable{
 
     @PreUpdate
     public void antesDeAtualizar() {atualizado = OffsetDateTime.now();}
+
+
+
+
+
+
+
+
+
 
     public Product(){
     }
@@ -55,12 +74,17 @@ public class Product implements Serializable{
 
     public void setDescricao(String descricao) {  this.descricao = descricao; }
 
+    public Set<Category> getCategory() {return category; }
+
+
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
+
                 ", criado=" + criado +
                 ", atualizado=" + atualizado +
                 '}';
