@@ -18,9 +18,10 @@
 .container{
     background-color: #fff;
     color: #000;
-    width: 60%;
-    height: 60%;
+    width: 80%;
+    height:80%;
     border-radius: 20px;
+   
 }
 
 .close{
@@ -28,8 +29,8 @@
     display: flex;
     background-color: transparent;
     outline: none;   
-    right: calc(-100% + 64px);
-    top: 16px;
+    right: calc(-100% + 30px);
+    top: 29px;
     cursor: pointer;
     position: relative;
     align-items: center;
@@ -52,6 +53,25 @@
     transform: rotate(-45deg);
 }
 
+.ImgModal{
+    width:50%;
+    height: 50%;
+    float: left;
+}
 
+.ButtonModal{
+    background: #F6A52A;
+    border: none;
+    color: #935a04;
+    padding: 10px 5px;
+    text-align:center;
+    font-size:14px;
+    border-radius:10px;
+    box-shadow:3px 3px 3px rgb(203, 201, 201);
+    width:120px;
+    float:right;
+    margin-top: 20%;
+   
+}
 
 

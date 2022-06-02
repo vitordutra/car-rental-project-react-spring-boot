@@ -35,16 +35,15 @@
     text-align:center;
 }
 
-.ButtonProductItem{
-    display: inline-block;
-    background: #F6A52A;
-    border: none;
-    color: white;
-    padding: 10px 32px;
-    text-align:center;
-    font-size:16px;
-    margin:0px 155px;
-    border-radius:10px;
-    box-shadow:5px 5px 5px grey;
-    width:150px;
+.LinkProdCategory {
+    text-decoration:none;
 }
+
+.ImgProdCategory {
+    width: 200px;
+    height:150px;
+    margin: 50px 120px
+}
+
+
+
