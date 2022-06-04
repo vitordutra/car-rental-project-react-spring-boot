@@ -23,11 +23,12 @@ public class Product implements Serializable{
     @ManyToMany
     @JoinTable(
             name = "features_products",
-            joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "feature_id")
+            joinColumns = @JoinColumn(name = "id_produto"), inverseJoinColumns = @JoinColumn(name = "id_caracteristica")
     )
     private Set<Feature> caracteristicas;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_produto")
     private List<Image> imagens;
 
 
@@ -38,21 +39,11 @@ public class Product implements Serializable{
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private OffsetDateTime atualizado;
 
-
     @PrePersist
     public void antesDeSalvar() {criado = OffsetDateTime.now();}
 
     @PreUpdate
     public void antesDeAtualizar() {atualizado = OffsetDateTime.now();}
-
-    public Product(){
-    }
-
-    public Product(Integer id, String nome, String descricao) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-    }
 
     public Integer getId() {   return id; }
 
