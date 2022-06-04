@@ -40,8 +40,7 @@ public class Category implements Serializable {
     public Category() {
     }
 
-    public Category(Integer id, String qualificacao, String descricao, String url_imagem) {
-        this.id = id;
+    public Category(String qualificacao, String descricao, String url_imagem) {
         this.qualificacao = qualificacao;
         this.descricao = descricao;
         this.url_imagem = url_imagem;
@@ -50,7 +49,7 @@ public class Category implements Serializable {
     public Integer getId() {
         return id;
     }
-
+    // id é definido automaticamente pelo banco de dados.
     public void setId(Integer id) {
         this.id = id;
     }
@@ -79,6 +78,14 @@ public class Category implements Serializable {
         this.url_imagem = url_imagem;
     }
 
+    public OffsetDateTime getCriado() {
+        return criado;
+    }
+
+    public OffsetDateTime getAtualizado() {
+        return atualizado;
+    }
+
     @Override
     public String toString() {
         return "Categories{" +
@@ -90,4 +97,5 @@ public class Category implements Serializable {
                 ", atualizado=" + atualizado +
                 '}';
     }
+
 }
