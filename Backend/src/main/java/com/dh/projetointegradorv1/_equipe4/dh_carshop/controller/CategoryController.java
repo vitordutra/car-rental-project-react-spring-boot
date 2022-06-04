@@ -30,18 +30,19 @@ public class CategoryController {
     @GetMapping("/categories/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Category> findCategoryById(@PathVariable(value = "id") Integer id) {
-        return categoryService.findCategoryById(id);
+        return ResponseEntity.ok(categoryService.findCategoryById(id));
     }
 
     @PutMapping("/categories/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Category> updateCategoryById(@PathVariable(value = "id") Integer id, @RequestBody Category category) {
-        return categoryService.updateCategoryById(category, id);
+        return ResponseEntity.ok().body(categoryService.updateCategoryById(category, id));
     }
 
     @DeleteMapping("/categories/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> deleteCategoryById(@PathVariable(value = "id") Integer id) {
-        return categoryService.deleteCategoryById(id);
+        categoryService.deleteCategoryById(id);
+        return ResponseEntity.ok("Deleted");
     }
 }
