@@ -1,6 +1,7 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.OffsetDateTime;
@@ -12,6 +13,7 @@ import java.time.OffsetDateTime;
 @Entity
 @Table (name = "categories")
 public class Category implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
