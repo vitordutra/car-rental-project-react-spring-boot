@@ -3,7 +3,6 @@ package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.OffsetDateTime;
 
 /*
@@ -19,7 +18,7 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String qualificacao;
+    private String titulo;
     private String descricao;
     private String url_imagem;
 
@@ -42,8 +41,8 @@ public class Category implements Serializable {
     public Category() {
     }
 
-    public Category(String qualificacao, String descricao, String url_imagem) {
-        this.qualificacao = qualificacao;
+    public Category(String titulo, String descricao, String url_imagem) {
+        this.titulo = titulo;
         this.descricao = descricao;
         this.url_imagem = url_imagem;
     }
@@ -56,12 +55,12 @@ public class Category implements Serializable {
         this.id = id;
     }
 
-    public String getQualificacao() {
-        return qualificacao;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setQualificacao(String qualificacao) {
-        this.qualificacao = qualificacao;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDescricao() {
@@ -92,7 +91,7 @@ public class Category implements Serializable {
     public String toString() {
         return "Categories{" +
                 "id=" + id +
-                ", qualificacao='" + qualificacao + '\'' +
+                ", titulo='" + titulo + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", url_imagem='" + url_imagem + '\'' +
                 ", criado=" + criado +
