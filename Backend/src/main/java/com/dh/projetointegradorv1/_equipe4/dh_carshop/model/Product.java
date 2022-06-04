@@ -31,6 +31,13 @@ public class Product implements Serializable{
     @JoinColumn(name = "id_produto")
     private List<Image> imagens;
 
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    private Category categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cidade")
+    private City city;
 
     //Timestamps Automáticos
 
