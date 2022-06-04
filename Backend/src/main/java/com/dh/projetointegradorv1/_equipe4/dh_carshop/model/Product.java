@@ -1,10 +1,11 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
-import com.sun.jdi.PrimitiveValue;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -18,6 +19,16 @@ public class Product implements Serializable{
     private Integer id;
     private String nome;
     private String descricao;
+
+    @ManyToMany
+    @JoinTable(
+            name = "features_products",
+            joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "feature_id")
+    )
+    private Set<Feature> caracteristicas;
+
+    @OneToMany
+    private List<Image> imagens;
 
 
     //Timestamps Automáticos
