@@ -19,11 +19,13 @@ public class CityController {
     private CityService cityService;
 
     @PostMapping("/cities")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<City> createCity(@RequestBody City city) {
         return ResponseEntity.status(201).body(cityService.createCity(city));
     }
 
     @GetMapping("/cities")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<City>> listAllCities(@RequestBody City city) {
         return ResponseEntity.ok(cityService.listAllCities());
     }
