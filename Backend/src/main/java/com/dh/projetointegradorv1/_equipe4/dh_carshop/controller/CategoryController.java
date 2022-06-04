@@ -17,14 +17,14 @@ public class CategoryController {
 
     @PostMapping("/categories")
     @ResponseStatus(HttpStatus.CREATED)
-    public Category createCategory(@RequestBody Category category) {
-        return categoryService.createCategory(category);
+    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+        return ResponseEntity.status(201).body(categoryService.createCategory(category));
     }
 
     @GetMapping("/categories")
     @ResponseStatus(HttpStatus.OK)
-    public List<Category> findAllCategories() {
-        return categoryService.listAllCategories();
+    public ResponseEntity<List<Category>> findAllCategories() {
+        return ResponseEntity.ok(categoryService.listAllCategories());
     }
 
     @GetMapping("/categories/{id}")
