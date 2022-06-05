@@ -24,4 +24,12 @@ public class ProductService {
     public Product findProductById(Integer id) {
         return productRepository.getById(id);
     }
+
+    public List<Product> findByCity(String name) {
+        return productRepository.findByCityNome(name);
+    }
+
+    public List<Product> findByCategory(String title) {
+        return productRepository.findByCategoryTitulo(title);
+    }
 }
