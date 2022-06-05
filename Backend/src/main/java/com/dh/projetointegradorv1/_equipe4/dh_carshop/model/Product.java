@@ -1,10 +1,11 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
-import com.sun.jdi.PrimitiveValue;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -19,6 +20,24 @@ public class Product implements Serializable{
     private String nome;
     private String descricao;
 
+    @ManyToMany
+    @JoinTable(
+            name = "features_products",
+            joinColumns = @JoinColumn(name = "id_produto"), inverseJoinColumns = @JoinColumn(name = "id_caracteristica")
+    )
+    private Set<Feature> caracteristicas;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_produto")
+    private List<Image> imagens;
+
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    private Category categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cidade")
+    private City city;
 
     //Timestamps Automáticos
 
@@ -27,21 +46,11 @@ public class Product implements Serializable{
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private OffsetDateTime atualizado;
 
-
     @PrePersist
     public void antesDeSalvar() {criado = OffsetDateTime.now();}
 
     @PreUpdate
     public void antesDeAtualizar() {atualizado = OffsetDateTime.now();}
-
-    public Product(){
-    }
-
-    public Product(Integer id, String nome, String descricao) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-    }
 
     public Integer getId() {   return id; }
 

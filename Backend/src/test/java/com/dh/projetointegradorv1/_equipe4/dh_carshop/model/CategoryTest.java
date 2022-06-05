@@ -32,8 +32,8 @@ class CategoryTest {
                 "}";
 
         // teste de get e set de qualificacao
-        category.setQualificacao(qualificacao);
-        Assertions.assertEquals(qualificacao, category.getQualificacao());
+        category.setTitulo(qualificacao);
+        Assertions.assertEquals(qualificacao, category.getTitulo());
 
         // teste de get e set de descricao
         category.setDescricao(descricao);
@@ -65,7 +65,7 @@ class CategoryTest {
         category = new Category(qualificacao, descricao, url_imagem);
 
         // testando se o initializer Category() funfou
-        Assertions.assertEquals(qualificacao, category.getQualificacao());
+        Assertions.assertEquals(qualificacao, category.getTitulo());
         Assertions.assertEquals(descricao, category.getDescricao());
         Assertions.assertEquals(url_imagem, category.getUrl_imagem());
 
