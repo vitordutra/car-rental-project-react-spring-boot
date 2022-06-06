@@ -1,4 +1,6 @@
-import React, {useContext } from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/auth";
 
 import logo from "../../assets/logo.png";
 
@@ -6,7 +8,8 @@ import './Header.css';
 
 const Header = () => {
 
-
+  const {user} = useContext(AuthContext);
+  
   function estaLogado() {
     try {
       let user = JSON.parse(localStorage.getItem("user"));
@@ -21,23 +24,24 @@ const Header = () => {
   return (
      
     <div className='header'>
-        <div className='logo'>
-          <a href='/'>
+      <div className='logo'>
+        
+          <Link to='/'>
             <img src={logo} alt='' width={100} />
-          </a>
+          </Link>
     </div>
       
       
-      <div className="header-right">  
-        <a href='/Produtos'>Conheça nossa Frota</a>    
-        <a href='/Registro'>Criar conta</a> 
+      <div className="header-right"> 
+        <Link to="/Produtos"><span>Conheça nossa Frota</span></Link>  
+        <Link to="/Registro"><span>Criar conta</span></Link> 
+            
+         
        
-        {!(estaLogado() === false) ? <>Bem vindo, {estaLogado()} !</> : <a href='/login'>Login</a>}
+        {user == null ?<a href='/login'>Login</a> : <>Bem vindo, {estaLogado()} !</>  }
     
       </div>
-   
-
-    
+       
   </div>
 
     

@@ -61,16 +61,77 @@
       "url_imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/2021_Toyota_Sienna_XLE_Hybrid%2C_front_12.21.21.jpg/1024px-2021_Toyota_Sienna_XLE_Hybrid%2C_front_12.21.21.jpg"
     }
   ],
+  "cities": [
+    {
+    "id": 1,
+    "nome": "São Paulo"
+    },
+     {
+    "id": 2,
+    "nome": "Rio de Raneiro"
+    },
+     {
+    "id": 3,
+    "nome": "Belo Horizonte"
+    }
+  ],
+  "productDetails": [
+    {
+      "icon_url": "https://cdn-icons-png.flaticon.com/512/31/31307.png?w=826&t=st=1654304021~exp=1654304621~hmac=72bd496f697f42d72f73f597857f5d4f86dc73889966ea50dcbca3d64ceefe4e",
+      "characteristic": "ABS"
+    },
+    {
+      "icon_url": "https://as1.ftcdn.net/v2/jpg/02/85/01/80/1000_F_285018011_A15VFduXXd6MLgK1l1YOuOfYWgCBhBai.jpg",
+      "characteristic": "Air bag"
+    },
+    {
+      "icon_url": "https://as1.ftcdn.net/v2/jpg/02/90/61/78/1000_F_290617871_Dx0fGopLnJ0uvdIAwWP7oSL1qq1gzkd2.jpg",
+      "characteristic": "Ar-condicionado"
+    },
+    {
+      "icon_url": "https://as2.ftcdn.net/v2/jpg/02/85/01/79/1000_F_285017954_pLWKH1inDn174aiQDuLEZ6OksefUrcNX.jpg",
+      "characteristic": "elétrico"
+    }
+  ],  
   "products": [
     {
       "id": 1,
-      "descricao": "Configuração do ambiente"
-     
-      
+      "url_imagem": "https://image1.mobiauto.com.br/images/api/images/v1.0/url/transform/cw_720?hash=21657ef9ee519ad11bfc0d480e4b9cefc37a5cc7469f695aa4b6e2bdb81d992d01df41a36366c687b4c5ff3e28ae03383299dba0a2616c3c1a5acf5beb1cac3e&url=https%3A%2F%2Fs3-sa-east-1.amazonaws.com%2Frevista.mobiauto%2FImagensSUVs%2F5%2BCarros%2Bmais%2Beconomicos%2Bdo%2BBrasil%2F5-Carros-mais-economicos-Peugeot-208.jpg",
+      "url_img": "https://repettosport.com/5108-tm_thickbox_default/deuter-aircontact-6010-sl.jpg",
+      "title": "nome carro economico",
+      "cityId":1,
+      "categoryId": 1,
+      "qualificacao": "Econômico",
+      "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband."     
     },
     {
       "id": 2,
-      "descricao": "Refatoração do vuex 4" 
+      "url_imagem": "https://image1.mobiauto.com.br/images/api/images/v1.0/url/transform/cw_720?hash=21657ef9ee519ad11bfc0d480e4b9cefc37a5cc7469f695aa4b6e2bdb81d992d01df41a36366c687b4c5ff3e28ae03383299dba0a2616c3c1a5acf5beb1cac3e&url=https%3A%2F%2Fs3-sa-east-1.amazonaws.com%2Frevista.mobiauto%2FImagensSUVs%2F5%2BCarros%2Bmais%2Beconomicos%2Bdo%2BBrasil%2F5-Carros-mais-economicos-Peugeot-208.jpg",
+      "url_img": "https://repettosport.com/5108-tm_thickbox_default/deuter-aircontact-6010-sl.jpg",
+      "title": "nome carro economico",
+      "cityId":1,
+      "categoryId": 1,
+      "qualificacao": "Econômico",
+      "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband."
+    },
+     {
+      "id": 3,
+       "url_imagem":"https://wp-midia-nova.bidu.com.br/uploads/2018/04/04202336/carros-pequenos.jpg",
+       "url_img": "https://repettosport.com/5108-tm_thickbox_default/deuter-aircontact-6010-sl.jpg",
+       "title": "nome carro compacto",
+       "cityId":2,
+       "categoryId": 2,
+       "qualificacao": "Compacto",
+       "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband."
+    },
+     {
+      "id": 4,
+       "url_imagem":"https://www.boaec.com.br/wp-content/uploads/2021/02/Uber-Comfort-1.jpg",
+       "title": "nome carro confort",
+       "cityId":3,
+       "categoryId": 3,
+       "qualificacao": "Confort",
+       "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband."
     }
   ],
   "users": [

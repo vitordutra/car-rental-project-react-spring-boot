@@ -31,11 +31,12 @@ const Paginas = () => {
     };
     return(
         <BrowserRouter>
+          
+            <AuthProvider>
             <Header />
-           <AuthProvider>
                     <Routes>
                     <Route path="/" element={<Homepage />} />
-                    <Route path="/Produtos" element={<Products />} />
+                    <Route path="/Produtos" element={<ProductsCategory />} />
                     <Route path="/Registro" element={<Register />} />
                     <Route path="/login" element={<Login />} />
                     <Route
@@ -53,9 +54,10 @@ const Paginas = () => {
                    
                     <Route path="*" element={<Error />} />
 
-                    </Routes>
+                </Routes>
+                <Footer /> 
            </AuthProvider>      
-            <Footer />    
+               
         </BrowserRouter>
     );
 };
