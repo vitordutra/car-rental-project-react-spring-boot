@@ -34,4 +34,14 @@ public class ProductController {
     public ResponseEntity<Product> findProductById(@PathVariable(value = "id") Integer id) {
         return ResponseEntity.ok(productService.findProductById(id));
     }
+
+    @GetMapping("products/city/{name}")
+    public ResponseEntity<List<Product>> findProductByCity(@PathVariable String name) {
+        return ResponseEntity.ok(productService.findProductByCity(name));
+    }
+
+    @GetMapping("products/category/{title}")
+    public ResponseEntity<List<Product>> findProductByCategory(@PathVariable String title) {
+        return ResponseEntity.ok(productService.findProductByCategory(title));
+    }
 }

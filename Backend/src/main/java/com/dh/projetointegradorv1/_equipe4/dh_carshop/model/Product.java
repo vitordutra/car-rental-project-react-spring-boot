@@ -37,7 +37,7 @@ public class Product implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "id_cidade")
-    private City city;
+    private City cidade;
 
     //Timestamps Automáticos
 
