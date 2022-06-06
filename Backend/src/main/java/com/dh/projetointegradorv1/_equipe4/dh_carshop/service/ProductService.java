@@ -25,11 +25,11 @@ public class ProductService {
         return productRepository.getById(id);
     }
 
-    public List<Product> findByCity(String name) {
-        return productRepository.findByCityNome(name);
+    public List<Product> findProductByCity(String name) {
+        return productRepository.findByCidadeNome(name);
     }
 
-    public List<Product> findByCategory(String title) {
-        return productRepository.findByCategoryTitulo(title);
+    public List<Product> findProductByCategory(String title) {
+        return productRepository.findByCategoriaTitulo(title);
     }
 }
