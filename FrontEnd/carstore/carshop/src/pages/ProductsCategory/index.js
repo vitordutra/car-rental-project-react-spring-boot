@@ -2,40 +2,69 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import ProductItem from "../../component/ProductItem";
+import ProdCategory from "../../component/ProdCategory";
+import Products from "../Products";
 import api from "../../services/api";
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './styles.css';
 
 
 export default function ProductsCategory() {
+  const [products, setProducts] = useState([]);
 
   // Captura do id de categoria parâmetro passado para a página
-  const categoryId = useParams("id");
-  const [product, setProduct] = useState([]);
+  const {id} = useParams("id");
+
   useEffect(() => {
-    callApiProductsCategory();
+    console.log(id)
+    if (id === undefined) {
+      callApiProducts();
+    } else {
+      callApiProductsCategory();
+    
+    
+    }
+    
   }, []);
 
   async function callApiProductsCategory() {
 
     try {
-      const URL = "categories"
-      // const URL = "/productsCategory/" + categoryId
+      //const URL = "categories"
+    
+      const URL = `products?categoryId=${id}`
       const response = await api.get(URL);
-      setProduct(response.data);
+      setProducts(response.data);
     }
     catch (error) {
     }
   }
+
+  async function callApiProducts() {
+
+    try {
+      //const URL = "categories"
+    
+      const URL = `products`
+      const response = await api.get(URL);
+      setProducts(response.data);
+    }
+    catch (error) {
+    }
+  }
+
+ 
+
+  
   return (
     <>
       <body className="ProCategory-body" >
+        <Products handleFilter={setProducts}/>
       <h1 className="ProCategory-h1">Categorias</h1>
       <ul className="ProCategory-ul">
         <li className="ProCategory-li">
-        {product.map((item) => (
-          <ProductItem key={item.id} prmProduct={item} />
+        {products.map((item) => (
+          < ProdCategory prmProduct={item }/>
         ))}
           </li>
         </ul>
