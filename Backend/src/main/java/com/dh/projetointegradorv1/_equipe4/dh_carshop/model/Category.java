@@ -6,10 +6,6 @@ import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/*
-* TODO: Timestamp não está funcionando
-* */
-
 @Entity
 @Table (name = "categories")
 public class Category implements Serializable {
@@ -25,7 +21,7 @@ public class Category implements Serializable {
     private String descricao;
     @Column(length = 300, nullable = false)
     private String url_imagem;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
     private List<Product> produtos;
 
     // Timestamps automáticos

@@ -1,20 +1,27 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table (name = "cities")
 public class City implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(length = 50, nullable = false)
     private String nome;
+    @Column(length = 50, nullable = false)
     private String estado;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cidade")
+    private List<Product> produtos;
 
     //Timestamps Automáticos
 
