@@ -22,7 +22,7 @@ public class ProductService {
     }
 
     public Product findProductById(Integer id) {
-        return productRepository.getById(id);
+        return productRepository.getReferenceById(id);
     }
 
     public List<Product> findProductByCity(String name) {

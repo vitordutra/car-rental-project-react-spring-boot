@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,9 +15,10 @@ public class Feature implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(length = 50, nullable = false)
     private String nome;
+    @Column(length = 3000, nullable = false)
     private String icone;
-
     @ManyToMany(mappedBy = "caracteristicas")
     private Set<Product> produtos;
 
@@ -35,16 +35,6 @@ public class Feature implements Serializable {
     @PreUpdate
     public void antesDeAtualizar() {
         atualizado = OffsetDateTime.now();
-    }
-
-    public Feature() {
-    }
-
-    public Feature(String nome, String icone, OffsetDateTime criado, OffsetDateTime atualizado) {
-        this.nome = nome;
-        this.icone = icone;
-        this.criado = criado;
-        this.atualizado = atualizado;
     }
 
     public String getNome() {

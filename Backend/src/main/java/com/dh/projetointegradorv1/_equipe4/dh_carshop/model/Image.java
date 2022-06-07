@@ -1,6 +1,7 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
 
@@ -9,12 +10,15 @@ import java.io.Serializable;
 @Table (name = "images")
 public class Image implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(length = 50, nullable = false)
     private String titulo;
+    @Column(columnDefinition = "longtext", nullable = false)
     private String url;
 
     //Timestamps Automáticos
@@ -24,22 +28,11 @@ public class Image implements Serializable {
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private OffsetDateTime atualizado;
 
-
     @PrePersist
     public void antesDeSalvar() {criado = OffsetDateTime.now();}
 
     @PreUpdate
     public void antesDeAtualizar(){ atualizado = OffsetDateTime.now();}
-
-
-    public Image(){
-    }
-
-    public Image(Integer id, String titulo, String url) {
-        this.id = id;
-        this.titulo = titulo;
-        this.url = url;
-    }
 
     public Integer getId() { return id; }
 

@@ -4,10 +4,7 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
-
-/*
-* TODO: Timestamp não está funcionando
-* */
+import java.util.List;
 
 @Entity
 @Table (name = "categories")
@@ -18,9 +15,14 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(length = 50, nullable = false)
     private String titulo;
+    @Column(length = 300, nullable = false)
     private String descricao;
+    @Column(length = 300, nullable = false)
     private String url_imagem;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
+    private List<Product> produtos;
 
     // Timestamps automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -50,7 +52,7 @@ public class Category implements Serializable {
     public Integer getId() {
         return id;
     }
-    // id é definido automaticamente pelo banco de dados.
+
     public void setId(Integer id) {
         this.id = id;
     }
