@@ -24,22 +24,11 @@ public class Image implements Serializable {
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private OffsetDateTime atualizado;
 
-
     @PrePersist
     public void antesDeSalvar() {criado = OffsetDateTime.now();}
 
     @PreUpdate
     public void antesDeAtualizar(){ atualizado = OffsetDateTime.now();}
-
-
-    public Image(){
-    }
-
-    public Image(Integer id, String titulo, String url) {
-        this.id = id;
-        this.titulo = titulo;
-        this.url = url;
-    }
 
     public Integer getId() { return id; }
 

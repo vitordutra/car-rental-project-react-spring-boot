@@ -29,17 +29,6 @@ public class City implements Serializable {
     @PreUpdate
     public void antesDeAtualizar(){ atualizado = OffsetDateTime.now();}
 
-
-    public City () {
-    }
-
-
-    public City(Integer id, String nome, String estado) {
-        this.id = id;
-        this.nome = nome;
-        this.estado = estado;
-    }
-
     public Integer getId() {
         return id;
     }

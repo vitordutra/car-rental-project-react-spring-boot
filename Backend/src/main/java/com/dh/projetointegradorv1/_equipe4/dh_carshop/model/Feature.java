@@ -37,16 +37,6 @@ public class Feature implements Serializable {
         atualizado = OffsetDateTime.now();
     }
 
-    public Feature() {
-    }
-
-    public Feature(String nome, String icone, OffsetDateTime criado, OffsetDateTime atualizado) {
-        this.nome = nome;
-        this.icone = icone;
-        this.criado = criado;
-        this.atualizado = atualizado;
-    }
-
     public String getNome() {
         return nome;
     }
