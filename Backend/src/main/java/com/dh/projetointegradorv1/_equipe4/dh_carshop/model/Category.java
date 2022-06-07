@@ -40,7 +40,14 @@ public class Category implements Serializable {
         atualizado = OffsetDateTime.now();
     }
 
+    public Category() {
+    }
 
+    public Category(String titulo, String descricao, String url_imagem) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.url_imagem = url_imagem;
+    }
 
     public Integer getId() {
         return id;
