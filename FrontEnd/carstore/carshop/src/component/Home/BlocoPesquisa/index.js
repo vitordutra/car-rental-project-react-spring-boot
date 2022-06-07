@@ -1,9 +1,12 @@
-import React from "react";
+
 import './styles.css';
 
 
 
-const BlocoPesquisa = () =>{
+const BlocoPesquisa = () => {
+    
+   
+
 
     return(
 
@@ -15,8 +18,15 @@ const BlocoPesquisa = () =>{
             <div className="pesquisa-primeira-fileira">
             
                 <div className="pesquisa-itens-duplos">
-                    <h4>Local de Retirada</h4>
-                    <input placeholder="Onde quer retirar?" type="text" id="pesquisa-retirar-local" name="pesquisa-retirar-local" className="pesquisa-inputs"/>
+                        <h4>bla bla</h4>
+                        <input
+                            placeholder="Onde quer retirar?"
+                            type="text"
+                            id="pesquisa-retirar-local"
+                            name="pesquisa-retirar-local"
+                            className="pesquisa-inputs"
+                            ></input>
+                        
                     <input type="checkbox" id="pesquisa-devolucao-checkbox" name="pesquisa-devolucao-checkbox" />
                 <label htmlFor="pesquisa-devolucao-checkbox">Quer devolver em outra unidade?</label>
                     <h4>Local de Devolução</h4>
@@ -28,7 +38,7 @@ const BlocoPesquisa = () =>{
                     
                 <div className="pesquisa-itens-duplos">
                     <h4>Data de Retirada</h4>
-                    <input type="date" id="pesquisa-retirar-data" name="pesquisa-retirar-data" className="pesquisa-inputs" />    
+                    <input type="date" id="pesquisa-retirar-data" name="pesquisa-retirar-data" className="pesquisa-inputs"></input>    
                 </div>
                 
                 <div className="pesquisa-itens-duplos">

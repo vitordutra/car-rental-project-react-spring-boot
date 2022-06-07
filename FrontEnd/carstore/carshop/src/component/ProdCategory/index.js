@@ -10,8 +10,10 @@ export default function ProdCategory({ prmProduct }) {
         <ul className="ProdCategoryLu">
             <li className="ProdCategoryLi" >
                 <div className="LinkProdCategory">
-                    <img className="ImgProdCategory"  src={prmProduct.url_imagem} />
-                    <h3 className="H3ProdCategory">{prmProduct.title}</h3>               
+                    <h3 className="H3ProdCategory">{prmProduct.title}</h3>
+                    <h3 className="H3ProdQualification">{prmProduct.qualificacao }</h3>
+                    <img className="ImgProdCategory" src={prmProduct.url_imagem} />
+                    <p className="ParagProdCategory">{prmProduct.descricao}</p>                  
                 </div>
                 
                 <button className="ButtonProductItem" onClick={()=> setIsModalVisible(true)}>

@@ -13,10 +13,8 @@ export default function ProductItem({ prmProduct }) {
                     <img className="ImgProductItem"  src={prmProduct.url_imagem} />
                     <h3 className="H3ProductItem">{prmProduct.qualificacao}</h3>
                     
-                   
-                
-                 
-                   
+                    
+                    
                 </Link>
                 
                 {/*<button className="ButtonProductItem">

@@ -1,6 +1,6 @@
 .ProdCategoryUl{
-    margin:30px;
-    padding:10px;
+    margin:10px;
+    padding:5px;
     align-items: center;
      
 }
@@ -9,7 +9,7 @@
     list-style-type: none;
     border: 1px #666;
     border-radius:10px;
-    margin:30px;
+    margin:20px;
     width: 450px;
     height:400px;
     align-items: center;
@@ -25,13 +25,18 @@
 .ImgProdCategory {
     width: 200px;
     height:150px;
-    margin: 50px 120px
+    margin: 5px 120px;
 }
 
 
 .H3ProdCategory{
     color: black;
-    margin: 10px;
+    margin: 5px;
+    text-align:center;
+}
+.H3ProdQualification{
+    color: black;
+    margin: 5px;
     text-align:center;
 }
 
@@ -39,11 +44,13 @@
     text-decoration:none;
 }
 
-.ImgProdCategory {
-    width: 200px;
-    height:150px;
-    margin: 50px 120px
+.ParagProdCategory{
+    color: black;
+    margin: 5px;
+    text-align:center;
 }
+
+
 
 
 

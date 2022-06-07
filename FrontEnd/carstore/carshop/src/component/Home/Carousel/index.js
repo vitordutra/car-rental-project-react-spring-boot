@@ -18,7 +18,7 @@ callApi();
 async function callApi() {
   try {
     const response = await api.get("/categories");
-    console.log('response', response);
+    
 
     var dataBatchs = [];
     const data = response.data;
