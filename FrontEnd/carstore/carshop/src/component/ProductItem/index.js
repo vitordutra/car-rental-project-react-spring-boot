@@ -6,15 +6,12 @@ import './styles.css'
 export default function ProductItem({ prmProduct }) {
  
     return (
-
+        <body>      
         <ul>
             <li className="ProductItemLi" >
                 <Link className="LinkProductItem"   to={`/detalhes/${prmProduct.id}`}>
                     <img className="ImgProductItem"  src={prmProduct.url_imagem} />
-                    <h3 className="H3ProductItem">{prmProduct.qualificacao}</h3>
-                    
-                    
-                    
+                    <h3 className="H3ProductItem">{prmProduct.qualificacao}</h3>  
                 </Link>
                 
                 {/*<button className="ButtonProductItem">
@@ -22,6 +19,6 @@ export default function ProductItem({ prmProduct }) {
                 </button>*/}
             </li>
         </ul>
-
+        </body>
     );
 }
