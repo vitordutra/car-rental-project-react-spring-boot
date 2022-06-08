@@ -29,7 +29,7 @@ public class CategoryController {
 
     @GetMapping("/categories/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Category> findCategoryById(@PathVariable(value = "id") Integer id) {
+    public ResponseEntity<Category> findCategoryById(@PathVariable Integer id) {
         return ResponseEntity.ok(categoryService.findCategoryById(id));
     }
 
