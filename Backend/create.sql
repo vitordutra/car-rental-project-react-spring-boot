@@ -3,6 +3,8 @@ CREATE TABLE products(
 	id INT NOT NULL AUTO_INCREMENT,
     nome VARCHAR(100),
     descricao VARCHAR(255),
+    id_categoria int DEFAULT NULL,
+    id_cidade int DEFAULT NULL,
     PRIMARY KEY (id)
 );
 

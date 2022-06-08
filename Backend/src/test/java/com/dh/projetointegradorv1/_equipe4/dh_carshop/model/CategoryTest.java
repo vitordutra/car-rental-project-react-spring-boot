@@ -19,21 +19,21 @@ class CategoryTest {
         Category category = new Category();
 
         // expectativas
-        String qualificacao = "Utilitario";
-        String descricao = "Fusca azul";
-        String descricaoAlterada = "Fuscão preto";
+        String titulo = "Econômico";
+        String descricao = "Carros com baixo consumo";
+        String descricaoAlterada = "Carros com alto consumo";
         String url_imagem = "url.com";
         String toStringOutput = "Categories{" +
-                    "id=0, qualificacao='Utilitario', " +
-                    "descricao='Fusca azul', " +
+                    "id=0, titulo='Econômico', " +
+                    "descricao='Carros com baixo consumo', " +
                     "url_imagem='url.com', " +
                     "criado=null, " +
                     "atualizado=null" +
                 "}";
 
-        // teste de get e set de qualificacao
-        category.setTitulo(qualificacao);
-        Assertions.assertEquals(qualificacao, category.getTitulo());
+        // teste de get e set de titulo
+        category.setTitulo(titulo);
+        Assertions.assertEquals(titulo, category.getTitulo());
 
         // teste de get e set de descricao
         category.setDescricao(descricao);
@@ -62,10 +62,10 @@ class CategoryTest {
         Assertions.assertInstanceOf(java.time.OffsetDateTime.class, category.getAtualizado());
 
         // verificar agora instanciar ja com os valores
-        category = new Category(qualificacao, descricao, url_imagem);
+        category = new Category(titulo, descricao, url_imagem);
 
         // testando se o initializer Category() funfou
-        Assertions.assertEquals(qualificacao, category.getTitulo());
+        Assertions.assertEquals(titulo, category.getTitulo());
         Assertions.assertEquals(descricao, category.getDescricao());
         Assertions.assertEquals(url_imagem, category.getUrl_imagem());
 
