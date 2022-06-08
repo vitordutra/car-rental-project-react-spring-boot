@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import api from "../../services/api";
-import ProdCategory from "../../component/ProdCategory";
 import './styles.css';
 
 
@@ -79,13 +78,12 @@ export default function Products({handleFilter}) {
 
   return (
     <>
-      <body className="item-list-products-body" >
-        <h1 className="item-list-products-h1" >Conheça nossa frota</h1>
-        <div>
-          <h1>Filtro:</h1>
-          <form>
-            <label>Categoria:&nbsp;&nbsp;  </label>
-            <select name="categoria"  onChange={item => callApiProductsCategory(item.target.value)} >
+      <body className="item-list-products-body" >     
+        <div> 
+        <h1 className="formFiltersH1">Grupos de carros</h1>
+          <form className="formFilters">
+            <label className="label">Categoria:  </label>
+            <select className="select" name="categoria"  onChange={item => callApiProductsCategory(item.target.value)} >
               <option value="">Selecione</option>
               {categoria.map((item) => (
                 <option value={item.id}>{item.qualificacao}</option>
@@ -93,13 +91,13 @@ export default function Products({handleFilter}) {
               ))}
             </select> &nbsp;
            
-            <label>Cidade:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <select name="cidade"  onChange={item => callProductByCity(item.target.value)}>
+            <label className="label">Cidade:</label>
+            <select className="select" name="cidade"  onChange={item => callProductByCity(item.target.value)}>
               <option value="">Selecione</option>
               {cidade.map((item) => (
               <option value={item.id}>{item.nome}</option>
               ))}
-            </select>&nbsp;&nbsp;
+            </select>
          
           </form>
         </div>

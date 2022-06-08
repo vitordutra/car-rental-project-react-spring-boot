@@ -16,7 +16,6 @@ export default function ProductsCategory() {
   const {id} = useParams("id");
 
   useEffect(() => {
-    console.log(id)
     if (id === undefined) {
       callApiProducts();
     } else {
@@ -60,12 +59,14 @@ export default function ProductsCategory() {
     <>
       <body className="ProCategory-body" >
         <Products handleFilter={setProducts}/>
-      <h1 className="ProCategory-h1">Categorias</h1>
+      <h1 className="ProCategory-h1"></h1>
       <ul className="ProCategory-ul">
         <li className="ProCategory-li">
-        {products.map((item) => (
-          < ProdCategory prmProduct={item }/>
+            {products.map((item) => (
+          < ProdCategory prmProduct={item} />
+          
         ))}
+            
           </li>
         </ul>
         </body>
