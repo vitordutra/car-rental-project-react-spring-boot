@@ -157,7 +157,7 @@ INSERT INTO images_products (id_produto, id_imagem)
 VALUES ();
 
 # Caracteristicas
-INSERT INTO features (nome, icone)
+INSERT INTO features (nome, id_imagem)
 VALUES ();
 
 # CaracteristicasProdutos
