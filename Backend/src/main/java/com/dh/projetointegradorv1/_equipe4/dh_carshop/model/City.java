@@ -32,9 +32,6 @@ public class City implements Serializable {
     @PrePersist
     public void antesDeSalvar() {criado = OffsetDateTime.now();}
 
-    @PreUpdate
-    public void antesDeAtualizar(){ atualizado = OffsetDateTime.now();}
-
     public Integer getId() {
         return id;
     }
@@ -59,6 +56,14 @@ public class City implements Serializable {
         this.estado = estado;
     }
 
+    public OffsetDateTime getCriado() {
+        return criado;
+    }
+
+    public OffsetDateTime getAtualizado() {
+        return atualizado;
+    }
+
     @Override
     public String toString() {
         return "City{" +
@@ -69,4 +74,6 @@ public class City implements Serializable {
                 ", atualizado=" + atualizado +
                 '}';
     }
+
+
 }

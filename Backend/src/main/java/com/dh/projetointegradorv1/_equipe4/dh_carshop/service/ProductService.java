@@ -5,6 +5,7 @@ import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.ProductReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -13,8 +14,9 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Transactional
     public Product createProduct(Product product) {
-        return productRepository.save(product);
+            return productRepository.save(product);
     }
 
     public List<Product> listAllProducts() {
@@ -22,7 +24,25 @@ public class ProductService {
     }
 
     public Product findProductById(Integer id) {
-        return productRepository.getReferenceById(id);
+        return productRepository.getById(id);
+    }
+
+    public Product editProductById(Product editedProduct, Integer id) {
+
+        return productRepository.findById(id)
+                .map(product -> {
+                    product.setNome(editedProduct.getNome());
+                    product.setDescricao(editedProduct.getDescricao());
+                    return productRepository.save(product);
+                })
+                .orElseGet(() -> {
+                    editedProduct.setId(id);
+                    return productRepository.save(editedProduct);
+                });
+    }
+
+    public void deleteProductById(Integer id) {
+        productRepository.deleteById(id);
     }
 
     public List<Product> findProductByCity(String name) {
