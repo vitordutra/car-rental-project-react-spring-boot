@@ -32,8 +32,8 @@ export default function Modal({id = 'modal' ,onClose = () => { }, children }) {
                     <div className="content">{children}</div>
                     {characteristic.map((caract) => ( 
                         <>
-                        <img className="ImgModal" src={caract.icon_url} />
-                        <h3 className="H3Modal">{caract.characteristic}</h3>
+                            <img className="ImgModal" src={caract.icon_url} />                        
+                            <h3 className="H3Modal">{caract.characteristic}</h3>
                         </>
                     ))}
                     <button className="ButtonModal" >
