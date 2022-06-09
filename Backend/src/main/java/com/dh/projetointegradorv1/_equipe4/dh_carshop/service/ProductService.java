@@ -1,6 +1,9 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.service;
 
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.CategoryRepository;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.CityRepository;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +16,15 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private CityRepository cityRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Transactional
     public Product createProduct(Product product) {
+        product.setCategoria(categoryRepository.findById(product.getCategoria().getId()).orElseThrow());
+        product.setCidade(cityRepository.findById(product.getCategoria().getId()).orElseThrow());
         return productRepository.save(product);
     }
 
