@@ -18,7 +18,7 @@ const BlocoPesquisa = () => {
             <div className="pesquisa-primeira-fileira">
             
                 <div className="pesquisa-itens-duplos">
-                        <h4>bla bla</h4>
+                        <h4>Local de retirada</h4>
                         <input
                             placeholder="Onde quer retirar?"
                             type="text"
