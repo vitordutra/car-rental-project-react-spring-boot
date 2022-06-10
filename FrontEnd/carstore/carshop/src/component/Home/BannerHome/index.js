@@ -2,24 +2,16 @@ import './styles.css';
 
 
 const bannerHome = () => {
-    return (
-        
-
-  <section id="banner-container-central" className="container text-center">
-    
-    <div id="banner-esquerda" className="banner-conteudo">
-        <img id="banner-imagem" src="https://d20wpml8i3x82.cloudfront.net/wp-content/uploads/2019/05/seguro-auto-101.jpg" alt="Família Dirigindo" ></img>
-    </div>
-        
-    <div id="banner-direita" className="banner-conteudo">
-        <p id="banner-texto">
-        O jeito mais prático e rápido para se alugar um carro é aqui!
-        </p>
-   </div>
-        
-  </section>
-
-     
+  return (
+      <body>    
+        <div className="wrapper">
+          <main id="about">
+              <section className="module parallax parallax-1" id="home">
+                  <h1> O jeito mais prático para alugar um carro é aqui!</h1>   
+              </section>          
+          </main>
+        </div>   
+      </body> 
      
               
     );
