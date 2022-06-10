@@ -1,4 +1,111 @@
-#banner-container-central {
+body{
+    margin: 0;
+    padding: 0;
+    font-size: sans-serif;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+section.module h2{
+    margin-top: 30px;
+    margin-bottom: 50px;
+    font-size:40px;
+    text-align: center; 
+  }
+  
+  h1, h2,h3{
+    font-weight: 900;
+    color: black;  
+  }
+  
+  section.module.content{
+    padding: 40px 0;
+    background: #FFFF;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+  }
+  
+  
+  
+  section.module.parallax{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100vh);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -moz-background-size: cover;
+    
+  }
+
+  @media ( max-width:768px){
+    section.module.parallax{
+        height: 450px;
+    }
+    }
+
+  section.module.parallax-1{
+    background-image: url("../../../assets/carros1.png");
+    background-size: 60%;
+    
+  }
+
+  @media ( max-width:768px){
+    section.module.parallax-1{
+        background-size: 90%;
+    }
+    }
+  
+  section.module.parallax h1{
+    color: rgb(87, 82, 82);
+    text-align: center;
+    font-size: 50px;
+    z-index: 50;
+    text-transform: uppercase;
+  }
+
+
+  @media (max-width:768px){
+    section.module.parallax h1{
+        font-size: 30px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #banner-container-central {
   
     margin-top: 30px;
     padding: 2rem 2rem;
@@ -25,4 +132,4 @@
 #banner-texto{
     margin-left: 10px;
     font-size: 200%;
-}
+} */

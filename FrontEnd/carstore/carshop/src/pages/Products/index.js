@@ -79,21 +79,22 @@ export default function Products({handleFilter}) {
   return (
     <>
       <body className="item-list-products-body" >     
-        <div> 
-        <h1 className="formFiltersH1">Grupos de carros</h1>
+        <div className="formDiv"> 
+        {/* <h1 className="formFiltersH1">Mostrando frota para:</h1> */}
           <form className="formFilters">
-            <label className="label">Categoria:  </label>
+            {/* <p className="paragrafoForm">Grupos de carros</p> */}
+            {/* <label className="label">Categoria:&nbsp;&nbsp;</label> */}
             <select className="select" name="categoria"  onChange={item => callApiProductsCategory(item.target.value)} >
-              <option value="">Selecione</option>
+              <option value="">Selecionar por categorias</option>
               {categoria.map((item) => (
                 <option value={item.id}>{item.qualificacao}</option>
                 
               ))}
-            </select> &nbsp;
-           
-            <label className="label">Cidade:</label>
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {/* <p className="paragrafoForm">Localização do veículo</p> */}
+            {/* <label className="label">Cidade:</label> */}
             <select className="select" name="cidade"  onChange={item => callProductByCity(item.target.value)}>
-              <option value="">Selecione</option>
+              <option  value="">Escolha a cidade</option>
               {cidade.map((item) => (
               <option value={item.id}>{item.nome}</option>
               ))}
