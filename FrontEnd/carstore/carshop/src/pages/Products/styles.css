@@ -1,19 +1,24 @@
 .item-list-products-body{
     text-decoration:none;
     background:#e5e5e5;
-    padding: 0 20px
+    
+ 
+    height: 100%;
+    padding: 0 30px
 }
 
-.item-list-products-h1{
-    font-size:50px;
-    color:black;  
+.formFilters{
+    margin-left: 5px;
+    margin-bottom: 40px;
 }
-.item-list-products-ul{
+
+.formFiltersH1{
+    padding: 50px;
+    color:rgb(98, 94, 94)
+}
+.select{
     display: flex;
+    margin-bottom: 10px;
     align-items: center;
 }
-.item-list-products-li{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+

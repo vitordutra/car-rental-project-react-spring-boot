@@ -44,8 +44,9 @@ CREATE TABLE images_products(
 CREATE TABLE features(
 	id INT NOT NULL AUTO_INCREMENT,
     nome VARCHAR(50),
-    icone VARCHAR(255),
-    PRIMARY KEY (id)
+    id_imagem INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_imagem) REFERENCES images(id)
 );
 
 # Criação da tabela de características x produtos
@@ -156,7 +157,7 @@ INSERT INTO images_products (id_produto, id_imagem)
 VALUES ();
 
 # Caracteristicas
-INSERT INTO features (nome, icone)
+INSERT INTO features (nome, id_imagem)
 VALUES ();
 
 # CaracteristicasProdutos

@@ -1,6 +1,8 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.time.OffsetDateTime;
@@ -19,10 +21,13 @@ public class Product implements Serializable{
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(length = 100, nullable = false)
     private String nome;
+
     @Column(length = 300, nullable = false)
     private String descricao;
+
     @ManyToMany
     @JoinTable(
             name = "features_products",
@@ -36,10 +41,12 @@ public class Product implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
+    @JsonIgnoreProperties("products")
     private Category categoria;
 
     @ManyToOne
     @JoinColumn(name = "id_cidade")
+    @JsonIgnoreProperties("products")
     private City cidade;
 
     //Timestamps Automáticos
@@ -103,15 +110,12 @@ public class Product implements Serializable{
     public void antesDeAtualizar() {atualizado = OffsetDateTime.now();}
 
     public Integer getId() {   return id; }
-
     public void setId(Integer id) {  this.id = id;}
 
     public String getNome() {   return nome; }
-
     public void setNome(String nome) {  this.nome = nome; }
 
     public String getDescricao() {   return descricao; }
-
     public void setDescricao(String descricao) {  this.descricao = descricao; }
 
 

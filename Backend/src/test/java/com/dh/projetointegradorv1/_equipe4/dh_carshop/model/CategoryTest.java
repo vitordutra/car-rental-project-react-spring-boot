@@ -19,13 +19,13 @@ class CategoryTest {
         Category category = new Category();
 
         // expectativas
-        String qualificacao = "Utilitario";
-        String descricao = "Fusca azul";
-        String descricaoAlterada = "Fuscão preto";
+        String titulo = "Econômico";
+        String descricao = "Carros com baixo consumo";
+        String descricaoAlterada = "Carros com alto consumo";
         String url_imagem = "url.com";
         String toStringOutput = "Categories{" +
-                    "id=0, qualificacao='Utilitario', " +
-                    "descricao='Fusca azul', " +
+                    "id=0, titulo='Econômico', " +
+                    "descricao='Carros com baixo consumo', " +
                     "url_imagem='url.com', " +
                     "criado=null, " +
                     "atualizado=null" +
@@ -62,7 +62,7 @@ class CategoryTest {
         Assertions.assertInstanceOf(java.time.OffsetDateTime.class, category.getAtualizado());
 
         // verificar agora instanciar ja com os valores
-        category = new Category(qualificacao, descricao, url_imagem);
+        category = new Category(titulo, descricao, url_imagem);
 
         // testando se o initializer Category() funfou
         Assertions.assertEquals(qualificacao, category.getQualificacao());

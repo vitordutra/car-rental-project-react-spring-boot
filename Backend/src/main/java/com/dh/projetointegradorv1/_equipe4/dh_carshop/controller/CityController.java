@@ -24,7 +24,7 @@ public class CityController {
 
     @GetMapping("/cities")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<City>> listAllCities(@RequestBody City city) {
+    public ResponseEntity<List<City>> listAllCities() {
         return ResponseEntity.ok(cityService.listAllCities());
     }
 

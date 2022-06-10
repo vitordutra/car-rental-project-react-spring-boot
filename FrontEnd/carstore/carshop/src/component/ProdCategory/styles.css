@@ -1,17 +1,22 @@
+.ProdCategoryBody{
+    background:#e5e5e5; 
+  
+}
+
 .ProdCategoryUl{
-    margin:30px;
-    padding:10px;
+    margin:10px;
+    padding:5px;
     align-items: center;
-     
+  
 }
 
 .ProdCategoryLi {
     list-style-type: none;
     border: 1px #666;
     border-radius:10px;
-    margin:30px;
-    width: 450px;
-    height:400px;
+    margin:20px;
+    width: 350px;
+    height:450px;
     align-items: center;
     background-color: white;
     box-shadow: 5px 5px 5px #D3D3D3 
@@ -20,30 +25,53 @@
 
 .LinkProdCategory {
     text-decoration:none;
+    margin: 0px 0px 0px 0px;
 }
 
 .ImgProdCategory {
     width: 200px;
     height:150px;
-    margin: 50px 120px
+    margin: 5px 80px;
 }
 
 
 .H3ProdCategory{
     color: black;
-    margin: 10px;
+    margin: 5px;
+    text-align:center;
+}
+.H3ProdQualification{
+    color: black;
+    margin: 15px;
+    text-align:center;
+    
+}
+
+.ParagProdCategory{
+    color: black;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 60px;
+    margin-top: 25px;
+    justify-content: center;
     text-align:center;
 }
 
-.LinkProdCategory {
-    text-decoration:none;
+.ButtonProductItem{
+    display: inline-block;
+    background: #F6A52A;
+    border: none;
+    color: white;
+    padding: 6px 20px;
+    text-align:center;
+    font-size:12px;
+    margin:0px 10px;
+    border-radius:10px;
+    box-shadow:5px 5px 5px grey;
+    width:325px;
 }
 
-.ImgProdCategory {
-    width: 200px;
-    height:150px;
-    margin: 50px 120px
-}
+
 
 
 
