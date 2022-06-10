@@ -29,7 +29,7 @@ public class CategoryService {
         return categoryRepository.findById(id)
                 .map(categoryToUpdate -> {
                     categoryToUpdate.setDescricao(category.getDescricao());
-                    categoryToUpdate.setTitulo(category.getTitulo());
+                    categoryToUpdate.setQualificacao(category.getQualificacao());
                     categoryToUpdate.setUrl_imagem(category.getUrl_imagem());
                     return categoryRepository.save(categoryToUpdate);
                 }).orElseGet(() -> {

@@ -16,7 +16,7 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(length = 50, nullable = false)
-    private String titulo;
+    private String qualificacao;
     @Column(length = 300, nullable = false)
     private String descricao;
     @Column(length = 300, nullable = false)
@@ -43,10 +43,18 @@ public class Category implements Serializable {
     public Category() {
     }
 
-    public Category(String titulo, String descricao, String url_imagem) {
-        this.titulo = titulo;
+    public Category(String qualificacao, String descricao, String url_imagem) {
+        this.qualificacao = qualificacao;
         this.descricao = descricao;
         this.url_imagem = url_imagem;
+    }
+
+    public OffsetDateTime getCriado() {
+        return criado;
+    }
+
+    public OffsetDateTime getAtualizado() {
+        return atualizado;
     }
 
     public Integer getId() {
@@ -57,12 +65,12 @@ public class Category implements Serializable {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getQualificacao() {
+        return qualificacao;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setQualificacao(String qualificacao) {
+        this.qualificacao = qualificacao;
     }
 
     public String getDescricao() {
@@ -81,19 +89,27 @@ public class Category implements Serializable {
         this.url_imagem = url_imagem;
     }
 
-    public OffsetDateTime getCriado() {
-        return criado;
+    public List<Product> getProdutos() {
+        return produtos;
     }
 
-    public OffsetDateTime getAtualizado() {
-        return atualizado;
+    public void setProdutos(List<Product> produtos) {
+        this.produtos = produtos;
+    }
+
+    public void setCriado(OffsetDateTime criado) {
+        this.criado = criado;
+    }
+
+    public void setAtualizado(OffsetDateTime atualizado) {
+        this.atualizado = atualizado;
     }
 
     @Override
     public String toString() {
         return "Categories{" +
                 "id=" + id +
-                ", titulo='" + titulo + '\'' +
+                ", titulo='" + qualificacao + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", url_imagem='" + url_imagem + '\'' +
                 ", criado=" + criado +

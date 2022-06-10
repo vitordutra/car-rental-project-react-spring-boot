@@ -50,11 +50,58 @@ public class Product implements Serializable{
     private City cidade;
 
     //Timestamps Automáticos
-
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private OffsetDateTime criado;
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private OffsetDateTime atualizado;
+
+    public Set<Feature> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(Set<Feature> caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
+
+    public List<Image> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<Image> imagens) {
+        this.imagens = imagens;
+    }
+
+    public Category getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Category categoria) {
+        this.categoria = categoria;
+    }
+
+    public City getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(City cidade) {
+        this.cidade = cidade;
+    }
+
+    public OffsetDateTime getCriado() {
+        return criado;
+    }
+
+    public void setCriado(OffsetDateTime criado) {
+        this.criado = criado;
+    }
+
+    public OffsetDateTime getAtualizado() {
+        return atualizado;
+    }
+
+    public void setAtualizado(OffsetDateTime atualizado) {
+        this.atualizado = atualizado;
+    }
 
     @PrePersist
     public void antesDeSalvar() {criado = OffsetDateTime.now();}
@@ -71,13 +118,7 @@ public class Product implements Serializable{
     public String getDescricao() {   return descricao; }
     public void setDescricao(String descricao) {  this.descricao = descricao; }
 
-    public OffsetDateTime getCriado() {
-        return criado;
-    }
 
-    public OffsetDateTime getAtualizado() {
-        return atualizado;
-    }
 
     @Override
     public String toString() {

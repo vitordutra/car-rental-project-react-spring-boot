@@ -56,12 +56,28 @@ public class City implements Serializable {
         this.estado = estado;
     }
 
+    public List<Product> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Product> produtos) {
+        this.produtos = produtos;
+    }
+
     public OffsetDateTime getCriado() {
         return criado;
     }
 
+    public void setCriado(OffsetDateTime criado) {
+        this.criado = criado;
+    }
+
     public OffsetDateTime getAtualizado() {
         return atualizado;
+    }
+
+    public void setAtualizado(OffsetDateTime atualizado) {
+        this.atualizado = atualizado;
     }
 
     @Override

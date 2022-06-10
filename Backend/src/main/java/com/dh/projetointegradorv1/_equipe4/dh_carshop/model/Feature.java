@@ -18,7 +18,7 @@ public class Feature implements Serializable {
     @Column(length = 50, nullable = false)
     private String nome;
     @Column(length = 3000, nullable = false)
-    private String icone;
+    private String imagem;
     @ManyToMany(mappedBy = "caracteristicas")
     private Set<Product> produtos;
 
@@ -45,12 +45,44 @@ public class Feature implements Serializable {
         this.nome = nome;
     }
 
-    public String getIcone() {
-        return icone;
+    public String getImagem() {
+        return imagem;
     }
 
-    public void setIcone(String icone) {
-        this.icone = icone;
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Set<Product> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(Set<Product> produtos) {
+        this.produtos = produtos;
+    }
+
+    public OffsetDateTime getCriado() {
+        return criado;
+    }
+
+    public void setCriado(OffsetDateTime criado) {
+        this.criado = criado;
+    }
+
+    public OffsetDateTime getAtualizado() {
+        return atualizado;
+    }
+
+    public void setAtualizado(OffsetDateTime atualizado) {
+        this.atualizado = atualizado;
     }
 
     @Override
@@ -58,7 +90,7 @@ public class Feature implements Serializable {
         return "Feature{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", icone='" + icone + '\'' +
+                ", icone='" + imagem + '\'' +
                 ", criado=" + criado +
                 ", atualizado=" + atualizado +
                 '}';

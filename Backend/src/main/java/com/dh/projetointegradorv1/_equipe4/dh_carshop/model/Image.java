@@ -46,6 +46,22 @@ public class Image implements Serializable {
 
     public void setUrl(String url) {   this.url = url;  }
 
+    public OffsetDateTime getCriado() {
+        return criado;
+    }
+
+    public void setCriado(OffsetDateTime criado) {
+        this.criado = criado;
+    }
+
+    public OffsetDateTime getAtualizado() {
+        return atualizado;
+    }
+
+    public void setAtualizado(OffsetDateTime atualizado) {
+        this.atualizado = atualizado;
+    }
+
     @Override
     public String toString() {
         return "Image{" +
