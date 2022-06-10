@@ -55,7 +55,7 @@ async function callApi() {
       
         <h2>Grupos de carros</h2>
 
-        <Carousel variant="dark" id= "destaques">
+        <Carousel variant="dark" id= "destaques" >
           {categories.map((dataBatch, index) => {
           return (
             <Carousel.Item>
