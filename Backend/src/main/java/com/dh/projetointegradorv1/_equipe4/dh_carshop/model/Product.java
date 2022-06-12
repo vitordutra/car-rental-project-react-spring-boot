@@ -10,10 +10,11 @@ import java.time.OffsetDateTime;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
-@Table (name = "products")
+@Table (name = "produtos")
 @Getter @Setter
 public class Product implements Serializable{
     @Serial
@@ -52,5 +53,30 @@ public class Product implements Serializable{
         this.descricao = descricao;
         this.criado = criado;
         this.atualizado = atualizado;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return getId().equals(product.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", criado=" + criado +
+                ", atualizado=" + atualizado +
+                ", categorias=" + categorias +
+                '}';
     }
 }
