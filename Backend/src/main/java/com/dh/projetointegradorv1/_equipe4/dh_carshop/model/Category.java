@@ -1,13 +1,19 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table (name = "categories")
+@Getter @Setter
 public class Category implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -21,8 +27,10 @@ public class Category implements Serializable {
     private String descricao;
     @Column(length = 300, nullable = false)
     private String url_imagem;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
-    private List<Product> produtos;
+
+    // Relacionamentos
+    @ManyToMany(mappedBy = "categorias")
+    private List<Product> produtos = new ArrayList<>();
 
     // Timestamps automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -57,54 +65,6 @@ public class Category implements Serializable {
         return atualizado;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getQualificacao() {
-        return qualificacao;
-    }
-
-    public void setQualificacao(String qualificacao) {
-        this.qualificacao = qualificacao;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getUrl_imagem() {
-        return url_imagem;
-    }
-
-    public void setUrl_imagem(String url_imagem) {
-        this.url_imagem = url_imagem;
-    }
-
-    public List<Product> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<Product> produtos) {
-        this.produtos = produtos;
-    }
-
-    public void setCriado(OffsetDateTime criado) {
-        this.criado = criado;
-    }
-
-    public void setAtualizado(OffsetDateTime atualizado) {
-        this.atualizado = atualizado;
-    }
-
     @Override
     public String toString() {
         return "Categories{" +
@@ -117,4 +77,16 @@ public class Category implements Serializable {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Category)) return false;
+        Category category = (Category) o;
+        return Objects.equals(getId(), category.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }
