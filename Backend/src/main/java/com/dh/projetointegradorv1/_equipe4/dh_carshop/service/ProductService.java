@@ -1,36 +1,32 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.service;
 
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.CategoryRepository;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
 
-    @Transactional
-    public Product createProduct(Product product) {
+    public Product create(Product product) {
         return productRepository.save(product);
     }
 
-    public List<Product> listAllProducts() {
+    public List<Product> listAll() {
         return productRepository.findAll();
     }
 
-    public Product findProductById(Integer id) {
-        return productRepository.getById(id);
+    public Optional<Product> findById(Integer id) {
+        return productRepository.findById(id);
     }
 
-    public Product editProductById(Product editedProduct, Integer id) {
+    public Product updateById(Product editedProduct, Integer id) {
 
         return productRepository.findById(id)
                 .map(product -> {

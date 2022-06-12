@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -13,19 +14,19 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public Category createCategory(Category category) {
+    public Category create(Category category) {
         return categoryRepository.save(category);
     }
 
-    public List<Category> listAllCategories() {
+    public List<Category> listAll() {
         return categoryRepository.findAll();
     }
 
-    public Category findCategoryById(Integer id) {
-        return categoryRepository.getById(id);
+    public Optional<Category> findById(Integer id) {
+        return categoryRepository.findById(id);
     }
 
-    public Category updateCategoryById(Category category, Integer id) {
+    public Category updateById(Category category, Integer id) {
         return categoryRepository.findById(id)
                 .map(categoryToUpdate -> {
                     categoryToUpdate.setDescricao(category.getDescricao());
@@ -38,7 +39,7 @@ public class CategoryService {
                 });
     }
 
-    public void deleteCategoryById(Integer id) {
+    public void deleteById(Integer id) {
         categoryRepository.deleteById(id);
     }
 }

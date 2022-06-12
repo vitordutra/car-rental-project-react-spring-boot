@@ -1,7 +1,6 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +10,6 @@ import java.time.OffsetDateTime;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
