@@ -1,7 +1,9 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.service;
 
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.CategoryDTO;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.CategoryRepository;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.service.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +24,19 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Optional<Category> findById(Integer id) {
-        return categoryRepository.findById(id);
+    public Optional<CategoryDTO> findById(Integer id) {
+        Optional<Category> category = categoryRepository.findById(id);
+        if (category.isEmpty()) {
+            throw new ObjectNotFoundException("Object not found!");
+        }
+        CategoryDTO categoria = new CategoryDTO();
+
+        categoria.setDescricao(categoria.getDescricao());
+        categoria.setUrlImagem(categoria.getUrlImagem());
+        categoria.setId(categoria.getId());
+        categoria.setQualificacao(categoria.getQualificacao());
+
+        return Optional.of(categoria);
     }
 
     public Category updateById(Category category, Integer id) {

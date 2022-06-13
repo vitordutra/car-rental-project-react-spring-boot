@@ -36,7 +36,7 @@ public class Product implements Serializable{
     private OffsetDateTime atualizado;
 
     // Relacionamentos
-    @JsonBackReference
+//    @JsonBackReference
     @ManyToMany
     @JoinTable(
             name = "produto_categoria",

@@ -30,7 +30,7 @@ public class Category implements Serializable {
     private String url_imagem;
 
     // Relacionamentos
-    @JsonManagedReference
+//    @JsonManagedReference
     @ManyToMany(mappedBy = "categorias")
     private List<Product> produtos = new ArrayList<>();
 
@@ -48,15 +48,6 @@ public class Category implements Serializable {
     @PreUpdate
     public void antesDeAtualizar() {
         atualizado = OffsetDateTime.now();
-    }
-
-    public Category() {
-    }
-
-    public Category(String qualificacao, String descricao, String url_imagem) {
-        this.qualificacao = qualificacao;
-        this.descricao = descricao;
-        this.url_imagem = url_imagem;
     }
 
     public OffsetDateTime getCriado() {
