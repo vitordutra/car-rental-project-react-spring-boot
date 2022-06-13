@@ -1,8 +1,6 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.controller;
 
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.service.CategoryService;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
