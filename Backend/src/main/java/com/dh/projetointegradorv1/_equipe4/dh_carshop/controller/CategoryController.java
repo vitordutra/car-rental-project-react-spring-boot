@@ -1,7 +1,6 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.controller;
 
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,8 +24,8 @@ public class CategoryController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Category>> listAll() {
-        return ResponseEntity.ok(categoryService.listAll());
+    public ResponseEntity<List<Category>> findAll() {
+        return ResponseEntity.ok(categoryService.findAll());
     }
 
     @GetMapping("/{id}")

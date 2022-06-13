@@ -1,5 +1,6 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +30,7 @@ public class Category implements Serializable {
     private String url_imagem;
 
     // Relacionamentos
+    @JsonManagedReference
     @ManyToMany(mappedBy = "categorias")
     private List<Product> produtos = new ArrayList<>();
 

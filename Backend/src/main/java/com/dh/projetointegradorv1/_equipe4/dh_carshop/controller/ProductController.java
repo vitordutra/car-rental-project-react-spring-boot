@@ -24,8 +24,8 @@ public class ProductController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Product>> listAll() {
-        return ResponseEntity.ok(productService.listAll());
+    public ResponseEntity<List<Product>> findALl() {
+        return ResponseEntity.ok(productService.findAll());
     }
 
     @GetMapping("/{id}")
