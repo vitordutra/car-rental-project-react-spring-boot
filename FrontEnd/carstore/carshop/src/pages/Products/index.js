@@ -1,7 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
+import { Calendar } from 'react-date-range';
+import DateRangeComp from '../../component/Calendar/DateRangeComp.jsx';
 import api from "../../services/api";
 import './styles.css';
+
+
+
 
 
 export default function Products({handleFilter}) {
@@ -10,9 +15,8 @@ export default function Products({handleFilter}) {
 
   const [cidade, setCidade] = useState([]);
  
- 
 
-
+  
   
   
   useEffect(() => {
@@ -99,6 +103,14 @@ export default function Products({handleFilter}) {
               <option value={item.id}>{item.nome}</option>
               ))}
             </select>
+
+                <p>Escolha a data</p>
+                
+                <DateRangeComp/>
+
+          
+            
+
          
           </form>
         </div>
