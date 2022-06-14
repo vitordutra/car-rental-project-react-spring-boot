@@ -1,12 +1,14 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.service;
 
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.User;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -23,8 +25,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product findProductById(Integer id) {
-        return productRepository.getById(id);
+    public Optional<Product> findProductById(Integer id) {
+        return productRepository.findById(id);
     }
 
     public Product editProductById(Product editedProduct, Integer id) {

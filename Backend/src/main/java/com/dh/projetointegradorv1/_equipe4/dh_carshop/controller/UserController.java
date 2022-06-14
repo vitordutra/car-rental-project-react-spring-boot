@@ -30,7 +30,11 @@ public class UserController {
     @GetMapping("/users/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<User> findUserById(@PathVariable Integer id) {
-        return ResponseEntity.ok(userService.findUserById(id));
+        return userService.findUserById(id).map(user -> {
+            return ResponseEntity.ok().body(user);
+        }).orElseGet(() -> {
+            return ResponseEntity.status(404).body(new User());
+        });
     }
 
     @PutMapping("/users/{id}")
@@ -43,6 +47,6 @@ public class UserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> deleteCategoryById(@PathVariable(value = "id") Integer id) {
         userService.deleteUserById(id);
-        return ResponseEntity.ok("Deleted");
+        return ResponseEntity.status(204).body("");
     }
 }

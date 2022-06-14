@@ -89,4 +89,5 @@ public class Product implements Serializable{
                 ", atualizado=" + atualizado +
                 '}';
     }
+
 }

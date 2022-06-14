@@ -1,6 +1,7 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.controller;
 
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Feature;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,11 @@ public class CategoryController {
     @GetMapping("/categories/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Category> findCategoryById(@PathVariable Integer id) {
-        return ResponseEntity.ok(categoryService.findCategoryById(id));
+        return categoryService.findCategoryById(id).map(category -> {
+            return ResponseEntity.ok().body(category);
+        }).orElseGet(() -> {
+            return ResponseEntity.status(404).body(new Category());
+        });
     }
 
     @PutMapping("/categories/{id}")
@@ -43,6 +48,6 @@ public class CategoryController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> deleteCategoryById(@PathVariable(value = "id") Integer id) {
         categoryService.deleteCategoryById(id);
-        return ResponseEntity.ok("Deleted");
+        return ResponseEntity.status(204).body("");
     }
 }
