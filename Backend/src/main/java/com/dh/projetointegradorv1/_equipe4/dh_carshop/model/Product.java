@@ -31,18 +31,26 @@ public class Product implements Serializable{
     @ManyToMany
     @JoinTable(
             name = "features_products",
-            joinColumns = @JoinColumn(name = "id_produto"), inverseJoinColumns = @JoinColumn(name = "id_caracteristica")
+            joinColumns = @JoinColumn(name = "id_produto", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_caracteristica", referencedColumnName = "id")
     )
     private Set<Feature> caracteristicas;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_produto")
+    @ManyToMany
+    @JoinTable(
+            name = "images_products",
+            joinColumns = @JoinColumn(name = "id_produto", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_imagem", referencedColumnName = "id")
+    )
     private List<Image> imagens;
 
-    @ManyToOne
-    @JoinColumn(name = "id_categoria")
-    @JsonIgnoreProperties("products")
-    private Category categoria;
+    @ManyToMany
+    @JoinTable(
+            name = "categories_products",
+            joinColumns = @JoinColumn(name = "id_produto", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id")
+    )
+    private List<Category> categorias;
 
     @ManyToOne
     @JoinColumn(name = "id_cidade")

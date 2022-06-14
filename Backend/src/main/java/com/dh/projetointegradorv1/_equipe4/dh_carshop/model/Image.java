@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
+import java.util.Set;
 
 
 @Entity
@@ -20,6 +21,12 @@ public class Image implements Serializable {
     private String titulo;
     @Column(columnDefinition = "longtext", nullable = false)
     private String url;
+    @ManyToMany(mappedBy = "imagens")
+    private Set<Product> produtos;
+    @OneToOne(mappedBy = "imagem")
+    private Category categoria;
+    @OneToOne(mappedBy = "imagem")
+    private Feature caracteristica;
 
     //Timestamps Automáticos
 

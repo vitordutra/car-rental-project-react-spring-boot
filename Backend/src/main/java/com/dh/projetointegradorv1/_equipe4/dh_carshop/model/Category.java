@@ -5,6 +5,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table (name = "categories")
@@ -19,10 +20,13 @@ public class Category implements Serializable {
     private String titulo;
     @Column(length = 300, nullable = false)
     private String descricao;
-    @Column(length = 300, nullable = false)
-    private String url_imagem;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
+    @ManyToMany(mappedBy = "categorias")
     private List<Product> produtos;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "images_categories",
+            joinColumns = { @JoinColumn(name = "id_categoria", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "id_imagem", referencedColumnName = "id") })
+    private Image imagem;
 
     // Timestamps automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -43,10 +47,9 @@ public class Category implements Serializable {
     public Category() {
     }
 
-    public Category(String titulo, String descricao, String url_imagem) {
+    public Category(String titulo, String descricao) {
         this.titulo = titulo;
         this.descricao = descricao;
-        this.url_imagem = url_imagem;
     }
 
     public Integer getId() {
@@ -73,14 +76,6 @@ public class Category implements Serializable {
         this.descricao = descricao;
     }
 
-    public String getUrl_imagem() {
-        return url_imagem;
-    }
-
-    public void setUrl_imagem(String url_imagem) {
-        this.url_imagem = url_imagem;
-    }
-
     public OffsetDateTime getCriado() {
         return criado;
     }
@@ -95,7 +90,6 @@ public class Category implements Serializable {
                 "id=" + id +
                 ", titulo='" + titulo + '\'' +
                 ", descricao='" + descricao + '\'' +
-                ", url_imagem='" + url_imagem + '\'' +
                 ", criado=" + criado +
                 ", atualizado=" + atualizado +
                 '}';

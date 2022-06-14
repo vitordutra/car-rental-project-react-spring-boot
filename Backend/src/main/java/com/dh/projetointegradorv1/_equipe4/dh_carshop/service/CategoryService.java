@@ -32,7 +32,6 @@ public class CategoryService {
                 .map(categoryToUpdate -> {
                     categoryToUpdate.setDescricao(category.getDescricao());
                     categoryToUpdate.setTitulo(category.getTitulo());
-                    categoryToUpdate.setUrl_imagem(category.getUrl_imagem());
                     return categoryRepository.save(categoryToUpdate);
                 }).orElseGet(() -> {
                     category.setId(id);
