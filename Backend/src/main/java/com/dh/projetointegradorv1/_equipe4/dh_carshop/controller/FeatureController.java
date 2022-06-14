@@ -2,6 +2,7 @@ package com.dh.projetointegradorv1._equipe4.dh_carshop.controller;
 
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Feature;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.FeatureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,13 +31,17 @@ public class FeatureController {
     @GetMapping("/features/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Feature> findFeatureById(@PathVariable Integer id) {
-        return ResponseEntity.ok(featureService.findFeatureById(id));
+        return featureService.findFeatureById(id).map(feature -> {
+            return ResponseEntity.ok().body(feature);
+        }).orElseGet(() -> {
+            return ResponseEntity.status(404).body(new Feature());
+        });
     }
 
     @DeleteMapping("/features/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> deleteFeatureById(@PathVariable(value = "id") Integer id) {
         featureService.deleteFeatureById(id);
-        return ResponseEntity.ok("Deleted");
+        return ResponseEntity.status(204).body("");
     }
 }

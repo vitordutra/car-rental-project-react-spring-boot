@@ -7,6 +7,7 @@ import com.dh.projetointegradorv1._equipe4.dh_carshop.model.User;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -30,8 +31,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findUserById(Integer id) {
-        return userRepository.getById(id);
+    public Optional<User> findUserById(Integer id) {
+        return userRepository.findById(id);
     }
 
     public User updateUserById(User user, Integer id) {

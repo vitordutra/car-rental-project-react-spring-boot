@@ -1,6 +1,7 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.controller;
 
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.User;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,11 @@ public class ProductController {
     @GetMapping("/products/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Product> findProductById(@PathVariable(value = "id") Integer id) {
-        return ResponseEntity.ok(productService.findProductById(id));
+        return productService.findProductById(id).map(product -> {
+            return ResponseEntity.ok().body(product);
+        }).orElseGet(() -> {
+            return ResponseEntity.status(404).body(new Product());
+        });
     }
 
     @GetMapping("products/city/{name}")
