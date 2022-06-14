@@ -10,6 +10,12 @@
   width: 100%;
 }
 
+.header-right {
+  float: right;
+  margin-top: 20px;
+  display: flex;
+}
+
 .header a {
   background-color: #f5d6a7;
   float: left;
@@ -32,6 +38,8 @@
   font-weight: bold;
 }
 
+
+
 .header .logo a:hover {
   background-color: #F6A52A;
   color: black;
@@ -43,12 +51,23 @@
   color: black;
 }
 
-
-
-.header-right {
-  float: right;
+.header-rightLink{
+  
 }
 
+.logIn{
+  margin-top: 30px;
+  margin-left: 1px;
+  margin-right: 80px;
+}
+
+.logInImg{
+  margin-top: 20px;
+  margin-left: 1px;
+  margin-right: 2px;
+  width: 40px;
+  height: 40px;
+}
 
 
 .btn-login{
