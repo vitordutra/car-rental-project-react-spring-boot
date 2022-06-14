@@ -1,7 +1,7 @@
 import api from '../../../services/api';
 import CategoryItem from './CategoryItem';
 import {Carousel, Row, Col} from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+
 import { useEffect, useState } from "react";
 
 import './styles.css';
@@ -46,20 +46,20 @@ async function callApi() {
   }
 }
 
-  const navigate = useNavigate();
+  
 
   return (
 
 
-    <section id="carrossel">
+    <section className="carrosselSection" id="carrossel">
       
-        <h2>Grupos de carros</h2>
+        <h2 className="carrosselSectionH2">Grupos de carros</h2>
 
-        <Carousel variant="dark" id= "destaques" >
+        <Carousel className="carrosselSectionDestaques" variant="dark" id= "destaques" >
           {categories.map((dataBatch, index) => {
           return (
-            <Carousel.Item>
-              <Row>
+            <Carousel.Item className="carrosselSectionItem">
+              <Row className="carrosselSectionRow">
               {dataBatch.map((item, index) => {
               return(
                 <Col key={item.id} md={4} sm={6} className={`mx-auto ${index===1?'d-none d-sm-block' : index===2? 'd-none d-md-block' : ''}`}>

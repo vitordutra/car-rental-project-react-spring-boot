@@ -1,19 +1,32 @@
-#carrossel {
-    background-color: gainsboro;
+
+.carrosselSection{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin-top:0px;
+    padding: 0px;
+   
+
 }
 
-#carrossel h2 {
-    padding: 5% 5px 5px 5px;
+.categoryItemUl{
+    margin-left: 15px;
+ 
+}
+
+.carrosselSectionH2{
+    padding:0px;
     color: black;
     text-align: center;
     font-size: 40px;
     font-weight: bold;
 }
 
+
 #destaques img{  
         border-radius:10px;
         cursor: pointer;
-        box-shadow: 5px 5px 5px 0 gainsboro;
+        box-shadow: 5px 5px 5px 0 rgb(249, 247, 247);
         text-align: center;
 }
 
@@ -22,22 +35,12 @@
     
         text-align: center;
     }
-    
-    
-    #destaques.carousel-indicators{
-        margin-bottom: -30px;
-    }
 
-    #destaques.carousel-indicators button{
-        border-radius: 50%;
-        height: 15px;
-        width: 15px;
+    .carrosselSectionDestaques{
+        margin: 5px;
     }
+   
 
-    #destaques.carousel-inner{
-        width: 80%;
-        margin: 0 auto;
-    }
-
+   
 
     
