@@ -3,57 +3,85 @@
   padding: 0;
   box-sizing: border-box; 
 }
+
 .header {
-  overflow: hidden;
-  background-color: #F6A52A;
-  padding: 15px 10px;
-  width: 100%;
-}
-
-.header-right {
-  float: right;
-  margin-top: 20px;
   display: flex;
-}
-
-.header a {
-  background-color: #f5d6a7;
-  float: left;
-  color: black;
-  text-align: center;
-  padding: 10px;
-  text-decoration: none;
-  font-size: 18px;
-  margin-top: 20px;
-  margin-left: 10px;
-  margin-right: 80px;
-  margin-block: 20px;
-  line-height: 15px;
-  border-radius: 4px;
-}
-
-.logo a  {
+  justify-content: space-between;
   background-color: #F6A52A;
-  font-size: 40px;
-  font-weight: bold;
+  /* box-shadow: 0 0 1rem black; */
+  width: 100%;
+  height: 90px;
+ 
+}
+@media ( max-width:768px){
+  .header{
+    flex-direction: column;
+   margin-right: 90px;
+    height: 40%;
+    text-align: center;
+  }
 }
 
+.logo{
+  margin: 10px 20px;
+}
 
-
-.header .logo a:hover {
+.logo .img {
   background-color: #F6A52A;
-  color: black;
+  width: 80px;
+  height: 40px;
 }
 
-
-.header a:hover {
-  background-color: #ddd;
-  color: black;
+.header-right{
+   display: flex;
+   align-items: center;
+   margin-right: 60px;   
 }
 
 .header-rightLink{
+  position: relative;
+  text-decoration: none;
+  padding: 0 20px;
+  margin-right: 20px;
+  color: black ;
+  font-size: 20px;
+ 
+   
+}
+@media ( max-width:768px){
+  .header-right{
+    flex-direction: column;
+    align-content: center;
+    margin: 0 0 0 12px;
+    padding: 5px;
+  }
+}
+
+.header-rightLink:hover{
+  color: black;
+  font-size: 22px;
+  transition: 0.1s;
+}
+
+.header-rightLink::after{
+  position: absolute;
+  content: "";
+  background: black;
+  height: 1.5px;
+  width: 0;
+  left: 0;
+  bottom: -7px;
+  transform: rotate(180deg);
+  transition: 0.3s; 
+  color: inherit; 
+}
+
+.header-rightLink:hover:after{
+  width: 100%;
   
 }
+
+
 
 .logIn{
   margin-top: 30px;
@@ -74,19 +102,6 @@
   margin: 10px;
   border: 1px solid;
   border-radius: 10px;
-  padding : 5px 5px 5px 5px;
-  color: dodgerblue;
+  padding : 5px 5px 5px 5px; 
 } 
 
-
-
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .header-right {
-    float: none;
-  }
-}
