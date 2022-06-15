@@ -4,7 +4,7 @@ import { Calendar } from 'react-date-range';
 import DateRangeComp from '../../component/Calendar/DateRangeComp.jsx';
 import api from "../../services/api";
 import './styles.css';
-
+import format from 'date-fns/format'
 
 
 
@@ -14,6 +14,8 @@ export default function Products({handleFilter}) {
   const [categoria, setCategoria] = useState([]);
 
   const [cidade, setCidade] = useState([]);
+
+  const [cidadeEscolhida, setCidadeEscolhida] = useState();
  
 
   
@@ -80,6 +82,32 @@ export default function Products({handleFilter}) {
   }
 
 
+
+  async function callApiProductsDateRange(range,cidadeEscolhida) {
+
+    try {
+      const DataDeInicio  = format(range[0].startDate, "yyyy-MM-dd")        /* range[0].startDate; */
+      const DataDeTermino = format(range[0].endDate, "yyyy-MM-dd")          /* range[0].endDate; */
+      const cidade = cidadeEscolhida;
+
+      const URL = `products?cityId=${cidade}&dataInicio=${DataDeInicio}&dataTermino=${DataDeTermino}` ;
+      console.log(URL);
+      const response = await api.get(URL);
+      console.log(response.data);
+      handleFilter(response.data);
+
+      
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+
+
+
+
+
   return (
     <>
       <body className="item-list-products-body" >     
@@ -105,8 +133,15 @@ export default function Products({handleFilter}) {
             </select>
 
                 <p>Escolha a data</p>
-                
-                <DateRangeComp/>
+
+                <select className="select" name="cidade"  onChange={item => setCidadeEscolhida(item.target.value)}>
+                <option  value="">Escolha a cidade</option>
+                {cidade.map((item) => (
+                <option value={item.id}>{item.nome}</option>
+                ))}
+                </select>
+
+                <DateRangeComp callApiProductsDateRange={callApiProductsDateRange} cidadeEscolhida={cidadeEscolhida} />
 
           
             

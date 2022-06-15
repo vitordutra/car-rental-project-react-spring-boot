@@ -7,7 +7,7 @@ import { addDays } from 'date-fns'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
-const DateRangeComp = () => {
+const DateRangeComp = ({callApiProductsDateRange,cidadeEscolhida}) => {
 
   // date state
   const [range, setRange] = useState([
@@ -47,14 +47,39 @@ const DateRangeComp = () => {
     }
   }
 
+
+  
+
+  /* async function callApiProductsDateRange(range) {
+
+    try {
+      console.log(range[0].startDate)
+      console.log(range[0].endDate)
+      //const URL = "categories"
+      //const URL = `products?categoryId=${id}`
+      //const response = await api.get(URL);
+      //handleFilter(response.data);
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+ */
+
+
+
+
+
   const minDate: Date = new Date( new Date().getFullYear(), new Date().getMonth(),new Date().getDate());
   const maxDate: Date = new Date( new Date().getFullYear(), new Date().getMonth()+2,new Date().getDate());
-  console.log( maxDate)
+  
   return (
     <div className="calendarWrap">
-
+      
       <input
+        
         value={`${format(range[0].startDate, "dd/MM/yyyy")} to ${format(range[0].endDate, "dd/MM/yyyy")}`}
+        
         readOnly
         className="inputBox"
         onClick={ () => setOpen(open => !open) }
@@ -77,6 +102,7 @@ const DateRangeComp = () => {
           />
         }
       </div>
+      <input type="button" onClick={() => callApiProductsDateRange(range,cidadeEscolhida)} value="Teste" />
 
     </div>
   )
