@@ -1,15 +1,19 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.service;
 
 
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.UserDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.User;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -18,25 +22,46 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User save(User user) {
-        return userRepository.save(user);
+    @Transactional
+    public UserDto createUser(UserDto dto) {
+        User entity = new User();
+        copyToEntity(dto, entity);
+        entity = userRepository.save(entity);
+        return new UserDto(entity);
     }
 
-
-    public User createUser(User user) {
-        return userRepository.save(user);
+    @Transactional(readOnly = true)
+    public List<UserDto> listAllUsers() {
+        List<UserDto> listDto = new ArrayList<>();
+        List<User> list = userRepository.findAll();
+        for(User user : list) {
+            UserDto dto = new UserDto(user);
+            listDto.add(dto);
+        }
+        return listDto;
     }
 
-    public List<User> listAllUsers() {
-        return userRepository.findAll();
+    @Transactional(readOnly = true)
+    public UserDto findUserById(Integer id) {
+        Optional<User> obj = userRepository.findById(id);
+        User entity = obj.orElseThrow(() -> new RuntimeException());
+        return new UserDto(entity);
     }
 
-    public Optional<User> findUserById(Integer id) {
-        return userRepository.findById(id);
-    }
+    @Transactional
+    public UserDto updateUserById(Integer id, UserDto dto) {
+        try {
+            Optional<User> obj = userRepository.findById(id);
+            User entity = obj.orElseThrow(() -> new RuntimeException());
+            copyToEntity(dto, entity);
+            entity = userRepository.save(entity);
+            return new UserDto(entity);
+        }
+        catch (EntityNotFoundException e) {
+            throw new RuntimeException();
+        }
 
-    public User updateUserById(User user, Integer id) {
-        return userRepository.findById(id)
+        /*return userRepository.findById(id)
                 .map(userToUpdate -> {
                     userToUpdate.setNome(user.getNome());
                     userToUpdate.setSobrenome(user.getSobrenome());
@@ -46,11 +71,18 @@ public class UserService {
                 }).orElseGet(() -> {
                     user.setId(id);
                     return userRepository.save(user);
-                });
+                });*/
     }
 
     public void deleteUserById(Integer id) {
         userRepository.deleteById(id);
+    }
+
+    public void copyToEntity(UserDto dto, User entity) {
+        entity.setNome(dto.getNome());
+        entity.setSobrenome(dto.getSobrenome());
+        entity.setEmail(dto.getEmail());
+        entity.setSenha(dto.getSenha());
     }
 
 }

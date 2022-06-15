@@ -64,6 +64,22 @@ public class Feature implements Serializable {
         this.nome = nome;
     }
 
+    public Set<Product> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(Set<Product> produtos) {
+        this.produtos = produtos;
+    }
+
+    public Image getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(Image imagem) {
+        this.imagem = imagem;
+    }
+
     @Override
     public String toString() {
         return "Feature{" +

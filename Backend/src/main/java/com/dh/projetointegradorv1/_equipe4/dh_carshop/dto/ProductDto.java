@@ -18,7 +18,7 @@ public class ProductDto implements Serializable {
     private List<CategoryDto> categorias = new ArrayList<>();
     private CityDto cidade;
 
-    private ProductDto() {
+    public ProductDto() {
 
     }
 

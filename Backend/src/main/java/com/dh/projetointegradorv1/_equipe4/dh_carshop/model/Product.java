@@ -80,6 +80,38 @@ public class Product implements Serializable{
     public String getDescricao() {   return descricao; }
     public void setDescricao(String descricao) {  this.descricao = descricao; }
 
+    public Set<Feature> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(Set<Feature> caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
+
+    public Set<Image> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(Set<Image> imagens) {
+        this.imagens = imagens;
+    }
+
+    public Set<Category> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(Set<Category> categorias) {
+        this.categorias = categorias;
+    }
+
+    public City getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(City cidade) {
+        this.cidade = cidade;
+    }
+
     public OffsetDateTime getCriado() {
         return criado;
     }

@@ -27,6 +27,11 @@ public class CategoryDto implements Serializable {
         this.descricao = descricao;
     }
 
+    public CategoryDto(String titulo, String descricao) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+    }
+
     public CategoryDto(Category entity) {
         id = entity.getId();
         titulo = entity.getTitulo();

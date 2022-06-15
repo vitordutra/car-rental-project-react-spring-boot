@@ -1,12 +1,19 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.service;
 
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.CityDto;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ProductDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.City;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.CityRepository;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CityService {
@@ -14,11 +21,36 @@ public class CityService {
     @Autowired
     private CityRepository cityRepository;
 
-    public City createCity(City city) {
-        return cityRepository.save(city);
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Transactional
+    public CityDto createCity(CityDto dto) {
+        City entity = new City();
+        copyToEntity(dto, entity);
+        entity = cityRepository.save(entity);
+        return new CityDto(entity);
     }
 
-    public List<City> listAllCities() {
-        return cityRepository.findAll();
+    @Transactional(readOnly = true)
+    public List<CityDto> listAllCities() {
+        List<CityDto> listDto = new ArrayList<>();
+        List<City> list = cityRepository.findAll();
+        for(City city : list) {
+            CityDto dto = new CityDto(city);
+            listDto.add(dto);
+        }
+        return listDto;
+    }
+
+    public void copyToEntity(CityDto dto, City entity) {
+        entity.setNome(dto.getNome());
+        entity.setEstado(dto.getEstado());
+        entity.getProdutos().clear();
+        for(ProductDto prodDto : dto.getProdutos()) {
+            Optional<Product> obj = productRepository.findById(prodDto.getId());
+            Product product = obj.orElseThrow(() -> new RuntimeException());
+            entity.getProdutos().add(product);
+        }
     }
 }

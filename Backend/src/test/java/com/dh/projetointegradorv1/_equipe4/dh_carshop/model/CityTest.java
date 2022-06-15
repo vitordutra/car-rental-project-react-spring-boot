@@ -1,6 +1,8 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.CityDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.CityService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,7 +19,8 @@ class CityTest {
     @Test
     void createCity() {
         //cenário
-        City city = new City();
+        CityDto city = new CityDto();
+        City entity = new City();
 
         // expectativas
         String nome = "Curitiba";
@@ -38,7 +41,8 @@ class CityTest {
         Assertions.assertInstanceOf(java.lang.Integer.class, city.getId());
 
         // verificando que o callback antesDeSalvar rodou
-        Assertions.assertInstanceOf(java.time.OffsetDateTime.class, city.getCriado());
+        cityService.copyToEntity(city, entity);
+        Assertions.assertInstanceOf(java.time.OffsetDateTime.class, entity.getCriado());
 
         // testando se o initializer City() funfou
         Assertions.assertEquals(nome, city.getNome());

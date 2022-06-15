@@ -1,5 +1,6 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.controller;
 
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.FeatureDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Feature;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
@@ -12,33 +13,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/features")
 public class FeatureController {
     @Autowired
     FeatureService featureService;
 
-    @PostMapping("/features")
-    public ResponseEntity<Feature> createFeature(@RequestBody Feature feature) {
-        return ResponseEntity.status(201).body(featureService.createFeature(feature));
+    @PostMapping
+    public ResponseEntity<FeatureDto> createFeature(@RequestBody FeatureDto dto) {
+        return ResponseEntity.status(201).body(featureService.createFeature(dto));
     }
 
-    @GetMapping("/features")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Feature>> findAllFeatures() {
+    public ResponseEntity<List<FeatureDto>> findAllFeatures() {
         return ResponseEntity.ok(featureService.findAllFeatures());
     }
 
-    @GetMapping("/features/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Feature> findFeatureById(@PathVariable Integer id) {
-        return featureService.findFeatureById(id).map(feature -> {
+    public ResponseEntity<FeatureDto> findFeatureById(@PathVariable Integer id) {
+        FeatureDto dto = featureService.findFeatureById(id);
+        return ResponseEntity.ok().body(dto);
+
+        /*return featureService.findFeatureById(id).map(feature -> {
             return ResponseEntity.ok().body(feature);
         }).orElseGet(() -> {
             return ResponseEntity.status(404).body(new Feature());
-        });
+        });*/
     }
 
-    @DeleteMapping("/features/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> deleteFeatureById(@PathVariable(value = "id") Integer id) {
         featureService.deleteFeatureById(id);

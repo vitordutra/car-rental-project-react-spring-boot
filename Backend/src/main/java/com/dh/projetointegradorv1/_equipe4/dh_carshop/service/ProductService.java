@@ -1,12 +1,17 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.service;
 
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.User;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.ProductRepository;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.CategoryDto;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.FeatureDto;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ImageDto;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ProductDto;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.*;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,22 +21,59 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private FeatureRepository featureRepository;
+
+    @Autowired
+    private ImageRepository imageRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
+    private CityRepository cityRepository;
+
     @Transactional
-    public Product createProduct(Product product) {
-            return productRepository.save(product);
+    public ProductDto createProduct(ProductDto dto) {
+        Product entity = new Product();
+        copyToEntity(dto, entity);
+        entity = productRepository.save(entity);
+        return new ProductDto(entity);
     }
 
-    public List<Product> listAllProducts() {
-        return productRepository.findAll();
+    @Transactional(readOnly = true)
+    public List<ProductDto> listAllProducts() {
+        List<ProductDto> listDto = new ArrayList<>();
+        List<Product> list = productRepository.findAll();
+        for(Product prod : list) {
+            ProductDto dto = new ProductDto(prod);
+            listDto.add(dto);
+        }
+        return listDto;
     }
 
-    public Optional<Product> findProductById(Integer id) {
-        return productRepository.findById(id);
+    @Transactional(readOnly = true)
+    public ProductDto findProductById(Integer id) {
+        Optional<Product> obj = productRepository.findById(id);
+        Product entity = obj.orElseThrow(() -> new RuntimeException());
+        return new ProductDto(entity, entity.getCaracteristicas(), entity.getImagens(),
+                entity.getCategorias(), entity.getCidade());
     }
 
-    public Product editProductById(Product editedProduct, Integer id) {
+    @Transactional
+    public ProductDto editProductById(Integer id, ProductDto dto) {
+        try {
+            Optional<Product> obj = productRepository.findById(id);
+            Product entity = obj.orElseThrow(() -> new RuntimeException());
+            copyToEntity(dto, entity);
+            entity = productRepository.save(entity);
+            return new ProductDto(entity);
+        }
+        catch (EntityNotFoundException e) {
+            throw new RuntimeException();
+        }
 
-        return productRepository.findById(id)
+        /*return productRepository.findById(id)
                 .map(product -> {
                     product.setNome(editedProduct.getNome());
                     product.setDescricao(editedProduct.getDescricao());
@@ -40,11 +82,37 @@ public class ProductService {
                 .orElseGet(() -> {
                     editedProduct.setId(id);
                     return productRepository.save(editedProduct);
-                });
+                });*/
     }
 
     public void deleteProductById(Integer id) {
         productRepository.deleteById(id);
+    }
+
+    public void copyToEntity(ProductDto dto, Product entity) {
+        entity.setNome(dto.getNome());
+        entity.setDescricao(dto.getDescricao());
+        entity.getCaracteristicas().clear();
+        for(FeatureDto featDto : dto.getCaracteristicas()) {
+            Optional<Feature> obj = featureRepository.findById(featDto.getId());
+            Feature feature = obj.orElseThrow(() -> new RuntimeException());
+            entity.getCaracteristicas().add(feature);
+        }
+        entity.getImagens().clear();
+        for(ImageDto imgDto : dto.getImagens()) {
+            Optional<Image> obj = imageRepository.findById(imgDto.getId());
+            Image image = obj.orElseThrow(() -> new RuntimeException());
+            entity.getImagens().add(image);
+        }
+        entity.getCategorias().clear();
+        for(CategoryDto catDto : dto.getCategorias()) {
+            Optional<Category> obj = categoryRepository.findById(catDto.getId());
+            Category category = obj.orElseThrow(() -> new RuntimeException());
+            entity.getCategorias().add(category);
+        }
+        Optional<City> obj = cityRepository.findById(dto.getCidade().getId());
+        City city = obj.orElseThrow(() -> new RuntimeException());
+        entity.setCidade(city);
     }
 
     /*public List<Product> findProductByCity(String name) {
