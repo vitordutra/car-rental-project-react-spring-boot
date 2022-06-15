@@ -29,10 +29,10 @@ const Header = () => {
           <Link to='/'><img src={logo} alt='' width={100} /></Link>
       </div>      
       <div className="header-right"> 
-        <Link  to="/Produtos"><span className="header-rightLink">Conheça nossa Frota</span></Link>  
-        <Link to="/Registro"><span className="header-rightLink">Criar conta</span></Link> 
+        <Link  className="header-rightLink" to="/Produtos"><span >Conheça nossa Frota</span></Link>  
+        <Link className="header-rightLink" to="/Registro"><span >Criar conta</span></Link> 
         {user == null ?
-          <a href='/login'>Login</a> :
+          <a className="header-rightLink" href='/login'>Login</a> :
           <>
             <img className='logInImg' src={login} alt=''/>
             <div className='logIn'>
