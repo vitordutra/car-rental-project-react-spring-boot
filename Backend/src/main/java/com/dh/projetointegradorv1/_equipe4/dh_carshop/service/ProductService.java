@@ -47,11 +47,11 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public List<Product> findProductByCity(String name) {
+    /*public List<Product> findProductByCity(String name) {
         return productRepository.findByCidadeNome(name);
     }
 
     public List<Product> findProductByCategory(String title) {
         return productRepository.findByCategoriaTitulo(title);
-    }
+    }*/
 }

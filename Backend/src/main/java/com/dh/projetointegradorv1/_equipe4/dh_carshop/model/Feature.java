@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,7 +19,7 @@ public class Feature implements Serializable {
     @Column(length = 50, nullable = false)
     private String nome;
     @ManyToMany(mappedBy = "caracteristicas")
-    private Set<Product> produtos;
+    Set<Product> produtos = new HashSet<>();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "images_features",
             joinColumns = { @JoinColumn(name = "id_caracteristica", referencedColumnName = "id") },
@@ -45,6 +46,14 @@ public class Feature implements Serializable {
 
     public Feature(String nome) {
         this.nome = nome;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {

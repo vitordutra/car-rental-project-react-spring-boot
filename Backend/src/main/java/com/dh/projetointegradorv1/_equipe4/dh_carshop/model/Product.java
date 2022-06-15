@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class Product implements Serializable{
             joinColumns = @JoinColumn(name = "id_produto", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_caracteristica", referencedColumnName = "id")
     )
-    private Set<Feature> caracteristicas;
+    Set<Feature> caracteristicas = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -42,7 +43,7 @@ public class Product implements Serializable{
             joinColumns = @JoinColumn(name = "id_produto", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_imagem", referencedColumnName = "id")
     )
-    private List<Image> imagens;
+    Set<Image> imagens = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -50,7 +51,7 @@ public class Product implements Serializable{
             joinColumns = @JoinColumn(name = "id_produto", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_categoria", referencedColumnName = "id")
     )
-    private List<Category> categorias;
+    Set<Category> categorias = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "id_cidade")

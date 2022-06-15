@@ -38,7 +38,7 @@ public class ProductController {
         });
     }
 
-    @GetMapping("products/city/{name}")
+    /*@GetMapping("products/city/{name}")
     public ResponseEntity<List<Product>> findProductByCity(@PathVariable String name) {
         return ResponseEntity.ok(productService.findProductByCity(name));
     }
@@ -46,5 +46,5 @@ public class ProductController {
     @GetMapping("products/category/{title}")
     public ResponseEntity<List<Product>> findProductByCategory(@PathVariable String title) {
         return ResponseEntity.ok(productService.findProductByCategory(title));
-    }
+    }*/
 }

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,16 +16,17 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, name = "qualificacao")
     private String titulo;
     @Column(length = 300, nullable = false)
     private String descricao;
     @ManyToMany(mappedBy = "categorias")
-    private List<Product> produtos;
+    Set<Product> produtos = new HashSet<>();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "images_categories",
             joinColumns = { @JoinColumn(name = "id_categoria", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "id_imagem", referencedColumnName = "id") })
+    // @JoinColumn(name = "id_imagem", referencedColumnName = "id")
     private Image imagem;
 
     // Timestamps automáticos

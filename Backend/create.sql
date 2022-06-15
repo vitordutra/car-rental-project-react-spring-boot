@@ -3,9 +3,9 @@ CREATE TABLE products(
 	id INT NOT NULL AUTO_INCREMENT,
     nome VARCHAR(100),
     descricao VARCHAR(255),
-    id_categoria int DEFAULT NULL,
     id_cidade int DEFAULT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_cidade) REFERENCES cities(id)
 );
 
 -- Criação da tabela de imagens
@@ -141,26 +141,26 @@ INSERT INTO images (titulo, url)
 VALUES ("Imagem Categoria Minivan", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/2021_Toyota_Sienna_XLE_Hybrid%2C_front_12.21.21.jpg/1024px-2021_Toyota_Sienna_XLE_Hybrid%2C_front_12.21.21.jpg");
 
 -- Categorias
-INSERT INTO categories (qualificacao, descricao, id_imagem)
-VALUES ("Econômico", "Carros com baixo consumo", 1);
-INSERT INTO categories (qualificacao, descricao, id_imagem)
-VALUES ("Compacto", "Carros com tamanho compacto", 2);
-INSERT INTO categories (qualificacao, descricao, id_imagem)
-VALUES ("Confort", "Carros com amplo espaço interno", 3);
-INSERT INTO categories (qualificacao, descricao, id_imagem)
-VALUES ("Luxo", "Carros de luxo", 4);
-INSERT INTO categories (qualificacao, descricao, id_imagem)
-VALUES ("Esportivo", "Carros esportivos", 5);
-INSERT INTO categories (qualificacao, descricao, id_imagem)
-VALUES ("Hatch", "Carros com formato hatch", 6);
-INSERT INTO categories (qualificacao, descricao, id_imagem)
-VALUES ("Sedan", "Carros com formato sedan", 7);
-INSERT INTO categories (qualificacao, descricao, id_imagem)
-VALUES ("Pickup", "Carros com carroceria", 8);
-INSERT INTO categories (qualificacao, descricao, id_imagem)
-VALUES ("Elétrico", "Carros movidos a energia elétrica", 9);
-INSERT INTO categories (qualificacao, descricao, id_imagem)
-VALUES ("Minivan", "Carros a partir de 6 lugares", 10);
+INSERT INTO categories (qualificacao, descricao)
+VALUES ("Econômico", "Carros com baixo consumo");
+INSERT INTO categories (qualificacao, descricao)
+VALUES ("Compacto", "Carros com tamanho compacto");
+INSERT INTO categories (qualificacao, descricao)
+VALUES ("Confort", "Carros com amplo espaço interno");
+INSERT INTO categories (qualificacao, descricao)
+VALUES ("Luxo", "Carros de luxo");
+INSERT INTO categories (qualificacao, descricao)
+VALUES ("Esportivo", "Carros esportivos");
+INSERT INTO categories (qualificacao, descricao)
+VALUES ("Hatch", "Carros com formato hatch");
+INSERT INTO categories (qualificacao, descricao)
+VALUES ("Sedan", "Carros com formato sedan");
+INSERT INTO categories (qualificacao, descricao)
+VALUES ("Pickup", "Carros com carroceria");
+INSERT INTO categories (qualificacao, descricao)
+VALUES ("Elétrico", "Carros movidos a energia elétrica");
+INSERT INTO categories (qualificacao, descricao)
+VALUES ("Minivan", "Carros a partir de 6 lugares");
 
 -- Imagens x Categorias
 INSERT INTO images_categories (id_categoria, id_imagem)

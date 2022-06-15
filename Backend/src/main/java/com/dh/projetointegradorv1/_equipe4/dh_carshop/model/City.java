@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table (name = "cities")
@@ -20,7 +21,7 @@ public class City implements Serializable {
     @Column(length = 50, nullable = false)
     private String estado;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cidade")
-    private List<Product> produtos;
+    Set<Product> produtos = new HashSet<>();
 
     //Timestamps Automáticos
 
