@@ -1,52 +1,45 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
 import javax.persistence.*;
-import java.io.Serial;
 import java.io.Serializable;
-import java.time.OffsetDateTime;
-import java.util.List;
+import java.time.Instant;
+import java.util.*;
+
 
 @Entity
-@Table (name = "categories")
-public class Category implements Serializable {
-    @Serial
+
+public class Category {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(length = 50, nullable = false)
-    private String titulo;
-    @Column(length = 300, nullable = false)
+    private String qualificacao;
     private String descricao;
-    @Column(length = 300, nullable = false)
-    private String url_imagem;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
-    private List<Product> produtos;
 
     // Timestamps automáticos
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private OffsetDateTime criado;
-    @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private OffsetDateTime atualizado;
+    @Column(columnDefinition = "TIMESTAMP")
+    private Instant criado;
+    @Column(columnDefinition = "TIMESTAMP")
+    private Instant atualizado;
 
     @PrePersist
-    public void antesDeSalvar() {
-        criado = OffsetDateTime.now();
+    public void AntesDeSalvar() {
+        criado = Instant.now();
     }
 
     @PreUpdate
-    public void antesDeAtualizar() {
-        atualizado = OffsetDateTime.now();
+    public void AntesDeAtualizar() {
+        atualizado = Instant.now();
     }
 
     public Category() {
     }
 
-    public Category(String titulo, String descricao, String url_imagem) {
-        this.titulo = titulo;
+    public Category(Integer id, String qualificacao, String descricao) {
+        this.id = id;
+        this.qualificacao = qualificacao;
         this.descricao = descricao;
-        this.url_imagem = url_imagem;
     }
 
     public Integer getId() {
@@ -57,12 +50,12 @@ public class Category implements Serializable {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getQualificacao() {
+        return qualificacao;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setQualificacao(String qualificacao) {
+        this.qualificacao = qualificacao;
     }
 
     public String getDescricao() {
@@ -73,32 +66,12 @@ public class Category implements Serializable {
         this.descricao = descricao;
     }
 
-    public String getUrl_imagem() {
-        return url_imagem;
+    public void setCriado(Instant criado) {
+        this.criado = criado;
     }
 
-    public void setUrl_imagem(String url_imagem) {
-        this.url_imagem = url_imagem;
-    }
-
-    public OffsetDateTime getCriado() {
-        return criado;
-    }
-
-    public OffsetDateTime getAtualizado() {
-        return atualizado;
-    }
-
-    @Override
-    public String toString() {
-        return "Categories{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", url_imagem='" + url_imagem + '\'' +
-                ", criado=" + criado +
-                ", atualizado=" + atualizado +
-                '}';
+    public void setAtualizado(Instant atualizado) {
+        this.atualizado = atualizado;
     }
 
 }

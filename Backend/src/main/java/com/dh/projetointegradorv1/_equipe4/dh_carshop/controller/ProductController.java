@@ -1,50 +1,63 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.controller;
 
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.User;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.CategoryDto;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ProductDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.ProductService;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.service.exceptions.RecursoNaoEncontrado;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
+import java.net.URI;
+
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/products")
 public class ProductController {
     @Autowired
-    ProductService productService;
+    private ProductService productService;
 
-    @PostMapping("/products")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        return ResponseEntity.status(201).body(productService.createProduct(product));
+    @GetMapping
+    public ResponseEntity<Page<ProductDto>> findAll(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "size", defaultValue = "12") Integer size
+    ) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<ProductDto> list = productService.buscarTodos(pageRequest);
+        return ResponseEntity.ok(list);
     }
 
-    @GetMapping("/products")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Product>> findAllProducts() {
-        return ResponseEntity.ok(productService.listAllProducts());
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDto> findById(@PathVariable Integer id) {
+        try {
+            ProductDto dto = productService.findById(id);
+            return ResponseEntity.ok().body(dto);
+        } catch (RecursoNaoEncontrado e) {
+            return ResponseEntity.status(404).body(new ProductDto());
+        }
     }
 
-    @GetMapping("/products/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Product> findProductById(@PathVariable(value = "id") Integer id) {
-        return productService.findProductById(id).map(product -> {
-            return ResponseEntity.ok().body(product);
-        }).orElseGet(() -> {
-            return ResponseEntity.status(404).body(new Product());
-        });
+    @PostMapping
+    public ResponseEntity<ProductDto> insert(@RequestBody ProductDto dto) {
+        dto = productService.insert(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(dto.getId()).toUri();
+        return ResponseEntity.created(uri).body(dto);
     }
 
-    @GetMapping("products/city/{name}")
-    public ResponseEntity<List<Product>> findProductByCity(@PathVariable String name) {
-        return ResponseEntity.ok(productService.findProductByCity(name));
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductDto> update(@PathVariable Integer id, @RequestBody ProductDto dto) {
+        dto = productService.update(id, dto);
+        return ResponseEntity.ok().body(dto);
     }
 
-    @GetMapping("products/category/{title}")
-    public ResponseEntity<List<Product>> findProductByCategory(@PathVariable String title) {
-        return ResponseEntity.ok(productService.findProductByCategory(title));
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) throws RecursoNaoEncontrado {
+        productService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

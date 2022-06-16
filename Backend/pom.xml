@@ -14,7 +14,7 @@
 	<name>dh_carshop</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 		<property name="hibernate.enable_lazy_load_no_trans" value="true"/>
 	</properties>
 
@@ -90,12 +90,16 @@
             <scope>test</scope>
         </dependency>
 
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>5.3.18</version>
+		</dependency>
 
 	</dependencies>
 
