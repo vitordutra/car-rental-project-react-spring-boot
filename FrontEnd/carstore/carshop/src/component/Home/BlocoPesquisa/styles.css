@@ -1,8 +1,7 @@
 .pesquisa-primeira-fileira{
     display: flex;
     align-items: center;
-    justify-content: center;
-   
+    justify-content: center;   
 }
 
 @media ( max-width:768px){
@@ -14,9 +13,7 @@
 
 .pesquisa-itens-duplos{
     display: inline-block;
-    margin: 0px 20px;
-    
-    
+    margin: 0px 20px;    
 }
 
 .pesquisa-container{
@@ -56,8 +53,6 @@ margin-left: 10px;
 @media ( max-width:768px){
     #pesquisa-devolucao-checkbox{
       margin-top: 5px;
-
-
     }
 }
 
@@ -88,6 +83,5 @@ margin-left: 10px;
        display: flex;
         align-items: center;
         gap: 8px;
-
     }
 }

@@ -34,7 +34,6 @@ const BlocoPesquisa = () => {
                         {/* <label htmlFor="pesquisa-devolucao-checkbox">Quer devolver em outra unidade?</label> */}
                         <label className="pesquisa-devolucao-checkbox">Quer devolver em outra unidade?</label>
                     </div>
-
                 </div>
 
 

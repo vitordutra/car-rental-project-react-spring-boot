@@ -2,6 +2,7 @@ package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.io.Serial;
@@ -9,14 +10,16 @@ import java.time.OffsetDateTime;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
-
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
-@Table (name = "products")
-
-public class Product implements Serializable{
+@Table (name = "users")
+public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+
+//    @Autowired
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -25,34 +28,26 @@ public class Product implements Serializable{
     @Column(length = 100, nullable = false)
     private String nome;
 
-    @Column(length = 300, nullable = false)
-    private String descricao;
+    @Column(length = 100, nullable = false)
+    private String sobrenome;
 
-    @ManyToMany
-    @JoinTable(
-            name = "features_products",
-            joinColumns = @JoinColumn(name = "id_produto"), inverseJoinColumns = @JoinColumn(name = "id_caracteristica")
-    )
-    private Set<Feature> caracteristicas;
+    @Column(length = 255, nullable = false)
+    private String email;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_produto")
-    private List<Image> imagens;
+    @Column(length = 255, nullable = false)
+    private String senha;
 
-    @ManyToOne
-    @JoinColumn(name = "id_categoria")
-    @JsonIgnoreProperties("products")
-    private Category categoria;
+    // @ManyToOne
+    // @JoinColumn(name = "id_funcao")
+    // @JsonIgnoreProperties("roles")
+    // private Role funcao;
 
-    @ManyToOne
-    @JoinColumn(name = "id_cidade")
-    @JsonIgnoreProperties("products")
-    private City cidade;
-
-    //Timestamps Automáticos
+//    @PrePersist
+//    public void antesDeSalvar() { senha = bCryptPasswordEncoder.encode(senha);}
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private OffsetDateTime criado;
+
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private OffsetDateTime atualizado;
 
@@ -68,8 +63,24 @@ public class Product implements Serializable{
     public String getNome() {   return nome; }
     public void setNome(String nome) {  this.nome = nome; }
 
-    public String getDescricao() {   return descricao; }
-    public void setDescricao(String descricao) {  this.descricao = descricao; }
+    public String getSobrenome() {   return sobrenome; }
+    public void setSobrenome(String sobrenome) {  this.sobrenome = sobrenome; }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     public OffsetDateTime getCriado() {
         return criado;
@@ -84,10 +95,10 @@ public class Product implements Serializable{
         return "Product{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", descricao='" + descricao + '\'' +
+                ", sobrenome='" + sobrenome + '\'' +
+                ", email='" + email + '\'' +
                 ", criado=" + criado +
                 ", atualizado=" + atualizado +
                 '}';
     }
-
 }

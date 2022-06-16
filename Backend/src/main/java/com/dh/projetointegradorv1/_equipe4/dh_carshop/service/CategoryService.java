@@ -1,11 +1,13 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.service;
 
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -21,8 +23,8 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category findCategoryById(Integer id) {
-        return categoryRepository.getById(id);
+    public Optional<Category> findCategoryById(Integer id) {
+        return categoryRepository.findById(id);
     }
 
     public Category updateCategoryById(Category category, Integer id) {
