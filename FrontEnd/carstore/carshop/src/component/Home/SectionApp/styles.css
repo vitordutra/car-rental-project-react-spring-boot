@@ -1,17 +1,139 @@
-.sectionApp-body{
+.sectionApp-content{
     width: 100%;
-    height: 400px;
+    height: 450px;
     display: flex;
-    /* align-items: center;
+    padding: 10px;
+    background-color: #F6A52A;  
+}
+
+@media only screen and (max-width:540px){
+    .sectionApp-content{
+        flex-direction: column;
+        height: 550px;
+        
+    }
+}
+/* @media only screen and (max-width:540px){
+    .sectionApp-content{
+        flex-direction: column;
+        height: 550px;
+        
+    }
+} */
+
+.sectionApp-content-img img{
+    display: flex;
     justify-content: center;
-    gap: 8px;  */
-    background-color: #F6A52A;
-   
-  
-}
-
-.sectionApp-body-img img{
-    
+    align-items: center;
     height: 400px;
-
+    margin: 20px 90px;
 }
+
+/* @media only screen and (max-width:700px){
+    .sectionApp-content-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1px;
+    margin: 20px 80px;
+    width: 190px;     
+    }
+} */
+
+@media only screen and (max-width:540px){
+    .sectionApp-content-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 1px;
+        margin: 20px 220px;
+        width: 200px;     
+    }
+}
+
+
+.sectionApp-content-h2-p-icons{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: justify;
+    margin: 80px;
+    padding: 10px;
+    height: 200px;
+    width: 800px;
+    
+}
+
+@media only screen and (max-width:540px){
+    .sectionApp-content-h2-p-icons{
+     flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        background: white;
+        width: 450px;
+        margin: 5px;
+        
+    }
+}
+
+.sectionApp-content-h2 { 
+    text-align: center;
+    padding-right: 35px;
+    font-size: 30px;
+    font-weight: bold;
+}
+@media only screen and (max-width:568px){
+    .sectionApp-content-h2 { 
+        display: flex;
+        align-items: flex-end;
+        text-align: center;
+        padding-right: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        
+    }
+}
+
+
+.sectionApp-content-p {
+    text-align: center;
+    padding: 5px;  
+}
+
+/* @media only screen and (max-width:700px){
+    .sectionApp-content-icons{
+        display: flex;
+        flex-direction: row;
+        height: 45px;
+       background: blue;
+    }
+} */
+
+
+
+
+.sectionApp-content-google{
+    width: 160px;
+    height: 45px;
+   padding-right: 10px;
+  
+
+    
+    
+}
+.sectionApp-content-AppStore{
+    padding-right: 10px;
+    width: 160px;
+    height: 45px;
+   
+   
+}
+
+@media only screen and (max-width:1000px){
+    .sectionApp-content-p{
+        display: none;
+        visibility: hidden;
+    }
+}
+
