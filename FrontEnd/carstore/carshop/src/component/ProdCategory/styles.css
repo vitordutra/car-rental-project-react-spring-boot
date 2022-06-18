@@ -1,5 +1,5 @@
 .ProdCategoryBody{
-    background:#e5e5e5; 
+    background:#ffff; 
   
 }
 
@@ -7,7 +7,7 @@
     margin:10px;
     padding:5px;
     align-items: center;
-  
+    background:red; 
 }
 
 .ProdCategoryLi {
@@ -18,7 +18,7 @@
     width: 350px;
     height:450px;
     align-items: center;
-    background-color: white;
+    background-color: rgb(233, 230, 230);
     box-shadow: 5px 5px 5px #D3D3D3 
 
 }
