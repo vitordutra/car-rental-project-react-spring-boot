@@ -1,14 +1,20 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table
-
-public class Product {
+@Getter
+@Setter
+public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -36,10 +42,15 @@ public class Product {
     }
 
     @ManyToMany
-    @JoinTable(name = "productscategories",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn (name = "category_id"))
+    @JoinTable(name = "categories_products",
+            joinColumns = @JoinColumn(name = "id_produto"),
+            inverseJoinColumns = @JoinColumn (name = "id_categoria"))
     Set<Category> categories = new HashSet<>();
+
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "category_id")
+    //@JsonIgnoreProperties("products")
+    //private Category category;
 
     public Product() {
     }

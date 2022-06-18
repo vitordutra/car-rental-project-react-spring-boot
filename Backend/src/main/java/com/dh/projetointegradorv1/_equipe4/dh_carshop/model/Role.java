@@ -1,23 +1,22 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
 @Table
-public class Category implements Serializable {
+public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String qualificacao;
-    private String descricao;
+    private String nome;
+
 
     // Timestamps automáticos
     @Column(columnDefinition = "TIMESTAMP")
@@ -35,17 +34,15 @@ public class Category implements Serializable {
         atualizado = Instant.now();
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categories")
-    @JsonIgnoreProperties("products")
-    private List<Product> products;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+    private List<User> users;
 
-    public Category() {
+    public Role() {
     }
 
-    public Category(Integer id, String qualificacao, String descricao) {
+    public Role(Integer id, String nome) {
         this.id = id;
-        this.qualificacao = qualificacao;
-        this.descricao = descricao;
+        this.nome = nome;
     }
 
     public Integer getId() {
@@ -56,28 +53,27 @@ public class Category implements Serializable {
         this.id = id;
     }
 
-    public String getQualificacao() {
-        return qualificacao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setQualificacao(String qualificacao) {
-        this.qualificacao = qualificacao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public Instant getCriado() {
+        return criado;
     }
 
     public void setCriado(Instant criado) {
         this.criado = criado;
     }
 
+    public Instant getAtualizado() {
+        return atualizado;
+    }
+
     public void setAtualizado(Instant atualizado) {
         this.atualizado = atualizado;
     }
-
 }
