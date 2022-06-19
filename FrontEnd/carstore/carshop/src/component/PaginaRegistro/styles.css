@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Barlow", sans-serif;
+  
+  }
+  
+  .App {
+    min-height: calc(100vh - 10vw);
+    padding: 5vw;
+  }
+  
+  .header-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .container-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .acessForm button {
+    background: #F0A432;
+    height: 40px;
+    width: 180px;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    transition: ease all 0.2s;
+    cursor: pointer;
+  }
+  
+  .acessForm button:hover {
+    filter: brightness(0.85);
+  }
+  
+  .acessForm button:last-child {
+    background: #F0A432;
+  }
+  
+  .acessForm label {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .acessForm .field {
+    background: #F1C481;
+    width: 98%;
+    height: 35px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 0 10px;
+  }
+  
+  .acessForm label > span:last-child {
+    color: #F0A432;
+  }
+
+  .acessForm {
+    width: 500px;
+    margin: 40px auto;
+    text-align: center;
+  }
+
+  .formField {
+    text-align: left;
+    margin-top: 16px;
+  }
+
+  .fieldHalf {
+    width: 49%;
+    float: left;
+  }
+
+  .buttonForm {
+
+  }
+
+  .clear {
+    clear: both;
+  }
