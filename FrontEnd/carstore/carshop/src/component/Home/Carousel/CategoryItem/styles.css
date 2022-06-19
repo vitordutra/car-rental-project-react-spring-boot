@@ -45,7 +45,7 @@ align-items: center;
     .categoryItemLi{
        display: flex;
        align-items: center;
-       margin-left: -12px;
+       margin-left: 0;
     }
 }
 

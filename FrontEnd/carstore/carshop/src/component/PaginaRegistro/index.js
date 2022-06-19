@@ -1,52 +1,120 @@
 import React from "react";
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import api from '../../services/api';
+import Swal from 'sweetalert2';
+import { Link, useNavigate } from 'react-router-dom';
+
 import './styles.css';
 
-const PaginaRegistro =() => {
+const PaginaRegistro = ({ onSubmit }) => {
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const handleSubmit = async (values, { setSubmitting }) => {
+    setTimeout(() => {
+      console.log('====aqui');
+      api.post('/users', {
+          nome: values.nome,
+          sobrenome: values.sobrenome,
+          email: values.email,
+          senha: values.senha,
+          roles: [
+            { "id": 1 }
+          ]
+      }).catch((error) => {
+        console.error(error);
+        Swal.fire({
+          title: "Infelizmente, você não pôde se registrar. Por favor, tente novamente mais tarde.",
+          icon: 'error',
+          text: error,
+        })
+      });
+      setSubmitting(false);
+
+    }, 400);
+    await sleep(500);
+  };
+
     return (
         <>
+
         <div class="container" >
-    <a class="links" id="paracadastro"></a>
-    <a class="links" id="paralogin"></a>
-    
-    <div class="content">      
-      
-        
-     
-      <div id="cadastro">
-        <form method="post" action=""> 
-          <h1>Cadastro</h1> 
+          <a class="links" id="paracadastro"></a>
+          <a class="links" id="paralogin"></a>
           
-          <p> 
-            <label for="nome_cad">Seu nome</label>
-            <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder=" Maria " />
-          </p>
+          <div class="content">      
           
-          <p> 
-            <label for="email_cad">Seu e-mail</label>
-            <input id="email_cad" name="email_cad" required="required" type="email" placeholder="modeloteste001@gmail.com"/> 
-          </p>
-          
-          <p> 
-            <label for="senha_cad">Sua senha</label>
-            <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="1234"/>
-          </p>
-          
-          <p> 
-            <input type="submit" value="Cadastrar"/> 
-          </p>
-          
-          <p class="link">  
-            Já tem conta?
-            <a href="/login"> Ir para Login </a>
-            
-          </p>
-        </form>
-      </div>
-    </div>
-  </div> 
+            <div id="cadastro">
 
+              <Formik
+                initialValues={{ nome: '', sobrenome: '', email: '', senha: '' }}
+                validationSchema={Yup.object({
+                  nome: Yup.string()
+                      .max(15, 'Deve conter no máximo 15 letras')
+                      .required('Obrigatório'),
+                  sobrenome: Yup.string()
+                      .max(20, 'Deve conter no máximo 20 letras')
+                      .required('Obrigatório'),
+                  email: Yup.string().email('Email inválido').required('Obrigatório'),
+                  senha: Yup.string()
+                      .min(7, 'A senha deve ter no mínimo 7 caracteres')
+                      .required('Obrigatório'),
+                })}
+                onSubmit={ handleSubmit }
+              >
 
+                <Form className="acessForm">
+                  <h2>Crie sua conta</h2>
 
+                  <p class="formField">
+                    <div class="fieldHalf">
+                      <label for="nome">Nome</label>
+                      <Field className="field" name="nome" type="text" id="nome"/>
+                      <div className="errorMessage">
+                        <ErrorMessage  name="nome">{msg => msg ? msg : ""}</ErrorMessage>
+                      </div>
+                    </div>
+
+                    <div class="fieldHalf">
+                      <label for="sobrenome">Sobrenome</label>
+                      <Field className="field" name="sobrenome" type="text" id="sobrenome"/>
+                      <div className="errorMessage">
+                        <ErrorMessage  name="sobrenome">{msg => msg ? msg : ""}</ErrorMessage>
+                      </div>
+                    </div>
+                  </p>
+
+                  <div class="clear"></div>
+                  
+                  <p class="formField"> 
+                    <label for="email">E-mail</label>
+                    <Field className="field" name="email" type="text" id="email"/>
+                    <div className="errorMessage">
+                      <ErrorMessage  name="email">{msg => msg ? msg : ""}</ErrorMessage>
+                    </div>
+                  </p>
+                  
+                  <p class="formField">
+                    <label htmlFor="senha">Senha</label>
+                    <Field className="field" name="senha" type="password" id="senha"/>  
+                    <div className="errorMessage">
+                        <ErrorMessage name="senha">{msg => msg ? msg : ""}</ErrorMessage>
+                    </div>
+                  </p>
+                  
+                  <button className="buttonForm" type="submit">Registrar</button>
+                  
+                  <p class="link">  
+                    Já tem conta?
+                    <a href="/login"> Ir para Login </a>
+                    
+                  </p>
+                </Form>
+
+              </Formik>
+
+            </div>
+          </div>
+        </div> 
 
         </>
     )
