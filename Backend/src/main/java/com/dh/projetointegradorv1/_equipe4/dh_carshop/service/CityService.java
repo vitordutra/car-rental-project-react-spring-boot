@@ -7,6 +7,7 @@ import com.dh.projetointegradorv1._equipe4.dh_carshop.model.City;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.CityRepository;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.ProductRepository;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.service.exceptions.RecursoNaoEncontrado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,11 +47,11 @@ public class CityService {
     public void copyToEntity(CityDto dto, City entity) {
         entity.setNome(dto.getNome());
         entity.setEstado(dto.getEstado());
-        entity.getProdutos().clear();
+        /*entity.getProdutos().clear();
         for(ProductDto prodDto : dto.getProdutos()) {
             Optional<Product> obj = productRepository.findById(prodDto.getId());
-            Product product = obj.orElseThrow(() -> new RuntimeException());
+            Product product = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getProdutos().add(product);
-        }
+        }*/
     }
 }

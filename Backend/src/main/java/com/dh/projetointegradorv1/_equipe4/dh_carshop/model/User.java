@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.io.Serial;
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.Set;
 @Entity
 @Table (name = "users")
 public class User implements Serializable {
-    @Serial
+    //@Serial
     private static final long serialVersionUID = 1L;
 
 //    @Autowired
@@ -46,16 +47,19 @@ public class User implements Serializable {
 //    public void antesDeSalvar() { senha = bCryptPasswordEncoder.encode(senha);}
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private OffsetDateTime criado;
-
+    private Instant criado; // Antes: OffsetDateTime
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private OffsetDateTime atualizado;
+    private Instant atualizado;
 
     @PrePersist
-    public void antesDeSalvar() {criado = OffsetDateTime.now();}
+    public void antesDeSalvar() {
+        criado = Instant.now();
+    }
 
     @PreUpdate
-    public void antesDeAtualizar() {atualizado = OffsetDateTime.now();}
+    public void antesDeAtualizar() {
+        atualizado = Instant.now();
+    }
 
     public Integer getId() {   return id; }
     public void setId(Integer id) {  this.id = id;}
@@ -82,23 +86,12 @@ public class User implements Serializable {
         this.senha = senha;
     }
 
-    public OffsetDateTime getCriado() {
+    public Instant getCriado() {
         return criado;
     }
 
-    public OffsetDateTime getAtualizado() {
+    public Instant getAtualizado() {
         return atualizado;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", sobrenome='" + sobrenome + '\'' +
-                ", email='" + email + '\'' +
-                ", criado=" + criado +
-                ", atualizado=" + atualizado +
-                '}';
-    }
 }

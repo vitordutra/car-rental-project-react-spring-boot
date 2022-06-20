@@ -3,6 +3,7 @@ package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "features")
 public class Feature implements Serializable {
-    @Serial
+    //@Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -25,20 +26,23 @@ public class Feature implements Serializable {
             joinColumns = { @JoinColumn(name = "id_caracteristica", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "id_imagem", referencedColumnName = "id") })
     private Image imagem;
+    /*@Column(length = 300, nullable = false)
+    private String icone;*/
 
     // Timestamps automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private OffsetDateTime criado;
+    private Instant criado; // Antes: OffsetDateTime
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private OffsetDateTime atualizado;
+    private Instant atualizado;
 
     @PrePersist
     public void antesDeSalvar() {
-        criado = OffsetDateTime.now();
+        criado = Instant.now();
     }
+
     @PreUpdate
     public void antesDeAtualizar() {
-        atualizado = OffsetDateTime.now();
+        atualizado = Instant.now();
     }
 
     public Feature() {
@@ -47,6 +51,11 @@ public class Feature implements Serializable {
     public Feature(String nome) {
         this.nome = nome;
     }
+
+    /*public Feature(String nome, String icone) {
+        this.nome = nome;
+        this.icone = icone;
+    }*/
 
     public Integer getId() {
         return id;
@@ -80,13 +89,19 @@ public class Feature implements Serializable {
         this.imagem = imagem;
     }
 
-    @Override
-    public String toString() {
-        return "Feature{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", criado=" + criado +
-                ", atualizado=" + atualizado +
-                '}';
+    /*public String getIcone() {
+        return icone;
+    }
+
+    public void setIcone(String icone) {
+        this.icone = icone;
+    }*/
+
+    public Instant getCriado() {
+        return criado;
+    }
+
+    public Instant getAtualizado() {
+        return atualizado;
     }
 }

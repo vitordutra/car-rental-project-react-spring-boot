@@ -14,7 +14,7 @@ public class CityDto implements Serializable {
     private Integer id;
     private String nome;
     private String estado;
-    private List<ProductDto> produtos = new ArrayList<>();
+    //private List<ProductDto> produtos = new ArrayList<>();
 
     public CityDto() {
 
@@ -32,10 +32,10 @@ public class CityDto implements Serializable {
         estado = entity.getEstado();
     }
 
-    public CityDto(City entity, Set<Product> produtos) {
+    /*public CityDto(City entity, Set<Product> produtos) {
         this(entity);
         produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
-    }
+    }*/
 
     public Integer getId() {
         return id;
@@ -61,11 +61,11 @@ public class CityDto implements Serializable {
         this.estado = estado;
     }
 
-    public List<ProductDto> getProdutos() {
+    /*public List<ProductDto> getProdutos() {
         return produtos;
     }
 
     public void setProdutos(List<ProductDto> produtos) {
         this.produtos = produtos;
-    }
+    }*/
 }

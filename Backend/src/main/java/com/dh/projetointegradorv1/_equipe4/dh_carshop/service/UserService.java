@@ -6,7 +6,11 @@ import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.User;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.UserRepository;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.service.exceptions.BDExcecao;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.service.exceptions.RecursoNaoEncontrado;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,7 +48,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public UserDto findUserById(Integer id) {
         Optional<User> obj = userRepository.findById(id);
-        User entity = obj.orElseThrow(() -> new RuntimeException());
+        User entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
         return new UserDto(entity);
     }
 
@@ -52,13 +56,13 @@ public class UserService {
     public UserDto updateUserById(Integer id, UserDto dto) {
         try {
             Optional<User> obj = userRepository.findById(id);
-            User entity = obj.orElseThrow(() -> new RuntimeException());
+            User entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             copyToEntity(dto, entity);
             entity = userRepository.save(entity);
             return new UserDto(entity);
         }
         catch (EntityNotFoundException e) {
-            throw new RuntimeException();
+            throw new RecursoNaoEncontrado("ID NÃO ENCONTRADO: " + id);
         }
 
         /*return userRepository.findById(id)
@@ -75,7 +79,15 @@ public class UserService {
     }
 
     public void deleteUserById(Integer id) {
-        userRepository.deleteById(id);
+        try{
+            userRepository.deleteById(id);
+        }
+        catch (EmptyResultDataAccessException e) {
+            throw new RecursoNaoEncontrado("ID NÃO ENCONTRADO: " + id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new BDExcecao("VIOLAÇÃO DE INTEGRIDADE");
+        }
     }
 
     public void copyToEntity(UserDto dto, User entity) {

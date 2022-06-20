@@ -6,7 +6,11 @@ import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ImageDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ProductDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.*;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.*;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.service.exceptions.BDExcecao;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.service.exceptions.RecursoNaoEncontrado;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,7 +59,7 @@ public class ProductService {
     @Transactional(readOnly = true)
     public ProductDto findProductById(Integer id) {
         Optional<Product> obj = productRepository.findById(id);
-        Product entity = obj.orElseThrow(() -> new RuntimeException());
+        Product entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
         return new ProductDto(entity, entity.getCaracteristicas(), entity.getImagens(),
                 entity.getCategorias(), entity.getCidade());
     }
@@ -64,13 +68,13 @@ public class ProductService {
     public ProductDto editProductById(Integer id, ProductDto dto) {
         try {
             Optional<Product> obj = productRepository.findById(id);
-            Product entity = obj.orElseThrow(() -> new RuntimeException());
+            Product entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             copyToEntity(dto, entity);
             entity = productRepository.save(entity);
             return new ProductDto(entity);
         }
         catch (EntityNotFoundException e) {
-            throw new RuntimeException();
+            throw new RecursoNaoEncontrado("ID NÃO ENCONTRADO: " + id);
         }
 
         /*return productRepository.findById(id)
@@ -86,7 +90,15 @@ public class ProductService {
     }
 
     public void deleteProductById(Integer id) {
-        productRepository.deleteById(id);
+        try{
+            productRepository.deleteById(id);
+        }
+        catch (EmptyResultDataAccessException e) {
+            throw new RecursoNaoEncontrado("ID NÃO ENCONTRADO: " + id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new BDExcecao("VIOLAÇÃO DE INTEGRIDADE");
+        }
     }
 
     public void copyToEntity(ProductDto dto, Product entity) {
@@ -95,23 +107,23 @@ public class ProductService {
         entity.getCaracteristicas().clear();
         for(FeatureDto featDto : dto.getCaracteristicas()) {
             Optional<Feature> obj = featureRepository.findById(featDto.getId());
-            Feature feature = obj.orElseThrow(() -> new RuntimeException());
+            Feature feature = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getCaracteristicas().add(feature);
         }
         entity.getImagens().clear();
         for(ImageDto imgDto : dto.getImagens()) {
             Optional<Image> obj = imageRepository.findById(imgDto.getId());
-            Image image = obj.orElseThrow(() -> new RuntimeException());
+            Image image = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getImagens().add(image);
         }
         entity.getCategorias().clear();
         for(CategoryDto catDto : dto.getCategorias()) {
             Optional<Category> obj = categoryRepository.findById(catDto.getId());
-            Category category = obj.orElseThrow(() -> new RuntimeException());
+            Category category = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getCategorias().add(category);
         }
         Optional<City> obj = cityRepository.findById(dto.getCidade().getId());
-        City city = obj.orElseThrow(() -> new RuntimeException());
+        City city = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
         entity.setCidade(city);
     }
 

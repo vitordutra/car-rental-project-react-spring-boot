@@ -2,6 +2,7 @@ package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
 import javax.persistence.*;
 import java.io.Serial;
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -10,7 +11,7 @@ import java.util.Set;
 @Entity
 @Table (name = "cities")
 public class City implements Serializable {
-    @Serial
+    //@Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -20,18 +21,25 @@ public class City implements Serializable {
     private String nome;
     @Column(length = 50, nullable = false)
     private String estado;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cidade")
-    Set<Product> produtos = new HashSet<>();
+    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "cidade")
+    Set<Product> produtos = new HashSet<>();*/
 
     //Timestamps Automáticos
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private OffsetDateTime criado;
+    private Instant criado; // Antes: OffsetDateTime
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private OffsetDateTime atualizado;
+    private Instant atualizado;
 
     @PrePersist
-    public void antesDeSalvar() {criado = OffsetDateTime.now();}
+    public void antesDeSalvar() {
+        criado = Instant.now();
+    }
+
+    @PreUpdate
+    public void antesDeAtualizar() {
+        atualizado = Instant.now();
+    }
 
     public Integer getId() {
         return id;
@@ -57,32 +65,20 @@ public class City implements Serializable {
         this.estado = estado;
     }
 
-    public Set<Product> getProdutos() {
+    /*public Set<Product> getProdutos() {
         return produtos;
     }
 
     public void setProdutos(Set<Product> produtos) {
         this.produtos = produtos;
-    }
+    }*/
 
-    public OffsetDateTime getCriado() {
+    public Instant getCriado() {
         return criado;
     }
 
-    public OffsetDateTime getAtualizado() {
+    public Instant getAtualizado() {
         return atualizado;
     }
-
-    @Override
-    public String toString() {
-        return "City{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", estado='" + estado + '\'' +
-                ", criado=" + criado +
-                ", atualizado=" + atualizado +
-                '}';
-    }
-
 
 }

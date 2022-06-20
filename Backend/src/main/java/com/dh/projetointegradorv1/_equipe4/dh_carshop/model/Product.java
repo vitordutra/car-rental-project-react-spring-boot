@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serial;
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -16,7 +17,7 @@ import java.util.Set;
 @Table (name = "products")
 
 public class Product implements Serializable{
-    @Serial
+    //@Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -61,15 +62,19 @@ public class Product implements Serializable{
     //Timestamps Automáticos
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private OffsetDateTime criado;
+    private Instant criado; // Antes: OffsetDateTime
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private OffsetDateTime atualizado;
+    private Instant atualizado;
 
     @PrePersist
-    public void antesDeSalvar() {criado = OffsetDateTime.now();}
+    public void antesDeSalvar() {
+        criado = Instant.now();
+    }
 
     @PreUpdate
-    public void antesDeAtualizar() {atualizado = OffsetDateTime.now();}
+    public void antesDeAtualizar() {
+        atualizado = Instant.now();
+    }
 
     public Integer getId() {   return id; }
     public void setId(Integer id) {  this.id = id;}
@@ -112,23 +117,12 @@ public class Product implements Serializable{
         this.cidade = cidade;
     }
 
-    public OffsetDateTime getCriado() {
+    public Instant getCriado() {
         return criado;
     }
 
-    public OffsetDateTime getAtualizado() {
+    public Instant getAtualizado() {
         return atualizado;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", criado=" + criado +
-                ", atualizado=" + atualizado +
-                '}';
     }
 
 }

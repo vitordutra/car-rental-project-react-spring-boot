@@ -15,6 +15,7 @@ public class CategoryDto implements Serializable {
     private Integer id;
     private String titulo;
     private String descricao;
+    private String urlImagem;
     private List<ProductDto> produtos = new ArrayList<>();
     private ImageDto imagem;
 
@@ -27,6 +28,13 @@ public class CategoryDto implements Serializable {
         this.descricao = descricao;
     }
 
+    /*public CategoryDto(Integer id, String titulo, String descricao, String urlImagem) {
+        this.id = id;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.urlImagem = urlImagem;
+    }*/
+
     public CategoryDto(String titulo, String descricao) {
         this.titulo = titulo;
         this.descricao = descricao;
@@ -38,11 +46,23 @@ public class CategoryDto implements Serializable {
         descricao = entity.getDescricao();
     }
 
+    /*public CategoryDto(Category entity) {
+        id = entity.getId();
+        titulo = entity.getTitulo();
+        descricao = entity.getDescricao();
+        urlImagem = entity.getUrlImagem();
+    }*/
+
     public CategoryDto(Category entity, Set<Product> produtos, Image imagem) {
         this(entity);
         produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
         this.imagem = new ImageDto(imagem);
     }
+
+    /*public CategoryDto(Category entity, Set<Product> produtos) {
+        this(entity);
+        produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
+    }*/
 
     public Integer getId() {
         return id;
@@ -83,4 +103,12 @@ public class CategoryDto implements Serializable {
     public void setImagem(ImageDto imagem) {
         this.imagem = imagem;
     }
+
+    /*public String getUrlImagem() {
+        return urlImagem;
+    }
+
+    public void setUrlImagem(String urlImagem) {
+        this.urlImagem = urlImagem;
+    }*/
 }
