@@ -2,11 +2,14 @@ package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.io.Serial;
-import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
 import java.util.List;
@@ -15,8 +18,9 @@ import java.util.Set;
 
 @Entity
 @Table (name = "users")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class User implements Serializable {
-    //@Serial
+    @Serial
     private static final long serialVersionUID = 1L;
 
 //    @Autowired
@@ -47,51 +51,18 @@ public class User implements Serializable {
 //    public void antesDeSalvar() { senha = bCryptPasswordEncoder.encode(senha);}
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Instant criado; // Antes: OffsetDateTime
+    private OffsetDateTime criado; // Antes: OffsetDateTime
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private Instant atualizado;
+    private OffsetDateTime atualizado;
 
     @PrePersist
     public void antesDeSalvar() {
-        criado = Instant.now();
+        criado = OffsetDateTime.now();
     }
 
     @PreUpdate
     public void antesDeAtualizar() {
-        atualizado = Instant.now();
-    }
-
-    public Integer getId() {   return id; }
-    public void setId(Integer id) {  this.id = id;}
-
-    public String getNome() {   return nome; }
-    public void setNome(String nome) {  this.nome = nome; }
-
-    public String getSobrenome() {   return sobrenome; }
-    public void setSobrenome(String sobrenome) {  this.sobrenome = sobrenome; }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Instant getCriado() {
-        return criado;
-    }
-
-    public Instant getAtualizado() {
-        return atualizado;
+        atualizado = OffsetDateTime.now();
     }
 
 }

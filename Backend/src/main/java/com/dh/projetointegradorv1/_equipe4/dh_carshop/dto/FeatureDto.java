@@ -3,12 +3,16 @@ package com.dh.projetointegradorv1._equipe4.dh_carshop.dto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Feature;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Image;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Getter @Setter @NoArgsConstructor
 public class FeatureDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -17,10 +21,6 @@ public class FeatureDto implements Serializable {
     private List<ProductDto> produtos = new ArrayList<>();
     private ImageDto imagem;
     //private String icone;
-
-    public FeatureDto() {
-
-    }
 
     public FeatureDto(Integer id, String nome) {
         this.id = id;
@@ -55,43 +55,4 @@ public class FeatureDto implements Serializable {
         produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
     }*/
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public List<ProductDto> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<ProductDto> produtos) {
-        this.produtos = produtos;
-    }
-
-    public ImageDto getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(ImageDto imagem) {
-        this.imagem = imagem;
-    }
-
-    /*public String getIcone() {
-        return icone;
-    }
-
-    public void setIcone(String icone) {
-        this.icone = icone;
-    }*/
 }

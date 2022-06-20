@@ -47,11 +47,11 @@ public class CityService {
     public void copyToEntity(CityDto dto, City entity) {
         entity.setNome(dto.getNome());
         entity.setEstado(dto.getEstado());
-        /*entity.getProdutos().clear();
+        entity.getProdutos().clear();
         for(ProductDto prodDto : dto.getProdutos()) {
             Optional<Product> obj = productRepository.findById(prodDto.getId());
             Product product = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getProdutos().add(product);
-        }*/
+        }
     }
 }

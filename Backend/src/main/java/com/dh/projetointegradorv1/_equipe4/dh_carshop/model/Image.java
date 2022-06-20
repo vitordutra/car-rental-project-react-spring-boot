@@ -1,8 +1,12 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serial;
-import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
 import java.util.Set;
@@ -10,9 +14,10 @@ import java.util.Set;
 
 @Entity
 @Table (name = "images")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Image implements Serializable {
 
-    //@Serial
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -32,41 +37,17 @@ public class Image implements Serializable {
     //Timestamps Automáticos
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Instant criado; // Antes: OffsetDateTime
+    private OffsetDateTime criado; // Antes: OffsetDateTime
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private Instant atualizado;
+    private OffsetDateTime atualizado;
 
     @PrePersist
     public void antesDeSalvar() {
-        criado = Instant.now();
+        criado = OffsetDateTime.now();
     }
 
     @PreUpdate
     public void antesDeAtualizar() {
-        atualizado = Instant.now();
-    }
-
-    public Integer getId() { return id; }
-
-    public void setId(Integer id) {   this.id = id;  }
-
-    public String getTitulo() {   return titulo;  }
-
-    public void setTitulo(String titulo) {  this.titulo = titulo; }
-
-    public String getUrl() {  return url;}
-
-    public void setUrl(String url) {   this.url = url;  }
-
-    public Set<Product> getProdutos() {
-        return produtos;
-    }
-
-    public Instant getCriado() {
-        return criado;
-    }
-
-    public Instant getAtualizado() {
-        return atualizado;
+        atualizado = OffsetDateTime.now();
     }
 }

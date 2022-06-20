@@ -1,17 +1,22 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table (name = "categories")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Category implements Serializable {
-    //@Serial
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -34,88 +39,18 @@ public class Category implements Serializable {
 
     // Timestamps automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Instant criado; // Antes: OffsetDateTime
+    private OffsetDateTime criado; // Antes: OffsetDateTime
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private Instant atualizado;
+    private OffsetDateTime atualizado;
 
     @PrePersist
     public void antesDeSalvar() {
-        criado = Instant.now();
+        criado = OffsetDateTime.now();
     }
 
     @PreUpdate
     public void antesDeAtualizar() {
-        atualizado = Instant.now();
-    }
-
-    public Category() {
-    }
-
-    public Category(String titulo, String descricao) {
-        this.titulo = titulo;
-        this.descricao = descricao;
-    }
-
-    /*public Category(String titulo, String descricao, String urlImagem) {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.urlImagem = urlImagem;
-    }*/
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Set<Product> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(Set<Product> produtos) {
-        this.produtos = produtos;
-    }
-
-    public Image getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(Image imagem) {
-        this.imagem = imagem;
-    }
-
-    /*public String getUrlImagem() {
-        return urlImagem;
-    }
-
-    public void setUrlImagem(String urlImagem) {
-        this.urlImagem = urlImagem;
-    }*/
-
-    public Instant getCriado() {
-        return criado;
-    }
-
-    public Instant getAtualizado() {
-        return atualizado;
+        atualizado = OffsetDateTime.now();
     }
 
 }

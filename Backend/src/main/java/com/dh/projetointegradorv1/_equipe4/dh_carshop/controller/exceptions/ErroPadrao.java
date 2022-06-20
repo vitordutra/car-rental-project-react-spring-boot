@@ -1,11 +1,11 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.controller.exceptions;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.OffsetDateTime;
 
 public class ErroPadrao implements Serializable {
 
-    private Instant timestamp;
+    private OffsetDateTime timestamp;
     private Integer status;
     private String error;
     private String message;
@@ -14,11 +14,11 @@ public class ErroPadrao implements Serializable {
     public ErroPadrao() {
     }
 
-    public Instant getTimestamp() {
+    public OffsetDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Instant timestamp) {
+    public void setTimestamp(OffsetDateTime timestamp) {
         this.timestamp = timestamp;
     }
 

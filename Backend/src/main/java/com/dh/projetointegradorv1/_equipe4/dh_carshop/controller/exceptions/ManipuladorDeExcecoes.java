@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.Instant;
+import java.time.OffsetDateTime;
 
 @ControllerAdvice
 public class ManipuladorDeExcecoes {
@@ -17,7 +17,7 @@ public class ManipuladorDeExcecoes {
     public ResponseEntity<ErroPadrao> entidadeNaoEncontrada(
             RecursoNaoEncontrado e, HttpServletRequest request) {
         ErroPadrao ep = new ErroPadrao();
-        ep.setTimestamp(Instant.now());
+        ep.setTimestamp(OffsetDateTime.now());
         ep.setStatus(HttpStatus.NOT_FOUND.value());
         ep.setError("RECURSO NÃO ENCONTRADO.");
         ep.setMessage(e.getMessage());
@@ -30,7 +30,7 @@ public class ManipuladorDeExcecoes {
             BDExcecao e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         ErroPadrao ep = new ErroPadrao();
-        ep.setTimestamp(Instant.now());
+        ep.setTimestamp(OffsetDateTime.now());
         ep.setStatus(status.value());
         ep.setError("EXCEÇÃO DE BANCO DE DADOS - INTEGRIDADE");
         ep.setMessage(e.getMessage());
