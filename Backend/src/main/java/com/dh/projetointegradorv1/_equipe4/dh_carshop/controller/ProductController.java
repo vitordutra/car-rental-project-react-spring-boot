@@ -1,36 +1,52 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.controller;
 
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ProductDTO;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/products")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProductController {
-    @Autowired
-    ProductService productService;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Product> create(@RequestBody Product product) {
-        return ResponseEntity.status(201).body(productService.create(product));
-    }
+    @Autowired
+    private ProductService service;
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Product>> findALl() {
-        return ResponseEntity.ok(productService.findAll());
+    public ResponseEntity<List<ProductDTO>> findAll(){
+        List<ProductDTO> list = service.findAll();
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Optional<Product>> findById(@PathVariable(value = "id") Integer id) {
-        return ResponseEntity.ok(productService.findById(id));
+    public ResponseEntity<ProductDTO> getById(@PathVariable Integer id){
+        ProductDTO dto = service.findById(id);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO dto){
+        dto = service.save(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
+                buildAndExpand(dto.getId()).toUri();
+        return ResponseEntity.created(uri).body(dto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductDTO> editById(@PathVariable Integer id, @RequestBody ProductDTO dto) {
+        dto = service.editById(id, dto);
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id){
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
