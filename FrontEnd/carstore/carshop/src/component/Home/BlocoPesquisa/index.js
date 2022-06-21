@@ -1,6 +1,33 @@
 import './styles.css';
+import format from 'date-fns/format';
+import api from "../../../services/api";
+import DateRangeComp from '../../Calendar/DateRangeComp';
 
 const BlocoPesquisa = () => {
+
+
+     async function callApiProductsDateRange(range,cidadeEscolhida) {
+
+        try {
+          const DataDeInicio  = format(range[0].startDate, "yyyy-MM-dd")        
+          const DataDeTermino = format(range[0].endDate, "yyyy-MM-dd")          
+          const cidade = cidadeEscolhida;
+    
+          const URL = `products?cityId=${cidade}&dataInicio=${DataDeInicio}&dataTermino=${DataDeTermino}` ;
+          console.log(URL);
+          /* const response = await api.get(URL);
+          console.log(response.data);
+          handleFilter(response.data); */
+    
+          
+        }
+        catch (error) {
+          console.log(error)
+        }
+      } 
+      
+
+
     return(
         <>
             <div className="pesquisa-container">
@@ -20,20 +47,14 @@ const BlocoPesquisa = () => {
                         {/* <input placeholder="Onde quer devolver?" type="text" id="pesquisa-devolucao-local" name="pesquisa-devolucao-local" className="pesquisa-inputs"/> */}
                         </div>
                         <div className="pesquisa-itens-duplos">
-                        {/* <h4>Data de Retirada</h4> */}
-                        <input  type="date" id="pesquisa-retirar-data" name="pesquisa-retirar-data" className="pesquisa-inputs"></input>    
-                        </div>
-                        <div className="pesquisa-itens-duplos">
-                        {/* <h4>Data de Devolução</h4> */}
-                        <input type="date" id="pesquisa-devolucao-data" name="pesquisa-devolucao-data" className="pesquisa-inputs"/>
+                        
+                        <DateRangeComp callApiProductsDateRange={callApiProductsDateRange} cidadeEscolhida={1} />
+                        
                         </div>
                         
+                        
                         <input type="button" id="pesquisa-botao-buscar" name="pesquisa-botao-buscar" value="Buscar" /> 
-                        <div className="pesquisa-devolcao-unidade">
-                        <input type="checkbox" id="pesquisa-devolucao-checkbox" name="pesquisa-devolucao-checkbox" />
-                        {/* <label htmlFor="pesquisa-devolucao-checkbox">Quer devolver em outra unidade?</label> */}
-                        <label className="pesquisa-devolucao-checkbox">Quer devolver em outra unidade?</label>
-                    </div>
+
 
                 </div>
 
