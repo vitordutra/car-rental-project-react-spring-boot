@@ -19,7 +19,7 @@
 .container2{
     background-color: #fff;
     color: #000;
-    width: 40%;
+    width: 80%;
     height:80%;
     border-radius: 20px;  
 }
@@ -73,12 +73,27 @@
     box-shadow:3px 3px 3px rgb(203, 201, 201);
     width:120px;
     margin-top: 60px;
+    margin-left: 30%;
    
 }
 
 .modalItem{
    padding: 5px;
     display: flex;
-    align-items: center;
+    align-items: right;
     gap: 5px;
+}
+.flex-container{
+display: flex;
+
+}
+
+.flex-child-calendario{
+flex: 1;
+    
+}
+.flex-child-resto{
+flex: 10;
+margin:40px;
+    
 }

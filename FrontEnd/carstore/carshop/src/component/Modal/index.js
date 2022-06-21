@@ -1,6 +1,8 @@
 import React, { useEffect, useState} from "react";
 import api from "../../services/api";
 import './styles.css';
+import StaticCalendar from "../../component/CalendarStatic";
+
 
 export default function Modal({id = 'modal' ,onClose = () => { }, children }) { 
     const handleOutsideClick = (e) => {
@@ -29,17 +31,21 @@ export default function Modal({id = 'modal' ,onClose = () => { }, children }) {
             <div id={id} className="ProdutoModal" onClick={handleOutsideClick}>
                 <div className="container2">
                     <button className="close" onClick={onClose}/>
-                    
-                    {characteristic.map((caract) => ( 
-                        <div className="modalItem">
-                            
-                            <img className="ImgModal" src={caract.icon_url} />                        
-                            <h3 className="H3Modal">{caract.characteristic}</h3>
+                    <div className="flex-container">
+                        <div className="flex-child-calendario"><StaticCalendar/></div>
+                        <div className="flex-child-resto">
+                            {characteristic.map((caract) => ( 
+                            <div className="modalItem">
+                                
+                                <img className="ImgModal" src={caract.icon_url} />                        
+                                <h3 className="H3Modal">{caract.characteristic}</h3>
+                            </div>
+                            ))}
+                            <button className="ButtonModal" >
+                            Reserve Agora
+                            </button>
                         </div>
-                    ))}
-                    <button className="ButtonModal" >
-                        Reserve Agora
-                    </button>
+                    </div>
                 </div>
             </div>
         </>
