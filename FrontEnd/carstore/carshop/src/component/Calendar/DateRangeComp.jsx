@@ -91,6 +91,7 @@ const DateRangeComp = ({callApiProductsDateRange,cidadeEscolhida}) => {
             
             minDate={minDate}
             maxDate={maxDate}
+            
             onChange={item => setRange([item.selection])}
             editableDateInputs={true}
             moveRangeOnFirstSelection={false}
