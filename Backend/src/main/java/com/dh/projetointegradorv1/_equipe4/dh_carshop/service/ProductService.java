@@ -1,9 +1,6 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.service;
 
-import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.CategoryDto;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.FeatureDto;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ImageDto;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ProductDto;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.*;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.*;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.*;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.exceptions.BDExcecao;
@@ -37,6 +34,9 @@ public class ProductService {
     @Autowired
     private CityRepository cityRepository;
 
+    @Autowired
+    private BookingRepository bookingRepository;
+
     @Transactional
     public ProductDto createProduct(ProductDto dto) {
         Product entity = new Product();
@@ -61,7 +61,7 @@ public class ProductService {
         Optional<Product> obj = productRepository.findById(id);
         Product entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
         return new ProductDto(entity, entity.getCaracteristicas(), entity.getImagens(),
-                entity.getCategorias(), entity.getCidade());
+                entity.getCategorias(), entity.getCidade(), entity.getReservas());
     }
 
     @Transactional
@@ -121,6 +121,11 @@ public class ProductService {
             Optional<Category> obj = categoryRepository.findById(catDto.getId());
             Category category = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getCategorias().add(category);
+        }
+        for(BookingDto bookDto : dto.getReservas()) {
+            Optional<Booking> obj = bookingRepository.findById(bookDto.getId());
+            Booking booking = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
+            entity.getReservas().add(booking);
         }
         Optional<City> obj = cityRepository.findById(dto.getCidade().getId());
         City city = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));

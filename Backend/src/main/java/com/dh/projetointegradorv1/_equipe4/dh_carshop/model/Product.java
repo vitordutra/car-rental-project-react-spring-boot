@@ -54,6 +54,8 @@ public class Product implements Serializable{
     @JoinColumn(name = "id_cidade")
     @JsonIgnoreProperties("products")
     private City cidade;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+    Set<Booking> reservas = new HashSet<>();
 
     // Timestamps Automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

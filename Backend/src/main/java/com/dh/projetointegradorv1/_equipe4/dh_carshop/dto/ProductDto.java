@@ -21,6 +21,7 @@ public class ProductDto implements Serializable {
     private List<ImageDto> imagens = new ArrayList<>();
     private List<CategoryDto> categorias = new ArrayList<>();
     private CityDto cidade;
+    private List<BookingDto> reservas = new ArrayList<>();
 
     public ProductDto(Integer id, String nome, String descricao) {
         this.id = id;
@@ -35,12 +36,13 @@ public class ProductDto implements Serializable {
     }
 
     public ProductDto(Product entity, Set<Feature> caracteristicas, Set<Image> imagens,
-                      Set<Category> categorias, City cidade) {
+                      Set<Category> categorias, City cidade, Set<Booking> reservas) {
         this(entity);
         caracteristicas.forEach(car -> this.caracteristicas.add(new FeatureDto(car)));
         imagens.forEach(img -> this.imagens.add(new ImageDto(img)));
         categorias.forEach(cat -> this.categorias.add(new CategoryDto(cat)));
         this.cidade = new CityDto(cidade);
+        reservas.forEach(book -> this.reservas.add(new BookingDto(book)));
     }
 
 }

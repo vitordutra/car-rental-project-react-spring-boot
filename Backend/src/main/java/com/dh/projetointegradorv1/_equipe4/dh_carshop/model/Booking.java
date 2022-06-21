@@ -7,29 +7,32 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serial;
-import java.time.OffsetDateTime;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.OffsetDateTime;
 
 @Entity
-@Table (name = "cities")
+@Table (name = "bookings")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-public class City implements Serializable {
+public class Booking implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(length = 50, nullable = false)
-    private String nome;
-    @Column(length = 50, nullable = false)
-    private String estado;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cidade")
-    Set<Product> produtos = new HashSet<>();
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cidade")
-    Set<Booking> reservas = new HashSet<>();
+    @Column(nullable = false)
+    private OffsetDateTime inicioReserva;
+    @Column(nullable = false)
+    private OffsetDateTime fimReserva;
+    @ManyToOne
+    @JoinColumn(name = "id_produto")
+    private Product produto;
+    @ManyToOne
+    @JoinColumn(name = "id_cidade")
+    private City cidade;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private User usuario;
 
     // Timestamps Automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

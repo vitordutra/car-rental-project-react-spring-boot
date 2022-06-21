@@ -12,6 +12,7 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -46,6 +47,9 @@ public class User implements Serializable {
     @JoinColumn(name = "id_funcao")
     @JsonIgnoreProperties("roles")
     private Role funcao;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    Set<Booking> reservas = new HashSet<>();
 
 //    @PrePersist
 //    public void antesDeSalvar() { senha = bCryptPasswordEncoder.encode(senha);}

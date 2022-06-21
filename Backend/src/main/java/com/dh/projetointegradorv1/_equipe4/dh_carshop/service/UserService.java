@@ -1,11 +1,10 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.service;
 
 
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.BookingDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.UserDto;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Role;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.User;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.*;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.BookingRepository;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.RoleRepository;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.UserRepository;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.exceptions.BDExcecao;
@@ -31,6 +30,9 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private BookingRepository bookingRepository;
+
     @Transactional
     public UserDto createUser(UserDto dto) {
         User entity = new User();
@@ -54,7 +56,7 @@ public class UserService {
     public UserDto findUserById(Integer id) {
         Optional<User> obj = userRepository.findById(id);
         User entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-        return new UserDto(entity, entity.getFuncao());
+        return new UserDto(entity, entity.getFuncao(), entity.getReservas());
     }
 
     @Transactional
@@ -100,6 +102,11 @@ public class UserService {
         entity.setSobrenome(dto.getSobrenome());
         entity.setEmail(dto.getEmail());
         entity.setSenha(dto.getSenha());
+        for(BookingDto bookDto : dto.getReservas()) {
+            Optional<Booking> obj = bookingRepository.findById(bookDto.getId());
+            Booking booking = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
+            entity.getReservas().add(booking);
+        }
         Optional<Role> obj = roleRepository.findById(dto.getFuncao().getId());
         Role role = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
         entity.setFuncao(role);

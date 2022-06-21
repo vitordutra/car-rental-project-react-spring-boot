@@ -1,5 +1,6 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.dto;
 
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Booking;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.City;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class CityDto implements Serializable {
     private String nome;
     private String estado;
     private List<ProductDto> produtos = new ArrayList<>();
+    private List<BookingDto> reservas = new ArrayList<>();
 
     public CityDto(Integer id, String nome, String estado) {
         this.id = id;
@@ -32,9 +34,10 @@ public class CityDto implements Serializable {
         estado = entity.getEstado();
     }
 
-    public CityDto(City entity, Set<Product> produtos) {
+    public CityDto(City entity, Set<Product> produtos, Set<Booking> reservas) {
         this(entity);
         produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
+        reservas.forEach(book -> this.reservas.add(new BookingDto(book)));
     }
 
 }

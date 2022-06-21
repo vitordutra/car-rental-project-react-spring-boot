@@ -1,10 +1,13 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.service;
 
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.BookingDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.CityDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ProductDto;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Booking;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.City;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.BookingRepository;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.CityRepository;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.ProductRepository;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.exceptions.RecursoNaoEncontrado;
@@ -24,6 +27,9 @@ public class CityService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private BookingRepository bookingRepository;
 
     @Transactional
     public CityDto createCity(CityDto dto) {
@@ -52,6 +58,11 @@ public class CityService {
             Optional<Product> obj = productRepository.findById(prodDto.getId());
             Product product = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getProdutos().add(product);
+        }
+        for(BookingDto bookDto : dto.getReservas()) {
+            Optional<Booking> obj = bookingRepository.findById(bookDto.getId());
+            Booking booking = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
+            entity.getReservas().add(booking);
         }
     }
 }
