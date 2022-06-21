@@ -7,37 +7,31 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Getter @Setter @NoArgsConstructor
-public class UserDto implements Serializable {
+public class RoleDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
     private String nome;
-    private String sobrenome;
-    private String email;
-    private String senha;
-    private RoleDto funcao;
+    private List<UserDto> usuarios = new ArrayList<>();
 
-    public UserDto(Integer id, String nome, String sobrenome, String email, String senha) {
+    public RoleDto(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.email = email;
-        this.senha = senha;
     }
 
-    public UserDto(User entity) {
+    public RoleDto(Role entity) {
         id = entity.getId();
         nome = entity.getNome();
-        sobrenome = entity.getSobrenome();
-        email = entity.getEmail();
-        senha = entity.getSenha();
     }
 
-    public UserDto(User entity, Role funcao) {
+    public RoleDto(Role entity, Set<User> usuarios) {
         this(entity);
-        this.funcao = new RoleDto(funcao);
+        usuarios.forEach(user -> this.usuarios.add(new UserDto(user)));
     }
 
 }

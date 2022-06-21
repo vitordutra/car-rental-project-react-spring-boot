@@ -190,10 +190,16 @@ VALUES (5, 1);
 INSERT INTO features_products (id_produto, id_caracteristica)
 VALUES (6, 1);
 
+-- Roles
+INSERT INTO roles (nome)
+VALUES ("Admin");
+INSERT INTO roles (nome)
+VALUES ("User");
+
 -- Users
-INSERT INTO users (nome, sobrenome, email, senha)
-VALUES ("John", "Doe", "johndoe@mail.com", "qwerty");
-INSERT INTO users (nome, sobrenome, email, senha)
-VALUES ("Jane", "Doe", "janedoe@mail.com", "password");
-INSERT INTO users (nome, sobrenome, email, senha)
-VALUES ("Admin", "User", "admin@dhcarshop.com", "strongPassword");
+INSERT INTO users (nome, sobrenome, email, senha, id_funcao)
+VALUES ("John", "Doe", "johndoe@mail.com", "qwerty", 2);
+INSERT INTO users (nome, sobrenome, email, senha, id_funcao)
+VALUES ("Jane", "Doe", "janedoe@mail.com", "password", 2);
+INSERT INTO users (nome, sobrenome, email, senha, id_funcao)
+VALUES ("Admin", "User", "admin@dhcarshop.com", "strongPassword", 1);
