@@ -51,7 +51,7 @@ public class User implements Serializable {
 //    public void antesDeSalvar() { senha = bCryptPasswordEncoder.encode(senha);}
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private OffsetDateTime criado; // Antes: OffsetDateTime
+    private OffsetDateTime criado;
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private OffsetDateTime atualizado;
 

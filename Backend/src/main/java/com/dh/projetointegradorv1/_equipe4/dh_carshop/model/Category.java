@@ -26,20 +26,17 @@ public class Category implements Serializable {
     private String titulo;
     @Column(length = 300, nullable = false)
     private String descricao;
-    /*@Column(length = 300, nullable = false)
-    private String urlImagem;*/
     @ManyToMany(mappedBy = "categorias")
     Set<Product> produtos = new HashSet<>();
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "images_categories",
             joinColumns = { @JoinColumn(name = "id_categoria", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "id_imagem", referencedColumnName = "id") })
-    //@JoinColumn(name = "id_imagem", referencedColumnName = "id")
     private Image imagem;
 
     // Timestamps automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private OffsetDateTime criado; // Antes: OffsetDateTime
+    private OffsetDateTime criado;
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private OffsetDateTime atualizado;
 

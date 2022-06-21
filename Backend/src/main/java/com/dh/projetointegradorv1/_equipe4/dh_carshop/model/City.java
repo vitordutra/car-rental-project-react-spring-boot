@@ -29,10 +29,9 @@ public class City implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cidade")
     Set<Product> produtos = new HashSet<>();
 
-    //Timestamps Automáticos
-
+    // Timestamps Automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private OffsetDateTime criado; // Antes: OffsetDateTime
+    private OffsetDateTime criado;
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private OffsetDateTime atualizado;
 

@@ -31,12 +31,10 @@ public class Feature implements Serializable {
             joinColumns = { @JoinColumn(name = "id_caracteristica", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "id_imagem", referencedColumnName = "id") })
     private Image imagem;
-    /*@Column(length = 300, nullable = false)
-    private String icone;*/
 
     // Timestamps automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private OffsetDateTime criado; // Antes: OffsetDateTime
+    private OffsetDateTime criado;
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private OffsetDateTime atualizado;
 

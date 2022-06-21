@@ -34,10 +34,9 @@ public class Image implements Serializable {
     @OneToOne(mappedBy = "imagem")
     private Feature caracteristica;
 
-    //Timestamps Automáticos
-
+    // Timestamps Automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private OffsetDateTime criado; // Antes: OffsetDateTime
+    private OffsetDateTime criado;
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private OffsetDateTime atualizado;
 
