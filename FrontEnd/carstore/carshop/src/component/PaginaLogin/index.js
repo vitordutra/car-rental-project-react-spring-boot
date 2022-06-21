@@ -21,7 +21,7 @@ const PaginaLogin = () => {
 
     return (
         <div id="login">
-            <h1 className="title">Login do sistema</h1>
+            <h1 className="title">Faça seu login</h1>
             <p>{String(authenticated) }</p>
             <form className="form" onSubmit={handleSubmit}>
                 <div className="field">
