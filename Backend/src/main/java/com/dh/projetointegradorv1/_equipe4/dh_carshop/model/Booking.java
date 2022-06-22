@@ -9,30 +9,32 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "features")
+@Table (name = "bookings")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-public class Feature implements Serializable {
+public class Booking implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(length = 50, nullable = false)
-    private String nome;
-    @ManyToMany(mappedBy = "caracteristicas")
-    Set<Product> produtos = new HashSet<>();
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "images_features",
-            joinColumns = { @JoinColumn(name = "id_caracteristica", referencedColumnName = "id") },
-            inverseJoinColumns = { @JoinColumn(name = "id_imagem", referencedColumnName = "id") })
-    private Image imagem;
+    @Column(nullable = false)
+    private OffsetDateTime inicioReserva;
+    @Column(nullable = false)
+    private OffsetDateTime fimReserva;
+    @ManyToOne
+    @JoinColumn(name = "id_produto")
+    private Product produto;
+    @ManyToOne
+    @JoinColumn(name = "id_cidade")
+    private City cidade;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private User usuario;
 
-    // Timestamps automáticos
+    // Timestamps Automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private OffsetDateTime criado;
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
