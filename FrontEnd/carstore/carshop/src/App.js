@@ -1,7 +1,6 @@
 import Paginas from './routes';
 
 
-
 const App = () => {
   return (
     <> 
