@@ -54,11 +54,7 @@ const BlocoPesquisa = () => {
                         
                         
                         {/* <input type="button" id="pesquisa-botao-buscar" name="pesquisa-botao-buscar" value="Buscar" />  */}
-
-
                 </div>
-
-
             </div>
         </>
 
