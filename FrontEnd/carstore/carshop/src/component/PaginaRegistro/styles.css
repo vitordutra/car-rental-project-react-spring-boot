@@ -84,3 +84,27 @@
   .clear {
     clear: both;
   }
+
+  @media ( max-width:568px){
+    .fieldHalf{
+      display: flex;
+      flex-direction: column;
+     
+      width: 500px;
+      margin-left: 100px;
+    }
+  }
+
+  
+  @media ( max-width:568px){
+    .acessForm .field {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 40%;
+    
+  
+    }
+  }
+
+

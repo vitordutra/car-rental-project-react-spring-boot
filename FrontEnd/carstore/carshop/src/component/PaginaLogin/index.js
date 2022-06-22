@@ -25,7 +25,7 @@ const PaginaLogin = () => {
             <p>{String(authenticated) }</p>
             <form className="form" onSubmit={handleSubmit}>
                 <div className="field">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">E-mail</label>
                     <input
                         type="email"
                         name="email"
