@@ -42,6 +42,16 @@ public class ProductController {
         });*/
     }
 
+    @GetMapping("/city/{id}")
+    public ResponseEntity<List<ProductDto>> findProductByCity(@PathVariable(value = "id") Integer id) {
+        return ResponseEntity.ok(productService.findProductByCity(id));
+    }
+
+    @GetMapping("/category/{id}")
+    public ResponseEntity<List<ProductDto>> findProductByCategory(@PathVariable(value = "id") Integer id) {
+        return ResponseEntity.ok(productService.findProductByCategory(id));
+    }
+
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<ProductDto> editProductById(@PathVariable(value = "id") Integer id, @RequestBody ProductDto dto) {
@@ -55,13 +65,4 @@ public class ProductController {
         return ResponseEntity.status(204).body("");
     }
 
-    /*@GetMapping("products/city/{name}")
-    public ResponseEntity<List<Product>> findProductByCity(@PathVariable String name) {
-        return ResponseEntity.ok(productService.findProductByCity(name));
-    }
-
-    @GetMapping("products/category/{title}")
-    public ResponseEntity<List<Product>> findProductByCategory(@PathVariable String title) {
-        return ResponseEntity.ok(productService.findProductByCategory(title));
-    }*/
 }

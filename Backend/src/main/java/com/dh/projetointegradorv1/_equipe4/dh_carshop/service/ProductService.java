@@ -15,6 +15,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ProductService {
@@ -62,6 +63,25 @@ public class ProductService {
         Product entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
         return new ProductDto(entity, entity.getCaracteristicas(), entity.getImagens(),
                 entity.getCategorias(), entity.getCidade(), entity.getReservas());
+    }
+
+    @Transactional(readOnly = true)
+    public List<ProductDto> findProductByCity(Integer id) {
+        List<ProductDto> listDto = new ArrayList<>();
+        List<Product> list = productRepository.findByCidade(id);
+        for(Product prod : list) {
+            ProductDto dto = new ProductDto(prod);
+            listDto.add(dto);
+        }
+        return listDto;
+    }
+
+    @Transactional(readOnly = true)
+    public List<ProductDto> findProductByCategory(Integer id) {
+        Optional<Category> obj = categoryRepository.findById(id);
+        Category entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("CATEGORIA NÃO ENCONTRADA"));
+        CategoryDto dto = new CategoryDto(entity, entity.getProdutos(), entity.getImagem());
+        return dto.getProdutos();
     }
 
     @Transactional
@@ -132,11 +152,4 @@ public class ProductService {
         entity.setCidade(city);
     }
 
-    /*public List<Product> findProductByCity(String name) {
-        return productRepository.findByCidadeNome(name);
-    }
-
-    public List<Product> findProductByCategory(String title) {
-        return productRepository.findByCategoriaTitulo(title);
-    }*/
 }
