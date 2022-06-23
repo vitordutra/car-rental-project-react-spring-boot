@@ -103,7 +103,8 @@ const DateRangeComp = ({callApiProductsDateRange,cidadeEscolhida}) => {
             />
           }
         </div>
-        < Link to="/Produtos" id="pesquisa-botao-buscar" class="pesquisa-botao-buscar" >buscar</Link>
+        <input type="button" id="pesquisa-botao-buscar" class="pesquisa-botao-buscar" onClick={() => callApiProductsDateRange(range,cidadeEscolhida)} value="Teste" />
+        {/* < Link to="/Produtos" id="pesquisa-botao-buscar" class="pesquisa-botao-buscar" >buscar</Link> */}
 
       </div>
     </div>
