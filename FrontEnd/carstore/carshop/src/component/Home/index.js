@@ -3,6 +3,7 @@ import './styles.css';
 import Carrousel from "./Carousel";
 import BannerHome from "./BannerHome";
 import BlocoPesquisa from "./BlocoPesquisa";
+import SectionApp from "./SectionApp";
 
 const home = (props) => {
     return (
@@ -11,11 +12,12 @@ const home = (props) => {
      <div id='home'>
   
           <div id="HomeBase">
-            <p>
+            <div>
               <BlocoPesquisa />
               <BannerHome />
+              <SectionApp />
               <Carrousel />
-            </p>
+            </div>
           </div>
         </div>
      

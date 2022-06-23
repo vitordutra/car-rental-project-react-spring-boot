@@ -2,10 +2,33 @@
     display: flex;
     align-items: center;
     justify-content: center;
-   
+    gap: 8px; 
+    background-color: #F6ECDD;
+    padding: 10px; 
+    flex-wrap: wrap; 
+}
+
+@media ( max-width:1230px){
+    .pesquisa-primeira-fileira{
+        flex-direction: column;
+        gap: 8px;
+    }
 }
 
 @media ( max-width:768px){
+    .pesquisa-primeira-fileira{
+        flex-direction: column;
+     
+        gap: 8px;
+    }
+}
+@media ( max-width:300px){
+    .pesquisa-primeira-fileira{
+      
+    }
+}
+
+@media ( max-width:280px){
     .pesquisa-primeira-fileira{
         flex-direction: column;
         gap: 8px;
@@ -14,15 +37,19 @@
 
 .pesquisa-itens-duplos{
     display: inline-block;
-    margin: 0px 20px;
-    
-    
+    margin: 0px 20px;    
 }
 
-.pesquisa-container{
-    background-color: #F6ECDD;
-    padding: 10px;
+@media ( max-width:280px){
+    .pesquisa-itens-duplos{
+        flex-direction: column;
+        margin: 0px 0px;
+   
+        gap: 8px;
+    }
 }
+
+
 
 .pesquisa-titulo-texto{
     text-align: center;
@@ -39,14 +66,47 @@
     background-color: #F1C481;
     padding: 10px 70px;
 }
+
+@media ( max-width:280px){
+    #pesquisa-retirar-data{
+        padding: 5px 40px;
+    }
+}
+
+@media ( max-width:362px){
+    #pesquisa-retirar-data{
+        padding: 2px 20px;
+    }
+}
 #pesquisa-devolucao-data{
     background-color: #F1C481;
     padding: 10px 70px;
 }
 
+@media ( max-width:280px){
+    #pesquisa-devolucao-data{
+        padding: 5px 40px;
+    }
+}
+
+@media ( max-width:362px){
+    #pesquisa-devolucao-data{
+        padding: 2px 20px;
+    }
+}
 #pesquisa-retirar-local{
     background-color: #F1C481;
     padding: 10px 70px;
+}
+@media ( max-width:280px){
+    #pesquisa-retirar-local{
+        padding: 5px 40px;
+    }
+}
+@media ( max-width:362px){
+    #pesquisa-retirar-local{
+        padding: 2px 20px;
+    }
 }
 
 #pesquisa-devolucao-checkbox{
@@ -56,8 +116,6 @@ margin-left: 10px;
 @media ( max-width:768px){
     #pesquisa-devolucao-checkbox{
       margin-top: 5px;
-
-
     }
 }
 
@@ -75,20 +133,27 @@ margin-left: 10px;
     padding: 10px 70px;
     border: none;
     cursor: pointer;
- 
-  }
-
-  #pesquisa-botao-buscar {
     opacity: 0.8;
     margin-left: 40px;
     justify-content: center;
   }
+  @media ( max-width:362px){
+    #pesquisa-botao-buscar{
+        padding: 2px 20px;
+    }
+}
+
+  @media ( max-width:768px){
+    #pesquisa-botao-buscar{
+        padding: 5px 40px;
+    }
+}
+
 
   @media (max-width:768px){
     #pesquisa-botao-buscar{
        display: flex;
         align-items: center;
         gap: 8px;
-
     }
 }

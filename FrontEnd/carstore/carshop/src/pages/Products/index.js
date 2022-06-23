@@ -90,7 +90,7 @@ export default function Products({handleFilter}) {
       const DataDeTermino = format(range[0].endDate, "yyyy-MM-dd")          /* range[0].endDate; */
       const cidade = cidadeEscolhida;
 
-      const URL = `products?cityId=${cidade}&dataInicio=${DataDeInicio}&dataTermino=${DataDeTermino}` ;
+      const URL = `products?cityId=${cidade}&data_inicio=${DataDeInicio}&data_final=${DataDeTermino}` ;
       console.log(URL);
       const response = await api.get(URL);
       console.log(response.data);
@@ -102,11 +102,6 @@ export default function Products({handleFilter}) {
       console.log(error)
     }
   }
-
-
-
-
-
 
   return (
     <>
@@ -125,7 +120,7 @@ export default function Products({handleFilter}) {
             </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             {/* <p className="paragrafoForm">Localização do veículo</p> */}
             {/* <label className="label">Cidade:</label> */}
-            <select className="select" name="cidade"  onChange={item => callProductByCity(item.target.value)}>
+            <select className="select-blocoPesquisa" name="cidade"  onChange={item => callProductByCity(item.target.value)}>
               <option  value="">Escolha a cidade</option>
               {cidade.map((item) => (
               <option value={item.id}>{item.nome}</option>
@@ -142,11 +137,6 @@ export default function Products({handleFilter}) {
                 </select>
 
                 <DateRangeComp callApiProductsDateRange={callApiProductsDateRange} cidadeEscolhida={cidadeEscolhida} />
-
-          
-            
-
-         
           </form>
         </div>
           {/* <ul className="item-list-products-ul" >

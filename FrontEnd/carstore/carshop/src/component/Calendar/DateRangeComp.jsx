@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { DateRange } from 'react-date-range'
-
+import { Link } from 'react-router-dom'
 import format from 'date-fns/format'
 import { addDays } from 'date-fns'
 
@@ -103,7 +103,7 @@ const DateRangeComp = ({callApiProductsDateRange,cidadeEscolhida}) => {
             />
           }
         </div>
-        <input type="button" id="pesquisa-botao-buscar" class="pesquisa-botao-buscar" onClick={() => callApiProductsDateRange(range,cidadeEscolhida)} value="Teste" />
+        < Link to="/Produtos" id="pesquisa-botao-buscar" class="pesquisa-botao-buscar" >buscar</Link>
 
       </div>
     </div>
