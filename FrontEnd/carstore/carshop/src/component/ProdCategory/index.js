@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
-
+import { Link } from 'react-router-dom'
 import Modal from "../Modal";
 import './styles.css'
     
@@ -23,7 +23,7 @@ export default function ProdCategory({ prmProduct }) {
                    Mais Detalhes
                 </button>
                 {isModalVisible ? (
-                    <Modal onClose={() => setIsModalVisible(false)}>
+                    <Modal detalhes={prmProduct} onClose={() => setIsModalVisible(false)}>
                        
                      
                     </Modal >
