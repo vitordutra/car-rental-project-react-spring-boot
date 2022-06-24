@@ -5,18 +5,71 @@ import { useEffect, useState } from "react";
 import ProdCategory from "../../component/ProdCategory";
 import Products from "../Products";
 import api from "../../services/api";
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import './styles.css';
+import format from 'date-fns/format';
 
 
 export default function ProductsCategory() {
+
+
+  
   const [products, setProducts] = useState([]);
+  const location = useLocation();
+  const [cidade, setCidade] = useState(location.state.cidade)
+  const [range, setRange] = useState(location.state.range)
+ 
+
+/*   if (!(location.state === null)){
+    try{
+  setCidade(location.state.cidade)
+  setRange(location.state.range)
+}catch{
+
+} 
+} */
+  console.log("PRINTANDO LOCATION")
+  console.log(location)
+
+
+  useEffect(() =>{
+    console.log("before")
+    if (!(cidade === "") & !(range === undefined)) {
+      console.log("1+2")
+      callApiProductsDateCity(range,cidade);
+      
+
+    } else{
+      if (!(cidade === "")){
+        console.log("1")
+        callApiProductsCity(cidade);
+        
+      }else{
+        if (!(range === undefined)){
+          console.log("2")
+          callApiProductsDate(range);
+        
+
+        }else{
+          console.log("0")
+          callApiProducts();
+          
+        }
+      }
+
+    }
+  
+  
+  
+  
+},[]);
+  
 
   // Captura do id de categoria parâmetro passado para a página
-  const {id} = useParams("id");
+  /* const {categoryId} = useParams("categoryId");
 
   useEffect(() => {
-    if (id === undefined) {
+    if (categoryId === undefined) {
       callApiProducts();
     } else {
       callApiProductsCategory();
@@ -24,20 +77,36 @@ export default function ProductsCategory() {
     
     }
     
-  }, []);
+  }, []); */
 
-  async function callApiProductsCategory() {
+  async function callApiProductsCategory(categoryId) {
 
     try {
       //const URL = "categories"
     
-      const URL = `products?categoryId=${id}`
+      const URL = `products?categoryId=${categoryId}`
       const response = await api.get(URL);
       setProducts(response.data);
     }
     catch (error) {
     }
   }
+
+  async function callApiProductsCity(cityId) {
+
+    try {
+      
+    
+      const URL = `products?cityId=${cityId}`
+      const response = await api.get(URL);
+      setProducts(response.data);
+    }
+    catch (error) {
+    }
+  }
+
+
+  
 
   async function callApiProducts() {
 
@@ -52,6 +121,47 @@ export default function ProductsCategory() {
     }
   }
 
+  async function callApiProductsDateCity(range, cidade) {
+
+    try {
+        const DataDeInicio = format(range[0].startDate, "MM-dd-yyyy")
+        const DataDeTermino = format(range[0].endDate, "MM-dd-yyyy")
+        
+        console.log(DataDeInicio);
+        console.log(DataDeTermino);
+        const URL = `products?cityId=${cidade}`; /* &data_inicial=${DataDeInicio}&data_final=${DataDeTermino}`; */
+        // console.log(URL);
+        const response = await api.get(URL);
+        console.log(response);
+        setProducts(response.data);
+
+
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
+async function callApiProductsDate(range) {
+
+  try {
+      const DataDeInicio = format(range[0].startDate, "MM-dd-yyyy")
+      const DataDeTermino = format(range[0].endDate, "MM-dd-yyyy")
+      
+      console.log(DataDeInicio);
+      console.log(DataDeTermino);
+      const URL = `products?data_inicial=${DataDeInicio}&data_final=${DataDeTermino}`;
+      // console.log(URL);
+      const response = await api.get(URL);
+      console.log(response);
+      // handleFilter(response.data);
+
+
+  }
+  catch (error) {
+      console.log(error)
+  }
+}
  
 
   
