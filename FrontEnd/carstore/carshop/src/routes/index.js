@@ -11,6 +11,7 @@ import Error from '../component/Error';
 import Products from '../pages/Products';
 import Details from '../pages/Details';
 import ProductsCategory from '../pages/ProductsCategory';
+import ReservaSucedida from '../pages/ReservaBemSucedida';
 
 
 
@@ -48,6 +49,8 @@ const Paginas = () => {
                             </Private>
                         }
                     />
+                    <Route path="/Sucesso" element={<ReservaSucedida />} />
+
                     <Route path="/detalhes/:id" element={<Details />} />
                     <Route path="/categorias/:id" element={<ProductsCategory />} />
                     
