@@ -9,7 +9,7 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
 const DateRangeComp = ({callApiProductsDateRange,cidadeEscolhida}) => {
-
+  //vo mudar o calendário
   // date state
   const [range, setRange] = useState([
     {
