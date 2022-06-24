@@ -12,6 +12,7 @@ import Products from '../pages/Products';
 import Details from '../pages/Details';
 import ProductsCategory from '../pages/ProductsCategory';
 import ReservaSucedida from '../pages/ReservaBemSucedida';
+import ConfirmationNewProduct from '../pages/ConfirmationNewProduct';
 
 
 
@@ -50,7 +51,7 @@ const Paginas = () => {
                         }
                     />
                     <Route path="/Sucesso" element={<ReservaSucedida />} />
-
+                    <Route path="/novo-produto" element={<ConfirmationNewProduct/>} />
                     <Route path="/detalhes/:id" element={<Details />} />
                     <Route path="/categorias/:id" element={<ProductsCategory />} />
                     

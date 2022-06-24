@@ -1,11 +1,11 @@
-#confirmeReserva {
+#confNewProduct {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#confirmeReserva-card {
+#confNewProduct-card {
     width: 60%;
     height: 18rem;
     display: flex;
@@ -17,13 +17,13 @@
     border-radius: 0.5rem;
 }
 
-#confirmeReserva-card h3 {
+#confNewProduct-card h3 {
     font-weight: 600;
     margin-top: 1rem;
     color: black;
 }
 
-#confirmeReserva-card h5 {
+#confNewProduct-card h5 {
     font-size: 1rem;
 }
 
@@ -32,7 +32,7 @@
     font-size: 3.5rem;
 }
 
-.confirmeReservaBtn {
+.confNewProductBtn {
     width: 10rem;
     height: 2.2rem;
     border-radius: 0.2rem;
@@ -44,20 +44,20 @@
     font-size: 1.2rem;
 }
 
-.confirmBtn:hover {
+.confNewProductBtn:hover {
     opacity: 0.9;
 }
 
 @media only screen and (min-width: 600px) {
-    #confirmedBooking {
+    #confNewProduct-card {
         width: 32rem;
     }
 
-    .confirmBtn {
+    .confNewProductBtn {
         margin: 1rem;
     }
 
-    #confirmedBooking h5 {
+    #confNewProduct-card h5 {
         font-size: 1.4rem;
     }
 }
