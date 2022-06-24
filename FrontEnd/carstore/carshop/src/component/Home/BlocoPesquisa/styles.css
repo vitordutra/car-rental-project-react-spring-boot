@@ -134,6 +134,7 @@ margin-left: 10px;
     border: none;
     cursor: pointer;
     opacity: 0.8;
+    margin-left: 40px;
     justify-content: center;
   }
   @media ( max-width:362px){
