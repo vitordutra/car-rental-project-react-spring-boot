@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import './styles.css';
 import format from 'date-fns/format';
 import api from "../../../services/api";
-import DateRangeComp from '../../Calendar/DateRangeComp';
+
 import { DateRange } from 'react-date-range';
 
 import { addDays, set } from 'date-fns'
@@ -16,9 +16,14 @@ const BlocoPesquisa = ({handleFilter}) => {
     const [cidade, setCidade] = useState("");
     const [cidades, setCidades] = useState([]);
     const [inputValue,setInputValue] = useState("");
+    const [stringTexto,setStringTexto] = useState("");
+    const [openSugestions,setOpenSugestions] = useState(false)
 
     const onChange = (event) =>{
+      setOpenSugestions(true);
+      handleShowSugestions(true);
       setInputValue(event.target.value);
+      
     }
     async function callCidadesApi() {
       try {
@@ -105,6 +110,7 @@ const BlocoPesquisa = ({handleFilter}) => {
       // console.log(e.key)
       if( e.key === "Escape" ) {
         setOpen(false)
+        setOpenSugestions(false)
       }
     }
   
@@ -125,7 +131,7 @@ const BlocoPesquisa = ({handleFilter}) => {
     const navigate  = useNavigate()
 
     const handleSearch = () =>{
-      console.log( document.getElementById("pesquisa-retirar-local").value)
+      
       /* navigate("/Produtos",{state: {range,cidade}}); */
       navigate(`/Produtos/${cidade}/${format(range[0].startDate, "MM-dd-yyyy")}/${format(range[0].endDate, "MM-dd-yyyy")}`);
 
@@ -133,13 +139,26 @@ const BlocoPesquisa = ({handleFilter}) => {
     }
 
     const handleSelectCity= (value,text)=> {
-      const stringTexto = text.toString();
-      console.log(stringTexto)
+      
+      setStringTexto(text.toString());
+      
       document.getElementById("pesquisa-retirar-local").value = stringTexto
       setCidade(value)
+      
+      
 
     }
 
+    const handleShowSugestions = () =>{
+      
+      const robson = document.getElementsByClassName("dropdown")[0];
+      
+      if (openSugestions){
+        robson.style.display = 'none';setOpenSugestions(!openSugestions);
+      } else {
+        robson.style.display = ''; setOpenSugestions(!openSugestions)}
+      
+    }
 
 
         return (
@@ -158,7 +177,8 @@ const BlocoPesquisa = ({handleFilter}) => {
 
 
 
-
+                          <div className="search-container">
+                            <div className="search-inner">
                           <input
                             placeholder="Digite o local de retirada"
                             type="text"
@@ -167,6 +187,7 @@ const BlocoPesquisa = ({handleFilter}) => {
                             className="pesquisa-inputs"
                             value={inputValue}
                             onChange={onChange}
+                            onClick={handleShowSugestions}
 
 
                             
@@ -177,22 +198,31 @@ const BlocoPesquisa = ({handleFilter}) => {
                             
                             
                            /> 
-                    </div>
-                    <div className="dropdown_search">
+                           </div>
+                    
+                      
+                      <div className="dropdown">
                       {cidades.filter(item=>{
                         const searchTerm = inputValue.toString().toLowerCase();
                         const fullName = item.nome.toString().toLowerCase();
-                        console.log(inputValue)
-                         console.log(fullName.startsWith(searchTerm)) 
+
  
                         return fullName.includes(searchTerm) 
 
                       })
                       .map((item)=>
-                      <div  className="dropdown-row" ><option onClick={item =>handleSelectCity(item.target.value,item.target.text)} value={item.id} >{item.nome}</option></div>
+                      <div  key={item.id} className="dropdown-row" ><option onClick={item =>handleSelectCity(item.target.value,item.target.text)} value={item.id} >{item.nome}</option></div>
                       )}
                     </div>
+                      </div>
 
+
+
+
+
+                    
+                    </div> 
+                    
 
 
 
@@ -212,7 +242,9 @@ const BlocoPesquisa = ({handleFilter}) => {
                         className="inputBox"
                         onClick={ () => setOpen(open => !open) }
                    />
+                    <div className="calendarFrontPage">
 
+                    
                     {open && <DateRange 
                         
                         onChange={item => setRange([item.selection])}
@@ -223,7 +255,7 @@ const BlocoPesquisa = ({handleFilter}) => {
                         />}
 
                     </div>
-
+                    </div>
 
                     <input type="button" onClick={handleSearch} id="pesquisa-botao-buscar" name="pesquisa-botao-buscar" value="Buscar" /> 
                 </div>

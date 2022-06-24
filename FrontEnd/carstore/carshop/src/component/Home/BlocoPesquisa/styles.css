@@ -157,3 +157,46 @@ margin-left: 10px;
         gap: 8px;
     }
 }
+
+
+
+
+.calendarFrontPage{
+    
+    display: flex;
+    z-index: 50;
+    position: absolute;
+    justify-content: center;
+    
+    flex-direction: column;
+    
+
+
+}
+
+
+
+.dropdown {
+    background-color: white;
+    display: flex;
+    z-index: 50;
+    position: absolute;
+    justify-content: center;
+    padding-right: 20px;
+    padding-left: 20px;
+    flex-direction: column;
+    border: 1px solid gray;
+  }
+
+
+
+  
+  .dropdown:empty {
+    border: none;
+  }
+  
+  .dropdown-row {
+    cursor: pointer;
+    text-align: start;
+    margin: 2px 0;
+  }
