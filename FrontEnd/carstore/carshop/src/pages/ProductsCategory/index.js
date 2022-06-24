@@ -15,9 +15,12 @@ export default function ProductsCategory() {
 
   
   const [products, setProducts] = useState([]);
-  const location = useLocation();
-  const [cidade, setCidade] = useState(location.state.cidade)
-  const [range, setRange] = useState(location.state.range)
+  /* const location = useLocation(); */
+  const params = useParams();
+  
+  const [cidade, setCidade] = useState(params.cidade);
+  const [startDate, setstartDate] = useState(params.startDate);
+  const [endDate, setendDate] = useState(params.endDate);
  
 
 /*   if (!(location.state === null)){
@@ -28,15 +31,16 @@ export default function ProductsCategory() {
 
 } 
 } */
-  console.log("PRINTANDO LOCATION")
-  console.log(location)
 
 
-  useEffect(() =>{
+
+   useEffect(() =>{ 
+    console.log("PRINTANDO LOCATION")
+    console.log(params)
     console.log("before")
-    if (!(cidade === "") & !(range === undefined)) {
+    if (!(cidade === "") & !(startDate === undefined)) {
       console.log("1+2")
-      callApiProductsDateCity(range,cidade);
+      callApiProductsDateCity(cidade,startDate,endDate);
       
 
     } else{
@@ -45,9 +49,9 @@ export default function ProductsCategory() {
         callApiProductsCity(cidade);
         
       }else{
-        if (!(range === undefined)){
+        if (!(startDate === undefined)){
           console.log("2")
-          callApiProductsDate(range);
+          callApiProductsDate(startDate,endDate);
         
 
         }else{
@@ -55,9 +59,9 @@ export default function ProductsCategory() {
           callApiProducts();
           
         }
-      }
+     }
 
-    }
+    } 
   
   
   
@@ -121,11 +125,11 @@ export default function ProductsCategory() {
     }
   }
 
-  async function callApiProductsDateCity(range, cidade) {
+  async function callApiProductsDateCity(cidade,startDate,endDate) {
 
     try {
-        const DataDeInicio = format(range[0].startDate, "MM-dd-yyyy")
-        const DataDeTermino = format(range[0].endDate, "MM-dd-yyyy")
+        const DataDeInicio = startDate
+        const DataDeTermino = endDate
         
         console.log(DataDeInicio);
         console.log(DataDeTermino);
@@ -142,11 +146,11 @@ export default function ProductsCategory() {
     }
 }
 
-async function callApiProductsDate(range) {
+async function callApiProductsDate(startDate,endDate) {
 
   try {
-      const DataDeInicio = format(range[0].startDate, "MM-dd-yyyy")
-      const DataDeTermino = format(range[0].endDate, "MM-dd-yyyy")
+      const DataDeInicio = startDate
+      const DataDeTermino = endDate
       
       console.log(DataDeInicio);
       console.log(DataDeTermino);
@@ -167,19 +171,19 @@ async function callApiProductsDate(range) {
   
   return (
     <>
-      <body className="ProCategory-body" >
+      <div className="ProCategory-body" >
         <Products handleFilter={setProducts}/>
       <h1 className="ProCategory-h1"></h1>
       <ul className="ProCategory-ul">
         <li className="ProCategory-li">
             {products.map((item) => (
-          < ProdCategory prmProduct={item} />
+          < ProdCategory key={item.id} prmProduct={item} />
           
         ))}
             
           </li>
         </ul>
-        </body>
+        </div>
     </>
   );
 }

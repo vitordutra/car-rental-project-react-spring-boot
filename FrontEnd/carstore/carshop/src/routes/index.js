@@ -48,6 +48,8 @@ const Paginas = () => {
                             </Private>
                         }
                     />
+                    <Route path="/Produtos/:cidade/:startDate/:endDate" element={<ProductsCategory />} />
+                    <Route path="/Produtos/:cidade/" element={<ProductsCategory />} />
                     <Route path="/detalhes/:id" element={<Details />} />
                     <Route path="/categorias/:id" element={<ProductsCategory />} />
                     

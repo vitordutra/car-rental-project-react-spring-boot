@@ -24,19 +24,11 @@ export default function Products({handleFilter}) {
   useEffect(() => {
     callCategoriesApi();
     callCidadesApi(); 
-    callApiProductsCategory();
+    
   }, []);
 
   
-  async function callProductsApi() {
-    try {
-      const response = await api.get("/products");
-      handleFilter(response.data);
-    }
-    catch (error) { 
-
-    }
-  } 
+ 
 
   async function callCategoriesApi() {
     try {
@@ -105,7 +97,7 @@ export default function Products({handleFilter}) {
 
   return (
     <>
-      <body className="item-list-products-body" >     
+      <div className="item-list-products-body" >     
         <div className="formDiv"> 
         {/* <h1 className="formFiltersH1">Mostrando frota para:</h1> */}
           <form className="formFilters">
@@ -114,7 +106,7 @@ export default function Products({handleFilter}) {
             <select className="select" name="categoria"  onChange={item => callApiProductsCategory(item.target.value)} >
               <option value="">Selecionar por categorias</option>
               {categoria.map((item) => (
-                <option value={item.id}>{item.qualificacao}</option>
+                <option key={item.id} value={item.id}>{item.qualificacao}</option>
                 
               ))}
             </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -123,7 +115,7 @@ export default function Products({handleFilter}) {
             <select className="select-blocoPesquisa" name="cidade"  onChange={item => callProductByCity(item.target.value)}>
               <option  value="">Escolha a cidade</option>
               {cidade.map((item) => (
-              <option value={item.id}>{item.nome}</option>
+              <option key={item.id} value={item.id}>{item.nome}</option>
               ))}
             </select>
 
@@ -132,7 +124,7 @@ export default function Products({handleFilter}) {
                 <select className="select" name="cidade"  onChange={item => setCidadeEscolhida(item.target.value)}>
                 <option  value="">Escolha a cidade</option>
                 {cidade.map((item) => (
-                <option value={item.id}>{item.nome}</option>
+                <option  key={item.id}value={item.id}>{item.nome}</option>
                 ))}
                 </select>
 
@@ -147,7 +139,7 @@ export default function Products({handleFilter}) {
             ))}          
           </li>        
         </ul>       */}
-      </body>  
+      </div>  
     </>
   );
 
