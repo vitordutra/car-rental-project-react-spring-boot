@@ -5,7 +5,7 @@ import api from "../../../services/api";
 import DateRangeComp from '../../Calendar/DateRangeComp';
 import { DateRange } from 'react-date-range';
 
-import { addDays } from 'date-fns'
+import { addDays, set } from 'date-fns'
 
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
@@ -14,7 +14,33 @@ import { useNavigate } from 'react-router';
 const BlocoPesquisa = ({handleFilter}) => {
 
     const [cidade, setCidade] = useState("");
+    const [cidades, setCidades] = useState([]);
+    const [inputValue,setInputValue] = useState("");
 
+    const onChange = (event) =>{
+      setInputValue(event.target.value);
+    }
+    async function callCidadesApi() {
+      try {
+        const response = await api.get("/cities");
+        setCidades(response.data);
+      }
+      catch (error) { 
+  
+      }
+    }
+    useEffect(()=>{
+      callCidadesApi()
+
+
+
+
+    },[])
+    
+    
+    
+    
+    
 
      
 /*   useEffect(() => {
@@ -97,14 +123,22 @@ const BlocoPesquisa = ({handleFilter}) => {
     const [open, setOpen] = useState(false)
 
     const navigate  = useNavigate()
+
     const handleSearch = () =>{
+      console.log( document.getElementById("pesquisa-retirar-local").value)
       /* navigate("/Produtos",{state: {range,cidade}}); */
       navigate(`/Produtos/${cidade}/${format(range[0].startDate, "MM-dd-yyyy")}/${format(range[0].endDate, "MM-dd-yyyy")}`);
 
 
     }
 
-    
+    const handleSelectCity= (value,text)=> {
+      const stringTexto = text.toString();
+      console.log(stringTexto)
+      document.getElementById("pesquisa-retirar-local").value = stringTexto
+      setCidade(value)
+
+    }
 
 
 
@@ -119,15 +153,57 @@ const BlocoPesquisa = ({handleFilter}) => {
               <option value={item.id}>{item.nome}</option>
               ))}
             </select> */}
+
+
+
+
+
+
                           <input
                             placeholder="Digite o local de retirada"
                             type="text"
                             id="pesquisa-retirar-local"
                             name="pesquisa-retirar-local"
                             className="pesquisa-inputs"
-                            onChange={item =>setCidade(item.target.value) }
+                            value={inputValue}
+                            onChange={onChange}
+
+
+                            
+                            /* value={inputValue} */
+                            /* onChange={item =>( setInputValue(item.target.text))} */
+                            
+                            
+                            
+                            
                            /> 
                     </div>
+                    <div className="dropdown_search">
+                      {cidades.filter(item=>{
+                        const searchTerm = inputValue.toString().toLowerCase();
+                        const fullName = item.nome.toString().toLowerCase();
+                        console.log(inputValue)
+                         console.log(fullName.startsWith(searchTerm)) 
+ 
+                        return fullName.includes(searchTerm) 
+
+                      })
+                      .map((item)=>
+                      <div  className="dropdown-row" ><option onClick={item =>handleSelectCity(item.target.value,item.target.text)} value={item.id} >{item.nome}</option></div>
+                      )}
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
                     <div className="pesquisa-itens-duplos">
                     <input
                         value={`${format(range[0].startDate, "dd/MM/yyyy")} to ${format(range[0].endDate, "dd/MM/yyyy")}`}
