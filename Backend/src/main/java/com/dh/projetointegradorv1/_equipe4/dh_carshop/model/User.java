@@ -68,5 +68,4 @@ public class User implements Serializable {
     public void antesDeAtualizar() {
         atualizado = OffsetDateTime.now();
     }
-
 }

@@ -24,19 +24,26 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
 
+        @Override
+        public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findUserById(id);
-        Set<GrantedAuthority> grantList = new HashSet<GrantedAuthority>();
-        for (Role role: user.getRoles()) {
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getNome());
-            grantList.add(grantedAuthority);
+            com.dh.projetointegradorv1._equipe4.dh_carshop.model.User userAccount = userRepository.findByEmail(email);
+
+            Set<GrantedAuthority> grantList = new HashSet<GrantedAuthority>();
+
+            if (userAccount != null) {
+                Role role = userAccount.getFuncao();
+                if (role != null) {
+                    GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getNome());
+                    grantList.add(grantedAuthority);
+                    return (UserDetails) new User(email, userAccount.getSenha(), grantList);
+                }
+            }
+
+            throw new UsernameNotFoundException("Email ou senha incorreto");
         }
-        UserDetails user = null;
-        user = (UserDetails) new User(username, user.getPassword(), grantList);
-        return null;
-    }
+
+
 }
 
 
