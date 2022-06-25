@@ -8,7 +8,7 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
 const DateRangeComp = ({callApiProductsDateRange,cidadeEscolhida}) => {
-
+  //vo mudar o calendário
   // date state
   const [range, setRange] = useState([
     {
@@ -94,8 +94,8 @@ const DateRangeComp = ({callApiProductsDateRange,cidadeEscolhida}) => {
             />
           }
         </div>
-        {/* <input type="button" id="pesquisa-botao-buscar" class="pesquisa-botao-buscar" onClick={() => callApiProductsDateRange(range,cidadeEscolhida)} value="Teste" /> */}
-        {/* < Link to="/Produtos" id="pesquisa-botao-buscar" class="pesquisa-botao-buscar" >Buscar</Link> */}
+        <input type="button" id="pesquisa-botao-buscar" className="pesquisa-botao-buscar" onClick={() => callApiProductsDateRange(range,cidadeEscolhida)} value="Teste" />
+        {/* < Link to="/Produtos" id="pesquisa-botao-buscar" className="pesquisa-botao-buscar" >buscar</Link> */}
 
       </div>
     </div>
