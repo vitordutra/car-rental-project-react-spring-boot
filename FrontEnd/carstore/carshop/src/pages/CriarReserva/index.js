@@ -9,20 +9,27 @@ import './styles.css';
 export default function CriarReserva() {
 
     const [produto, setProduto] = useState([]);
-
+    const [cidades, setCidades] = useState([]);
+    const [selectedCity, setSelectedCity] = useState("");
 
 
     const parametro = useParams();
     useEffect(() => {
         callApiDetails(parametro.idProduto);
+        callCidadesApi()
+        filterCity(1)
+        
+        
+        
+        
+        
+        
     }, []);    
   
 
-
-
+   
     
-    
-    console.log(produto);
+
    
 
     async function callApiDetails(x) {
@@ -35,11 +42,46 @@ export default function CriarReserva() {
         catch (error) {      
         }
       } 
+
+      async function callCidadesApi() {
+        try {
+          const response = await api.get("/cities");
+          setCidades(response.data);
+        }
+        catch (error) { 
+    
+        }
+      }
+    
+      function filterCity(botaOId){
+        try{
+        
+        const roberto = cidades.filter( e => e.id == botaOId )
+        
+        return roberto[0].nome
+      }catch{}}
+
+
+
     return (
         <>
-            <h1>Detalhes da reserva:</h1>
+       
+            <div className="flex-container-reserva">
+            <div className="bloco-titulo-reserva">
             <h3>Nome do carro escolhido: {produto.title}</h3>
             <h3>Categoria: {produto.qualificacao}</h3>
+            </div>
+
+            <div className="bloco-detalhes-reserva">
+            <h1>Detalhes da reserva:</h1>
+            <img src={produto.url_imagem} width="50%%" />
+            <h4>Categoria: {produto.qualificacao}</h4>
+            <h4>Nome do Veículo: {produto.title}</h4>
+            <h4>Localizacao do produto: {filterCity(produto.cityId)}</h4>
+            <h4>Data de Aluguel desejada</h4>
+            <button> Reservar</button>
+            </div>
+            </div>
             <Link to="/Produtos"> <p>voltar aos produtos</p> </Link>
           
             

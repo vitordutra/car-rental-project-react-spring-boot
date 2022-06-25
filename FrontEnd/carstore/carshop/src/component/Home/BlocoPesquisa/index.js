@@ -77,6 +77,8 @@ const BlocoPesquisa = ({handleFilter}) => {
 
     //Parte do calendário ###############################################################################################################
     const refOne = useRef(null)
+    const minDate = new Date( new Date().getFullYear(), new Date().getMonth(),new Date().getDate());
+    const maxDate = new Date( new Date().getFullYear(), new Date().getMonth()+2,new Date().getDate());
 /* 
     async function callApiProductsDateRange(range, cidadeEscolhida) {
 
@@ -249,6 +251,8 @@ const BlocoPesquisa = ({handleFilter}) => {
                     {open && <DateRange 
                         
                         onChange={item => setRange([item.selection])}
+                        minDate={minDate}
+                        maxDate={maxDate} 
                         editableDateInputs={true} 
                         moveRangeOnFirstSelection={false}
                         ranges={range}
