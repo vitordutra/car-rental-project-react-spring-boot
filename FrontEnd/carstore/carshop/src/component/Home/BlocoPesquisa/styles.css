@@ -18,7 +18,6 @@
 @media ( max-width:768px){
     .pesquisa-primeira-fileira{
         flex-direction: column;
-     
         gap: 8px;
     }
 }
@@ -49,7 +48,14 @@
     }
 }
 
-
+.select-BlocoPesquisa{
+    display: flex;
+    width: 200px;
+    height: 30px;
+    border-radius: 5px ;
+    background-color: #F1C481;
+    border: none;
+}
 
 .pesquisa-titulo-texto{
     text-align: center;
@@ -125,15 +131,17 @@ margin-left: 10px;
 }
 
 #pesquisa-botao-buscar {
+    text-decoration: none;
     font-weight: 500;
     border-radius: 9px;
     font-size: 13pt;
     background-color: #F6A52A;
     color: black;
-    padding: 10px 70px;
+    padding: 5px 50px;
     border: none;
     cursor: pointer;
     opacity: 0.8;
+    
     justify-content: center;
   }
   @media ( max-width:362px){
@@ -156,3 +164,4 @@ margin-left: 10px;
         gap: 8px;
     }
 }
+

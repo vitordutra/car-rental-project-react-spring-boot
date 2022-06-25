@@ -1,7 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
+import { Calendar } from 'react-date-range';
+import DateRangeComp from '../../component/Calendar/DateRangeComp.jsx';
 import api from "../../services/api";
 import './styles.css';
+import format from 'date-fns/format'
+
+
 
 
 export default function Products({handleFilter}) {
@@ -9,10 +14,11 @@ export default function Products({handleFilter}) {
   const [categoria, setCategoria] = useState([]);
 
   const [cidade, setCidade] = useState([]);
- 
+
+  const [cidadeEscolhida, setCidadeEscolhida] = useState();
  
 
-
+  
   
   
   useEffect(() => {
@@ -76,6 +82,27 @@ export default function Products({handleFilter}) {
   }
 
 
+
+  async function callApiProductsDateRange(range,cidadeEscolhida) {
+
+    try {
+      const DataDeInicio  = format(range[0].startDate, "yyyy-MM-dd")        /* range[0].startDate; */
+      const DataDeTermino = format(range[0].endDate, "yyyy-MM-dd")          /* range[0].endDate; */
+      const cidade = cidadeEscolhida;
+
+      const URL = `products?cityId=${cidade}&data_inicio=${DataDeInicio}&data_final=${DataDeTermino}` ;
+      console.log(URL);
+      const response = await api.get(URL);
+      console.log(response.data);
+      handleFilter(response.data);
+
+      
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>
       <body className="item-list-products-body" >     
@@ -93,13 +120,23 @@ export default function Products({handleFilter}) {
             </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             {/* <p className="paragrafoForm">Localização do veículo</p> */}
             {/* <label className="label">Cidade:</label> */}
-            <select className="select" name="cidade"  onChange={item => callProductByCity(item.target.value)}>
+            <select className="select-blocoPesquisa" name="cidade"  onChange={item => callProductByCity(item.target.value)}>
               <option  value="">Escolha a cidade</option>
               {cidade.map((item) => (
               <option value={item.id}>{item.nome}</option>
               ))}
             </select>
-         
+
+                <p>Escolha a data</p>
+
+                <select className="select" name="cidade"  onChange={item => setCidadeEscolhida(item.target.value)}>
+                <option  value="">Escolha a cidade</option>
+                {cidade.map((item) => (
+                <option value={item.id}>{item.nome}</option>
+                ))}
+                </select>
+
+                <DateRangeComp callApiProductsDateRange={callApiProductsDateRange} cidadeEscolhida={cidadeEscolhida} />
           </form>
         </div>
           {/* <ul className="item-list-products-ul" >

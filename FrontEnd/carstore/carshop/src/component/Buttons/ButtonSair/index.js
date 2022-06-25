@@ -13,7 +13,7 @@ const ButtonSair = () => {
    
     <>
           
-            <button onClick={handlelogout}>Sair</button>
+            <button onClick={handlelogout}>Ok</button>
     </>
        
     );  

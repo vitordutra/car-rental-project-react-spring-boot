@@ -63,11 +63,11 @@ const PaginaRegistro = ({ onSubmit }) => {
               >
 
                 <Form className="acessForm">
-                  <h2>Crie sua conta</h2>
+                  <h2 className="acessForm-h2">Crie sua conta</h2>
 
                   <p class="formField">
                     <div class="fieldHalf">
-                      <label for="nome">Nome</label>
+                      <label class="fieldHalf-label" for="nome">Nome</label>
                       <Field className="field" name="nome" type="text" id="nome"/>
                       <div className="errorMessage">
                         <ErrorMessage  name="nome">{msg => msg ? msg : ""}</ErrorMessage>
@@ -75,7 +75,7 @@ const PaginaRegistro = ({ onSubmit }) => {
                     </div>
 
                     <div class="fieldHalf">
-                      <label for="sobrenome">Sobrenome</label>
+                      <label class="fieldHalf-label"for="sobrenome">Sobrenome</label>
                       <Field className="field" name="sobrenome" type="text" id="sobrenome"/>
                       <div className="errorMessage">
                         <ErrorMessage  name="sobrenome">{msg => msg ? msg : ""}</ErrorMessage>
@@ -86,7 +86,7 @@ const PaginaRegistro = ({ onSubmit }) => {
                   <div class="clear"></div>
                   
                   <p class="formField"> 
-                    <label for="email">E-mail</label>
+                    <label class="fieldHalf-label" for="email">E-mail</label>
                     <Field className="field" name="email" type="text" id="email"/>
                     <div className="errorMessage">
                       <ErrorMessage  name="email">{msg => msg ? msg : ""}</ErrorMessage>
@@ -94,7 +94,7 @@ const PaginaRegistro = ({ onSubmit }) => {
                   </p>
                   
                   <p class="formField">
-                    <label htmlFor="senha">Senha</label>
+                    <label class="fieldHalf-label" htmlFor="senha">Senha</label>
                     <Field className="field" name="senha" type="password" id="senha"/>  
                     <div className="errorMessage">
                         <ErrorMessage name="senha">{msg => msg ? msg : ""}</ErrorMessage>
