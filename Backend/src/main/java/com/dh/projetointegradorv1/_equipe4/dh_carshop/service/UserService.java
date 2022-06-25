@@ -14,6 +14,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
@@ -33,10 +34,20 @@ public class UserService {
     @Autowired
     private BookingRepository bookingRepository;
 
+    @Autowired
+    private PasswordEncoder encoder;
+
     @Transactional
     public UserDto createUser(UserDto dto) {
         User entity = new User();
+        System.out.println("====dto.getSenha() antes");
+        System.out.println(dto.getSenha());
+        dto.setSenha(encoder.encode(dto.getSenha()));
+        System.out.println("====dto.getSenha() depois");
+        System.out.println(dto.getSenha());
         copyToEntity(dto, entity);
+        System.out.println("====entity.getSenha() depois");
+        System.out.println(entity.getSenha());
         entity = userRepository.save(entity);
         return new UserDto(entity);
     }

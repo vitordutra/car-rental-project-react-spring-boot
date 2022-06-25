@@ -4,6 +4,7 @@ package com.dh.projetointegradorv1._equipe4.dh_carshop.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,18 +31,19 @@ public class WebSecurityConfig<MyUserDetailsService, JwtRequestFilter> extends W
     @Autowired
     private com.dh.projetointegradorv1._equipe4.dh_carshop.security.JwtRequestFilter jwtRequestFilter;
 
-
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/bookings/**").permitAll()
-                .antMatchers("/categories/**").permitAll()
-                .antMatchers("/cities/**").permitAll()
-                .antMatchers("/features/**").permitAll()
-                .antMatchers("/products/**").permitAll()
-                .antMatchers("/roles/**").permitAll()
-                .antMatchers("/users/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/users/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/v1/users/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/bookings/").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/categories/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/cities/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/features/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/products/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/v1/products/**").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/api/v1/product/**").permitAll()
+                .antMatchers("/api/v1/roles/**").permitAll()
                 .antMatchers("/authenticate/**").permitAll()
                 .anyRequest()
                 .authenticated()
@@ -54,10 +56,6 @@ public class WebSecurityConfig<MyUserDetailsService, JwtRequestFilter> extends W
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
-
-
-
 
     //@Bean
     //CorsConfigurationSource corsConfigurationSource() {

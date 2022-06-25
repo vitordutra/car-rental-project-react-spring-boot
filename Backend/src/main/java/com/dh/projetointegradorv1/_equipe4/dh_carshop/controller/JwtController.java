@@ -3,6 +3,8 @@ package com.dh.projetointegradorv1._equipe4.dh_carshop.controller;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.security.AuthenticationRequest;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.security.JwtUtil;
 
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.AuthenticationResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -38,13 +40,12 @@ public class JwtController {
                     authenticationRequest.getSenha()));
 
         } catch (BadCredentialsException e) {
-            e.printStackTrace();
             System.out.println("entrou no catch!");
+            e.printStackTrace();
             throw new Exception("Incorrect", e);
         }
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
         final String jwt = jwtUtil.generateToken(userDetails);
-        // return ResponseEntity.ok(new AuthenticationResponse(jwt));
-        return ResponseEntity.ok("OK");
+        return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 }
