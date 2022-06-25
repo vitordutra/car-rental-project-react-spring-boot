@@ -11,6 +11,7 @@ import Error from '../component/Error';
 import Products from '../pages/Products';
 import Details from '../pages/Details';
 import ProductsCategory from '../pages/ProductsCategory';
+import NewProduct from '../pages/NewProduct';
 
 
 
@@ -50,8 +51,7 @@ const Paginas = () => {
                     />
                     <Route path="/detalhes/:id" element={<Details />} />
                     <Route path="/categorias/:id" element={<ProductsCategory />} />
-                    
-                   
+                    <Route path="/novo-produto" element={< NewProduct/> }/>                   
                     <Route path="*" element={<Error />} />
 
                 </Routes>
