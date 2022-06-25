@@ -3,7 +3,6 @@ import { DateRange } from 'react-date-range'
 import { Link } from 'react-router-dom'
 import format from 'date-fns/format'
 import { addDays } from 'date-fns'
-
 import "./styles.css"
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
@@ -48,9 +47,6 @@ const DateRangeComp = ({callApiProductsDateRange,cidadeEscolhida}) => {
     }
   }
 
-
-  
-
   /* async function callApiProductsDateRange(range) {
 
     try {
@@ -67,19 +63,15 @@ const DateRangeComp = ({callApiProductsDateRange,cidadeEscolhida}) => {
   }
  */
 
-
-
-
-
-  const minDate: Date = new Date( new Date().getFullYear(), new Date().getMonth(),new Date().getDate());
-  const maxDate: Date = new Date( new Date().getFullYear(), new Date().getMonth()+2,new Date().getDate());
+  const minDate = new Date( new Date().getFullYear(), new Date().getMonth(),new Date().getDate());
+  const maxDate = new Date( new Date().getFullYear(), new Date().getMonth()+2,new Date().getDate());
   
   return (
     <div className="calendarWrap">
       <div className="flex-container-calendar">
         <input
-          value={`${format(range[0].startDate, "dd/MM/yyyy")} to ${format(range[0].endDate, "dd/MM/yyyy")}`}
           
+           value={`${format(range[0].startDate, "dd/MM/yyyy")} a ${format(range[0].endDate, "dd/MM/yyyy")}`}          
           readOnly
           className="inputBox"
           onClick={ () => setOpen(open => !open) }
@@ -90,8 +82,7 @@ const DateRangeComp = ({callApiProductsDateRange,cidadeEscolhida}) => {
             <DateRange
               
               minDate={minDate}
-              maxDate={maxDate}
-              
+              maxDate={maxDate}              
               onChange={item => setRange([item.selection])}
               editableDateInputs={true}
               moveRangeOnFirstSelection={false}
