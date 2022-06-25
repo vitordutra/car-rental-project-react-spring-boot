@@ -3,6 +3,7 @@ import api from "../../services/api";
 import './styles.css';
 import { useNavigate } from 'react-router';
 import Details from "../../pages/Details";
+import { DateRange } from 'react-date-range';
 
 
 
@@ -47,9 +48,12 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
             <div id={id} className="ProdutoModal" onClick={handleOutsideClick}>
                 <div className="container2">
                     <button className="close" onClick={onClose}/>
+                    <div className="flex-container">
+                        <div className="flex-child-calendario"><DateRange/></div>
+                        <div className="flex-child-resto">
                     <h2>{detalhes.title}</h2>
                     <p>{detalhes.descricao}</p>
-                    <img src={detalhes.url_imagem} alt="" />
+                    <img src={detalhes.url_imagem} width="20%" height="20%" alt="" />
                     {characteristic.map((caract) => ( 
                         <div key={caract.characteristic} className="modalItem">
                             
@@ -60,6 +64,8 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                     <button onClick={handleBook} className="ButtonModal" >
                     Reserve Agora
                     </button>
+                    </div>
+                    </div>
                 </div>
             </div>
         </>
