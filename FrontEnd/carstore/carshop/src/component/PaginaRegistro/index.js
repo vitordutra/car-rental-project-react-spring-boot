@@ -12,12 +12,12 @@ const PaginaRegistro = ({ onSubmit }) => {
   const handleSubmit = async (values, { setSubmitting }) => {
     setTimeout(() => {
       console.log('====aqui');
-      api.post('/users', {
+      api.post('/api/v1/users', {
           nome: values.nome,
           sobrenome: values.sobrenome,
           email: values.email,
           senha: values.senha,
-          roles: [
+          funcao: [
             { "id": 1 }
           ]
       }).catch((error) => {
