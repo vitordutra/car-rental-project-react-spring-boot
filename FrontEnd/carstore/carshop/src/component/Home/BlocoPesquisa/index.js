@@ -136,7 +136,7 @@ const BlocoPesquisa = ({handleFilter}) => {
     const handleSearch = () =>{
       
       /* navigate("/Produtos",{state: {range,cidade}}); */
-      navigate(`/Produtos/${cidade}/${format(range[0].startDate, "MM-dd-yyyy")}/${format(range[0].endDate, "MM-dd-yyyy")}`);
+      navigate(`/Produtos/${cidade}/${format(range[0].startDate, "yyyy-MM-dd")}/${format(range[0].endDate, "yyyy-MM-dd")}`);
 
 
     }
