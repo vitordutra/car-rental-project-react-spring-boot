@@ -1,13 +1,20 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.time.OffsetDateTime;
 import java.io.Serializable;
+import java.util.Set;
 
 
 @Entity
 @Table (name = "images")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Image implements Serializable {
 
     @Serial
@@ -20,40 +27,26 @@ public class Image implements Serializable {
     private String titulo;
     @Column(columnDefinition = "longtext", nullable = false)
     private String url;
+    @ManyToMany(mappedBy = "imagens")
+    private Set<Product> produtos;
+    @OneToOne(mappedBy = "imagem")
+    private Category categoria;
+    @OneToOne(mappedBy = "imagem")
+    private Feature caracteristica;
 
-    //Timestamps Automáticos
-
+    // Timestamps Automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private OffsetDateTime criado;
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private OffsetDateTime atualizado;
 
     @PrePersist
-    public void antesDeSalvar() {criado = OffsetDateTime.now();}
+    public void antesDeSalvar() {
+        criado = OffsetDateTime.now();
+    }
 
     @PreUpdate
-    public void antesDeAtualizar(){ atualizado = OffsetDateTime.now();}
-
-    public Integer getId() { return id; }
-
-    public void setId(Integer id) {   this.id = id;  }
-
-    public String getTitulo() {   return titulo;  }
-
-    public void setTitulo(String titulo) {  this.titulo = titulo; }
-
-    public String getUrl() {  return url;}
-
-    public void setUrl(String url) {   this.url = url;  }
-
-    @Override
-    public String toString() {
-        return "Image{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", url='" + url + '\'' +
-                ", criado=" + criado +
-                ", atualizado=" + atualizado +
-                '}';
+    public void antesDeAtualizar() {
+        atualizado = OffsetDateTime.now();
     }
 }

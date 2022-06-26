@@ -11,9 +11,9 @@ import { useUserContext } from '../../context/UserContext';
 import api from '../../services/api';
 
 const NewProduct = () => {
-    
+
     const { user } = useUserContext();
-    console.log(context);
+ 
     
     const navigate = useNavigate();
 
@@ -138,11 +138,7 @@ const NewProduct = () => {
                                                     <ErrorMessage name="category">{msg => msg ? msg : ""}</ErrorMessage>
                                                 </div>
 
-                                                <label htmlFor="address">Endereço</label>
-                                                <Field id="address" className="field" name="address" type="text" />
-                                                <div className="errorMessage">
-                                                    <ErrorMessage name="address">{msg => msg ? msg : ""}</ErrorMessage>
-                                                </div>
+                                               
 
                                             </div>
                                         </div>
@@ -157,7 +153,7 @@ const NewProduct = () => {
 
                                         <div id="newProductCharacteristicWrapper">
                                             <h5>Adicionar atributos</h5>
-                                            <div className="addCharacteristic">
+                                            {/* <div className="addCharacteristic">
 
                                                 {
                                                     characteristics.map(({ id, name }) => {
@@ -170,7 +166,7 @@ const NewProduct = () => {
                                                     })
                                                 }
 
-                                            </div>
+                                            </div> */}
                                         </div>
 
                                         <div id="newProductPoliciesWrapper">
@@ -179,7 +175,7 @@ const NewProduct = () => {
                                             <div id="newProductPolicies">
 
                                                 <div id="newProductHouseRules">
-                                                    <h6>Regras da casa</h6>
+                                                    <h6>Cuidados</h6>
                                                     <label htmlFor="houseRulesDescription">Descrição</label>
                                                     <Field id="houseRulesDescription" className="textarea" name="houseRulesDescription" component="textarea" rows={4} />
                                                     <div className="errorMessage">
@@ -188,7 +184,7 @@ const NewProduct = () => {
                                                 </div>
 
                                                 <div id="newProductHealthSecurity">
-                                                    <h6>Saúde e segurança</h6>
+                                                    <h6>Segurança</h6>
                                                     <label htmlFor="healthSecurityDescription">Descrição</label>
                                                     <Field id="healthSecurityDescription" className="textarea" name="healthSecurityDescription" component="textarea" rows={4} />
                                                     <div className="errorMessage">

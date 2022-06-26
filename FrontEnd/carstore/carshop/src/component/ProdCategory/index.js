@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
-
+import { Link } from 'react-router-dom'
 import Modal from "../Modal";
 import './styles.css'
     
@@ -10,7 +10,7 @@ export default function ProdCategory({ prmProduct }) {
     
 
     return (
-        <body className="ProdCategoryBody">        	
+        <div  className="ProdCategoryBody">        	
         <ul className="ProdCategoryLu">
             <li className="ProdCategoryLi" >
                 <div className="LinkProdCategory">
@@ -23,13 +23,13 @@ export default function ProdCategory({ prmProduct }) {
                    Mais Detalhes
                 </button>
                 {isModalVisible ? (
-                    <Modal onClose={() => setIsModalVisible(false)}>
+                    <Modal detalhes={prmProduct} onClose={() => setIsModalVisible(false)}>
                        
                      
                     </Modal >
                 ) : null}
             </li>
         </ul>
-        </body>             
+        </div>             
     );
 }

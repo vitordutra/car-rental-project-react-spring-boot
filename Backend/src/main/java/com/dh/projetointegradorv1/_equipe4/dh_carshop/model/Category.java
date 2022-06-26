@@ -1,13 +1,20 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table (name = "categories")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Category implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -15,14 +22,17 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, name = "qualificacao")
     private String titulo;
     @Column(length = 300, nullable = false)
     private String descricao;
-    @Column(length = 300, nullable = false)
-    private String url_imagem;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
-    private List<Product> produtos;
+    @ManyToMany(mappedBy = "categorias")
+    Set<Product> produtos = new HashSet<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "images_categories",
+            joinColumns = { @JoinColumn(name = "id_categoria", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "id_imagem", referencedColumnName = "id") })
+    private Image imagem;
 
     // Timestamps automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -38,67 +48,6 @@ public class Category implements Serializable {
     @PreUpdate
     public void antesDeAtualizar() {
         atualizado = OffsetDateTime.now();
-    }
-
-    public Category() {
-    }
-
-    public Category(String titulo, String descricao, String url_imagem) {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.url_imagem = url_imagem;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getUrl_imagem() {
-        return url_imagem;
-    }
-
-    public void setUrl_imagem(String url_imagem) {
-        this.url_imagem = url_imagem;
-    }
-
-    public OffsetDateTime getCriado() {
-        return criado;
-    }
-
-    public OffsetDateTime getAtualizado() {
-        return atualizado;
-    }
-
-    @Override
-    public String toString() {
-        return "Categories{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", url_imagem='" + url_imagem + '\'' +
-                ", criado=" + criado +
-                ", atualizado=" + atualizado +
-                '}';
     }
 
 }

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthProvider, AuthContext } from "../context/auth";
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate,useParams } from 'react-router-dom';
 import Header from '../component/Header/Header';
 import Panel from '../pages/Panel';
 import Login from '../pages/Login';
@@ -11,7 +11,13 @@ import Error from '../component/Error';
 import Products from '../pages/Products';
 import Details from '../pages/Details';
 import ProductsCategory from '../pages/ProductsCategory';
+<<<<<<< HEAD
 import NewProduct from '../pages/NewProduct';
+=======
+import ReservaSucedida from '../pages/ReservaBemSucedida';
+import ConfirmationNewProduct from '../pages/ConfirmationNewProduct';
+import CriarReserva from '../pages/CriarReserva';
+>>>>>>> a86fd7daa947a75a5012f8bbb917937a1f8a2dc1
 
 
 
@@ -28,7 +34,7 @@ const Paginas = () => {
         }
 
         return children;
-
+ 
     };
     return(
         <BrowserRouter>
@@ -49,6 +55,11 @@ const Paginas = () => {
                             </Private>
                         }
                     />
+                    <Route path="/Sucesso" element={<ReservaSucedida />} />
+                    <Route path="/novo-produto" element={<ConfirmationNewProduct/>} />
+                    <Route path="/Reserva/:idProduto" element={<CriarReserva />} />
+                    <Route path="/Produtos/:cidade/:startDate/:endDate" element={<ProductsCategory />} />
+                    <Route path="/Produtos/:cidade/" element={<ProductsCategory />} />
                     <Route path="/detalhes/:id" element={<Details />} />
                     <Route path="/categorias/:id" element={<ProductsCategory />} />
                     <Route path="/novo-produto" element={< NewProduct/> }/>                   
