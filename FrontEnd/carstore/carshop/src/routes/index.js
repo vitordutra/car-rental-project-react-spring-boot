@@ -11,6 +11,7 @@ import Error from '../component/Error';
 import Products from '../pages/Products';
 import Details from '../pages/Details';
 import ProductsCategory from '../pages/ProductsCategory';
+import CriarReserva from '../pages/CriarReserva';
 
 
 
@@ -48,6 +49,7 @@ const Paginas = () => {
                             </Private>
                         }
                     />
+                    <Route path="/Reserva/:idProduto" element={<CriarReserva />} />
                     <Route path="/Produtos/:cidade/:startDate/:endDate" element={<ProductsCategory />} />
                     <Route path="/Produtos/:cidade/" element={<ProductsCategory />} />
                     <Route path="/detalhes/:id" element={<Details />} />

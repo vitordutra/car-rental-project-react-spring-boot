@@ -23,7 +23,7 @@ async function callApi() {
     var dataBatchs = [];
     const data = response.data;
 
-    console.log(data);
+    
 
 
     for (let i = 0; i < maxItems; i++) {
