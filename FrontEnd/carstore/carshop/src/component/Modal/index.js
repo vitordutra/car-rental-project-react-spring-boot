@@ -24,12 +24,29 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
 
     useEffect(() => {
         callProductDetailsApi();
+        window.addEventListener('resize', handleResize);
+        /* window.removeEventListener('resize', handleResize); */
         
 
 
       }, []);
 
+      //pegar width
+      function getWindowDimensions() {
+        const { innerWidth: width, innerHeight: height } = window;
+        return {
+          width,
+          height
+        };
+      }
+      const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+
       
+
+
 
     async function callProductDetailsApi(id) {
         try {
@@ -142,6 +159,7 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                     <button className="close" onClick={onClose}/>
                     <div className="flex-container">
                         <div className="flex-child-calendario">
+                            
                             <DateRange 
                                 
                                 minDate={minDate}
@@ -151,7 +169,7 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                                 editableDateInputs={false}
                                 moveRangeOnFirstSelection={false}
                                 
-                                months={2}
+                                months={(windowDimensions.width > 1300)? 2:1}
                                 direction="horizontal"
                                 
                         
