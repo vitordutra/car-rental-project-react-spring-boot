@@ -1,5 +1,6 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ProductDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.CategoryService;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.ProductService;
 import org.junit.jupiter.api.Assertions;
@@ -18,7 +19,8 @@ class ProductTest {
 
     @Test
     void createProduct() {
-        Product product = new Product();
+        ProductDto product = new ProductDto();
+        Product entity = new Product();
 
         // expectativas
         String nome = "Fiat Argo";
@@ -42,7 +44,8 @@ class ProductTest {
         Assertions.assertInstanceOf(java.lang.Integer.class, product.getId());
 
         // verificando que o callback antesDeSalvar rodou
-        Assertions.assertInstanceOf(java.time.OffsetDateTime.class, product.getCriado());
+        productService.copyToEntity(product, entity);
+        Assertions.assertInstanceOf(java.time.OffsetDateTime.class, entity.getCriado());
 
         // mudando descricao
         product.setDescricao(descricaoAlterada);
@@ -52,7 +55,8 @@ class ProductTest {
 
         // TODO: esta falhando porque não tem o atualizar
         // verificando que o callback antesDeAtualizar rodou
-        Assertions.assertInstanceOf(java.time.OffsetDateTime.class, product.getAtualizado());
+        productService.copyToEntity(product, entity);
+        Assertions.assertInstanceOf(java.time.OffsetDateTime.class, entity.getAtualizado());
 
         product.setId(0);
         Assertions.assertEquals(0, product.getId());

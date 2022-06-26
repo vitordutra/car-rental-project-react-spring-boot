@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthProvider, AuthContext } from "../context/auth";
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate,useParams } from 'react-router-dom';
 import Header from '../component/Header/Header';
 import Panel from '../pages/Panel';
 import Login from '../pages/Login';
@@ -52,6 +52,8 @@ const Paginas = () => {
                     />
                     <Route path="/Sucesso" element={<ReservaSucedida />} />
                     <Route path="/novo-produto" element={<ConfirmationNewProduct/>} />
+                    <Route path="/Produtos/:cidade/:startDate/:endDate" element={<ProductsCategory />} />
+                    <Route path="/Produtos/:cidade/" element={<ProductsCategory />} />
                     <Route path="/detalhes/:id" element={<Details />} />
                     <Route path="/categorias/:id" element={<ProductsCategory />} />
                     

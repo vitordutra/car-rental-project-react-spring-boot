@@ -10,7 +10,7 @@ export default function ProdCategory({ prmProduct }) {
     
 
     return (
-        <body className="ProdCategoryBody">        	
+        <div  className="ProdCategoryBody">        	
         <ul className="ProdCategoryLu">
             <li className="ProdCategoryLi" >
                 <div className="LinkProdCategory">
@@ -30,6 +30,6 @@ export default function ProdCategory({ prmProduct }) {
                 ) : null}
             </li>
         </ul>
-        </body>             
+        </div>             
     );
 }
