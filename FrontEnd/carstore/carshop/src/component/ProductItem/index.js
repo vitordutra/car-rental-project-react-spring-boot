@@ -6,7 +6,7 @@ import './styles.css'
 export default function ProductItem({ prmProduct }) {
  
     return (
-        <body>      
+         
         <ul>
             <li className="ProductItemLi" >
                 <Link className="LinkProductItem"   to={`/detalhes/${prmProduct.id}`}>
@@ -19,6 +19,6 @@ export default function ProductItem({ prmProduct }) {
                 </button>*/}
             </li>
         </ul>
-        </body>
+        
     );
 }

@@ -23,7 +23,7 @@ async function callApi() {
     var dataBatchs = [];
     const data = response.data;
 
-    console.log(data);
+    
 
 
     for (let i = 0; i < maxItems; i++) {
@@ -58,7 +58,7 @@ async function callApi() {
         <Carousel className="carrosselSectionDestaques" variant="dark" id= "destaques" >
           {categories.map((dataBatch, index) => {
           return (
-            <Carousel.Item className="carrosselSectionItem">
+            <Carousel.Item key={index} className="carrosselSectionItem">
               <Row className="carrosselSectionRow">
               {dataBatch.map((item, index) => {
               return(
