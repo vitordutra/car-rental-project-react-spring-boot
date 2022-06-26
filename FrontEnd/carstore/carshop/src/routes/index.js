@@ -30,7 +30,7 @@ const Paginas = () => {
         }
 
         return children;
-
+ 
     };
     return(
         <BrowserRouter>
