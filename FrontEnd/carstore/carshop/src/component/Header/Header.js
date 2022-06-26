@@ -8,9 +8,16 @@ import login from "../../assets/login.png";
 import './Header.css';
 
 const Header = () => {
-
-  const {user} = useContext(AuthContext);
   
+
+
+
+
+    
+    
+  const {user} = useContext(AuthContext);
+ 
+
   function estaLogado() {
     try {
       let user = JSON.parse(localStorage.getItem("user"));
@@ -34,10 +41,13 @@ const Header = () => {
         {user == null ?
           <a className="header-rightLink" href='/login'>Login</a> :
           <>
+          
+            
             <img className='logInImg' src={login} alt=''/>
             <div className='logIn'>
-            Bem vindo, {estaLogado()} !
-          </div>
+              Bem vindo, {estaLogado()} !
+            </div>
+          
           </>
         }    
       </div>
