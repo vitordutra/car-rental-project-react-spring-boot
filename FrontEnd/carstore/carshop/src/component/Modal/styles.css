@@ -85,6 +85,17 @@
 
 .flex-container{
     display: flex;
+    
+
+    
+    }
+.flex-container2{
+    display: flex;
+    background-color: #F1C481;
+    border-radius:10px;
+    
+    
+    
 
     
     }

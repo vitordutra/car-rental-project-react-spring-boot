@@ -84,6 +84,8 @@ export default function CriarReserva() {
 
 
       //PARTE DO CALENDARIO
+        const diffDays = (date, otherDate) => Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24)+1);
+
         const minDate = new Date( new Date().getFullYear(), new Date().getMonth(),new Date().getDate());
         const maxDate = new Date( new Date().getFullYear(), new Date().getMonth()+2,new Date().getDate());
         
@@ -130,9 +132,14 @@ export default function CriarReserva() {
               return(
                 <>
                 
-                <p>Seus Dados: </p>
-              <p>Nome:{userr.name} {userr.surname}</p>
-              <p>email:{userr.email}</p>
+                
+              <p>Nome: <input type="text" disabled="true" value={(userr.name+" "+userr.surname)} /> </p>
+              <p>email: <input type="text" disabled="true" value={userr.email}/></p>
+              <p>Data de Início:: <input type="text" disabled="true" value={format(range[0].startDate, "dd/MM/yyyy")}/></p>
+              <p>Data de Devolução: <input type="text" disabled="true" value={format(range[0].endDate, "dd/MM/yyyy")}/></p>
+              <p>Diárias:<input type="text" disabled="true" value={diffDays(range[0].startDate,range[0].endDate)}/></p>
+              <p>Valor Total:</p>
+              <p>R$ {produto.valor_diaria*diffDays(range[0].startDate,range[0].endDate)},00</p>
                 
                 
                 </>
@@ -151,38 +158,45 @@ export default function CriarReserva() {
                 <h3>Nome do carro escolhido: {produto.title} / Categoria: {produto.qualificacao}</h3>
                 
               </div>
+              <h1>Confirme sua reserva:</h1>
 
             <div className="bloco-detalhes-reserva">
-                <h1>Detalhes da reserva:</h1>
-                <h4>{produto.title}</h4>
-                <img src={produto.url_imagem} width="50%" />
-
-                <h4>Categoria: {produto.qualificacao}</h4>
+                <br />
+                <h4 className="reserva-titulo-carro" >{produto.title}</h4>
+                <div className="flex-container-reserva1">
+                  <img className="imagem-reserva" src={produto.url_imagem} width="50%" />
+                  <div className="detalhes-reserva-1">
+                    <h4>Categoria: {produto.qualificacao}</h4>
+                    <h4>Caracteristicas: {produto.title}</h4>
+                    <h4>Localização do produto: {filterCity(produto.cityId)}</h4>
+                    
+                  </div>
+                </div>
+                <div className="flex-container-reserva2">
+                  <div className="reserva-dados-pessoa">
+                    {dadosPessoa()}
+                  </div>
                 
-                <h4>Caracteristicas: {produto.title}</h4>
-                <h4>Localização do produto: {filterCity(produto.cityId)}</h4>
-                <h4>Data de Aluguel desejada: {format(range[0].startDate, "dd/MM/yyyy")} até {format(range[0].endDate, "dd/MM/yyyy")}
-                <br></br>
-                            <DateRange 
-                            
-                            onChange={item => setRange([item.selection])}
-                            minDate={minDate}
-                            maxDate={maxDate} 
-                            editableDateInputs={true} 
-                            moveRangeOnFirstSelection={false}
-                            ranges={range}
-                            months={2}
-                            disabledDates={disabledDatesList}
-                            direction="horizontal"
-                            className="date"                            
-                            /></h4>
-              {dadosPessoa()}
-
+                  <DateRange 
+                  
+                  onChange={item => setRange([item.selection])}
+                  minDate={minDate}
+                  maxDate={maxDate} 
+                  editableDateInputs={true} 
+                  moveRangeOnFirstSelection={false}
+                  ranges={range}
+                  months={2}
+                  disabledDates={disabledDatesList}
+                  direction="horizontal"
+                  className="date"                            
+                  />
+              
+              </div>
 
                   
                   
                   
-              <Link to="/Sucesso"> <button> Reservar</button> </Link>
+                            <Link to="/Sucesso"> <button className="button-reserva"> Reservar</button> </Link>
                 </div>
             </div>
             <Link to="/Produtos"> <p>voltar aos produtos</p> </Link>

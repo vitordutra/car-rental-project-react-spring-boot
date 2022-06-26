@@ -180,7 +180,7 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                             <h2>{detalhes.title}</h2>
                             
                             <img className="modal-imagem" src={detalhes.url_imagem} width="50%"  alt="" />
-                            <div className="flex-container">
+                            <div className="flex-container2">
                             <p className="modal-descricao" >{detalhes.descricao}</p>
                             
                             
