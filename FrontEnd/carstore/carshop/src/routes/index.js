@@ -11,12 +11,9 @@ import Error from '../component/Error';
 import Products from '../pages/Products';
 import Details from '../pages/Details';
 import ProductsCategory from '../pages/ProductsCategory';
-<<<<<<< HEAD
 import ReservaSucedida from '../pages/ReservaBemSucedida';
 import ConfirmationNewProduct from '../pages/ConfirmationNewProduct';
-=======
 import CriarReserva from '../pages/CriarReserva';
->>>>>>> ee64092baf65b615e57993e010a853d414a35a13
 
 
 
