@@ -24,12 +24,29 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
 
     useEffect(() => {
         callProductDetailsApi();
+        window.addEventListener('resize', handleResize);
+        /* window.removeEventListener('resize', handleResize); */
         
 
 
       }, []);
 
+      //pegar width
+      function getWindowDimensions() {
+        const { innerWidth: width, innerHeight: height } = window;
+        return {
+          width,
+          height
+        };
+      }
+      const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+
       
+
+
 
     async function callProductDetailsApi(id) {
         try {
@@ -94,7 +111,12 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                 <>
                 
                 <div>
-                    {caracsInput[0].map(e => <><img src={e.icon_url} width="30px" height={"30px"}></img> <p>{e.characteristic}</p></>) }
+                    {caracsInput[0].map(e => <  >
+                    <div className="flex-container">
+                    <img className="modal-atributo-imagem" key={e.characteristic} src={e.icon_url} width="30px" height={"30px"}></img> 
+                    <p className="modal-atributo-texto" >{e.characteristic}</p>
+                    </div>
+                    </>) }
     
     
                 </div>
@@ -135,10 +157,13 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
             <div id={id} className="ProdutoModal" onClick={handleOutsideClick}>
                 <div className="container2">
                     <button className="close" onClick={onClose}/>
+                    { /* Organização de pc ou pc pequeno : organização de cell */  }
+                    
                     <div className="flex-container">
                         <div className="flex-child-calendario">
+                        {(windowDimensions.width > 1300)? 2:1}
+                            
                             <DateRange 
-                                
                                 minDate={minDate}
                                 maxDate={maxDate}
                                 
@@ -146,36 +171,29 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                                 editableDateInputs={false}
                                 moveRangeOnFirstSelection={false}
                                 
-                                months={2}
+                                months={(windowDimensions.width > 1300)? 2:1}
                                 direction="horizontal"
-                                
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+
                             />
                         </div>
                         <div className="flex-child-resto">
-                    <h2>{detalhes.title}</h2>
-                    <p>{detalhes.descricao}</p>
-                    <p>Valor da diária: R${detalhes.valor_diaria},00</p>
-                    <img src={detalhes.url_imagem} width="20%" height="20%" alt="" />
-                    
-                    {/* {
-                        
-                       filterDetails().map(x => <><img src={x[0].icon_url} width="10px" height={"10px"}/> <div>{x[0].characteristic}</div></> )
-                    } */}
-                    {soltarCaracs(listaParaMostrar)}
-                    <button onClick={handleBook} className="ButtonModal" >
-                    Reserve Agora
-                    </button>
-                    </div>
+                            <h2>{detalhes.title}</h2>
+                            
+                            <img className="modal-imagem" src={detalhes.url_imagem} width="50%"  alt="" />
+                            <div className="flex-container2">
+                            <p className="modal-descricao" >{detalhes.descricao}</p>
+                            
+                            
+                            
+                            <div className="listaAtributosBox">{soltarCaracs(listaParaMostrar)}</div>
+                            </div>
+
+                            
+                            <p>Valor da diária: R${detalhes.valor_diaria},00</p>
+                            <button onClick={handleBook} className="ButtonModal" >
+                            Reserve Agora
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

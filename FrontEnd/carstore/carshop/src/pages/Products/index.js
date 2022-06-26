@@ -109,7 +109,7 @@ export default function Products({handleFilter}) {
                 <option key={item.id} value={item.id}>{item.qualificacao}</option>
                 
               ))}
-            </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </select>
             {/* <p className="paragrafoForm">Localização do veículo</p> */}
             {/* <label className="label">Cidade:</label> */}
             <select className="select-blocoPesquisa" name="cidade"  onChange={item => callProductByCity(item.target.value)}>
@@ -118,7 +118,7 @@ export default function Products({handleFilter}) {
               <option key={item.id} value={item.id}>{item.nome}</option>
               ))}
             </select>
-
+{/* 
                 <p>Escolha a data</p>
 
                 <select className="select" name="cidade"  onChange={item => setCidadeEscolhida(item.target.value)}>
@@ -128,7 +128,7 @@ export default function Products({handleFilter}) {
                 ))}
                 </select>
 
-                <DateRangeComp callApiProductsDateRange={callApiProductsDateRange} cidadeEscolhida={cidadeEscolhida} />
+                <DateRangeComp callApiProductsDateRange={callApiProductsDateRange} cidadeEscolhida={cidadeEscolhida} /> */}
           </form>
         </div>
           {/* <ul className="item-list-products-ul" >
