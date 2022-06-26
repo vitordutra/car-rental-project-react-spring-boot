@@ -22,13 +22,30 @@ export default function CriarReserva() {
         callCidadesApi()
         filterCity(1)
         setUserr(estaLogado())
-        
+        window.addEventListener('resize', handleResize);
         
         
         
         
         
     }, []);    
+
+
+
+ 
+    //pegar width
+    function getWindowDimensions() {
+      const { innerWidth: width, innerHeight: height } = window;
+      return {
+        width,
+        height
+      };
+    }
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
   
 
    
@@ -130,41 +147,43 @@ export default function CriarReserva() {
         <>
        
             <div className="flex-container-reserva">
-            <div className="bloco-titulo-reserva">
-            <h3>Nome do carro escolhido: {produto.title}</h3>
-            <h3>Categoria: {produto.qualificacao}</h3>
-            </div>
+              <div className="bloco-titulo-reserva">
+                <h3>Nome do carro escolhido: {produto.title} / Categoria: {produto.qualificacao}</h3>
+                
+              </div>
 
             <div className="bloco-detalhes-reserva">
-            <h1>Detalhes da reserva:</h1>
-            <img src={produto.url_imagem} width="50%%" />
-            <h4>Categoria: {produto.qualificacao}</h4>
-            <h4>Nome do Veículo: {produto.title}</h4>
-            <h4>Caracteristicas: {produto.title}</h4>
-            <h4>Localização do produto: {filterCity(produto.cityId)}</h4>
-            <h4>Data de Aluguel desejada: {format(range[0].startDate, "dd/MM/yyyy")} até {format(range[0].endDate, "dd/MM/yyyy")}
-            <br></br>
-                         <DateRange 
-                        
-                        onChange={item => setRange([item.selection])}
-                        minDate={minDate}
-                        maxDate={maxDate} 
-                        editableDateInputs={true} 
-                        moveRangeOnFirstSelection={false}
-                        ranges={range}
-                        months={2}
-                        disabledDates={disabledDatesList}
-                        direction="horizontal"
-                        className="date"                            
-                        /></h4>
-          {dadosPessoa()}
+                <h1>Detalhes da reserva:</h1>
+                <h4>{produto.title}</h4>
+                <img src={produto.url_imagem} width="50%" />
+
+                <h4>Categoria: {produto.qualificacao}</h4>
+                
+                <h4>Caracteristicas: {produto.title}</h4>
+                <h4>Localização do produto: {filterCity(produto.cityId)}</h4>
+                <h4>Data de Aluguel desejada: {format(range[0].startDate, "dd/MM/yyyy")} até {format(range[0].endDate, "dd/MM/yyyy")}
+                <br></br>
+                            <DateRange 
+                            
+                            onChange={item => setRange([item.selection])}
+                            minDate={minDate}
+                            maxDate={maxDate} 
+                            editableDateInputs={true} 
+                            moveRangeOnFirstSelection={false}
+                            ranges={range}
+                            months={2}
+                            disabledDates={disabledDatesList}
+                            direction="horizontal"
+                            className="date"                            
+                            /></h4>
+              {dadosPessoa()}
 
 
-              
-              
-              
-           <Link to="/Sucesso"> <button> Reservar</button> </Link>
-            </div>
+                  
+                  
+                  
+              <Link to="/Sucesso"> <button> Reservar</button> </Link>
+                </div>
             </div>
             <Link to="/Produtos"> <p>voltar aos produtos</p> </Link>
           

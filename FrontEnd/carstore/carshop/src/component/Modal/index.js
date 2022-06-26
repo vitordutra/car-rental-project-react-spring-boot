@@ -157,11 +157,13 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
             <div id={id} className="ProdutoModal" onClick={handleOutsideClick}>
                 <div className="container2">
                     <button className="close" onClick={onClose}/>
+                    { /* Organização de pc ou pc pequeno : organização de cell */  }
+                    
                     <div className="flex-container">
                         <div className="flex-child-calendario">
+                        {(windowDimensions.width > 1300)? 2:1}
                             
                             <DateRange 
-                                
                                 minDate={minDate}
                                 maxDate={maxDate}
                                 
@@ -171,23 +173,13 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                                 
                                 months={(windowDimensions.width > 1300)? 2:1}
                                 direction="horizontal"
-                                
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+
                             />
                         </div>
                         <div className="flex-child-resto">
                             <h2>{detalhes.title}</h2>
                             
-                            <img className="modal-imagem" src={detalhes.url_imagem} width="20%" height="20%" alt="" />
+                            <img className="modal-imagem" src={detalhes.url_imagem} width="50%"  alt="" />
                             <div className="flex-container">
                             <p className="modal-descricao" >{detalhes.descricao}</p>
                             

@@ -1,20 +1,28 @@
+
 .flex-container-reserva{
 
-    display: flex;
-
-
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+    padding: 20px;
+    
 
 }
 
 .bloco-titulo-reserva{
-    flex:1;
-    padding-left: 5%;
+    
+    
 }
 
 .bloco-detalhes-reserva{
-    flex:4;
-    border: 5px solid red;
-    margin-top: 5%;
-    max-width: 50%;
-    margin-right: 5%;
+    text-align: center;
+    border: 10px solid red;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 20px;
+    
+    
+    
+    
 }
