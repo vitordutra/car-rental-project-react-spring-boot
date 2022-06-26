@@ -11,8 +11,12 @@ import Error from '../component/Error';
 import Products from '../pages/Products';
 import Details from '../pages/Details';
 import ProductsCategory from '../pages/ProductsCategory';
+<<<<<<< HEAD
 import ReservaSucedida from '../pages/ReservaBemSucedida';
 import ConfirmationNewProduct from '../pages/ConfirmationNewProduct';
+=======
+import CriarReserva from '../pages/CriarReserva';
+>>>>>>> ee64092baf65b615e57993e010a853d414a35a13
 
 
 
@@ -52,6 +56,7 @@ const Paginas = () => {
                     />
                     <Route path="/Sucesso" element={<ReservaSucedida />} />
                     <Route path="/novo-produto" element={<ConfirmationNewProduct/>} />
+                    <Route path="/Reserva/:idProduto" element={<CriarReserva />} />
                     <Route path="/Produtos/:cidade/:startDate/:endDate" element={<ProductsCategory />} />
                     <Route path="/Produtos/:cidade/" element={<ProductsCategory />} />
                     <Route path="/detalhes/:id" element={<Details />} />

@@ -9,10 +9,18 @@ import './styles.css';
 export default function Details() {
 
     const [products, setProducts] = useState([]);
+
+
+
+
     useEffect(() => {
         callApiDetails();
     }, []);    
   
+
+
+
+    
     const parametro = useParams();
     console.log(parametro.id);
    
