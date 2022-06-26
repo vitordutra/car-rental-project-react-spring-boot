@@ -94,7 +94,12 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                 <>
                 
                 <div>
-                    {caracsInput[0].map(e => <><img src={e.icon_url} width="30px" height={"30px"}></img> <p>{e.characteristic}</p></>) }
+                    {caracsInput[0].map(e => <  >
+                    <div className="flex-container">
+                    <img className="modal-atributo-imagem" key={e.characteristic} src={e.icon_url} width="30px" height={"30px"}></img> 
+                    <p className="modal-atributo-texto" >{e.characteristic}</p>
+                    </div>
+                    </>) }
     
     
                 </div>
@@ -162,20 +167,23 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                             />
                         </div>
                         <div className="flex-child-resto">
-                    <h2>{detalhes.title}</h2>
-                    <p>{detalhes.descricao}</p>
-                    <p>Valor da diária: R${detalhes.valor_diaria},00</p>
-                    <img src={detalhes.url_imagem} width="20%" height="20%" alt="" />
-                    
-                    {/* {
-                        
-                       filterDetails().map(x => <><img src={x[0].icon_url} width="10px" height={"10px"}/> <div>{x[0].characteristic}</div></> )
-                    } */}
-                    {soltarCaracs(listaParaMostrar)}
-                    <button onClick={handleBook} className="ButtonModal" >
-                    Reserve Agora
-                    </button>
-                    </div>
+                            <h2>{detalhes.title}</h2>
+                            
+                            <img className="modal-imagem" src={detalhes.url_imagem} width="20%" height="20%" alt="" />
+                            <div className="flex-container">
+                            <p className="modal-descricao" >{detalhes.descricao}</p>
+                            
+                            
+                            
+                            <div className="listaAtributosBox">{soltarCaracs(listaParaMostrar)}</div>
+                            </div>
+
+                            
+                            <p>Valor da diária: R${detalhes.valor_diaria},00</p>
+                            <button onClick={handleBook} className="ButtonModal" >
+                            Reserve Agora
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

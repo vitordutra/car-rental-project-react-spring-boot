@@ -19,8 +19,8 @@
 .container2{
     background-color: #fff;
     color: #000;
-    width: 80%;
-    height:80%;
+    width: 100%;
+    height:100%;
     border-radius: 20px;  
 }
 
@@ -96,4 +96,13 @@
     flex: 10;
     margin:40px;
         
+    }
+    .modal-descricao{
+        flex: 1;
+    }
+
+    .listaAtributosBox{
+        flex:1;
+        margin-left: 10%;
+
     }
