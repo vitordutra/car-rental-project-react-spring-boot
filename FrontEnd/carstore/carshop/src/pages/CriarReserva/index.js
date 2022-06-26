@@ -150,6 +150,11 @@ export default function CriarReserva() {
 
         }
 
+
+        
+
+
+
     return (
         <>
        
@@ -167,7 +172,7 @@ export default function CriarReserva() {
                   <img className="imagem-reserva" src={produto.url_imagem} width="50%" />
                   <div className="detalhes-reserva-1">
                     <h4>Categoria: {produto.qualificacao}</h4>
-                    <h4>Caracteristicas: {produto.title}</h4>
+                    
                     <h4>Localização do produto: {filterCity(produto.cityId)}</h4>
                     
                   </div>
