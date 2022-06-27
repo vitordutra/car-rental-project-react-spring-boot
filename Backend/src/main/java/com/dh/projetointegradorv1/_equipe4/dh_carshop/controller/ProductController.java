@@ -47,6 +47,23 @@ public class ProductController {
         return ResponseEntity.ok(productService.findProductByCity(id));
     }
 
+    @GetMapping("/dates")
+    public ResponseEntity<List<ProductDto>> findProductByDates(@RequestParam String dataInicio, @RequestParam String dataTermino) {
+        return ResponseEntity.ok(productService.findProductByDates(dataInicio, dataTermino));
+    }
+
+    /*@GetMapping("/dates?dataInicio={anoInicio}-{mesInicio}-{diaInicio}&dataFim={anoFim}-{mesFim}-{diaFim}")
+    public ResponseEntity<List<ProductDto>> findProductByDates(
+            @PathVariable(value = "anoInicio") int anoInicio,
+            @PathVariable(value = "anoInicio") int mesInicio,
+            @PathVariable(value = "anoInicio") int diaInicio,
+            @PathVariable(value = "anoInicio") int anoFim,
+            @PathVariable(value = "anoInicio") int mesFim,
+            @PathVariable(value = "anoInicio") int diaFim
+    ) {
+        return ResponseEntity.ok(productService.findProductByDates(anoInicio, mesInicio, diaInicio, anoFim, mesFim, diaFim));
+    }*/
+
     @GetMapping("/category/{id}")
     public ResponseEntity<List<ProductDto>> findProductByCategory(@PathVariable(value = "id") Integer id) {
         return ResponseEntity.ok(productService.findProductByCategory(id));
