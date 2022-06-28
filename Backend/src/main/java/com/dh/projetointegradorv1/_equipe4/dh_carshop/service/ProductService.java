@@ -91,7 +91,8 @@ public class ProductService {
         List<ProductDto> listProductDto = new ArrayList<>();
         List<Product> listProduct = productRepository.findAll();
         for(Product prod : listProduct) {
-            ProductDto prodDto = new ProductDto(prod);
+            ProductDto prodDto = new ProductDto(prod, prod.getCaracteristicas(),
+                    prod.getImagens(), prod.getCategorias(), prod.getCidade(), prod.getReservas());
             Integer disp = 1;
             List<BookingDto> listBooking = prodDto.getReservas();
             for(BookingDto bookDto : listBooking) {
