@@ -17,9 +17,9 @@ const PaginaRegistro = ({ onSubmit }) => {
           sobrenome: values.sobrenome,
           email: values.email,
           senha: values.senha,
-          funcao: [
+          funcao: 
             { "id": 1 }
-          ]
+          
       }).then((response) => {
         Swal.fire({
           icon: 'success',
