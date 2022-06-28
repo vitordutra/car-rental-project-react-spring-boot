@@ -29,7 +29,8 @@ export const AuthProvider = ({ children }) => {
         api.post('/authenticate', {
             email: email,
             password: password
-        }).then((response) => {
+        })
+        .then((response) => {
             console.log('response', response);
             const userToken = response.data;
             console.log('userToken', userToken);
@@ -45,23 +46,24 @@ export const AuthProvider = ({ children }) => {
                 token: userToken
               };
               localStorage.setItem('signed', JSON.stringify(loggedUser));
-              setUser(loggedUser)
+              setUser(loggedUser);
             })
             // localStorage.setItem('signed', JSON.stringify([userData]));
             // setUser([userData])
             navigate("/");
-        }).catch((error) => {
-            console.error('error', error);
+        })
+        // .catch((error) => {
+        //     console.error('error', error);
       
-            Swal.fire({
-              icon: 'error',
-              title: 'Ops!',
-              text: 'Por favor, tente novamente, suas credenciais são inválidas',
-              confirmButtonColor: 'var(--primary-color)',
-              imageWidth: 100,
-              width: 350,
-            })
-        });
+        //     Swal.fire({
+        //       icon: 'error',
+        //       title: 'Ops!',
+        //       text: 'Por favor, tente novamente, suas credenciais são inválidas',
+        //       confirmButtonColor: 'var(--primary-color)',
+        //       imageWidth: 100,
+        //       width: 350,
+        //     })
+        // });
 
         const loggedUser = {
             id: "123",

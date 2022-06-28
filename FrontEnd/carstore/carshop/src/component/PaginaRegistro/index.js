@@ -12,14 +12,24 @@ const PaginaRegistro = ({ onSubmit }) => {
   const handleSubmit = async (values, { setSubmitting }) => {
     setTimeout(() => {
       console.log('====aqui');
-      api.post('/users', {
+      api.post('/api/v1/users', {
           nome: values.nome,
           sobrenome: values.sobrenome,
           email: values.email,
           senha: values.senha,
-          roles: [
+          funcao: 
             { "id": 1 }
-          ]
+          
+      }).then((response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Sucesso!',
+          text: 'Cadastro realizado com sucesso!',
+          html: '',
+          confirmButtonColor: 'var(--primary-color)',
+          imageWidth: 100,
+          width: 350,
+        })
       }).catch((error) => {
         console.error(error);
         Swal.fire({
