@@ -37,8 +37,8 @@ public class WebSecurityConfig<MyUserDetailsService, JwtRequestFilter> extends W
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable();
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/v1/bookings/").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/users/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/bookings/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/categories/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/cities/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/features/**").permitAll()
@@ -59,12 +59,13 @@ public class WebSecurityConfig<MyUserDetailsService, JwtRequestFilter> extends W
         return super.authenticationManagerBean();
     }
 
-    @Bean
+    /*@Bean
     CorsConfigurationSource corsConfigurationSource() {
        org.springframework.web.cors.CorsConfiguration configuration = new org.springframework.web.cors.CorsConfiguration().applyPermitDefaultValues();
         configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }
+    }*/
+
 }
