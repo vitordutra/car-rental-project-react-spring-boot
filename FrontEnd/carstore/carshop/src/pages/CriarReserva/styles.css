@@ -1,0 +1,76 @@
+
+.flex-container-reserva{
+
+    /* display: flex; */
+    
+    margin: 50px;
+    padding: 20px;
+    
+
+}
+.flex-container-reserva1{
+
+    display: flex;
+    background-color: #F1C481;
+    border-radius:10px;
+    margin: 50px;
+    margin-bottom: 10px;
+    padding: 20px;
+    
+
+}
+
+.reserva-titulo-carro{
+    text-align: center;
+    font-size: 30pt;
+}
+
+.detalhes-reserva-1{
+    margin-left: 10px;
+    
+}
+.flex-container-reserva2{
+    display: flex;
+    background-color: #F1C481;
+    border-radius:10px;
+    
+    margin: 50px;
+    margin-top: 20px;
+    
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.bloco-detalhes-reserva{
+    list-style-type: none;
+    border: 1px #666;
+    border-radius:10px;
+    margin:20px;
+    
+    background-color: rgb(233, 230, 230);
+    box-shadow: 5px 5px 5px #D3D3D3 ;
+    
+    
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 20px;
+    
+    
+    
+    
+}
+
+.button-reserva{
+    background: #F6A52A;
+    border: none;
+    color: #935a04;
+    padding: 10px 5px;
+    text-align:center;
+    font-size:14px;
+    border-radius:10px;
+    box-shadow:3px 3px 3px rgb(203, 201, 201);
+    width:120px;
+    margin-top: 10px;
+    margin-left: 40%;
+    margin-bottom: 20px;
+}

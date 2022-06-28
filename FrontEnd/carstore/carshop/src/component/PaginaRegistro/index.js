@@ -12,14 +12,24 @@ const PaginaRegistro = ({ onSubmit }) => {
   const handleSubmit = async (values, { setSubmitting }) => {
     setTimeout(() => {
       console.log('====aqui');
-      api.post('/users', {
+      api.post('/api/v1/users', {
           nome: values.nome,
           sobrenome: values.sobrenome,
           email: values.email,
           senha: values.senha,
-          roles: [
+          funcao: 
             { "id": 1 }
-          ]
+          
+      }).then((response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Sucesso!',
+          text: 'Cadastro realizado com sucesso!',
+          html: '',
+          confirmButtonColor: 'var(--primary-color)',
+          imageWidth: 100,
+          width: 350,
+        })
       }).catch((error) => {
         console.error(error);
         Swal.fire({
@@ -37,11 +47,11 @@ const PaginaRegistro = ({ onSubmit }) => {
     return (
         <>
 
-        <div class="container" >
-          <a class="links" id="paracadastro"></a>
-          <a class="links" id="paralogin"></a>
+        <div className="container" >
+          <a className="links" id="paracadastro"></a>
+          <a className="links" id="paralogin"></a>
           
-          <div class="content">      
+          <div className="content">      
           
             <div id="cadastro">
 
@@ -63,19 +73,19 @@ const PaginaRegistro = ({ onSubmit }) => {
               >
 
                 <Form className="acessForm">
-                  <h2>Crie sua conta</h2>
+                  <h2 className="acessForm-h2">Crie sua conta</h2>
 
-                  <p class="formField">
-                    <div class="fieldHalf">
-                      <label for="nome">Nome</label>
+                  <p className="formField">
+                    <div className="fieldHalf">
+                      <label className="fieldHalf-label" for="nome">Nome</label>
                       <Field className="field" name="nome" type="text" id="nome"/>
                       <div className="errorMessage">
                         <ErrorMessage  name="nome">{msg => msg ? msg : ""}</ErrorMessage>
                       </div>
                     </div>
 
-                    <div class="fieldHalf">
-                      <label for="sobrenome">Sobrenome</label>
+                    <div className="fieldHalf">
+                      <label className="fieldHalf-label"for="sobrenome">Sobrenome</label>
                       <Field className="field" name="sobrenome" type="text" id="sobrenome"/>
                       <div className="errorMessage">
                         <ErrorMessage  name="sobrenome">{msg => msg ? msg : ""}</ErrorMessage>
@@ -83,18 +93,18 @@ const PaginaRegistro = ({ onSubmit }) => {
                     </div>
                   </p>
 
-                  <div class="clear"></div>
+                  <div className="clear"></div>
                   
-                  <p class="formField"> 
-                    <label for="email">E-mail</label>
+                  <p className="formField"> 
+                    <label className="fieldHalf-label" for="email">E-mail</label>
                     <Field className="field" name="email" type="text" id="email"/>
                     <div className="errorMessage">
                       <ErrorMessage  name="email">{msg => msg ? msg : ""}</ErrorMessage>
                     </div>
                   </p>
                   
-                  <p class="formField">
-                    <label htmlFor="senha">Senha</label>
+                  <p className="formField">
+                    <label className="fieldHalf-label" htmlFor="senha">Senha</label>
                     <Field className="field" name="senha" type="password" id="senha"/>  
                     <div className="errorMessage">
                         <ErrorMessage name="senha">{msg => msg ? msg : ""}</ErrorMessage>
@@ -103,7 +113,7 @@ const PaginaRegistro = ({ onSubmit }) => {
                   
                   <button className="buttonForm" type="submit">Registrar</button>
                   
-                  <p class="link">  
+                  <p className="link">  
                     Já tem conta?
                     <a href="/login"> Ir para Login </a>
                     

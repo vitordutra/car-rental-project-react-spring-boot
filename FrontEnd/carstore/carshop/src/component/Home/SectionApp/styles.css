@@ -13,13 +13,13 @@
         
     }
 }
-/* @media only screen and (max-width:540px){
+@media only screen and (max-width:465px){
     .sectionApp-content{
         flex-direction: column;
-        height: 550px;
+        height: 300px;
         
     }
-} */
+}
 
 .sectionApp-content-img img{
     display: flex;
@@ -45,9 +45,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-bottom: 1px;
-        margin: 20px 220px;
+        margin: 20px 150px;
         width: 200px;     
+    }
+}
+
+@media only screen and (max-width:470px){
+    .sectionApp-content-img {
+        display: none;
+        visibility: hidden;     
     }
 }
 
@@ -61,16 +67,15 @@
     margin: 80px;
     padding: 10px;
     height: 200px;
-    width: 800px;
+  
     
 }
 
 @media only screen and (max-width:540px){
     .sectionApp-content-h2-p-icons{
-     flex-direction: column;
+        flex-direction: column;
         justify-content: center;
-        align-items: center; 
-        width: 450px;
+        align-items: center;    
         margin: 5px;
         
     }
@@ -88,7 +93,7 @@
         align-items: flex-end;
         text-align: center;
         padding-right: 5px;
-        font-size: 20px;
+        font-size: 15px;
         font-weight: bold;
         
     }
@@ -100,14 +105,15 @@
     padding: 5px;  
 }
 
-/* @media only screen and (max-width:700px){
+ @media only screen and (max-width:470px){
     .sectionApp-content-icons{
         display: flex;
-        flex-direction: row;
-        height: 45px;
-       background: blue;
+        flex-direction: column;
+        height: 35px;
+      
+      
     }
-} */
+} 
 
 
 
@@ -116,11 +122,15 @@
     width: 160px;
     height: 45px;
    padding-right: 10px;
-  
+  }
+  @media only screen and (max-width:470px){
+    .sectionApp-content-google{
+     
+      
+    }
+} 
 
-    
-    
-}
+
 .sectionApp-content-AppStore{
     padding-right: 10px;
     width: 160px;
@@ -128,6 +138,15 @@
    
    
 }
+@media only screen and (max-width:470px){
+    .sectionApp-content-AppStore{
+        display: flex;
+        flex-direction: column;
+        height: 35px;
+      
+      
+    }
+} 
 
 @media only screen and (max-width:1000px){
     .sectionApp-content-p{

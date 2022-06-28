@@ -3,7 +3,7 @@ import './styles.css';
 
 const bannerHome = () => {
   return (
-      <body>    
+      
         <div className="wrapper">
           <main id="about">
               <section className="module parallax parallax-1" id="home">
@@ -11,7 +11,7 @@ const bannerHome = () => {
               </section>          
           </main>
         </div>   
-      </body> 
+      
      
               
     );
