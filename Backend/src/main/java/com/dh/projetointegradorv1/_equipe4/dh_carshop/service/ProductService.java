@@ -76,15 +76,6 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    /*public List<ProductDto> findProductByDates(String dataInicio, String dataFim) {
-        List<ProductDto> listDto = new ArrayList<>();
-        List<Product> list = productRepository.findByDatas(dataInicio, dataFim);
-        for(Product prod : list) {
-            ProductDto dto = new ProductDto(prod);
-            listDto.add(dto);
-        }
-        return listDto;
-    }*/
     public List<ProductDto> findProductByDates(String dataInicio, String dataTermino) {
         OffsetDateTime inicio = OffsetDateTime.parse(dataInicio + "T00:00:00-03:00");
         OffsetDateTime termino = OffsetDateTime.parse(dataTermino + "T00:00:00-03:00");
@@ -103,28 +94,40 @@ public class ProductService {
                     termino.isEqual(fimReserva) ||
                     (inicio.isAfter(inicioReserva) && inicio.isBefore(fimReserva)) ||
                     (termino.isAfter(inicioReserva) && termino.isBefore(fimReserva))
-                    /*!(inicio.isBefore(inicioReserva) && termino.isBefore(inicioReserva)) &&
-                    !(inicio.isAfter(fimReserva) && termino.isAfter(fimReserva))*/
                 ) {
                     disp = 0;
                 }
             }
-            /*Integer idProd = prod.getId();
-            Integer disp = null;
-            for(Booking book : listBooking) {
-                OffsetDateTime inicioReserva = book.getInicioReserva();
-                OffsetDateTime fimReserva = book.getFimReserva();
-                if(idProd != book.getProduto().getId()) {
-                    disp = 1;
-                } else if(
-                        (inicio.isBefore(inicioReserva) && termino.isBefore(inicioReserva)) ||
-                        (inicio.isAfter(fimReserva) && termino.isAfter(fimReserva))
+            if(disp == 1) {
+                listProductDto.add(prodDto);
+            }
+        }
+        return listProductDto;
+    }
+
+    @Transactional(readOnly = true)
+    public List<ProductDto> findProductByCityAndDates(Integer cityId, String dataInicio, String dataTermino) {
+        OffsetDateTime inicio = OffsetDateTime.parse(dataInicio + "T00:00:00-03:00");
+        OffsetDateTime termino = OffsetDateTime.parse(dataTermino + "T00:00:00-03:00");
+        List<ProductDto> listProductDto = new ArrayList<>();
+        List<Product> listProduct = productRepository.findByCidade(cityId);
+        for(Product prod : listProduct) {
+            ProductDto prodDto = new ProductDto(prod, prod.getCaracteristicas(),
+                    prod.getImagens(), prod.getCategorias(), prod.getCidade(), prod.getReservas());
+            Integer disp = 1;
+            List<BookingDto> listBooking = prodDto.getReservas();
+            for(BookingDto bookDto : listBooking) {
+                OffsetDateTime inicioReserva = bookDto.getInicioReserva();
+                OffsetDateTime fimReserva = bookDto.getFimReserva();
+                if(
+                    inicio.isEqual(inicioReserva) ||
+                    termino.isEqual(fimReserva) ||
+                    (inicio.isAfter(inicioReserva) && inicio.isBefore(fimReserva)) ||
+                    (termino.isAfter(inicioReserva) && termino.isBefore(fimReserva))
                 ) {
-                    disp = 1;
-                } else {
                     disp = 0;
                 }
-            }*/
+            }
             if(disp == 1) {
                 listProductDto.add(prodDto);
             }
