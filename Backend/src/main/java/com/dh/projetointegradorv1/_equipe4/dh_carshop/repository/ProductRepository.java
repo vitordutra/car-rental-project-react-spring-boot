@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query(value = "SELECT * FROM products p WHERE p.id_cidade = ?1", nativeQuery = true)
-    List<Product> findByCidade(Integer id);
+    List<Product> findByCidade(Integer cityId);
 
     /*@Query(value = "SELECT * FROM products p " +
             "INNER JOIN bookings b ON ((p.id <> b.id_produto) OR (p.id = b.id_produto " +

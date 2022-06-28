@@ -42,9 +42,9 @@ public class ProductController {
         });*/
     }
 
-    @GetMapping("/city/{id}")
-    public ResponseEntity<List<ProductDto>> findProductByCity(@PathVariable(value = "id") Integer id) {
-        return ResponseEntity.ok(productService.findProductByCity(id));
+    @GetMapping(params = "cityId")
+    public ResponseEntity<List<ProductDto>> findProductByCity(@RequestParam Integer cityId) {
+        return ResponseEntity.ok(productService.findProductByCity(cityId));
     }
 
     @GetMapping(params = {"dataInicio", "dataTermino"})

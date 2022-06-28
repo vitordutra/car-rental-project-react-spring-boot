@@ -50,7 +50,8 @@ public class ProductService {
         List<ProductDto> listDto = new ArrayList<>();
         List<Product> list = productRepository.findAll();
         for(Product prod : list) {
-            ProductDto dto = new ProductDto(prod);
+            ProductDto dto = new ProductDto(prod, prod.getCaracteristicas(),
+                    prod.getImagens(), prod.getCategorias(), prod.getCidade(), prod.getReservas());
             listDto.add(dto);
         }
         return listDto;
@@ -65,11 +66,12 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public List<ProductDto> findProductByCity(Integer id) {
+    public List<ProductDto> findProductByCity(Integer cityId) {
         List<ProductDto> listDto = new ArrayList<>();
-        List<Product> list = productRepository.findByCidade(id);
+        List<Product> list = productRepository.findByCidade(cityId);
         for(Product prod : list) {
-            ProductDto dto = new ProductDto(prod);
+            ProductDto dto = new ProductDto(prod, prod.getCaracteristicas(),
+                    prod.getImagens(), prod.getCategorias(), prod.getCidade(), prod.getReservas());
             listDto.add(dto);
         }
         return listDto;
