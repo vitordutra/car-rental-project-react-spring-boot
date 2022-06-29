@@ -29,6 +29,8 @@ public class Product implements Serializable{
     private String nome;
     @Column(length = 300, nullable = false)
     private String descricao;
+    @Column(nullable = false)
+    private Integer valorDiaria;
     @ManyToMany
     @JoinTable(
             name = "features_products",

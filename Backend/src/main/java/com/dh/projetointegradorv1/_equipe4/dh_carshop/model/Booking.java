@@ -24,6 +24,8 @@ public class Booking implements Serializable {
     private OffsetDateTime inicioReserva;
     @Column(nullable = false)
     private OffsetDateTime fimReserva;
+    @Column(nullable = false)
+    private Integer valorReserva;
     @ManyToOne
     @JoinColumn(name = "id_produto")
     private Product produto;

@@ -185,6 +185,7 @@ public class ProductService {
     public void copyToEntity(ProductDto dto, Product entity) {
         entity.setNome(dto.getNome());
         entity.setDescricao(dto.getDescricao());
+        entity.setValorDiaria(dto.getValorDiaria());
         entity.getCaracteristicas().clear();
         for(FeatureDto featDto : dto.getCaracteristicas()) {
             Optional<Feature> obj = featureRepository.findById(featDto.getId());

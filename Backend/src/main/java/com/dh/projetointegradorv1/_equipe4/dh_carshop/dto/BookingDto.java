@@ -18,6 +18,7 @@ public class BookingDto implements Serializable {
     private Integer id;
     private OffsetDateTime inicioReserva;
     private OffsetDateTime fimReserva;
+    private Integer valorReserva;
     private ProductDto produto;
     private CityDto cidade;
     private UserDto usuario;
@@ -39,6 +40,7 @@ public class BookingDto implements Serializable {
         this.produto = new ProductDto(produto);
         this.cidade = new CityDto(cidade);
         this.usuario = new UserDto(usuario);
+        this.valorReserva = this.produto.getValorDiaria() * OffsetDateTime.timeLineOrder().compare(this.fimReserva, this.inicioReserva);
     }
 
 }

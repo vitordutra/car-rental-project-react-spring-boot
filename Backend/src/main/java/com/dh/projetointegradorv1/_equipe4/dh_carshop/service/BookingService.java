@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -65,6 +66,7 @@ public class BookingService {
         Optional<Product> objProd = productRepository.findById(dto.getProduto().getId());
         Product product = objProd.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
         entity.setProduto(product);
+        entity.setValorReserva(product.getValorDiaria() * OffsetDateTime.timeLineOrder().compare(dto.getFimReserva(), dto.getInicioReserva()));
         Optional<City> objCity = cityRepository.findById(dto.getCidade().getId());
         City city = objCity.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
         entity.setCidade(city);
