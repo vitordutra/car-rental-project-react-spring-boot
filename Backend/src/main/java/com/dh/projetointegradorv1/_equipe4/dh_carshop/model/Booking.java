@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 @Entity
@@ -21,9 +22,9 @@ public class Booking implements Serializable {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
-    private OffsetDateTime inicioReserva;
+    private LocalDate inicioReserva;
     @Column(nullable = false)
-    private OffsetDateTime fimReserva;
+    private LocalDate fimReserva;
     @Column(nullable = false)
     private Integer valorReserva;
     @ManyToOne

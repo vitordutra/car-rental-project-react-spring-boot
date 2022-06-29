@@ -9,30 +9,32 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Getter @Setter @NoArgsConstructor
 public class BookingDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
-    private OffsetDateTime inicioReserva;
-    private OffsetDateTime fimReserva;
+    private String inicioReserva;
+    private String fimReserva;
     private Integer valorReserva;
     private ProductDto produto;
     private CityDto cidade;
     private UserDto usuario;
 
-    public BookingDto(Integer id, OffsetDateTime inicioReserva, OffsetDateTime fimReserva) {
+    public BookingDto(Integer id, LocalDate inicioReserva, LocalDate fimReserva) {
         this.id = id;
-        this.inicioReserva = inicioReserva;
-        this.fimReserva = fimReserva;
+        this.inicioReserva = inicioReserva.format(DateTimeFormatter.ISO_DATE);
+        this.fimReserva = fimReserva.format(DateTimeFormatter.ISO_DATE);
     }
 
     public BookingDto(Booking entity) {
         id = entity.getId();
-        inicioReserva = entity.getInicioReserva();
-        fimReserva = entity.getFimReserva();
+        inicioReserva = entity.getInicioReserva().format(DateTimeFormatter.ISO_DATE);
+        fimReserva = entity.getFimReserva().format(DateTimeFormatter.ISO_DATE);
     }
 
     public BookingDto(Booking entity, Product produto, City cidade, User usuario) {
@@ -40,7 +42,9 @@ public class BookingDto implements Serializable {
         this.produto = new ProductDto(produto);
         this.cidade = new CityDto(cidade);
         this.usuario = new UserDto(usuario);
-        this.valorReserva = this.produto.getValorDiaria() * OffsetDateTime.timeLineOrder().compare(this.fimReserva, this.inicioReserva);
+        this.valorReserva = this.produto.getValorDiaria() * ChronoLocalDate.timeLineOrder()
+                .compare(LocalDate.parse(this.getFimReserva(), DateTimeFormatter.ISO_DATE),
+                        LocalDate.parse(this.getInicioReserva(), DateTimeFormatter.ISO_DATE));
     }
 
 }
