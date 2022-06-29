@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/products")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProductController {
     @Autowired
     ProductService productService;
@@ -42,9 +43,19 @@ public class ProductController {
         });*/
     }
 
-    @GetMapping("/city/{id}")
-    public ResponseEntity<List<ProductDto>> findProductByCity(@PathVariable(value = "id") Integer id) {
-        return ResponseEntity.ok(productService.findProductByCity(id));
+    @GetMapping(params = "cityId")
+    public ResponseEntity<List<ProductDto>> findProductByCity(@RequestParam Integer cityId) {
+        return ResponseEntity.ok(productService.findProductByCity(cityId));
+    }
+
+    @GetMapping(params = {"dataInicio", "dataTermino"})
+    public ResponseEntity<List<ProductDto>> findProductByDates(@RequestParam String dataInicio, @RequestParam String dataTermino) {
+        return ResponseEntity.ok(productService.findProductByDates(dataInicio, dataTermino));
+    }
+
+    @GetMapping(params = {"cityId", "dataInicio", "dataTermino"})
+    public ResponseEntity<List<ProductDto>> findProductByCityAndDates(@RequestParam Integer cityId, @RequestParam String dataInicio, @RequestParam String dataTermino) {
+        return ResponseEntity.ok(productService.findProductByCityAndDates(cityId, dataInicio, dataTermino));
     }
 
     @GetMapping("/category/{id}")

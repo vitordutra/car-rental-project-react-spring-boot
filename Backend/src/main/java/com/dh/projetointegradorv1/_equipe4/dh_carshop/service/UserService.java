@@ -118,6 +118,10 @@ public class UserService {
             Booking booking = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getReservas().add(booking);
         }
+        System.out.println("====dto.getFuncao()");
+        System.out.println(dto.getFuncao());
+        System.out.println("====dto.getFuncao().getId()");
+        System.out.println(dto.getFuncao().getId());
         Optional<Role> obj = roleRepository.findById(dto.getFuncao().getId());
         Role role = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
         entity.setFuncao(role);

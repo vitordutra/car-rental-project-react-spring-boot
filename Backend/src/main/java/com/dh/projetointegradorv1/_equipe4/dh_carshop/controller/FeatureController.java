@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/features")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FeatureController {
     @Autowired
     FeatureService featureService;

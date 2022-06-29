@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/cities")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CityController {
 
     @Autowired

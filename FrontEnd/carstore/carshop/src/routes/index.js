@@ -54,7 +54,13 @@ const Paginas = () => {
                     />
                     <Route path="/Sucesso" element={<ReservaSucedida />} />
                     <Route path="/novo-produto" element={<ConfirmationNewProduct/>} />
-                    <Route path="/Reserva/:idProduto" element={<CriarReserva />} />
+
+                    <Route path="/Reserva/:idProduto" element={
+                    <Private>
+                        <CriarReserva />
+                    </Private>
+                    } />
+                    
                     <Route path="/Produtos/:cidade/:startDate/:endDate" element={<ProductsCategory />} />
                     <Route path="/Produtos/:cidade/" element={<ProductsCategory />} />
                     <Route path="/detalhes/:id" element={<Details />} />
