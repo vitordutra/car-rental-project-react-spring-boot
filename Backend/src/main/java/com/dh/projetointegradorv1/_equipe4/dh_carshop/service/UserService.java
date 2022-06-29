@@ -70,6 +70,10 @@ public class UserService {
         return new UserDto(entity, entity.getFuncao(), entity.getReservas());
     }
 
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
     @Transactional
     public UserDto updateUserById(Integer id, UserDto dto) {
         try {
