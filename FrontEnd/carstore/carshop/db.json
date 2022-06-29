@@ -70,23 +70,23 @@
     }
   ],
   "productDetails": [
-    { 
-      "id":1,
+    {
+      "id": 1,
       "icon_url": "https://cdn-icons-png.flaticon.com/512/31/31307.png?w=826&t=st=1654304021~exp=1654304621~hmac=72bd496f697f42d72f73f597857f5d4f86dc73889966ea50dcbca3d64ceefe4e",
       "characteristic": "ABS"
     },
     {
-      "id":2,
+      "id": 2,
       "icon_url": "https://as1.ftcdn.net/v2/jpg/02/85/01/80/1000_F_285018011_A15VFduXXd6MLgK1l1YOuOfYWgCBhBai.jpg",
       "characteristic": "Air bag"
     },
     {
-      "id":3,
+      "id": 3,
       "icon_url": "https://as1.ftcdn.net/v2/jpg/02/90/61/78/1000_F_290617871_Dx0fGopLnJ0uvdIAwWP7oSL1qq1gzkd2.jpg",
       "characteristic": "Ar-condicionado"
     },
     {
-      "id":4,
+      "id": 4,
       "icon_url": "https://as2.ftcdn.net/v2/jpg/02/85/01/79/1000_F_285017954_pLWKH1inDn174aiQDuLEZ6OksefUrcNX.jpg",
       "characteristic": "elétrico"
     }
@@ -100,8 +100,18 @@
       "categoryId": 1,
       "qualificacao": "Econômico",
       "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband.",
-      "valor_diaria": 100.0,
-      "caracteristicas": [{ "id": 1 }, { "id": 2 }, { "id": 3 }],
+      "valor_diaria": 100,
+      "caracteristicas": [
+        {
+          "id": 1
+        },
+        {
+          "id": 2
+        },
+        {
+          "id": 3
+        }
+      ],
       "datas_ocupadas": [
         {
           "data": "2022-06-25"
@@ -125,8 +135,15 @@
       "categoryId": 1,
       "qualificacao": "SUV",
       "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband.",
-      "valor_diaria": 100.0,
-      "caracteristicas": [{ "id": 1 }, { "id": 3 }],
+      "valor_diaria": 100,
+      "caracteristicas": [
+        {
+          "id": 1
+        },
+        {
+          "id": 3
+        }
+      ],
       "datas_ocupadas": [
         {
           "data": "2022-06-2022-06-26"
@@ -147,8 +164,15 @@
       "categoryId": 2,
       "qualificacao": "Econômico Sedan",
       "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband.",
-      "caracteristicas": [{ "id": 2 }, { "id": 3 }],
-      "valor_diaria": 150.0,
+      "caracteristicas": [
+        {
+          "id": 2
+        },
+        {
+          "id": 3
+        }
+      ],
+      "valor_diaria": 150,
       "datas_ocupadas": [
         {
           "data": "2022-06-25"
@@ -169,8 +193,12 @@
       "categoryId": 3,
       "qualificacao": "Econômico",
       "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband.",
-      "caracteristicas": [{ "id": 1 }],
-      "valor_diaria": 100.0,
+      "caracteristicas": [
+        {
+          "id": 1
+        }
+      ],
+      "valor_diaria": 100,
       "datas_ocupadas": [
         {
           "data": "2022-06-25"
@@ -181,7 +209,11 @@
         {
           "data": "2022-06-27"
         }
-      ]
+      ],
+      "Title": "carro editado",
+      "Category": "economico editado",
+      "Qualificacao": "es muy bonito editado",
+      "Descricao": "compre mais editado"
     },
     {
       "id": 5,
@@ -191,8 +223,12 @@
       "categoryId": 3,
       "qualificacao": "Compacto",
       "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband.",
-      "caracteristicas": [{ "id": 1 }],
-      "valor_diaria": 100.0,
+      "caracteristicas": [
+        {
+          "id": 1
+        }
+      ],
+      "valor_diaria": 100,
       "datas_ocupadas": [
         {
           "data": "2022-06-25"
@@ -213,8 +249,12 @@
       "categoryId": 3,
       "qualificacao": "Sedan Compacto",
       "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband.",
-      "caracteristicas": [{ "id": 1 }],
-      "valor_diaria": 200.0,
+      "caracteristicas": [
+        {
+          "id": 1
+        }
+      ],
+      "valor_diaria": 200,
       "datas_ocupadas": [
         {
           "data": "2022-06-25"
@@ -235,8 +275,12 @@
       "categoryId": 3,
       "qualificacao": "Sedan Automático",
       "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband.",
-      "caracteristicas": [{ "id": 1 }],
-      "valor_diaria": 200.0,
+      "caracteristicas": [
+        {
+          "id": 1
+        }
+      ],
+      "valor_diaria": 200,
       "datas_ocupadas": [
         {
           "data": "2022-06-25"
@@ -257,8 +301,12 @@
       "categoryId": 3,
       "qualificacao": "Sedan Automático",
       "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband.",
-      "caracteristicas": [{ "id": 1 }],
-      "valor_diaria": 200.0,
+      "caracteristicas": [
+        {
+          "id": 1
+        }
+      ],
+      "valor_diaria": 200,
       "datas_ocupadas": [
         {
           "data": "2022-06-25"
@@ -279,8 +327,12 @@
       "categoryId": 3,
       "qualificacao": "Sedan Automático",
       "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband.",
-      "caracteristicas": [{ "id": 1 }],
-      "valor_diaria": 200.0,
+      "caracteristicas": [
+        {
+          "id": 1
+        }
+      ],
+      "valor_diaria": 200,
       "datas_ocupadas": [
         {
           "data": "2022-06-25"
@@ -301,8 +353,12 @@
       "categoryId": 3,
       "qualificacao": "SUV Automático",
       "descricao": "Cat ipsum dolor sit amet, curl into a furry donut eat the fat cats food yet eat the rubberband.",
-      "caracteristicas": [{ "id": 1 }],
-      "valor_diaria": 200.0,
+      "caracteristicas": [
+        {
+          "id": 1
+        }
+      ],
+      "valor_diaria": 200,
       "datas_ocupadas": [
         {
           "data": "2022-06-25"
@@ -314,6 +370,15 @@
           "data": "2022-06-27"
         }
       ]
+    },
+    {
+      "id": 11,
+      "title": "carro criado e editado",
+      "Category": "categorui criada",
+      "qualificacao": "qualiui criada e ditado",
+      "descricao": "des criada",
+      "valor_diaria": "100",
+      "url_imagem": ""
     }
   ],
   "users": [

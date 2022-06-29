@@ -11,13 +11,10 @@ import Error from '../component/Error';
 import Products from '../pages/Products';
 import Details from '../pages/Details';
 import ProductsCategory from '../pages/ProductsCategory';
-<<<<<<< HEAD
 import NewProduct from '../pages/NewProduct';
-=======
 import ReservaSucedida from '../pages/ReservaBemSucedida';
 import ConfirmationNewProduct from '../pages/ConfirmationNewProduct';
 import CriarReserva from '../pages/CriarReserva';
->>>>>>> a86fd7daa947a75a5012f8bbb917937a1f8a2dc1
 
 
 
@@ -62,7 +59,9 @@ const Paginas = () => {
                     <Route path="/Produtos/:cidade/" element={<ProductsCategory />} />
                     <Route path="/detalhes/:id" element={<Details />} />
                     <Route path="/categorias/:id" element={<ProductsCategory />} />
-                    <Route path="/novo-produto" element={< NewProduct/> }/>                   
+                 
+                        <Route path="/criar-produto" element={< NewProduct />} />
+                    
                     <Route path="*" element={<Error />} />
 
                 </Routes>
