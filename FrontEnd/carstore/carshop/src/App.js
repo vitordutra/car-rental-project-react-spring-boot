@@ -1,5 +1,5 @@
 import Paginas from './routes';
-import { Admin, Resource } from "react-admin";
+import { Admin, Resource, CustomRoutes } from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
 import {ProductList, ProductCreate, ProductEdit } from "../src/component/ProductsCrud";
 
@@ -15,10 +15,8 @@ const App = () => {
     <>
       
       <Paginas />
+       
       
-          <Admin dataProvider={dataProvider}>
-        <Resource name="products" edit={ProductEdit } list={ ProductList} create={ProductCreate} />     
-          </Admin>
        
     </>        
                 

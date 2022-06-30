@@ -39,23 +39,24 @@ export default function ProductsCategory() {
     console.log(params)
     console.log("before")
     if (!(cidade === "") & !(startDate === undefined)) {
-      console.log("1+2")
+      //console.log("1+2")
       callApiProductsDateCity(cidade,startDate,endDate);
       
 
     } else{
-      if (!(cidade === "")){
-        console.log("1")
+      if (!(cidade === undefined)) {
+      
+        //console.log("1")
         callApiProductsCity(cidade);
         
       }else{
         if (!(startDate === undefined)){
-          console.log("2")
+          //console.log("2")
           callApiProductsDate(startDate,endDate);
         
 
         }else{
-          console.log("0")
+          //console.log("0")
           callApiProducts();
           
         }
@@ -88,7 +89,8 @@ export default function ProductsCategory() {
     try {
       //const URL = "categories"
     
-      const URL = `products?categoryId=${categoryId}`
+      //const URL = `products?categoryId=${categoryId}`
+      const URL = `/category/${categoryId}`;
       const response = await api.get(URL);
       setProducts(response.data);
     }
@@ -117,7 +119,7 @@ export default function ProductsCategory() {
     try {
       //const URL = "categories"
     
-      const URL = `products`
+      const URL = `/api/v1/products`
       const response = await api.get(URL);
       setProducts(response.data);
     }

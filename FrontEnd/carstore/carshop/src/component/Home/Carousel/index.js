@@ -17,8 +17,8 @@ callApi();
 
 async function callApi() {
   try {
-    const response = await api.get("/categories");
-    
+    //const response = await api.get("/categories");
+    const response = await api.get("/api/v1/categories");
 
     var dataBatchs = [];
     const data = response.data;
@@ -33,9 +33,9 @@ async function callApi() {
 
     dataBatchs[Math.floor(i / maxItemsPage)].push({
     id: data[i]['id'],
-    qualificacao: data[i]['qualificacao'],
+    qualificacao: data[i]['titulo'],
     descricao: data[i]['descricao'],
-    url_imagem: data[i]['url_imagem']
+    url_imagem: data[i]['imagem']
     }); 
   }
 
