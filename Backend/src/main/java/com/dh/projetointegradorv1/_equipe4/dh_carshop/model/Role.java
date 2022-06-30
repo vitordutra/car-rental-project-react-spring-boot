@@ -24,7 +24,7 @@ public class Role implements Serializable {
     private Integer id;
     @Column(length = 50, nullable = false)
     private String nome;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "funcao")
+    @OneToMany(fetch = FetchType.EAGER)
     Set<User> usuarios = new HashSet<>();
 
     // Timestamps Automáticos
