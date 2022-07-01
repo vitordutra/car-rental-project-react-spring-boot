@@ -14,4 +14,12 @@ const api = axios.create({
 
 });
 
+const signed = JSON.parse(localStorage.getItem('signed'));
+
+if (signed) {
+  const tokenJwt = signed.token.jwt;
+  
+  api.defaults.headers.common["Authorization"] = `Bearer ${tokenJwt}`;
+}
+
 export default api;
