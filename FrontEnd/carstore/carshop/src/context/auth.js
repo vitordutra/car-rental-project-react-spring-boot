@@ -35,22 +35,25 @@ export const AuthProvider = ({ children }) => {
             const userToken = responseJwt.data;
             console.log('userToken', userToken);
 
-            api.get(`/users/email/${email}`)
+            api.defaults.headers.common["Authorization"] = `Bearer ${userToken.jwt}`;
+
+            api.get(`/api/v1/users/email/${email}`)
             .then((responseUser) => {
             console.log('responseUser', responseUser);
               const loggedUser = {
                 id: responseUser.data.id,
-                name: responseUser.data.name,
-                lastName: responseUser.data.lastName,
+                nome: responseUser.data.nome,
+                sobrenome: responseUser.data.sobrenome,
                 email: responseUser.data.email,
-                role: responseUser.data.roles[0]?.name,
+                funcao: responseUser.data.funcao.nome,
                 token: userToken
               };
 
               localStorage.setItem('signed', JSON.stringify(loggedUser));
               setUser(loggedUser);
+            
+              navigate("/Produtos");
             })
-            navigate("/userpanel");
         })
         .catch((error) => {
             console.error('error', error);
@@ -67,8 +70,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        console.log("logout");
-        localStorage.removeItem("user");
+        localStorage.removeItem("signed");
         setUser(null);
         navigate("/");
     };
