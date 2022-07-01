@@ -48,7 +48,7 @@ public class User implements Serializable {
     @JsonIgnoreProperties("roles")
     private Role funcao;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    @OneToMany(fetch = FetchType.EAGER)
     Set<Booking> reservas = new HashSet<>();
 
 //    @PrePersist
