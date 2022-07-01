@@ -13,8 +13,8 @@ export default function CategoryItem({ prmCategory }) {
         <ul className="categoryItemUl">
                 <li className="categoryItemLi">
                     <Link className="categoryItemLink" to={`/categorias/${prmCategory.id}`}>
-                        <img className="categoryItemImg"  src={prmCategory.url_imagem} />
-                        <h3 className="categoryItemH3">{prmCategory.qualificacao}</h3>
+                        <img className="categoryItemImg"  src={prmCategory.imagem} />
+                        <h3 className="categoryItemH3">{prmCategory.titulo}</h3>
                         <p className="categoryItemP" >{prmCategory.descricao}</p>                   
                     </Link>
                 </li>

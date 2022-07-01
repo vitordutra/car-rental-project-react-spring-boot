@@ -51,8 +51,8 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
     async function callProductDetailsApi(id) {
         try {
           const response = await api.get(`/productDetails`);
-          console.log("productDetails Data")
-          console.log(response.data)
+          //console.log("productDetails Data")
+          //console.log(response.data)
           const productDetails = response.data;
           setListaParaMostrar(filterDetails(productDetails));
         }
