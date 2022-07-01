@@ -37,8 +37,9 @@ public class WebSecurityConfig<MyUserDetailsService, JwtRequestFilter> extends W
     protected void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().disable();
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/v1/users/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/v1/bookings/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/users/**").permitAll() // nao pode exigir jwt
+                .antMatchers(HttpMethod.GET, "/api/v1/users/email/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/bookings/**").permitAll() // deve exigir jwt
                 .antMatchers(HttpMethod.GET,"/api/v1/categories/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/cities/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/v1/features/**").permitAll()
@@ -46,7 +47,7 @@ public class WebSecurityConfig<MyUserDetailsService, JwtRequestFilter> extends W
                 .antMatchers(HttpMethod.POST,"/api/v1/products/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/api/v1/product/**").permitAll()
                 .antMatchers("/api/v1/roles/**").permitAll()
-                .antMatchers("/authenticate/**").permitAll()
+                .antMatchers("/authenticate/**").permitAll() // nao pode exigir jwt
                 .anyRequest()
                 .authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

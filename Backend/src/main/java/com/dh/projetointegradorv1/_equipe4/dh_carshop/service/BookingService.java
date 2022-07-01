@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +49,7 @@ public class BookingService {
         List<BookingDto> listDto = new ArrayList<>();
         List<Booking> list = bookingRepository.findAll();
         for(Booking book : list) {
-            BookingDto dto = new BookingDto(book);
+            BookingDto dto = new BookingDto(book, book.getProduto(), book.getCidade(), book.getUsuario());
             listDto.add(dto);
         }
         return listDto;
@@ -59,12 +62,25 @@ public class BookingService {
         return new BookingDto(entity, entity.getProduto(), entity.getCidade(), entity.getUsuario());
     }
 
+    @Transactional(readOnly = true)
+    public List<BookingDto> findBookingByUser(Integer userId) {
+        List<BookingDto> listDto = new ArrayList<>();
+        List<Booking> list = bookingRepository.findByUser(userId);
+        for(Booking book : list) {
+            BookingDto dto = new BookingDto(book, book.getProduto(), book.getCidade(), book.getUsuario());
+            listDto.add(dto);
+        }
+        return listDto;
+    }
+
     public void copyToEntity(BookingDto dto, Booking entity) {
-        entity.setInicioReserva(dto.getInicioReserva());
-        entity.setFimReserva(dto.getFimReserva());
+        entity.setInicioReserva(LocalDate.parse(dto.getInicioReserva(), DateTimeFormatter.ISO_DATE));
+        entity.setFimReserva(LocalDate.parse(dto.getFimReserva(), DateTimeFormatter.ISO_DATE));
         Optional<Product> objProd = productRepository.findById(dto.getProduto().getId());
         Product product = objProd.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
         entity.setProduto(product);
+        entity.setValorReserva(product.getValorDiaria() * ChronoLocalDate.timeLineOrder().
+                compare(entity.getFimReserva(), entity.getInicioReserva()));
         Optional<City> objCity = cityRepository.findById(dto.getCidade().getId());
         City city = objCity.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
         entity.setCidade(city);

@@ -17,7 +17,8 @@ export default function ProdCategory({ prmProduct }) {
                     <h3 className="H3ProdQualification">{prmProduct.qualificacao }</h3>
                     <img className="ImgProdCategory" src={prmProduct.url_imagem} />
                     <h3 className="H3ProdCategory">{prmProduct.title}</h3>
-                    <p className="ParagProdCategory">{prmProduct.descricao}</p>                  
+                    <p className="ParagProdCategory">{prmProduct.descricao} <br /><b>Valor da diária: R${prmProduct.valor_diaria},00 </b></p>
+                    
                 </div>               
                 <button className="ButtonProductItem" onClick={()=> setIsModalVisible(true)}>
                    Mais Detalhes

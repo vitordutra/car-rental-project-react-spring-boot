@@ -17,22 +17,25 @@ public class ProductDto implements Serializable {
     private Integer id;
     private String nome;
     private String descricao;
+    private Integer valorDiaria;
     private List<FeatureDto> caracteristicas = new ArrayList<>();
     private List<ImageDto> imagens = new ArrayList<>();
     private List<CategoryDto> categorias = new ArrayList<>();
     private CityDto cidade;
     private List<BookingDto> reservas = new ArrayList<>();
 
-    public ProductDto(Integer id, String nome, String descricao) {
+    public ProductDto(Integer id, String nome, String descricao, Integer valorDiaria) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.valorDiaria = valorDiaria;
     }
 
     public ProductDto(Product entity) {
         id = entity.getId();
         nome = entity.getNome();
         descricao = entity.getDescricao();
+        valorDiaria = entity.getValorDiaria();
     }
 
     public ProductDto(Product entity, Set<Feature> caracteristicas, Set<Image> imagens,

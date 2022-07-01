@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://my-json-server.typicode.com/rows15/db-projetointegrador/",
+  //baseURL: "https://my-json-server.typicode.com/rows15/db-projetointegrador/",
   
-    //baseURL: "http://localhost:8080/",
+  baseURL: "http://localhost:8080/",
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -11,6 +11,15 @@ const api = axios.create({
     "Access-Control-Allow-Headers": "*",
     "Access-Control-Allow-Credentials": true
   }
+
 });
+
+const signed = JSON.parse(localStorage.getItem('signed'));
+
+if (signed) {
+  const tokenJwt = signed.token.jwt;
+  
+  api.defaults.headers.common["Authorization"] = `Bearer ${tokenJwt}`;
+}
 
 export default api;
