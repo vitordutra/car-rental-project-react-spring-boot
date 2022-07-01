@@ -36,16 +36,19 @@ public class ImageDto implements Serializable {
         url = entity.getUrl();
     }
 
-    public ImageDto(Image entity, Set<Product> produtos, Category categoria, Feature caracteristica) {
+    public ImageDto(Image entity, Set<Product> produtos) {
         this(entity);
         produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
-        this.categoria = new CategoryDto(categoria);
-        this.caracteristica = new FeatureDto(caracteristica);
     }
 
-    /*public ImageDto(Image entity, Set<Product> produtos) {
+    public ImageDto(Image entity, Category categoria) {
         this(entity);
-        produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
-    }*/
+        this.categoria = new CategoryDto(categoria);
+    }
+
+    public ImageDto(Image entity, Feature caracteristica) {
+        this(entity);
+        this.caracteristica = new FeatureDto(caracteristica);
+    }
 
 }
