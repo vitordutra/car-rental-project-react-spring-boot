@@ -9,13 +9,9 @@ const ButtonSair = () => {
         logout();
     };
     return (
-        
-   
-    <>
-          
+        <> 
             <button onClick={handlelogout}>Logout</button>
-    </>
-       
+        </>
     );  
 };
 

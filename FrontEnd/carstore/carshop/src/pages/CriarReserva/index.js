@@ -79,7 +79,7 @@ export default function CriarReserva() {
         
         const roberto = cidades.filter( e => e.id === botaOId )
         
-        return roberto[0].nome
+        return (roberto[0].nome)
       }catch{}}
 
 
@@ -96,17 +96,34 @@ export default function CriarReserva() {
           key: 'selection'
         }
       ])
-      //PEGAR ISSO DA API v
-        const data1 : Date = new Date(2022,6,27);
-        const data2 : Date = new Date(2022,6,28);
+      //filtrando as datas
+        const data1 : Date = new Date(2022,7,20);
+        const data2 : Date = new Date(2022,7,25);
         const disabledDatesList=[]
-        try {
-          console.log(produto.datas_ocupadas)
+        const diff = (data2-data1)/864e5;
+        console.log(diff)
+        const d1 = data1
+        
+        const dates = Array.from(
+          {length: diff+1},
+          (_,i) => {
+            const date = new Date(data1) 
+            date.setDate(d1.getDate()+i) 
+            disabledDatesList.push(date)
+            const weekday = date
+            return `${weekday}`
+          }
+        )
+        console.log(dates)
+          
+        
+        /* try {
+          
           produto.datas_ocupadas.map(e =>  disabledDatesList.push(new Date(new Date(e.data).getFullYear(),new Date(e.data).getMonth(),new Date(e.data).getDate()+1) ))
         } catch (error) {
           
-        }
-        console.log("CALENDARIO")
+        } */
+        
         
         /* console.log(produto.datas_ocupadas) */
         
@@ -160,10 +177,10 @@ export default function CriarReserva() {
        
             <div className="flex-container-reserva">
               <div className="bloco-titulo-reserva">
-                <h3>Nome do carro escolhido: {produto.title} / Categoria: {produto.qualificacao}</h3>
+                <h5>Nome do carro escolhido: {produto.title} / Categoria: {produto.qualificacao}</h5>
                 
               </div>
-              <h1>Confirme sua reserva:</h1>
+              <h2>Confirme sua reserva:</h2>
 
             <div className="bloco-detalhes-reserva">
                 <br />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, createContext } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import api from '../../services/api';
@@ -8,28 +8,51 @@ import { Link, useNavigate } from 'react-router-dom';
 import './styles.css';
 
 const PaginaRegistro = ({ onSubmit }) => {
+  const [user, setUser] = useState(null);
+
+  var funcao = { "id": 1 };
+
   const sleep = ms => new Promise(r => setTimeout(r, ms));
   const handleSubmit = async (values, { setSubmitting }) => {
     setTimeout(() => {
-      console.log('====aqui');
       api.post('/api/v1/users', {
           nome: values.nome,
           sobrenome: values.sobrenome,
           email: values.email,
           senha: values.senha,
-          funcao: 
-            { "id": 1 }
-          
-      }).then((response) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Sucesso!',
-          text: 'Cadastro realizado com sucesso!',
-          html: '',
-          confirmButtonColor: 'var(--primary-color)',
-          imageWidth: 100,
-          width: 350,
-        })
+          funcao: funcao
+      }).then((responseUser) => {
+        console.log('responseUser', responseUser);
+        api.post('/authenticate', {
+          email: values.email,
+          senha: values.senha,
+        }).then((responseJwt) => {
+          console.log('responseJwt', responseJwt);
+          const userToken = responseJwt.data;
+
+          const loggedUser = {
+            id: responseUser.data.id,
+            nome: responseUser.data.nome,
+            sobrenome: responseUser.data.sobrenome,
+            email: responseUser.data.email,
+            funcao: funcao,
+            token: userToken
+          };
+          console.log('loggedUser', loggedUser);
+
+          localStorage.setItem('signed', JSON.stringify(loggedUser));
+          setUser(loggedUser);
+
+          Swal.fire({
+            icon: 'success',
+            title: 'Sucesso!',
+            text: 'Cadastro realizado com sucesso!',
+            html: '',
+            confirmButtonColor: 'var(--primary-color)',
+            imageWidth: 100,
+            width: 350,
+          })
+        });
       }).catch((error) => {
         console.error(error);
         Swal.fire({

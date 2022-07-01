@@ -36,4 +36,9 @@ public class BookingController {
         return ResponseEntity.ok().body(dto);
     }
 
+    @GetMapping(params = "userId")
+    public ResponseEntity<List<BookingDto>> findProductByUser(@RequestParam Integer userId) {
+        return ResponseEntity.ok(bookingService.findBookingByUser(userId));
+    }
+
 }

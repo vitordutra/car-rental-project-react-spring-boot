@@ -13,6 +13,15 @@ const api = axios.create({
     "Access-Control-Expose-Headers": "Content-Range",
     "Access-Control-Expose-Headers": "X-Custom-Header",
   }
+
 });
+
+const signed = JSON.parse(localStorage.getItem('signed'));
+
+if (signed) {
+  const tokenJwt = signed.token.jwt;
+  
+  api.defaults.headers.common["Authorization"] = `Bearer ${tokenJwt}`;
+}
 
 export default api;
