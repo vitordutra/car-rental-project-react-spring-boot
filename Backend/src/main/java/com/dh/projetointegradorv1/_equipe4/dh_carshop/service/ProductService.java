@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -79,8 +79,8 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public List<ProductDto> findProductByDates(String dataInicio, String dataTermino) {
-        OffsetDateTime inicio = OffsetDateTime.parse(dataInicio + "T00:00:00-03:00");
-        OffsetDateTime termino = OffsetDateTime.parse(dataTermino + "T00:00:00-03:00");
+        LocalDate inicio = LocalDate.parse(dataInicio);
+        LocalDate termino = LocalDate.parse(dataTermino);
         List<ProductDto> listProductDto = new ArrayList<>();
         List<Product> listProduct = productRepository.findAll();
         for(Product prod : listProduct) {
@@ -89,8 +89,8 @@ public class ProductService {
             Integer disp = 1;
             List<BookingDto> listBooking = prodDto.getReservas();
             for(BookingDto bookDto : listBooking) {
-                OffsetDateTime inicioReserva = bookDto.getInicioReserva();
-                OffsetDateTime fimReserva = bookDto.getFimReserva();
+                LocalDate inicioReserva = LocalDate.parse(bookDto.getInicioReserva(), DateTimeFormatter.ISO_DATE);
+                LocalDate fimReserva = LocalDate.parse(bookDto.getFimReserva(), DateTimeFormatter.ISO_DATE);
                 if(
                     inicio.isEqual(inicioReserva) ||
                     termino.isEqual(fimReserva) ||
@@ -109,8 +109,8 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public List<ProductDto> findProductByCityAndDates(Integer cityId, String dataInicio, String dataTermino) {
-        OffsetDateTime inicio = OffsetDateTime.parse(dataInicio + "T00:00:00-03:00");
-        OffsetDateTime termino = OffsetDateTime.parse(dataTermino + "T00:00:00-03:00");
+        LocalDate inicio = LocalDate.parse(dataInicio);
+        LocalDate termino = LocalDate.parse(dataTermino);
         List<ProductDto> listProductDto = new ArrayList<>();
         List<Product> listProduct = productRepository.findByCidade(cityId);
         for(Product prod : listProduct) {
@@ -119,8 +119,8 @@ public class ProductService {
             Integer disp = 1;
             List<BookingDto> listBooking = prodDto.getReservas();
             for(BookingDto bookDto : listBooking) {
-                OffsetDateTime inicioReserva = bookDto.getInicioReserva();
-                OffsetDateTime fimReserva = bookDto.getFimReserva();
+                LocalDate inicioReserva = LocalDate.parse(bookDto.getInicioReserva(), DateTimeFormatter.ISO_DATE);
+                LocalDate fimReserva = LocalDate.parse(bookDto.getFimReserva(), DateTimeFormatter.ISO_DATE);
                 if(
                     inicio.isEqual(inicioReserva) ||
                     termino.isEqual(fimReserva) ||
@@ -185,6 +185,7 @@ public class ProductService {
     public void copyToEntity(ProductDto dto, Product entity) {
         entity.setNome(dto.getNome());
         entity.setDescricao(dto.getDescricao());
+        entity.setValorDiaria(dto.getValorDiaria());
         entity.getCaracteristicas().clear();
         for(FeatureDto featDto : dto.getCaracteristicas()) {
             Optional<Feature> obj = featureRepository.findById(featDto.getId());
