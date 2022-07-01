@@ -214,7 +214,7 @@ const BlocoPesquisa = ({handleFilter}) => {
 
                       })
                       .map((item)=>
-                      <div  key={item.id} className="dropdown-row" ><option onClick={item =>handleSelectCity(item.target.value,item.target.text)} value={item.id} >{item.nome}</option></div>
+                      <div  key={item.id} className="dropdown-row" ><option onClick={item =>handleSelectCity(item.target.value,item.target.text)} value={item.id} >{item.nome}, {item.estado}</option></div>
                       )}
                     </div>
                       </div>
