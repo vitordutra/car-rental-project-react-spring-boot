@@ -66,7 +66,7 @@ const Paginas = () => {
                     <Route path="/detalhes/:id" element={<Details />} />
                     <Route path="/categorias/:id" element={<ProductsCategory />} />
 
-                    <Route path="/administracao/*" element={<NewProduct />} />
+                    <Route path="/administracao/*" element={<NewProduct />} email = "administrador@gmail.com" />
 
                     <Route path="*" element={<Error />} />
 
