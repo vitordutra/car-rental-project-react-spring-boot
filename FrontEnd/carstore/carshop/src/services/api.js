@@ -10,8 +10,7 @@ const api = axios.create({
     "Access-Control-Allow-Method": "*",
     "Access-Control-Allow-Headers": "*",
     "Access-Control-Allow-Credentials": true,
-    "Access-Control-Expose-Headers": "Content-Range",
-    "Access-Control-Expose-Headers": "X-Custom-Header",
+    
   }
 
 });
