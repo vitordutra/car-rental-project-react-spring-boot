@@ -32,7 +32,7 @@ export default function Products({handleFilter}) {
 
   async function callCategoriesApi() {
     try {
-      const response = await api.get("/categories");
+      const response = await api.get("/api/v1/categories");
       setCategoria(response.data);
     }
     catch (error) { 
@@ -42,7 +42,7 @@ export default function Products({handleFilter}) {
 
   async function callCidadesApi() {
     try {
-      const response = await api.get("/cities");
+      const response = await api.get("/api/v1/cities");
       setCidade(response.data);
     }
     catch (error) { 
@@ -51,23 +51,27 @@ export default function Products({handleFilter}) {
   }
 
   
- async function callProductByCity(id) {
-  try {
-    const response = await api.get(`products?cityId=${id}`);
+  async function callProductByCity(id) {
+    console.log(id);
+    try {
+    const URL = `/api/v1/products/city/${id}`
+    const response = await api.get(URL);
+    console.log(response);
     handleFilter(response.data);
   }
   catch (error) { 
-
+    console.log(error);
   }
 }
 
   async function callApiProductsCategory(id) {
-
+    console.log(id)
     try {
       //const URL = "categories"
-      const URL = `products?categoryId=${id}`
+      const URL = `/api/v1/products/category/${id}`
       const response = await api.get(URL);
       handleFilter(response.data);
+      
     }
     catch (error) {
     }
@@ -106,7 +110,7 @@ export default function Products({handleFilter}) {
             <select className="select" name="categoria"  onChange={item => callApiProductsCategory(item.target.value)} >
               <option value="">Selecionar por categorias</option>
               {categoria.map((item) => (
-                <option key={item.id} value={item.id}>{item.qualificacao}</option>
+                <option key={item.id} value={item.id}>{item.titulo}</option>
                 
               ))}
             </select>

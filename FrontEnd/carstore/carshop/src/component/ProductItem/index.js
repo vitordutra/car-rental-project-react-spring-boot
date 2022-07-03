@@ -11,7 +11,7 @@ export default function ProductItem({ prmProduct }) {
             <li className="ProductItemLi" >
                 <Link className="LinkProductItem"   to={`/detalhes/${prmProduct.id}`}>
                     <img className="ImgProductItem"  src={prmProduct.url_imagem} />
-                    <h3 className="H3ProductItem">{prmProduct.qualificacao}</h3>  
+                    <h3 className="H3ProductItem">{prmProduct.titulo}</h3>  
                 </Link>
                 
                 {/*<button className="ButtonProductItem">
