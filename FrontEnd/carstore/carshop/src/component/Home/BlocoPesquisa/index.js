@@ -28,7 +28,7 @@ const BlocoPesquisa = ({handleFilter}) => {
     }
     async function callCidadesApi() {
       try {
-        const response = await api.get("/cities");
+        const response = await api.get("/api/v1/cities");
         setCidades(response.data);
       }
       catch (error) { 

@@ -1,4 +1,4 @@
-import { Datagrid, List, TextField, Create, SimpleForm, TextInput, Edit, EditButton } from "react-admin";
+import { Datagrid, List, TextField, Create, SimpleForm, TextInput, Edit, EditButton, SelectField, SelectInput, DeleteButton } from "react-admin";
 
 
 
@@ -6,12 +6,13 @@ export const ProductList = (props) => (
     <List>
         <Datagrid rowClick="edit">
             <TextField source="id" />
-            <TextField source="url_imagem" />
-            <TextField source="title" />
-            <TextField source="qualificacao" />
+            <TextField source="nome" />
             <TextField source="descricao" />
-            <TextField source="valor_diaria" />
+            <TextField source="qualificacao" />
+            <TextField source="valorDiaria" />
+            <TextField source="cidade.nome" />
             <EditButton basePath="/Administration" />
+            <DeleteButton basePath="/Administration"  />
         </Datagrid>
     </List>
 );
@@ -21,11 +22,17 @@ export const ProductCreate = (props) => (
     <Create>
         <SimpleForm>
             <TextInput source="id" disabled />
-            <TextInput source="title" />
-            <TextInput source="Category" />
-            <TextInput source="qualificacao" />
+            <TextInput source="nome" />
             <TextInput source="descricao" />
-            <TextInput source="valor_diaria" />
+            {/* <TextInput source="qualificacao" /> */}
+            <TextInput source="valorDiaria" />
+            <SelectInput source="cidade.id" choices={[
+                { id: '1', name: 'Curitiba' },
+                { id: '2', name: 'São Caetano do Sul' },
+                { id: '3', name: 'São Luís' },
+                { id: '4', name: 'São Paulo' },
+                { id: '5', name: 'Sorocaba' },
+            ]} />
 
         </SimpleForm>
     </Create>
@@ -35,11 +42,17 @@ export const ProductEdit = (props) => (
     <Edit>
         <SimpleForm>
             <TextInput source="id" disabled />
-            <TextInput source="url_imagem" />
-            <TextInput source="title" />
-            <TextInput source="qualificacao" />
+            <TextInput source="nome" />
             <TextInput source="descricao" />
-            <TextInput source="valor_diaria" />
+            {/* <TextInput source="qualificacao" /> */}
+            <TextInput source="valorDiaria" />
+            <SelectInput source="cidade.id" choices={[
+                { id: '1', name: 'Curitiba' },
+                { id: '2', name: 'São Caetano do Sul' },
+                { id: '3', name: 'São Luís' },
+                { id: '4', name: 'São Paulo' },
+                { id: '5', name: 'Sorocaba' },
+            ]} />
         </SimpleForm>
     </Edit>
 );
