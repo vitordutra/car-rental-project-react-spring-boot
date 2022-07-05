@@ -69,18 +69,18 @@ INSERT INTO cities (nome, estado)
 VALUES ("Sorocaba", "SP");
 
 -- Products
-INSERT INTO products (nome, descricao, id_cidade)
-VALUES ("Produto 1", "Descrição do produto 1", 1);
-INSERT INTO products (nome, descricao, id_cidade)
-VALUES ("Produto 2", "Descrição do produto 2", 2);
-INSERT INTO products (nome, descricao, id_cidade)
-VALUES ("Produto 3", "Descrição do produto 3", 3);
-INSERT INTO products (nome, descricao, id_cidade)
-VALUES ("Produto 4", "Descrição do produto 4", 4);
-INSERT INTO products (nome, descricao, id_cidade)
-VALUES ("Produto 5", "Descrição do produto 5", 5);
-INSERT INTO products (nome, descricao, id_cidade)
-VALUES ("Produto 6", "Descrição do produto 6", 1);
+INSERT INTO products (nome, descricao, id_cidade, valor_diaria)
+VALUES ("Produto 1", "Descrição do produto 1", 1, 100);
+INSERT INTO products (nome, descricao, id_cidade, valor_diaria)
+VALUES ("Produto 2", "Descrição do produto 2", 2, 100);
+INSERT INTO products (nome, descricao, id_cidade, valor_diaria)
+VALUES ("Produto 3", "Descrição do produto 3", 3, 100);
+INSERT INTO products (nome, descricao, id_cidade, valor_diaria)
+VALUES ("Produto 4", "Descrição do produto 4", 4, 100);
+INSERT INTO products (nome, descricao, id_cidade, valor_diaria)
+VALUES ("Produto 5", "Descrição do produto 5", 5, 100);
+INSERT INTO products (nome, descricao, id_cidade, valor_diaria)
+VALUES ("Produto 6", "Descrição do produto 6", 1, 100);
 
 -- Images_Categories
 INSERT INTO images_categories (id_categoria, id_imagem)

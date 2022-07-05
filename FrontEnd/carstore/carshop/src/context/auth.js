@@ -50,9 +50,12 @@ export const AuthProvider = ({ children }) => {
               };
 
               localStorage.setItem('signed', JSON.stringify(loggedUser));
-              setUser(loggedUser);
+                setUser(loggedUser);
+                if (email === "administrador@gmail.com"){
+                    navigate("/administracao/*");
+                } else { navigate("/Produtos") };
             
-              navigate("/Produtos");
+              
             })
         })
         .catch((error) => {
