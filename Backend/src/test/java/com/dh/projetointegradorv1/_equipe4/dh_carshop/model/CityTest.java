@@ -52,9 +52,6 @@ class CityTest {
         Assertions.assertEquals(0, city.getId());
 
 
-
-
-
     }
 
 

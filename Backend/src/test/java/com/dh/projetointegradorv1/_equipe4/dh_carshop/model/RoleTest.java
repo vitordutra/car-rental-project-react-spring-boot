@@ -1,61 +1,69 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
-import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.*;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.service.*;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.RoleDto;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.UserDto;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.service.RoleService;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
-class FeatureTest {
+class RoleTest {
 
     @Autowired
-    FeatureService featureService;
+    RoleService roleService;
 
     @Autowired
-    ImageService imageService;
-
-    @Autowired
-    ProductService productService;
+    UserService userService;
 
     @Test
-    void createFeature() {
+    void createRole() {
         //cenário
-        FeatureDto feature = new FeatureDto();
-        Feature entity = new Feature();
+        RoleDto role = new RoleDto();
+        Role entity = new Role();
 
         // expectativas
         String nome = "Rafael";
-        String toStringOutput = "Features{" +
+        String toStringOutput = "Roles{" +
                 "id=0, nome='Rafael', " +
                 "criado=null, " +
                 "atualizado=null" +
                 "}";
 
-        feature.setImagem(getImagem());
-        feature.setProdutos(getProdutos());
+        role.setUsuarios((List<UserDto>) getUsuarios());
 
+        /*// teste de get e set de nome
+        user.setNome(nome);
+        Assertions.assertEquals(nome, user.getNome());
 
-        // teste de get e set de nome
-        feature.setNome(nome);
-        Assertions.assertEquals(nome, feature.getNome());
+        // teste de get e set de sobrenome
+        user.setSobrenome(sobrenome);
+        Assertions.assertEquals(sobrenome, user.getSobrenome());
+
+        // teste de get e set de email
+        user.setEmail(email);
+        Assertions.assertEquals(email, user.getEmail());
+
+        // teste de get e set de senha
+        user.setSenha(senha);
+        Assertions.assertEquals(senha, user.getSenha());
 
         // create
-        feature = featureService.createFeature(feature);
+        user = userService.createUser(user);
+        //user = bookingService.createBooking(user);
 
         // aqui esta sendo testado a existencia do id e inclusive que foi salvo no banco porque tem um id
-        Assertions.assertInstanceOf(java.lang.Integer.class, feature.getId());
+        Assertions.assertInstanceOf(java.lang.Integer.class, user.getId());
 
-        feature.setId(0);
-        Assertions.assertEquals(0, feature.getId());
+        user.setId(0);
+        Assertions.assertEquals(0, user.getId());
 
         // update
         //user = userService.updateUserById(user.getId(), user); Não passou
@@ -68,7 +76,7 @@ class FeatureTest {
         //user = new UserDto(nome, sobrenome, email, senha);
 
         // testando se o initializer User() funcionou
-        /*Assertions.assertEquals(nome, user.getNome());
+        Assertions.assertEquals(nome, user.getNome());
         Assertions.assertEquals(sobrenome, user.getSobrenome());
         Assertions.assertEquals(email, user.getEmail());
         Assertions.assertEquals(senha, user.getSenha());
@@ -80,13 +88,8 @@ class FeatureTest {
 
     }
 
-    private List<ProductDto> getProdutos() {
-        return productService.findProductByCategory(1);
+    private UserDto getUsuarios() {
+        return userService.findUserById(1);
     }
-
-    private ImageDto getImagem() {
-        return imageService.findImageById(1);
-    }
-
 
 }

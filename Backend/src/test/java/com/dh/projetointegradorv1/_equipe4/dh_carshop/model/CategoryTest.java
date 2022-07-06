@@ -1,18 +1,26 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
 import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.CategoryDto;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ImageDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.CategoryService;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.service.ImageService;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.service.ProductService;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
-
 @SpringBootTest
 class CategoryTest {
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    ImageService imageService;
+
+    @Autowired
+    ProductService productService;
 
     @Test
     void createCategory() {
@@ -30,6 +38,8 @@ class CategoryTest {
                     "criado=null, " +
                     "atualizado=null" +
                 "}";
+
+        category.setImagem(getImagem());
 
         // teste de get e set de titulo
         category.setTitulo(titulo);
@@ -70,5 +80,9 @@ class CategoryTest {
         Assertions.assertEquals(0, category.getId());
 
         Assertions.assertEquals(toStringOutput, category.toString());
+    }
+
+    private ImageDto getImagem() {
+        return imageService.findImageById(1);
     }
 }
