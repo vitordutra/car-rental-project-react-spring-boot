@@ -1,4 +1,7 @@
+
 import { stringify } from 'query-string';
+import { Resource } from 'react-admin';
+import api from "../../services/api";
 import {
     fetchUtils,
     GET_LIST,
@@ -35,6 +38,7 @@ export default function DataProvider(apiUrl, httpClient = fetchUtils.fetchJson) 
         // console.log('====================================');
         let url = "";
         const options = {};
+        console.log('type', type);
         switch (type) {
             case GET_LIST: {
                 const { page, perPage } = params.pagination;
@@ -60,16 +64,21 @@ export default function DataProvider(apiUrl, httpClient = fetchUtils.fetchJson) 
             }
             case UPDATE:
                 url = `${apiUrl}/${resource}/${params.id}`;
+                console.log('api', api);
                 options.method = "PUT";
+                // options.headers = api.defaults.headers;
+                options.headers = new Headers({ Authorization: api.defaults.headers.common["Authorization"] });
                 options.body = JSON.stringify(params.data);
                 break;
             case CREATE:
                 url = `${apiUrl}/${resource}`;
                 options.method = "POST";
+                options.headers = new Headers({ Authorization: api.defaults.headers.common["Authorization"] });
                 options.body = JSON.stringify(params.data);
                 break;
             case DELETE:
                 url = `${apiUrl}/${resource}/${params.id}`;
+                options.headers = new Headers({ Authorization: api.defaults.headers.common["Authorization"] });
                 options.method = "DELETE";
                 break;
             default:
@@ -146,10 +155,3 @@ export default function DataProvider(apiUrl, httpClient = fetchUtils.fetchJson) 
             .catch(e => console.log('ERROR: ', e.toString()));
     };
 };
-
-
-
-
-
-
-
