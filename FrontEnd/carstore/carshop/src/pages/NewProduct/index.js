@@ -4,6 +4,7 @@ import { ProductCreate, ProductEdit, ProductList } from "../../component/Product
 import simpleRestProvider from "ra-data-simple-rest";
 import { stringfy } from "query-string";
 import DataProvider from "./DataProvider";
+import style from "./style.css";
 
 
 
