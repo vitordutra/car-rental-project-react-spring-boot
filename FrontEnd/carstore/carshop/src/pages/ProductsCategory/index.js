@@ -22,7 +22,7 @@ export default function ProductsCategory() {
     console.log('cidade: ', cidade);
     console.log('startDate: ', startDate);
     console.log('endDate: ', endDate);
-    if (!(cidade === '') & !(startDate === undefined)) {
+    if (!!cidade !== false && !(startDate === undefined)) {
       //console.log("1+2")
       callApiProductsDateCity(cidade, startDate, endDate);
     } else {
@@ -77,7 +77,7 @@ export default function ProductsCategory() {
 
       console.log(DataDeInicio);
       console.log(DataDeTermino);
-      const URL = `api/v1/products?dataInicio=${DataDeInicio}&dataTermino=${DataDeTermino}`; /* &data_inicial=${DataDeInicio}&data_final=${DataDeTermino}`; */
+      const URL = `api/v1/products?cityId=${cidade}&dataInicio=${DataDeInicio}&dataTermino=${DataDeTermino}`; /* &data_inicial=${DataDeInicio}&data_final=${DataDeTermino}`; */
       console.log(URL);
       const response = await api.get(URL);
       console.log(response);
@@ -99,6 +99,7 @@ export default function ProductsCategory() {
       console.log(URL);
       const response = await api.get(URL);
       console.log(response);
+      setProducts(response.data);
     } catch (error) {
       console.log(error);
     }

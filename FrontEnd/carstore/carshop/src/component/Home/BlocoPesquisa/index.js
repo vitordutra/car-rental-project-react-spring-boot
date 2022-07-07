@@ -158,7 +158,6 @@ const BlocoPesquisa = ({ handleFilter }) => {
     if (openSugestions) {
       robson.style.display = 'none';
       setOpenSugestions(!openSugestions);
-      setCidade(null);
     } else {
       robson.style.display = '';
       setOpenSugestions(!openSugestions);
