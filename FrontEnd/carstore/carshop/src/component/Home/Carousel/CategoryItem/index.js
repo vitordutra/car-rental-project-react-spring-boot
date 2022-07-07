@@ -12,10 +12,10 @@ export default function CategoryItem({ prmCategory }) {
     <section className="categoryItemSection">   
         <ul className="categoryItemUl">
                 <li className="categoryItemLi">
-                    <Link className="categoryItemLink" to={`/categorias/${prmCategory.id}`}>
+                    <Link className="categoryItemLink" to={`/api/v1/categories ${prmCategory.id}`}>
                         <img className="categoryItemImg"  src={prmCategory.imagem} />
-                        <h3 className="categoryItemH3">{prmCategory.titulo}</h3>
-                        <p className="categoryItemP" >{prmCategory.descricao}</p>                   
+                        <h3 className="categoryItemH3">{prmCategory.qualificacao}</h3>
+                        {<p className="categoryItemP" >{prmCategory.descricao}</p> }
                     </Link>
                 </li>
         </ul>
