@@ -1,20 +1,16 @@
 
-import { fetchUtils, Admin, Resource, Layout } from "react-admin";
+import { Admin, Resource, Layout } from "react-admin";
 import { ProductCreate, ProductEdit, ProductList } from "../../component/ProductsCrud";
 import simpleRestProvider from "ra-data-simple-rest";
+import { stringfy } from "query-string";
+import DataProvider from "./DataProvider";
+import style from "./style.css";
 
 
-const fetchJson = (url, options = {}) => {
-    if (!options.headers) {
-        options.headers = new Headers({ Accept: 'application/json' });
-    }
- // add your own headers here
- options.headers.set('X-Custom-Header', 'foobar');
- return fetchUtils.fetchJson(url, options);
-}
 
-const dataProvider = simpleRestProvider("http://localhost:8080/", fetchJson);
+// const dataProvider = simpleRestProvider("http://localhost:8080/");
 
+const dataProvider = DataProvider("http://localhost:8080");
 
 const CustomLayout = (props) => <Layout
     {...props}
@@ -25,8 +21,8 @@ const NewProduct = () => {
 
     return (
         <>
-            <Admin basename="/administracao" layout={CustomLayout} dataProvider={dataProvider}>
-                <Resource name="/api/v1/products" edit={ProductEdit} list={ProductList} create={ProductCreate} />
+            <Admin basename="/administracao" layout={CustomLayout} dataProvider={dataProvider} >
+                <Resource name="api/v1/products" edit={ProductEdit} list={ProductList} create={ProductCreate} />
             </Admin>
         </>
     );
