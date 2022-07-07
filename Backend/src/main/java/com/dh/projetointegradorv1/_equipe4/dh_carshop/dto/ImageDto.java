@@ -43,9 +43,4 @@ public class ImageDto implements Serializable {
         this.caracteristica = new FeatureDto(caracteristica);
     }
 
-    /*public ImageDto(Image entity, Set<Product> produtos) {
-        this(entity);
-        produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
-    }*/
-
 }
