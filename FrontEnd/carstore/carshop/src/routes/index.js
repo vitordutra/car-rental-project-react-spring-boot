@@ -1,6 +1,12 @@
 import React, { useContext } from 'react';
-import { AuthProvider, AuthContext } from "../context/auth";
-import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
+import { AuthProvider, AuthContext } from '../context/auth';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useParams,
+} from 'react-router-dom';
 import Header from '../component/Header/Header';
 import Panel from '../pages/Panel';
 import Login from '../pages/Login';
@@ -16,66 +22,73 @@ import ConfirmationNewProduct from '../pages/ConfirmationNewProduct';
 import CriarReserva from '../pages/CriarReserva';
 import NewProduct from '../pages/NewProduct';
 
-
-
 const Paginas = () => {
-    const Private = ({ children }) => {
-        const { authenticated, loading } = useContext(AuthContext);
+  const Private = ({ children }) => {
+    const { authenticated, loading } = useContext(AuthContext);
 
-        if (loading) {
-            return <div className="loading">Carregando...</div>;
-        }
+    if (loading) {
+      return <div className='loading'>Carregando...</div>;
+    }
 
-        if (!authenticated) {
-            return <Navigate to="/login" />;
-        }
+    if (!authenticated) {
+      return <Navigate to='/login' />;
+    }
 
-        return children;
+    return children;
+  };
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          <Route path='/Produtos' element={<ProductsCategory />} />
+          <Route path='/Registro' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route
+            path='/userpanel'
+            element={
+              <Private>
+                <Panel />
+              </Private>
+            }
+          />
+          <Route path='/Sucesso' element={<ReservaSucedida />} />
+          <Route path='/novo-produto' element={<ConfirmationNewProduct />} />
 
-    };
-    return (
-        <BrowserRouter>
+          <Route
+            path='/Reserva/:idProduto'
+            element={
+              <Private>
+                <CriarReserva />
+              </Private>
+            }
+          />
 
-            <AuthProvider>
-                <Header />
-                <Routes>
-                    <Route path="/" element={<Homepage />} />
-                    <Route path="/Produtos" element={<ProductsCategory />} />
-                    <Route path="/Registro" element={<Register />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route
-                        path="/userpanel"
-                        element=
-                        {
-                            <Private>
-                                <Panel />
-                            </Private>
-                        }
-                    />
-                    <Route path="/Sucesso" element={<ReservaSucedida />} />
-                    <Route path="/novo-produto" element={<ConfirmationNewProduct />} />
+          <Route
+            path='/Produtos/:cidade/:startDate/:endDate'
+            element={<ProductsCategory />}
+          />
+          <Route
+            path='/Produtos/:startDate/:endDate'
+            element={<ProductsCategory />}
+          />
+          <Route path='/Produtos/:cidade/' element={<ProductsCategory />} />
+          <Route path='/detalhes/:id' element={<Details />} />
+          <Route path='/categorias/:id' element={<ProductsCategory />} />
 
-                    <Route path="/Reserva/:idProduto" element={
-                        <Private>
-                            <CriarReserva />
-                        </Private>
-                    } />
+          <Route
+            path='/administracao/*'
+            element={<NewProduct />}
+            email='administrador@gmail.com'
+          />
 
-                    <Route path="/Produtos/:cidade/:startDate/:endDate" element={<ProductsCategory />} />
-                    <Route path="/Produtos/:cidade/" element={<ProductsCategory />} />
-                    <Route path="/detalhes/:id" element={<Details />} />
-                    <Route path="/categorias/:id" element={<ProductsCategory />} />
-
-                    <Route path="/administracao/*" element={<NewProduct />} email = "administrador@gmail.com" />
-
-                    <Route path="*" element={<Error />} />
-
-                </Routes>
-                <Footer />
-            </AuthProvider>
-
-        </BrowserRouter>
-    );
+          <Route path='*' element={<Error />} />
+        </Routes>
+        <Footer />
+      </AuthProvider>
+    </BrowserRouter>
+  );
 };
 
 export default Paginas;
