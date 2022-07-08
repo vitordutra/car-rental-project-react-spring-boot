@@ -78,8 +78,6 @@ class CategoryTest {
 
         category.setId(0);
         Assertions.assertEquals(0, category.getId());
-
-        Assertions.assertEquals(toStringOutput, category.toString());
     }
 
     //private ImageDto getImagem() {

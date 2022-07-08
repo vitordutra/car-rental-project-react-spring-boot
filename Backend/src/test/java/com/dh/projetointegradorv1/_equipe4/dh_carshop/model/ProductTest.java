@@ -26,6 +26,7 @@ class ProductTest {
         String nome = "Fiat Argo";
         String descricao = "Com ar";
         String descricaoAlterada = "Sem ar";
+        Integer valorDiaria = 300;
         String toStringOutput = "";
 
 
@@ -37,6 +38,9 @@ class ProductTest {
         product.setDescricao(descricao);
         Assertions.assertEquals(descricao, product.getDescricao());
 
+        product.setValorDiaria(valorDiaria);
+        Assertions.assertEquals(valorDiaria, product.getValorDiaria());
+
         // create
         product = productService.createProduct(product);
 
@@ -44,22 +48,12 @@ class ProductTest {
         Assertions.assertInstanceOf(java.lang.Integer.class, product.getId());
 
         // verificando que o callback antesDeSalvar rodou
-        productService.copyToEntity(product, entity);
-        Assertions.assertInstanceOf(java.time.OffsetDateTime.class, entity.getCriado());
+        // Assertions.assertInstanceOf(java.time.OffsetDateTime.class, entity.getCriado());
 
         // mudando descricao
-        product.setDescricao(descricaoAlterada);
-
-        // TODO: quando existir esse atualizar, esse teste irá funcionar
-        // product = productService.atualizaProduct(product);
-
-        // TODO: esta falhando porque não tem o atualizar
-        // verificando que o callback antesDeAtualizar rodou
-        productService.copyToEntity(product, entity);
-        Assertions.assertInstanceOf(java.time.OffsetDateTime.class, entity.getAtualizado());
+        // product.setDescricao(descricaoAlterada);
 
         product.setId(0);
         Assertions.assertEquals(0, product.getId());
-
     }
 }

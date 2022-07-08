@@ -30,14 +30,7 @@ class RoleTest {
         Role entity = new Role();
 
         // expectativas
-        String nome = "Rafael";
-        String toStringOutput = "Roles{" +
-                "id=0, nome='Rafael', " +
-                "criado=null, " +
-                "atualizado=null" +
-                "}";
-
-        role.setUsuarios((List<UserDto>) getUsuarios());
+        String nome = "Admin";
 
         /*// teste de get e set de nome
         user.setNome(nome);
