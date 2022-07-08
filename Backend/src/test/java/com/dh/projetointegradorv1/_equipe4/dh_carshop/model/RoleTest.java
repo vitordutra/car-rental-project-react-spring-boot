@@ -32,52 +32,24 @@ class RoleTest {
         // expectativas
         String nome = "Admin";
 
-        /*// teste de get e set de nome
-        user.setNome(nome);
-        Assertions.assertEquals(nome, user.getNome());
-
-        // teste de get e set de sobrenome
-        user.setSobrenome(sobrenome);
-        Assertions.assertEquals(sobrenome, user.getSobrenome());
-
-        // teste de get e set de email
-        user.setEmail(email);
-        Assertions.assertEquals(email, user.getEmail());
-
-        // teste de get e set de senha
-        user.setSenha(senha);
-        Assertions.assertEquals(senha, user.getSenha());
+        // teste de get e set de nome
+        role.setNome(nome);
+        Assertions.assertEquals(nome, role.getNome());
 
         // create
-        user = userService.createUser(user);
-        //user = bookingService.createBooking(user);
+        role = roleService.createRole(role);
 
         // aqui esta sendo testado a existencia do id e inclusive que foi salvo no banco porque tem um id
-        Assertions.assertInstanceOf(java.lang.Integer.class, user.getId());
+        Assertions.assertInstanceOf(java.lang.Integer.class, role.getId());
 
-        user.setId(0);
-        Assertions.assertEquals(0, user.getId());
-
-        // update
-        //user = userService.updateUserById(user.getId(), user); Não passou
-
-        // verificando que o callback antesDeAtualizar rodou
-        //userService.copyToEntity(user, entity);
-        //Assertions.assertInstanceOf(java.time.OffsetDateTime.class, entity.getAtualizado()); Não passou
-
-        // verificar agora instanciar ja com os valores
-        //user = new UserDto(nome, sobrenome, email, senha);
+        role.setId(0);
+        Assertions.assertEquals(0, role.getId());
 
         // testando se o initializer User() funcionou
-        Assertions.assertEquals(nome, user.getNome());
-        Assertions.assertEquals(sobrenome, user.getSobrenome());
-        Assertions.assertEquals(email, user.getEmail());
-        Assertions.assertEquals(senha, user.getSenha());
+        Assertions.assertEquals(nome, role.getNome());
 
-        user.setId(0);
-        Assertions.assertEquals(0, user.getId());
-
-        Assertions.assertEquals(toStringOutput, user.toString());*/
+        role.setId(0);
+        Assertions.assertEquals(0, role.getId());
 
     }
 

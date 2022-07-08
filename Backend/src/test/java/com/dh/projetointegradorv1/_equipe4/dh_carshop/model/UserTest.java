@@ -43,15 +43,7 @@ class UserTest {
         String sobrenome = "Silva";
         String email = "silva@gmail.com";
         String descricaoAlterada = "silva.com";
-        String senha = "123456";
-        String toStringOutput = "Users{" +
-                "id=0, nome='Rafael', " +
-                "sobrenome='Silva', " +
-                "email='silva@gmail.com', " +
-                "senha='123456', " +
-                "criado=null, " +
-                "atualizado=null" +
-                "}";
+        String senha = "";
 
         user.setFuncao(getFuncao());
         user.setReservas(getReservas());
@@ -75,7 +67,6 @@ class UserTest {
 
         // create
         user = userService.createUser(user);
-        //user = bookingService.createBooking(user);
 
         // aqui esta sendo testado a existencia do id e inclusive que foi salvo no banco porque tem um id
         Assertions.assertInstanceOf(java.lang.Integer.class, user.getId());
@@ -83,26 +74,13 @@ class UserTest {
         user.setId(0);
         Assertions.assertEquals(0, user.getId());
 
-        // update
-        //user = userService.updateUserById(user.getId(), user); Não passou
-
-        // verificando que o callback antesDeAtualizar rodou
-        //userService.copyToEntity(user, entity);
-        //Assertions.assertInstanceOf(java.time.OffsetDateTime.class, entity.getAtualizado()); Não passou
-
-        // verificar agora instanciar ja com os valores
-        //user = new UserDto(nome, sobrenome, email, senha);
-
         // testando se o initializer User() funcionou
-        /*Assertions.assertEquals(nome, user.getNome());
+        Assertions.assertEquals(nome, user.getNome());
         Assertions.assertEquals(sobrenome, user.getSobrenome());
         Assertions.assertEquals(email, user.getEmail());
-        Assertions.assertEquals(senha, user.getSenha());
 
         user.setId(0);
         Assertions.assertEquals(0, user.getId());
-
-        Assertions.assertEquals(toStringOutput, user.toString());*/
 
     }
 
