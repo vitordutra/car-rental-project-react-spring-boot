@@ -47,12 +47,6 @@ class ProductTest {
         // aqui esta sendo testado a existencia do id e inclusive que foi salvo no banco porque tem um id
         Assertions.assertInstanceOf(java.lang.Integer.class, product.getId());
 
-        // verificando que o callback antesDeSalvar rodou
-        // Assertions.assertInstanceOf(java.time.OffsetDateTime.class, entity.getCriado());
-
-        // mudando descricao
-        // product.setDescricao(descricaoAlterada);
-
         product.setId(0);
         Assertions.assertEquals(0, product.getId());
     }
