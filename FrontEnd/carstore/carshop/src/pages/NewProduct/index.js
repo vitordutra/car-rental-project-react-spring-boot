@@ -1,8 +1,6 @@
-
+// eslint-disable-next-line
 import { Admin, Resource, Layout } from "react-admin";
 import { ProductCreate, ProductEdit, ProductList } from "../../component/ProductsCrud";
-import simpleRestProvider from "ra-data-simple-rest";
-import { stringfy } from "query-string";
 import DataProvider from "./DataProvider";
 import style from "./style.css";
 
@@ -23,6 +21,7 @@ const NewProduct = () => {
         <>
             <Admin basename="/administracao" layout={CustomLayout} dataProvider={dataProvider} >
                 <Resource name="api/v1/products" edit={ProductEdit} list={ProductList} create={ProductCreate} />
+                
             </Admin>
         </>
     );
