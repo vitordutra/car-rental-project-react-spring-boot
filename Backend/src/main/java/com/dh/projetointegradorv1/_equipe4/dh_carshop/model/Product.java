@@ -27,7 +27,7 @@ public class Product implements Serializable{
     private Integer id;
     @Column(length = 100, nullable = false)
     private String nome;
-    @Column(length = 300, nullable = false)
+    @Column(length = 500, nullable = false)
     private String descricao;
     @Column(nullable = false)
     private Integer valorDiaria;
