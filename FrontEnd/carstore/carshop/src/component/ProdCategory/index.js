@@ -6,16 +6,16 @@ import './styles.css'
     
 export default function ProdCategory({ prmProduct }) {
     const [isModalVisible, setIsModalVisible] = useState(false);
-  
-    
 
+    console.log('prmProduct', prmProduct);
+  
     return (
         <div  className="ProdCategoryBody">        	
         <ul className="ProdCategoryLu">
             <li className="ProdCategoryLi" >
                 <div className="LinkProdCategory">
-                    <h3 className="H3ProdQualification">{prmProduct.titulo }</h3>
-                    <img className="ImgProdCategory" src={prmProduct.imagem} />
+                    <h3 className="H3ProdQualification">{prmProduct.titulo}</h3>
+                    <img className="ImgProdCategory" src={prmProduct.imagens[0] == undefined ? '' : prmProduct.imagens[0].url} />
                     <h3 className="H3ProdCategory">{prmProduct.titulo}</h3>
                     <p className="ParagProdCategory">{prmProduct.descricao}</p>                  
                 </div>               
