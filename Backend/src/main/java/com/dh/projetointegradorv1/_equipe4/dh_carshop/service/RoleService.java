@@ -1,7 +1,9 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.service;
 
+import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.ProductDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.RoleDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.UserDto;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Role;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.model.User;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.repository.RoleRepository;
@@ -41,6 +43,13 @@ public class RoleService {
             listDto.add(dto);
         }
         return listDto;
+    }
+
+    @Transactional(readOnly = true)
+    public RoleDto findRoleById(Integer id) {
+        Optional<Role> obj = roleRepository.findById(id);
+        Role entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
+        return new RoleDto(entity, entity.getUsuarios());
     }
 
     public void copyToEntity(RoleDto dto, Role entity) {

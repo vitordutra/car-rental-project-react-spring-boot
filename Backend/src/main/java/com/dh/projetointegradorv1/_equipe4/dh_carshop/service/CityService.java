@@ -50,6 +50,14 @@ public class CityService {
         return listDto;
     }
 
+    @Transactional(readOnly = true)
+    public CityDto findCityById(Integer id) {
+        Optional<City> obj = cityRepository.findById(id);
+        City entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
+        return new CityDto(entity, entity.getProdutos(), entity.getReservas());
+    }
+
+
     public void copyToEntity(CityDto dto, City entity) {
         entity.setNome(dto.getNome());
         entity.setEstado(dto.getEstado());
@@ -65,4 +73,6 @@ public class CityService {
             entity.getReservas().add(booking);
         }
     }
+
+
 }

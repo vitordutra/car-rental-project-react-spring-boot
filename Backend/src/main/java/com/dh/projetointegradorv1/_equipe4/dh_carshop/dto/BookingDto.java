@@ -1,9 +1,6 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.dto;
 
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Booking;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.City;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.User;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 @Getter @Setter @NoArgsConstructor
 public class BookingDto implements Serializable {
@@ -35,6 +33,11 @@ public class BookingDto implements Serializable {
         id = entity.getId();
         inicioReserva = entity.getInicioReserva().format(DateTimeFormatter.ISO_DATE);
         fimReserva = entity.getFimReserva().format(DateTimeFormatter.ISO_DATE);
+        valorReserva = entity.getValorReserva();
+
+        produto = new ProductDto(entity.getProduto());
+        cidade = new CityDto(entity.getCidade());
+        usuario = new UserDto(entity.getUsuario());
     }
 
     public BookingDto(Booking entity, Product produto, City cidade, User usuario) {
