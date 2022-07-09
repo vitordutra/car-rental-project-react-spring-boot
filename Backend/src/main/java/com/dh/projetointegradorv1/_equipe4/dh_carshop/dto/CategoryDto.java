@@ -1,13 +1,14 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.dto;
 
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Category;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Image;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.model.Product;
+import com.dh.projetointegradorv1._equipe4.dh_carshop.model.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -45,6 +46,7 @@ public class CategoryDto implements Serializable {
         id = entity.getId();
         titulo = entity.getTitulo();
         descricao = entity.getDescricao();
+        imagem = new ImageDto(entity.getImagem());
     }
 
     /*public CategoryDto(Category entity) {

@@ -39,8 +39,13 @@ public class ImageDto implements Serializable {
     public ImageDto(Image entity, Set<Product> produtos, Category categoria, Feature caracteristica) {
         this(entity);
         produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
-        this.categoria = new CategoryDto(categoria);
-        this.caracteristica = new FeatureDto(caracteristica);
+        if (categoria != null) {
+            this.categoria = new CategoryDto(categoria);
+        }
+        if (caracteristica != null) {
+            this.caracteristica = new FeatureDto(caracteristica);
+        }
+
     }
 
 }

@@ -10,43 +10,42 @@ const Carrousel = () => {
   var maxItemsPage = 3;
   var maxItems = 10;
 
-const [categories, setCategories] = useState([]);
-useEffect(() => {
-callApi();
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+  callApi();
 }, []);
 
 async function callApi() {
   try {
-    //const response = await api.get("/categories");
     const response = await api.get("/api/v1/categories");
 
     var dataBatchs = [];
     const data = response.data;
 
-    
-
-
     for (let i = 0; i < maxItems; i++) {
-    if (i % maxItemsPage === 0) {
-    dataBatchs.push([]);
-    }
+      if (data[i] == undefined) {
+        break;
+      }
 
-    dataBatchs[Math.floor(i / maxItemsPage)].push({
-    id: data[i]['id'],
-    qualificacao: data[i]['titulo'],
-    descricao: data[i]['descricao'],
-    url_imagem: data[i]['imagem']
-    }); 
-  }
+      if (i % maxItemsPage === 0) {
+        dataBatchs.push([]);
+      }
+
+      dataBatchs[Math.floor(i / maxItemsPage)].push({
+        id: data[i]['id'],
+        qualificacao: data[i]['titulo'],
+        descricao: data[i]['descricao'],
+        url_imagem: data[i]['imagem']['url']
+      }); 
+    }
 
     setCategories(dataBatchs);
   }
   catch (error) { 
-
+    console.error('error', error);
   }
 }
 
-  
 
   return (
 

@@ -209,9 +209,12 @@ public class ProductService {
             Booking booking = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getReservas().add(booking);
         }
-        Optional<City> obj = cityRepository.findById(dto.getCidade().getId());
-        City city = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-        entity.setCidade(city);
+
+        if (dto.getCidade() != null) {
+            Optional<City> obj = cityRepository.findById(dto.getCidade().getId());
+            City city = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
+            entity.setCidade(city);
+        }
     }
 
 }

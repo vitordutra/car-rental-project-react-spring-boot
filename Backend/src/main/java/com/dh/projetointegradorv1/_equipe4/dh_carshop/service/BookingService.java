@@ -39,6 +39,8 @@ public class BookingService {
     @Transactional
     public BookingDto createBooking(BookingDto dto) {
         Booking entity = new Booking();
+        System.out.println("====dto.getProduto()");
+        System.out.println(dto.getProduto());
         copyToEntity(dto, entity);
         entity = bookingRepository.save(entity);
         return new BookingDto(entity);
@@ -76,6 +78,8 @@ public class BookingService {
     public void copyToEntity(BookingDto dto, Booking entity) {
         entity.setInicioReserva(LocalDate.parse(dto.getInicioReserva(), DateTimeFormatter.ISO_DATE));
         entity.setFimReserva(LocalDate.parse(dto.getFimReserva(), DateTimeFormatter.ISO_DATE));
+        System.out.println("====dto.getProduto()");
+        System.out.println(dto.getProduto());
         Optional<Product> objProd = productRepository.findById(dto.getProduto().getId());
         Product product = objProd.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
         entity.setProduto(product);
