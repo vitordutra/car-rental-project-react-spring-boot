@@ -17,6 +17,8 @@ export default function CriarReserva() {
     const [userr,setUserr] = useState()
 
     const parametro = useParams();
+    console.log("parametro")
+    console.log(parametro)
     useEffect(() => {
         callApiDetails(parametro.idProduto);
         callCidadesApi()
@@ -50,13 +52,35 @@ export default function CriarReserva() {
 
    
     
+    const enviarReserva = () => {
+      try{
+        
+        const response = api.post("/api/v1/bookings",
+        {
+          "inicioReserva" : "2022-07-07",
+          "fimReserva" : "2022-07-08",
+          "valorReserva": 3000,
+          "produto":{
+                      "id":1
+                    },
+          "cidade":{
+                    "id":1
+                  }
+        })
+        console.log("RESPONSE")
+        console.log(response)
+      } catch{
 
-   
+      }
+          
+
+    }
+    
 
     async function callApiDetails(x) {
         
         try {
-          const response = await api.get(`/products/${x}`);
+          const response = await api.get(`/api/v1/products/${x}`);
           setProduto(response.data);
         
         }
@@ -135,7 +159,7 @@ export default function CriarReserva() {
 
         function estaLogado() {
           try {
-            let user = JSON.parse(localStorage.getItem("user"));
+            let user = JSON.parse(localStorage.getItem("signed"));
             return user
       
           } catch (error) {
@@ -146,17 +170,19 @@ export default function CriarReserva() {
 
         const dadosPessoa = () => {
           try {
+            console.log("produto")
+            console.log(produto)
               return(
                 <>
                 
                 
-              <p>Nome: <input type="text" disabled="true" value={(userr.name+" "+userr.surname)} /> </p>
+              <p>Nome: <input type="text" disabled="true" value={(userr.nome+" "+userr.sobrenome)} /> </p>
               <p>email: <input type="text" disabled="true" value={userr.email}/></p>
               <p>Data de Início:: <input type="text" disabled="true" value={format(range[0].startDate, "dd/MM/yyyy")}/></p>
               <p>Data de Devolução: <input type="text" disabled="true" value={format(range[0].endDate, "dd/MM/yyyy")}/></p>
               <p>Diárias:<input type="text" disabled="true" value={diffDays(range[0].startDate,range[0].endDate)}/></p>
               <p>Valor Total:</p>
-              <p>R$ {produto.valor_diaria*diffDays(range[0].startDate,range[0].endDate)},00</p>
+              <p>R$ {produto.valorDiaria*diffDays(range[0].startDate,range[0].endDate)},00</p>
                 
                 
                 </>
@@ -167,7 +193,35 @@ export default function CriarReserva() {
 
         }
 
+        const handleCategoriaCarro = () => {
+          try {
+            
+           
+              return  produto.categorias.map(e => e.titulo+"  ")
+          } catch (error) {
+            
+          }
 
+        }
+
+        const handleNomeCarro = () => {
+          try {
+              return  produto.nome
+          } catch (error) {}
+        }
+        const handleCidadeCarro = () => {
+          try {
+              return  produto.cidade.nome+","+produto.cidade.estado
+          } catch (error) {}
+        }
+
+        const handleImagemCarro = () => {
+          try {
+              return  produto.imagens[0].url
+          } catch (error) {}
+        }
+
+        
         
 
 
@@ -177,20 +231,20 @@ export default function CriarReserva() {
        
             <div className="flex-container-reserva">
               <div className="bloco-titulo-reserva">
-                <h5>Nome do carro escolhido: {produto.title} / Categoria: {produto.qualificacao}</h5>
+                <h5>Nome do carro escolhido: {produto.nome} / Categoria(s): {  handleCategoriaCarro()}</h5>
                 
               </div>
               <h2>Confirme sua reserva:</h2>
 
             <div className="bloco-detalhes-reserva">
                 <br />
-                <h4 className="reserva-titulo-carro" >{produto.title}</h4>
+                <h4 className="reserva-titulo-carro" >{handleNomeCarro()}</h4>
                 <div className="flex-container-reserva1">
-                  <img className="imagem-reserva" src={produto.url_imagem} width="50%" />
+                  <img className="imagem-reserva" src={handleImagemCarro()} width="50%" />
                   <div className="detalhes-reserva-1">
-                    <h4>Categoria: {produto.qualificacao}</h4>
+                    <h4>Categoria(s): {handleCategoriaCarro()}</h4>
                     
-                    <h4>Localização do produto: {filterCity(produto.cityId)}</h4>
+                    <h4>Localização do produto: {handleCidadeCarro()}</h4>
                     
                   </div>
                 </div>
@@ -218,7 +272,7 @@ export default function CriarReserva() {
                   
                   
                   
-                            <Link to="/Sucesso"> <button className="button-reserva"> Reservar</button> </Link>
+                            {/* <Link to="/Sucesso"> */} <button className="button-reserva" onClick={enviarReserva}> Reservar</button> {/* </Link> */}
                 </div>
             </div>
             <Link to="/Produtos"> <p>voltar aos produtos</p> </Link>

@@ -50,7 +50,7 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
 
     async function callProductDetailsApi(id) {
         try {
-          const response = await api.get(`/productDetails`);
+          const response = await api.get(`api/v1/products`);
           //console.log("productDetails Data")
           //console.log(response.data)
           const productDetails = response.data;
@@ -126,22 +126,41 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
             )
         }
 
-
         
-        
-
-
-
     }
+    const soltarCaracsV2 = () =>{
+        
+
+        console.log("solta nois")
+        console.log(detalhes.caracteristicas)
+        return <>
+                
+                <div>
+                    {detalhes.caracteristicas.map(e => <  >
+                    <div className="flex-container">
+                    <img className="modal-atributo-imagem" key={e.characteristic} src={e.imagem} width="30px" height={"30px"}></img> 
+                    <p className="modal-atributo-texto" >{e.nome}</p>
+                    </div>
+                    </>) }
+    
+    
+                </div>
+                
+                
+                </>
+            
+        }
+
 
 //Parte do calendario
     console.log("CALENDARIO")
     console.log(detalhes)
     const disabledDatesList=[]
     //TODO: aumentar aumentar 1 dia
-    
-    detalhes.datas_ocupadas.map(e =>  disabledDatesList.push(new Date(new Date(e.data).getFullYear(),new Date(e.data).getMonth(),new Date(e.data).getDate()+1) ))
-    console.log(disabledDatesList)
+    console.log("D E T  A L H E S")
+    console.log(detalhes)
+    /* detalhes.datas_ocupadas.map(e =>  disabledDatesList.push(new Date(new Date(e.data).getFullYear(),new Date(e.data).getMonth(),new Date(e.data).getDate()+1) )) */
+    /* console.log(disabledDatesList) */
     const minDate: Date = new Date( new Date().getFullYear(), new Date().getMonth(),new Date().getDate());
     const maxDate: Date = new Date( new Date().getFullYear(), new Date().getMonth()+2,new Date().getDate());
 
@@ -185,11 +204,11 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                             
                             
                             
-                            <div className="listaAtributosBox">{soltarCaracs(listaParaMostrar)}</div>
+                            <div className="listaAtributosBox">{soltarCaracsV2()}</div>
                             </div>
 
                             
-                            <p>Valor da diária: R${detalhes.valor_diaria},00</p>
+                            <p>Valor da diária: R${detalhes.valorDiaria},00</p>
                             <button onClick={handleBook} className="ButtonModal" >
                             Reserve Agora
                             </button>
