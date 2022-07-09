@@ -36,6 +36,10 @@ public class ProductDto implements Serializable {
         nome = entity.getNome();
         descricao = entity.getDescricao();
         valorDiaria = entity.getValorDiaria();
+
+        for (Image image : entity.getImagens()) {
+            imagens.add(new ImageDto(image));
+        }
     }
 
     public ProductDto(Product entity, Set<Feature> caracteristicas, Set<Image> imagens,

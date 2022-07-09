@@ -23,14 +23,19 @@ public class Image implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(length = 50, nullable = false)
     private String titulo;
+
     @Column(columnDefinition = "longtext", nullable = false)
     private String url;
+
     @ManyToMany(mappedBy = "imagens")
     private Set<Product> produtos;
+
     @OneToOne(mappedBy = "imagem")
     private Category categoria;
+
     @OneToOne(mappedBy = "imagem")
     private Feature caracteristica;
 
