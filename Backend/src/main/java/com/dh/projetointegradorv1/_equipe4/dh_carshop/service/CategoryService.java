@@ -30,9 +30,6 @@ public class CategoryService {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private ImageRepository imageRepository;
-
     @Transactional
     public CategoryDto createCategory(CategoryDto dto) {
         Category entity = new Category();

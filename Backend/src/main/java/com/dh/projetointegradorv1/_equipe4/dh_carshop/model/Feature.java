@@ -24,13 +24,10 @@ public class Feature implements Serializable {
     private Integer id;
     @Column(length = 50, nullable = false)
     private String nome;
+    @Column(length = 300, nullable = false)
+    private String icone;
     @ManyToMany(mappedBy = "caracteristicas")
     Set<Product> produtos = new HashSet<>();
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "images_features",
-            joinColumns = { @JoinColumn(name = "id_caracteristica", referencedColumnName = "id") },
-            inverseJoinColumns = { @JoinColumn(name = "id_imagem", referencedColumnName = "id") })
-    private Image imagem;
 
     // Timestamps automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

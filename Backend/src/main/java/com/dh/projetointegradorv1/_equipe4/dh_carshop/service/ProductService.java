@@ -141,7 +141,7 @@ public class ProductService {
     public List<ProductDto> findProductByCategory(Integer id) {
         Optional<Category> obj = categoryRepository.findById(id);
         Category entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("CATEGORIA NÃO ENCONTRADA"));
-        CategoryDto dto = new CategoryDto(entity, entity.getProdutos(), entity.getImagem());
+        CategoryDto dto = new CategoryDto(entity, entity.getProdutos());
         return dto.getProdutos();
     }
 

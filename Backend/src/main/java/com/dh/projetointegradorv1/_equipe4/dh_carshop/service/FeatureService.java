@@ -29,9 +29,6 @@ public class FeatureService {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private ImageRepository imageRepository;
-
     @Transactional
     public FeatureDto createFeature(FeatureDto dto) {
         Feature entity = new Feature();
@@ -45,7 +42,7 @@ public class FeatureService {
         List<FeatureDto> listDto = new ArrayList<>();
         List<Feature> list = featureRepository.findAll();
         for(Feature feat : list) {
-            FeatureDto dto = new FeatureDto(feat);
+            FeatureDto dto = new FeatureDto(feat, feat.getProdutos());
             listDto.add(dto);
         }
         return listDto;
@@ -55,8 +52,7 @@ public class FeatureService {
     public FeatureDto findFeatureById(Integer id) {
         Optional<Feature> obj = featureRepository.findById(id);
         Feature entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-        return new FeatureDto(entity, entity.getProdutos(), entity.getImagem());
-        //return new FeatureDto(entity, entity.getProdutos());
+        return new FeatureDto(entity, entity.getProdutos());
     }
 
     public void deleteFeatureById(Integer id) {
@@ -73,15 +69,12 @@ public class FeatureService {
 
     public void copyToEntity(FeatureDto dto, Feature entity) {
         entity.setNome(dto.getNome());
-        //entity.setIcone(dto.getIcone());
+        entity.setIcone(dto.getIcone());
         entity.getProdutos().clear();
         for(ProductDto prodDto : dto.getProdutos()) {
             Optional<Product> obj = productRepository.findById(prodDto.getId());
             Product product = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getProdutos().add(product);
         }
-        Optional<Image> obj = imageRepository.findById(dto.getImagem().getId());
-        Image imagem = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-        entity.setImagem(imagem);
     }
 }
