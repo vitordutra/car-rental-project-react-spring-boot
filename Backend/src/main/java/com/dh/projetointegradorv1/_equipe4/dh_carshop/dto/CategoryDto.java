@@ -20,22 +20,15 @@ public class CategoryDto implements Serializable {
     private Integer id;
     private String titulo;
     private String descricao;
-    //private String urlImagem;
+    private String urlImagem;
     private List<ProductDto> produtos = new ArrayList<>();
-    private ImageDto imagem;
 
-    public CategoryDto(Integer id, String titulo, String descricao) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descricao = descricao;
-    }
-
-    /*public CategoryDto(Integer id, String titulo, String descricao, String urlImagem) {
+    public CategoryDto(Integer id, String titulo, String descricao, String urlImagem) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
         this.urlImagem = urlImagem;
-    }*/
+    }
 
     public CategoryDto(String titulo, String descricao) {
         this.titulo = titulo;
@@ -46,24 +39,11 @@ public class CategoryDto implements Serializable {
         id = entity.getId();
         titulo = entity.getTitulo();
         descricao = entity.getDescricao();
-        imagem = new ImageDto(entity.getImagem());
-    }
-
-    /*public CategoryDto(Category entity) {
-        id = entity.getId();
-        titulo = entity.getTitulo();
-        descricao = entity.getDescricao();
         urlImagem = entity.getUrlImagem();
-    }*/
-
-    public CategoryDto(Category entity, Set<Product> produtos, Image imagem) {
-        this(entity);
-        produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
-        this.imagem = new ImageDto(imagem);
     }
 
-    /*public CategoryDto(Category entity, Set<Product> produtos) {
+    public CategoryDto(Category entity, Set<Product> produtos) {
         this(entity);
         produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
-    }*/
+    }
 }

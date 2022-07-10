@@ -24,12 +24,6 @@ public class ImageService {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
-
-    @Autowired
-    private FeatureRepository featureRepository;
-
     @Transactional
     public ImageDto createImage(ImageDto dto) {
         Image entity = new Image();
@@ -42,7 +36,7 @@ public class ImageService {
     public ImageDto findImageById(Integer id) {
         Optional<Image> obj = imageRepository.findById(id);
         Image entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-        return new ImageDto(entity, entity.getProdutos(), entity.getCategoria(), entity.getCaracteristica());
+        return new ImageDto(entity, entity.getProdutos());
     }
 
     public void copyToEntity(ImageDto dto, Image entity) {
@@ -57,19 +51,6 @@ public class ImageService {
             Product product = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getProdutos().add(product);
         }
-
-        if (dto.getCategoria() != null) {
-            Optional<Category> obj1 = categoryRepository.findById(dto.getCategoria().getId());
-            Category category = obj1.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-            entity.setCategoria(category);
-        }
-
-        if (dto.getCaracteristica() != null) {
-            Optional<Feature> obj2 = featureRepository.findById(dto.getCaracteristica().getId());
-            Feature feature = obj2.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-            entity.setCaracteristica(feature);
-        }
-
     }
 
 }

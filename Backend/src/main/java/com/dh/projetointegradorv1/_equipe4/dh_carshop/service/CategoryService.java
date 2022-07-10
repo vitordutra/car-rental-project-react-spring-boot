@@ -46,7 +46,7 @@ public class CategoryService {
         List<CategoryDto> listDto = new ArrayList<>();
         List<Category> list = categoryRepository.findAll();
         for(Category cat : list) {
-            CategoryDto dto = new CategoryDto(cat);
+            CategoryDto dto = new CategoryDto(cat, cat.getProdutos());
             listDto.add(dto);
         }
         return listDto;
@@ -56,8 +56,7 @@ public class CategoryService {
     public CategoryDto findCategoryById(Integer id) {
         Optional<Category> obj = categoryRepository.findById(id);
         Category entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-        return new CategoryDto(entity, entity.getProdutos(), entity.getImagem());
-        //return new CategoryDto(entity, entity.getProdutos());
+        return new CategoryDto(entity, entity.getProdutos());
     }
 
     @Transactional
@@ -99,19 +98,12 @@ public class CategoryService {
     public void copyToEntity(CategoryDto dto, Category entity) {
         entity.setTitulo(dto.getTitulo());
         entity.setDescricao(dto.getDescricao());
-        //entity.setUrlImagem(dto.getUrlImagem());
+        entity.setUrlImagem(dto.getUrlImagem());
         entity.getProdutos().clear();
         for(ProductDto prodDto : dto.getProdutos()) {
             Optional<Product> obj = productRepository.findById(prodDto.getId());
             Product product = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getProdutos().add(product);
         }
-
-        if (dto.getImagem() != null) {
-            Optional<Image> obj = imageRepository.findById(dto.getImagem().getId());
-            Image imagem = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-            entity.setImagem(imagem);
-        }
-
     }
 }

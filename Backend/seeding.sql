@@ -1,22 +1,22 @@
 -- Categorias
-INSERT INTO categories (qualificacao, descricao)
-VALUES ("Econômico", "Carros com baixo consumo de combustível");
-INSERT INTO categories (qualificacao, descricao)
-VALUES ("Compacto", "Carros com tamanho compacto");
-INSERT INTO categories (qualificacao, descricao)
-VALUES ("Confort", "Carros com amplo espaço interno");
-INSERT INTO categories (qualificacao, descricao)
-VALUES ("Hatch", "Carros com traseira em formato hatch");
-INSERT INTO categories (qualificacao, descricao)
-VALUES ("Sedan", "Carros com traseira em formato sedan");
-INSERT INTO categories (qualificacao, descricao)
-VALUES ("Pickup", "Carros com carroceria");
-INSERT INTO categories (qualificacao, descricao)
-VALUES ("Elétrico", "Carros movidos a energia elétrica");
-INSERT INTO categories (qualificacao, descricao)
-VALUES ("Minivan", "Carros a partir de 6 lugares");
-INSERT INTO categories (qualificacao, descricao)
-VALUES ("SUV", "Carros utilitários adaptados para vias urbanas e terrenos irregulares");
+INSERT INTO categories (qualificacao, descricao, url_imagem)
+VALUES ("Econômico", "Carros com baixo consumo de combustível", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/economico.jpg");
+INSERT INTO categories (qualificacao, descricao, url_imagem)
+VALUES ("Compacto", "Carros com tamanho compacto", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/compacto.jpg");
+INSERT INTO categories (qualificacao, descricao, url_imagem)
+VALUES ("Confort", "Carros com amplo espaço interno", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/confort.jpg");
+INSERT INTO categories (qualificacao, descricao, url_imagem)
+VALUES ("Hatch", "Carros com traseira em formato hatch", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/hatch.jpg");
+INSERT INTO categories (qualificacao, descricao, url_imagem)
+VALUES ("Sedan", "Carros com traseira em formato sedan", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/sedan.jpeg");
+INSERT INTO categories (qualificacao, descricao, url_imagem)
+VALUES ("Pickup", "Carros com carroceria", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/pickup.jpg");
+INSERT INTO categories (qualificacao, descricao, url_imagem)
+VALUES ("Elétrico", "Carros movidos a energia elétrica", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/eletrico.jpg");
+INSERT INTO categories (qualificacao, descricao, url_imagem)
+VALUES ("Minivan", "Carros a partir de 6 lugares", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/minivan.jpg");
+INSERT INTO categories (qualificacao, descricao, url_imagem)
+VALUES ("SUV", "Carros utilitários adaptados para vias urbanas e terrenos irregulares", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/suv.jpg");
 
 -- Images
 INSERT INTO images (titulo, url)
@@ -289,58 +289,6 @@ INSERT INTO images (titulo, url)
 VALUES ("Renault Sandero - 2", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/products/renault-sandero-2.jpg");
 INSERT INTO images (titulo, url)
 VALUES ("Renault Sandero - 3", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/products/renault-sandero-3.jpg");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem ar condicionado", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/ar-condicionado.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem 2 lugares", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/assentos.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem 4 lugares", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/assentos.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem 5 lugares", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/assentos.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem 7 lugares", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/assentos.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem câmera de ré", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/camera-re.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem chave sem contato", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/chave-contactless.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem motor elétrico", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/motor-eletrico.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem multimídia", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/multimidia.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem 2 portas", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/porta.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem 4 portas", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/porta.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem sensor de colisão dianteira", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/sensor-colisao-dianteira.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem sensor de ponto cego", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/sensor-ponto-cego.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem sensores de proximidade", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/sensores-proximidade.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem transmissão automática", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/transmissao-automatica.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem transmissão manual", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/transmissao-manual.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem Wi-Fi", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/wi-fi.png");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem Categoria Econômico", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/economico.jpg");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem Categoria Compacto", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/compacto.jpg");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem Categoria Confort", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/confort.jpg");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem Categoria Hatch", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/hatch.jpg");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem Categoria Sedan", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/sedan.jpeg");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem Categoria Pickup", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/pickup.jpg");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem Categoria Elétrico", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/eletrico.jpg");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem Categoria Minivan", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/minivan.jpg");
-INSERT INTO images (titulo, url)
-VALUES ("Imagem Categoria SUV", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/categories/suv.jpg");
 
 -- Cities
 INSERT INTO cities (nome, estado)
@@ -433,26 +381,6 @@ INSERT INTO products (nome, descricao, id_cidade, valor_diaria)
 VALUES ("Nissan Leaf", "O Nissan LEAF está equipado com alguns dos sistemas de assistência à direção mais avançados que existem; dessa forma, além de ser o carro pioneiro em eletrificação em massa, é o seu companheiro ideal para tornar todos os dias simplesmente incríveis.", 4, 294);
 INSERT INTO products (nome, descricao, id_cidade, valor_diaria)
 VALUES ("Renault Sandero", "O Sandero S Edition conta com o novo conjunto óptico DRL de LED, lanterna traseira com máscara negra, retrovisor externo na cor preta e novas rodas de aço. Por dentro, todo o conforto e espaço interno. Por fora, um design moderno com detalhes esportivos.​", 12, 83);
-
--- Images_Categories
-INSERT INTO images_categories (id_categoria, id_imagem)
-VALUES (1, 153);
-INSERT INTO images_categories (id_categoria, id_imagem)
-VALUES (2, 154);
-INSERT INTO images_categories (id_categoria, id_imagem)
-VALUES (3, 155);
-INSERT INTO images_categories (id_categoria, id_imagem)
-VALUES (4, 156);
-INSERT INTO images_categories (id_categoria, id_imagem)
-VALUES (5, 157);
-INSERT INTO images_categories (id_categoria, id_imagem)
-VALUES (6, 158);
-INSERT INTO images_categories (id_categoria, id_imagem)
-VALUES (7, 159);
-INSERT INTO images_categories (id_categoria, id_imagem)
-VALUES (8, 160);
-INSERT INTO images_categories (id_categoria, id_imagem)
-VALUES (9, 161);
 
 -- Categories_Products
 INSERT INTO categories_products (id_produto, id_categoria)
@@ -883,76 +811,40 @@ INSERT INTO images_products (id_produto, id_imagem)
 VALUES (32, 135);
 
 -- Features
-INSERT INTO features (nome)
-VALUES ("Ar condicionado");
-INSERT INTO features (nome)
-VALUES ("2 lugares");
-INSERT INTO features (nome)
-VALUES ("4 lugares");
-INSERT INTO features (nome)
-VALUES ("5 lugares");
-INSERT INTO features (nome)
-VALUES ("7 lugares");
-INSERT INTO features (nome)
-VALUES ("Câmera de ré");
-INSERT INTO features (nome)
-VALUES ("Chave sem contato");
-INSERT INTO features (nome)
-VALUES ("Motor elétrico");
-INSERT INTO features (nome)
-VALUES ("Multimídia");
-INSERT INTO features (nome)
-VALUES ("2 portas");
-INSERT INTO features (nome)
-VALUES ("4 portas");
-INSERT INTO features (nome)
-VALUES ("Sensor de colisão dianteira");
-INSERT INTO features (nome)
-VALUES ("Sensor de ponto cego");
-INSERT INTO features (nome)
-VALUES ("Sensores de proximidade");
-INSERT INTO features (nome)
-VALUES ("Transmissão automática");
-INSERT INTO features (nome)
-VALUES ("Transmissão manual");
-INSERT INTO features (nome)
-VALUES ("Wi-Fi");
-
--- Images_Features
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (1, 136);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (2, 137);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (3, 138);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (4, 139);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (5, 140);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (6, 141);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (7, 142);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (8, 143);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (9, 144);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (10, 145);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (11, 146);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (12, 147);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (13, 148);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (14, 149);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (15, 150);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (16, 151);
-INSERT INTO images_features (id_caracteristica, id_imagem)
-VALUES (17, 152);
+INSERT INTO features (nome, icone)
+VALUES ("Ar condicionado", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/ar-condicionado.png");
+INSERT INTO features (nome, icone)
+VALUES ("2 lugares", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/assentos.png");
+INSERT INTO features (nome, icone)
+VALUES ("4 lugares", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/assentos.png");
+INSERT INTO features (nome, icone)
+VALUES ("5 lugares", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/assentos.png");
+INSERT INTO features (nome, icone)
+VALUES ("7 lugares", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/assentos.png");
+INSERT INTO features (nome, icone)
+VALUES ("Câmera de ré", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/camera-re.png");
+INSERT INTO features (nome, icone)
+VALUES ("Chave sem contato", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/chave-contactless.png");
+INSERT INTO features (nome, icone)
+VALUES ("Motor elétrico", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/motor-eletrico.png");
+INSERT INTO features (nome, icone)
+VALUES ("Multimídia", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/multimidia.png");
+INSERT INTO features (nome, icone)
+VALUES ("2 portas", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/porta.png");
+INSERT INTO features (nome, icone)
+VALUES ("4 portas", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/porta.png");
+INSERT INTO features (nome, icone)
+VALUES ("Sensor de colisão dianteira", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/sensor-colisao-dianteira.png");
+INSERT INTO features (nome, icone)
+VALUES ("Sensor de ponto cego", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/sensor-ponto-cego.png");
+INSERT INTO features (nome, icone)
+VALUES ("Sensores de proximidade", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/sensores-proximidade.png");
+INSERT INTO features (nome, icone)
+VALUES ("Transmissão automática", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/transmissao-automatica.png");
+INSERT INTO features (nome, icone)
+VALUES ("Transmissão manual", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/transmissao-manual.png");
+INSERT INTO features (nome, icone)
+VALUES ("Wi-Fi", "https://bucket-carshop-g4.s3.us-east-2.amazonaws.com/features/wi-fi.png");
 
 -- Features_Products
 INSERT INTO features_products (id_produto, id_caracteristica)
