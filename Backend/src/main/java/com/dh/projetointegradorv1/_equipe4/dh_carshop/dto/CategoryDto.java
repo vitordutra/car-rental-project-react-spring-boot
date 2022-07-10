@@ -46,7 +46,9 @@ public class CategoryDto implements Serializable {
         id = entity.getId();
         titulo = entity.getTitulo();
         descricao = entity.getDescricao();
-        imagem = new ImageDto(entity.getImagem());
+        if (entity.getImagem() != null) {
+            imagem = new ImageDto(entity.getImagem());
+        }
     }
 
     /*public CategoryDto(Category entity) {
