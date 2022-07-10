@@ -45,7 +45,6 @@ public class ImageService {
         if (entity.getProdutos() != null) {
             entity.getProdutos().clear();
         }
-
         for(ProductDto prodDto : dto.getProdutos()) {
             Optional<Product> obj = productRepository.findById(prodDto.getId());
             Product product = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));

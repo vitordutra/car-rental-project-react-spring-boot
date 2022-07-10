@@ -68,16 +68,6 @@ public class CategoryService {
         catch (EntityNotFoundException e) {
             throw new RecursoNaoEncontrado("ID NÃO ENCONTRADO: " + id);
         }
-
-        /*return categoryRepository.findById(id)
-                .map(categoryToUpdate -> {
-                    categoryToUpdate.setDescricao(category.getDescricao());
-                    categoryToUpdate.setTitulo(category.getTitulo());
-                    return categoryRepository.save(categoryToUpdate);
-                }).orElseGet(() -> {
-                    category.setId(id);
-                    return categoryRepository.save(category);
-                });*/
     }
 
     public void deleteCategoryById(Integer id) {

@@ -18,8 +18,8 @@ public class FeatureDto implements Serializable {
 
     private Integer id;
     private String nome;
-    private List<ProductDto> produtos = new ArrayList<>();
     private String icone;
+    private List<ProductDto> produtos = new ArrayList<>();
 
     public FeatureDto(Integer id, String nome, String icone) {
         this.id = id;
