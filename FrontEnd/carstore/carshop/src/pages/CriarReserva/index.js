@@ -3,11 +3,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import './styles.css';
 import { DateRange } from 'react-date-range';
 import { addDays, set } from 'date-fns'
 import format from 'date-fns/format';
+import Swal from 'sweetalert2';
 
 export default function CriarReserva() {
 
@@ -15,16 +17,24 @@ export default function CriarReserva() {
     const [cidades, setCidades] = useState([]);
     const [selectedCity, setSelectedCity] = useState("");
     const [userr,setUserr] = useState()
+    const [loaded, setLoaded] = useState(false)
+    const [listaDeDatasRealmenteDesabilitadas,setListaDeDatasRealmenteDesabilitadas] = useState([1,2,3]);
 
     const parametro = useParams();
-    console.log("parametro")
-    console.log(parametro)
+   /*  console.log("parametro")
+    console.log(parametro) */
+    const navigate = useNavigate();
+
+
+    
     useEffect(() => {
         callApiDetails(parametro.idProduto);
-        callCidadesApi()
+        /* callCidadesApi() */
         filterCity(1)
         setUserr(estaLogado())
         window.addEventListener('resize', handleResize);
+        setListaDeDatasRealmenteDesabilitadas(soltarEmDias())
+        
         
         
         
@@ -54,41 +64,71 @@ export default function CriarReserva() {
     
     const enviarReserva = () => {
       try{
-        
+        console.log(`${format(range[0].startDate, "yyyy-MM-dd")}`)
+        console.log(`${format(range[0].endDate, "yyyy-MM-dd")}`)
         const response = api.post("/api/v1/bookings",
         {
-          "inicioReserva" : "2022-07-07",
-          "fimReserva" : "2022-07-08",
-          "valorReserva": 3000,
-          "produto":{
-                      "id":1
+          inicioReserva : `${format(range[0].startDate, "yyyy-MM-dd")}`,
+          fimReserva : `${format(range[0].endDate, "yyyy-MM-dd")}`,
+          
+          produto:{
+                      "id":`${produto.id}`
                     },
-          "cidade":{
-                    "id":1
-                  }
+          cidade:{
+                    "id":`${produto.cidade.id}`
+                  },
+    usuario:{
+        "id":`${userr.id}`
+    }
+        }).then(function deuBom(response) {
+          // handle success
+          console.log("parabens deu td certo");
+          navigate("/Sucesso")
         })
-        console.log("RESPONSE")
-        console.log(response)
+        .catch(function deuRuim(error) {
+          
+          // handle error
+          console.log("foda em amigo");
+          Swal.fire({
+            icon: 'error',
+            title: 'Ops!',
+            text: 'Houve um erro ao enviar sua reserva, tente novamente mais tarde.',
+            confirmButtonColor: 'var(--primary-color)',
+            imageWidth: 100,
+            width: 350,
+          })
+          console.log(error);
+        })
+
+
+
+
+
+
+        
       } catch{
 
       }
           
 
     }
-    
+  
 
     async function callApiDetails(x) {
         
         try {
-          const response = await api.get(`/api/v1/products/${x}`);
+          console.log(loaded)
+          const response = await api.get(`/api/v1/products/${x}`).then(setLoaded(true));
           setProduto(response.data);
-        
+          
+          
+          
         }
         catch (error) {      
         }
       } 
 
-      async function callCidadesApi() {
+    /*   async function callCidadesApi() {
         try {
           const response = await api.get("/cities");
           setCidades(response.data);
@@ -96,7 +136,7 @@ export default function CriarReserva() {
         catch (error) { 
     
         }
-      }
+      } */
     
       function filterCity(botaOId){
         try{
@@ -108,6 +148,84 @@ export default function CriarReserva() {
 
 
       //PARTE DO CALENDARIO
+
+
+      const datasLista = []
+    
+
+    
+    const trabalharOsPares =(inicio,fim) =>{
+        const listaDeDias = []
+/*         console.log("trabaio")
+        console.log(inicio+" "+fim) */
+        inicio = new Date(inicio)
+        inicio.setDate(inicio.getDate() + 1);
+        fim = new Date(fim)
+        fim.setDate(fim.getDate() + 1);
+        /* console.log(inicio)
+        console.log(fim) */
+        const diferenca = diffDays(inicio,fim)
+        /* console.log(diferenca) */
+
+        var i = 0;
+        for (; i < diferenca; i++) {
+            listaDeDias.push(new Date(inicio.getFullYear(),inicio.getMonth(),inicio.getDate() + i));
+            
+            // more statements
+}
+/* console.log(listaDeDias) */
+
+return listaDeDias
+
+
+
+
+
+        /* const qtdDias = diffDays(inicio,fim) */
+        
+        
+
+    }
+
+
+    
+const listaTotalDeDias = []
+    const soltarEmDias = () => {try {
+
+      produto.reservas.map(e => 
+        (datasLista.push([e.inicioReserva,e.fimReserva]))
+                             )
+
+
+        console.log(datasLista[0])
+        
+        return datasLista.map(e =>  trabalharOsPares(e[0],e[1])).flat(Infinity)
+      
+    } catch (error) {
+      console.log("erro aqui mane")
+      console.log(error)
+      return [1,1,1,1,1]
+    }
+                                        
+                                        
+                                        
+
+                               }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         const diffDays = (date, otherDate) => Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24)+1);
 
         const minDate = new Date( new Date().getFullYear(), new Date().getMonth(),new Date().getDate());
@@ -125,7 +243,7 @@ export default function CriarReserva() {
         const data2 : Date = new Date(2022,7,25);
         const disabledDatesList=[]
         const diff = (data2-data1)/864e5;
-        console.log(diff)
+        /* console.log(diff) */
         const d1 = data1
         
         const dates = Array.from(
@@ -138,7 +256,7 @@ export default function CriarReserva() {
             return `${weekday}`
           }
         )
-        console.log(dates)
+        /* console.log(dates) */
           
         
         /* try {
@@ -154,7 +272,7 @@ export default function CriarReserva() {
         //TODO: aumentar aumentar 1 dia
         
         
-        console.log(disabledDatesList)
+        /* console.log(disabledDatesList) */
         // /\
 
         function estaLogado() {
@@ -170,8 +288,8 @@ export default function CriarReserva() {
 
         const dadosPessoa = () => {
           try {
-            console.log("produto")
-            console.log(produto)
+            
+            
               return(
                 <>
                 
@@ -211,6 +329,7 @@ export default function CriarReserva() {
         }
         const handleCidadeCarro = () => {
           try {
+            
               return  produto.cidade.nome+","+produto.cidade.estado
           } catch (error) {}
         }
@@ -220,6 +339,29 @@ export default function CriarReserva() {
               return  produto.imagens[0].url
           } catch (error) {}
         }
+        function handleSetarDatas (){
+          if (loaded === true){
+            console.log(loaded)
+            return<>
+            <DateRange 
+                    
+                    onChange={item => setRange([item.selection])}
+                    minDate={minDate}
+                    maxDate={maxDate} 
+                    editableDateInputs={true} 
+                    moveRangeOnFirstSelection={false}
+                    ranges={range}
+                    months={2}
+                    disabledDates={soltarEmDias()}
+                    direction="horizontal"
+                    className="date"                            
+                    />
+                  </>
+          }
+          
+        }
+        
+        
 
         
         
@@ -228,7 +370,7 @@ export default function CriarReserva() {
 
     return (
         <>
-       
+            
             <div className="flex-container-reserva">
               <div className="bloco-titulo-reserva">
                 <h5>Nome do carro escolhido: {produto.nome} / Categoria(s): {  handleCategoriaCarro()}</h5>
@@ -240,7 +382,7 @@ export default function CriarReserva() {
                 <br />
                 <h4 className="reserva-titulo-carro" >{handleNomeCarro()}</h4>
                 <div className="flex-container-reserva1">
-                  <img className="imagem-reserva" src={handleImagemCarro()} width="50%" />
+                  <img className="imagem-reserva" onClick={handleSetarDatas} src={handleImagemCarro()} width="50%" />
                   <div className="detalhes-reserva-1">
                     <h4>Categoria(s): {handleCategoriaCarro()}</h4>
                     
@@ -252,20 +394,8 @@ export default function CriarReserva() {
                   <div className="reserva-dados-pessoa">
                     {dadosPessoa()}
                   </div>
-                
-                  <DateRange 
                   
-                  onChange={item => setRange([item.selection])}
-                  minDate={minDate}
-                  maxDate={maxDate} 
-                  editableDateInputs={true} 
-                  moveRangeOnFirstSelection={false}
-                  ranges={range}
-                  months={2}
-                  disabledDates={disabledDatesList}
-                  direction="horizontal"
-                  className="date"                            
-                  />
+              {handleSetarDatas()}    
               
               </div>
 
