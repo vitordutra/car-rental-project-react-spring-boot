@@ -20,13 +20,14 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
     const [characteristic, setCharacteristic] = useState([]);
     /* const [productDetails, setProductDetails] = useState([]); */
     const [listaParaMostrar, setListaParaMostrar] = useState([]);
+    const [listaDeDatasRealmenteDesabilitadas,setListaDeDatasRealmenteDesabilitadas] = useState([]);
     
 
     useEffect(() => {
         callProductDetailsApi();
         window.addEventListener('resize', handleResize);
         /* window.removeEventListener('resize', handleResize); */
-        
+        setListaDeDatasRealmenteDesabilitadas(soltarEmDias())
 
 
       }, []);
@@ -50,7 +51,7 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
 
     async function callProductDetailsApi(id) {
         try {
-          const response = await api.get(`/productDetails`);
+          const response = await api.get(`api/v1/products`);
           //console.log("productDetails Data")
           //console.log(response.data)
           const productDetails = response.data;
@@ -126,13 +127,31 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
             )
         }
 
-
         
-        
-
-
-
     }
+    const soltarCaracsV2 = () =>{
+        
+
+        
+
+        return <>
+                
+                <div>
+                    {detalhes.caracteristicas.map(e => <  >
+                    <div className="flex-container">
+                    <img className="modal-atributo-imagem" key={e.characteristic} src={e.imagem} width="30px" height={"30px"}></img> 
+                    <p className="modal-atributo-texto" >{e.nome}</p>
+                    </div>
+                    </>) }
+    
+    
+                </div>
+                
+                
+                </>
+            
+        }
+
 
 //Parte do calendario
     console.log("CALENDARIO")
@@ -140,8 +159,67 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
     const disabledDatesList=[]
     //TODO: aumentar aumentar 1 dia
     
-    detalhes.datas_ocupadas.map(e =>  disabledDatesList.push(new Date(new Date(e.data).getFullYear(),new Date(e.data).getMonth(),new Date(e.data).getDate()+1) ))
-    console.log(disabledDatesList)
+    const datasLista = []
+    const diffDays = (date, otherDate) => Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24)+1);
+
+    
+    const trabalharOsPares =(inicio,fim) =>{
+        const listaDeDias = []
+/*         console.log("trabaio")
+        console.log(inicio+" "+fim) */
+        inicio = new Date(inicio)
+        inicio.setDate(inicio.getDate() + 1);
+        fim = new Date(fim)
+        fim.setDate(fim.getDate() + 1);
+        /* console.log(inicio)
+        console.log(fim) */
+        const diferenca = diffDays(inicio,fim)
+        /* console.log(diferenca) */
+
+        var i = 0;
+        for (; i < diferenca; i++) {
+            listaDeDias.push(new Date(inicio.getFullYear(),inicio.getMonth(),inicio.getDate() + i));
+            
+            // more statements
+}
+/* console.log(listaDeDias) */
+
+return listaDeDias
+
+
+
+
+
+        /* const qtdDias = diffDays(inicio,fim) */
+        
+        
+
+    }
+
+    const listaTotalDeDias = []
+    const soltarEmDias = () => {
+                                        detalhes.reservas.map(e => 
+                                        (datasLista.push([e.inicioReserva,e.fimReserva]))
+                                                             )
+
+
+                                        console.log(datasLista[0])
+                                        
+                                        return datasLista.map(e =>  trabalharOsPares(e[0],e[1])).flat(Infinity)
+                                        
+                                        
+
+                               }
+                              
+    
+        
+    
+        
+        
+        
+      
+    /* detalhes.datas_ocupadas.map(e =>  disabledDatesList.push(new Date(new Date(e.data).getFullYear(),new Date(e.data).getMonth(),new Date(e.data).getDate()+1) )) */
+    /* console.log(disabledDatesList) */
     const minDate: Date = new Date( new Date().getFullYear(), new Date().getMonth(),new Date().getDate());
     const maxDate: Date = new Date( new Date().getFullYear(), new Date().getMonth()+2,new Date().getDate());
 
@@ -161,13 +239,13 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                     
                     <div className="flex-container">
                         <div className="flex-child-calendario">
-                        {(windowDimensions.width > 1300)? 2:1}
+                        
                             
                             <DateRange 
                                 minDate={minDate}
                                 maxDate={maxDate}
                                 
-                                disabledDates={disabledDatesList}
+                                disabledDates={listaDeDatasRealmenteDesabilitadas}
                                 editableDateInputs={false}
                                 moveRangeOnFirstSelection={false}
                                 
@@ -179,17 +257,17 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                         <div className="flex-child-resto">
                             <h2>{detalhes.title}</h2>
                             
-                            <img className="modal-imagem" src={detalhes.url_imagem} width="50%"  alt="" />
+                            <img className="modal-imagem" src={detalhes.imagens[0].url} width="50%"  alt="" />
                             <div className="flex-container2">
                             <p className="modal-descricao" >{detalhes.descricao}</p>
                             
                             
                             
-                            <div className="listaAtributosBox">{soltarCaracs(listaParaMostrar)}</div>
+                            <div className="listaAtributosBox">{soltarCaracsV2()}</div>
                             </div>
 
                             
-                            <p>Valor da diária: R${detalhes.valor_diaria},00</p>
+                            <p>Valor da diária: R${detalhes.valorDiaria},00</p>
                             <button onClick={handleBook} className="ButtonModal" >
                             Reserve Agora
                             </button>

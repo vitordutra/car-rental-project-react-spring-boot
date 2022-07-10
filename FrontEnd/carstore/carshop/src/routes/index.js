@@ -59,9 +59,9 @@ const Paginas = () => {
           <Route
             path='/Reserva/:idProduto'
             element={
-              <Private>
+              
                 <CriarReserva />
-              </Private>
+              
             }
           />
 
