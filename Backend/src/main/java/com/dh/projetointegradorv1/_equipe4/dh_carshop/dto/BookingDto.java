@@ -6,9 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Set;
 
 @Getter @Setter @NoArgsConstructor
@@ -33,11 +35,6 @@ public class BookingDto implements Serializable {
         id = entity.getId();
         inicioReserva = entity.getInicioReserva().format(DateTimeFormatter.ISO_DATE);
         fimReserva = entity.getFimReserva().format(DateTimeFormatter.ISO_DATE);
-        valorReserva = entity.getValorReserva();
-
-        produto = new ProductDto(entity.getProduto());
-        cidade = new CityDto(entity.getCidade());
-        usuario = new UserDto(entity.getUsuario());
     }
 
     public BookingDto(Booking entity, Product produto, City cidade, User usuario) {
@@ -45,9 +42,6 @@ public class BookingDto implements Serializable {
         this.produto = new ProductDto(produto);
         this.cidade = new CityDto(cidade);
         this.usuario = new UserDto(usuario);
-        this.valorReserva = this.produto.getValorDiaria() * ChronoLocalDate.timeLineOrder()
-                .compare(LocalDate.parse(this.getFimReserva(), DateTimeFormatter.ISO_DATE),
-                        LocalDate.parse(this.getInicioReserva(), DateTimeFormatter.ISO_DATE));
     }
 
 }
