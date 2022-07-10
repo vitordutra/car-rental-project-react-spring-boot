@@ -1,9 +1,11 @@
+
+
 .ProdutoModal{
     position: fixed;
     padding: 5%;
     width: 100%;
-    height: 100%;
-    top: 0;
+    height: 890px;
+    top: -60px;
     left: 0;
     right: 0;
     bottom: 0;  
@@ -72,7 +74,7 @@
     border-radius:10px;
     box-shadow:3px 3px 3px rgb(203, 201, 201);
     width:120px;
-    margin-top: 20px;
+    margin-top: 10px;
    
 }
 
@@ -106,7 +108,7 @@
     }
     .flex-child-resto{
     flex: 10;
-    margin:40px;
+    margin:0px;
         
     }
     .modal-descricao{

@@ -79,8 +79,11 @@ const Paginas = () => {
 
           <Route
             path='/administracao/*'
-            element={<NewProduct />}
-            email='administrador@gmail.com'
+            element={
+              <Private>
+              <NewProduct />
+              </Private>
+              }
           />
 
           <Route path='*' element={<Error />} />
