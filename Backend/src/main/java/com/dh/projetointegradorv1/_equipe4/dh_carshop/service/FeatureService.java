@@ -80,8 +80,10 @@ public class FeatureService {
             Product product = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
             entity.getProdutos().add(product);
         }
-        Optional<Image> obj = imageRepository.findById(dto.getImagem().getId());
-        Image imagem = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-        entity.setImagem(imagem);
+        if (dto.getImagem() != null) {
+            Optional<Image> obj = imageRepository.findById(dto.getImagem().getId());
+            Image imagem = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
+            entity.setImagem(imagem);
+        }
     }
 }

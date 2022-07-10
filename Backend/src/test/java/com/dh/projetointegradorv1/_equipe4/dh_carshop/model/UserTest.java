@@ -46,8 +46,6 @@ class UserTest {
         String senha = "";
 
         user.setFuncao(getFuncao());
-        user.setReservas(getReservas());
-
 
         // teste de get e set de nome
         user.setNome(nome);
