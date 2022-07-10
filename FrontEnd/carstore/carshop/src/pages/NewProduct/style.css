@@ -1,4 +1,4 @@
-.ProdutoModal{
+.NewProductModal{
     position: fixed;
     padding: 10%;
     width: 100%;
@@ -62,19 +62,7 @@
 
 }
 
-.ButtonModal{
-    background: #F6A52A;
-    border: none;
-    color: #935a04;
-    padding: 10px 5px;
-    text-align:center;
-    font-size:14px;
-    border-radius:10px;
-    box-shadow:3px 3px 3px rgb(203, 201, 201);
-    width:120px;
-    margin-top: 60px;
-   
-}
+
 
 .modalItem{
    padding: 5px;
