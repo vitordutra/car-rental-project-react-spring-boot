@@ -60,17 +60,6 @@ class ImageTest {
         image.setId(0);
         Assertions.assertEquals(0, image.getId());
 
-        // verificando que o callback antesDeAtualizar rodou
-        //imageService.copyToEntity(image, entity);
-        //Assertions.assertInstanceOf(java.time.OffsetDateTime.class, entity.getAtualizado());
-
-        /*// verificar agora instanciar ja com os valores
-        image = new ImageDto(titulo, url);
-
-        // testando se o initializer User() funcionou
-        Assertions.assertEquals(titulo, image.getTitulo());
-        Assertions.assertEquals(url, image.getUrl());*/
-
         image.setId(0);
         Assertions.assertEquals(0, image.getId());
 

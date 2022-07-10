@@ -40,14 +40,8 @@ public class UserService {
     @Transactional
     public UserDto createUser(UserDto dto) {
         User entity = new User();
-        System.out.println("====dto.getSenha() antes");
-        System.out.println(dto.getSenha());
         dto.setSenha(encoder.encode(dto.getSenha()));
-        System.out.println("====dto.getSenha() depois");
-        System.out.println(dto.getSenha());
         copyToEntity(dto, entity);
-        System.out.println("====entity.getSenha() depois");
-        System.out.println(entity.getSenha());
         entity = userRepository.save(entity);
         return new UserDto(entity);
     }

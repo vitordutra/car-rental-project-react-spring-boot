@@ -40,10 +40,6 @@ class CityTest {
         // aqui esta sendo testado a existencia do id e inclusive que foi salvo no banco porque tem um id
         Assertions.assertInstanceOf(java.lang.Integer.class, city.getId());
 
-        // verificando que o callback antesDeSalvar rodou
-        //cityService.copyToEntity(city, entity);
-        //Assertions.assertInstanceOf(java.time.OffsetDateTime.class, entity.getCriado());
-
         // testando se o initializer City() funfou
         Assertions.assertEquals(nome, city.getNome());
         Assertions.assertEquals(estado, city.getEstado());
