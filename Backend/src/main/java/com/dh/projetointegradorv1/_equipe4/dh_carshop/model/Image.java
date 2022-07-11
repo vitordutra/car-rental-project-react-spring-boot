@@ -33,12 +33,6 @@ public class Image implements Serializable {
     @ManyToMany(mappedBy = "imagens")
     private Set<Product> produtos;
 
-    @OneToOne(mappedBy = "imagem")
-    private Category categoria;
-
-    @OneToOne(mappedBy = "imagem")
-    private Feature caracteristica;
-
     // Timestamps Automáticos
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private OffsetDateTime criado;

@@ -21,9 +21,6 @@ public class ImageDto implements Serializable {
     private String titulo;
     private String url;
     private List<ProductDto> produtos = new ArrayList<>();
-    private CategoryDto categoria;
-    private FeatureDto caracteristica;
-
     public ImageDto(Integer id, String titulo, String url) {
         this.id = id;
         this.titulo = titulo;
@@ -36,16 +33,9 @@ public class ImageDto implements Serializable {
         url = entity.getUrl();
     }
 
-    public ImageDto(Image entity, Set<Product> produtos, Category categoria, Feature caracteristica) {
+    public ImageDto(Image entity, Set<Product> produtos) {
         this(entity);
         produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
-        if (categoria != null) {
-            this.categoria = new CategoryDto(categoria);
-        }
-        if (caracteristica != null) {
-            this.caracteristica = new FeatureDto(caracteristica);
-        }
-
     }
 
 }
