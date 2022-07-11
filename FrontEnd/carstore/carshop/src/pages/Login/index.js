@@ -1,13 +1,14 @@
 import PaginaLogin from '../../component/PaginaLogin';
+import './style.css';
 
 const Login = () => {
-    return (
-        <>
-            <title>Login</title>
-            
-            <PaginaLogin />
-        </>
-    );
-}
+  return (
+    <div id='page-container'>
+      <title>Login</title>
 
-export default Login
+      <PaginaLogin />
+    </div>
+  );
+};
+
+export default Login;

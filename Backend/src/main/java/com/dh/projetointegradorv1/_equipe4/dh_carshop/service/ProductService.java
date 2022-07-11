@@ -141,7 +141,7 @@ public class ProductService {
     public List<ProductDto> findProductByCategory(Integer id) {
         Optional<Category> obj = categoryRepository.findById(id);
         Category entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("CATEGORIA NÃO ENCONTRADA"));
-        CategoryDto dto = new CategoryDto(entity, entity.getProdutos(), entity.getImagem());
+        CategoryDto dto = new CategoryDto(entity, entity.getProdutos());
         return dto.getProdutos();
     }
 
@@ -157,17 +157,6 @@ public class ProductService {
         catch (EntityNotFoundException e) {
             throw new RecursoNaoEncontrado("ID NÃO ENCONTRADO: " + id);
         }
-
-        /*return productRepository.findById(id)
-                .map(product -> {
-                    product.setNome(editedProduct.getNome());
-                    product.setDescricao(editedProduct.getDescricao());
-                    return productRepository.save(product);
-                })
-                .orElseGet(() -> {
-                    editedProduct.setId(id);
-                    return productRepository.save(editedProduct);
-                });*/
     }
 
     public void deleteProductById(Integer id) {
