@@ -7,50 +7,55 @@
 }
 
 .ProdCategoryUl {
-  margin: 10px;
+  margin: 5px;
   padding: 5px;
   align-items: center;
-  background: red;
 }
 
 .ProdCategoryLi {
   list-style-type: none;
-  border: 1px #666;
+ 
   border-radius: 10px;
   margin: 20px;
-  width: 350px;
-  padding-bottom: 30px;
-
+  width: 390px;
+  padding-bottom: 10px;
   align-items: center;
-  background-color: rgb(233, 230, 230);
-  box-shadow: 5px 5px 5px #d3d3d3;
+  background-color: #ffff;
+  box-shadow: 0 0.5rem 1rem #c8c5c5;
 }
 
 .LinkProdCategory {
+  background: #ffff;
+  border-radius: 10px;
   height: 524px;
   text-decoration: none;
   margin: 0px 0px 0px 0px;
 }
 
 .ImgProdCategory {
-  width: 200px;
-  height: 150px;
-  margin: 5px 80px;
+  width: 260px;
+  height: 160px;
+  margin: 45px 70px;
 }
 
 .H3ProdCategory {
-  color: black;
+
+  font-style: italic;
+  
+  font-size: 20px;
+  font-family: arial, sans-serif;
   margin: 5px;
   text-align: center;
 }
 .H3ProdQualification {
   color: black;
   margin: 15px;
-  text-align: center;
+  text-align: justify;
 }
 
 .ParagProdCategory {
-  color: black;
+  font-family:Arial, sans-serif;
+  font-size: 15px;
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 60px;
@@ -63,12 +68,17 @@
   display: inline-block;
   background: #f6a52a;
   border: none;
-  color: white;
-  padding: 6px 20px;
+  color: black;
+  padding: 10px 10px;
   text-align: center;
-  font-size: 12px;
-  margin: 0px 10px;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px grey;
-  width: 325px;
+  font-size: 18px;
+  margin: 0px 10px 10px 10px;
+  border-radius: 3px;
+  width: 366px;
+  height: 60px;
+}
+
+.ButtonProductItem:hover{
+  background: #f49505;
+
 }
