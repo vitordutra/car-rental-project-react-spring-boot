@@ -40,9 +40,7 @@ class FeatureTest {
                 "atualizado=null" +
                 "}";
 
-        feature.setImagem(getImagem());
         feature.setProdutos(getProdutos());
-
 
         // teste de get e set de nome
         feature.setNome(nome);
@@ -56,27 +54,6 @@ class FeatureTest {
 
         feature.setId(0);
         Assertions.assertEquals(0, feature.getId());
-
-        // update
-        //user = userService.updateUserById(user.getId(), user); Não passou
-
-        // verificando que o callback antesDeAtualizar rodou
-        //userService.copyToEntity(user, entity);
-        //Assertions.assertInstanceOf(java.time.OffsetDateTime.class, entity.getAtualizado()); Não passou
-
-        // verificar agora instanciar ja com os valores
-        //user = new UserDto(nome, sobrenome, email, senha);
-
-        // testando se o initializer User() funcionou
-        /*Assertions.assertEquals(nome, user.getNome());
-        Assertions.assertEquals(sobrenome, user.getSobrenome());
-        Assertions.assertEquals(email, user.getEmail());
-        Assertions.assertEquals(senha, user.getSenha());
-
-        user.setId(0);
-        Assertions.assertEquals(0, user.getId());
-
-        Assertions.assertEquals(toStringOutput, user.toString());*/
 
     }
 
