@@ -1382,12 +1382,12 @@ VALUES ("User");
 
 -- Users
 INSERT INTO users (nome, sobrenome, email, senha, id_funcao)
-VALUES ("Francieli", "Celeghim", "francieliceleghim2013@gmail.com", "celeghim*f", 1);
+VALUES ("Francieli", "Celeghim", "francieliceleghim2013@gmail.com", "$2a$10$Ke6Pw7otuKazEZWAxvuhZOH9piD9ETD4NQg.eg2l7YMA/PG.hPLzW", 1);
 INSERT INTO users (nome, sobrenome, email, senha, id_funcao)
-VALUES ("João Vitor", "Dutra", "joao@email.com", "senha_joao", 1);
+VALUES ("João Vitor", "Dutra", "joao@email.com", "$2a$10$Ke6Pw7otuKazEZWAxvuhZOH9piD9ETD4NQg.eg2l7YMA/PG.hPLzW", 1);
 INSERT INTO users (nome, sobrenome, email, senha, id_funcao)
-VALUES ("Katherine", "Duarte", "katamarieth@gmail.com", "teste@2022", 1);
+VALUES ("Katherine", "Duarte", "katamarieth@gmail.com", "$2a$10$Ke6Pw7otuKazEZWAxvuhZOH9piD9ETD4NQg.eg2l7YMA/PG.hPLzW", 1);
 INSERT INTO users (nome, sobrenome, email, senha, id_funcao)
-VALUES ("Marcelo", "Ramos", "marcelo@rows.com", "dh1414", 1);
+VALUES ("Marcelo", "Ramos", "marcelo@rows.com", "$2a$10$Ke6Pw7otuKazEZWAxvuhZOH9piD9ETD4NQg.eg2l7YMA/PG.hPLzW", 1);
 INSERT INTO users (nome, sobrenome, email, senha, id_funcao)
-VALUES ("Mateus", "Dias", "mateusdias@outlook.com", "qwerty", 1);
+VALUES ("Mateus", "Dias", "mateusdias@outlook.com", "$2a$10$Ke6Pw7otuKazEZWAxvuhZOH9piD9ETD4NQg.eg2l7YMA/PG.hPLzW", 1);
