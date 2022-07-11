@@ -33,8 +33,8 @@ align-items: center;
  width: 300px;
  height: 400px;
  align-items: center;
- background: rgb(224, 222, 222);
- box-shadow: 5px 5px 5px 0 rgb(170, 168, 168);;
+ background-color: #ffff;
+  box-shadow: 0 0.5rem 1rem #c8c5c5;
  padding: 20px;
  
 
@@ -58,10 +58,10 @@ align-items: center;
 }
 
 .categoryItemImg{
-   width: 200px;
-   height: 150px;
+   width: 250px;
+   height: 170px;
    margin-top: 20px;
-   margin-left: 30px;
+ 
    
 }
 
