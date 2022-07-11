@@ -1,78 +1,74 @@
-.ProdCategoryBody{
-    background:#ffff; 
-  
+#page-container.ProdCategoryBody {
+  min-height: 0;
 }
 
-.ProdCategoryUl{
-    margin:10px;
-    padding:5px;
-    align-items: center;
-    background:red; 
+.ProdCategoryBody {
+  background: #ffff;
+}
+
+.ProdCategoryUl {
+  margin: 10px;
+  padding: 5px;
+  align-items: center;
+  background: red;
 }
 
 .ProdCategoryLi {
-    list-style-type: none;
-    border: 1px #666;
-    border-radius:10px;
-    margin:20px;
-    width: 350px;
-    padding-bottom: 30px;
-    
-    align-items: center;
-    background-color: rgb(233, 230, 230);
-    box-shadow: 5px 5px 5px #D3D3D3 
+  list-style-type: none;
+  border: 1px #666;
+  border-radius: 10px;
+  margin: 20px;
+  width: 350px;
+  padding-bottom: 30px;
 
+  align-items: center;
+  background-color: rgb(233, 230, 230);
+  box-shadow: 5px 5px 5px #d3d3d3;
 }
 
 .LinkProdCategory {
-    text-decoration:none;
-    margin: 0px 0px 0px 0px;
+  height: 524px;
+  text-decoration: none;
+  margin: 0px 0px 0px 0px;
 }
 
 .ImgProdCategory {
-    width: 200px;
-    height:150px;
-    margin: 5px 80px;
+  width: 200px;
+  height: 150px;
+  margin: 5px 80px;
 }
 
-
-.H3ProdCategory{
-    color: black;
-    margin: 5px;
-    text-align:center;
+.H3ProdCategory {
+  color: black;
+  margin: 5px;
+  text-align: center;
 }
-.H3ProdQualification{
-    color: black;
-    margin: 15px;
-    text-align:center;
-    
+.H3ProdQualification {
+  color: black;
+  margin: 15px;
+  text-align: center;
 }
 
-.ParagProdCategory{
-    color: black;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 60px;
-    margin-top: 25px;
-    justify-content: center;
-    text-align:center;
+.ParagProdCategory {
+  color: black;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 60px;
+  margin-top: 25px;
+  justify-content: center;
+  text-align: center;
 }
 
-.ButtonProductItem{
-    display: inline-block;
-    background: #F6A52A;
-    border: none;
-    color: white;
-    padding: 6px 20px;
-    text-align:center;
-    font-size:12px;
-    margin:0px 10px;
-    border-radius:10px;
-    box-shadow:5px 5px 5px grey;
-    width:325px;
+.ButtonProductItem {
+  display: inline-block;
+  background: #f6a52a;
+  border: none;
+  color: white;
+  padding: 6px 20px;
+  text-align: center;
+  font-size: 12px;
+  margin: 0px 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px grey;
+  width: 325px;
 }
-
-
-
-
-
