@@ -2,27 +2,25 @@
 
 *** Settings ***
 Library             SeleniumLibrary
-Resource            ./dh.resource
+Resource            dh.resource
 Test Setup          Abrir o site
 Test Teardown       Close Browser
 
 *** Test Cases ***
-Validação cadastro de usuario
-    Clicar em “Criar conta”
-    Preencher nome
-    Preencher sobrenome
+
+
+Validação da reserva
+    Clicar em “Criar Login”
     Preencher email
     Preencher senha
-    Clicar em Registrar
-    Validar Sucesso
-    Clicar em ok
-    Clicar em Logaut
-
-Validação login
-    Clicar em "Login"
-    Preencher email login
-    Preencher senha login
     Clicar em Entrar
-    Clicar em ok para deslogar
-
+    Clicar em “Conheça nosa Frota”
+    Validação Caoa Chery iCar
+    Clicar em "Mais Detalhes"
+    Clicar em "Reserve Agora"
+    Validar as datas de reserva
+    #Clicar em "Reservar"
+    #Validar "Muito obrigado!"
+    #Validar "Sua reserva foi feita com sucesso."
+    #Clicar em "Voltar"
 
