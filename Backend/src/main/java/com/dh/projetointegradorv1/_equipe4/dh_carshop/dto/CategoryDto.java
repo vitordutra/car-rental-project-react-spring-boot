@@ -30,9 +30,10 @@ public class CategoryDto implements Serializable {
         this.urlImagem = urlImagem;
     }
 
-    public CategoryDto(String titulo, String descricao) {
+    public CategoryDto(String titulo, String descricao, String urlImagem) {
         this.titulo = titulo;
         this.descricao = descricao;
+        this.urlImagem = urlImagem;
     }
 
     public CategoryDto(Category entity) {

@@ -1,7 +1,6 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
 import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.BookingDto;
-import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.CategoryDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.RoleDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.dto.UserDto;
 import com.dh.projetointegradorv1._equipe4.dh_carshop.service.BookingService;
