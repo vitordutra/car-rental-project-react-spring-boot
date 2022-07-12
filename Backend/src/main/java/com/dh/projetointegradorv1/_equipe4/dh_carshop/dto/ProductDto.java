@@ -36,7 +36,9 @@ public class ProductDto implements Serializable {
         nome = entity.getNome();
         descricao = entity.getDescricao();
         valorDiaria = entity.getValorDiaria();
-
+        if (entity.getCidade() != null) {
+            cidade = new CityDto(entity.getCidade());
+        }
         for (Image image : entity.getImagens()) {
             imagens.add(new ImageDto(image));
         }

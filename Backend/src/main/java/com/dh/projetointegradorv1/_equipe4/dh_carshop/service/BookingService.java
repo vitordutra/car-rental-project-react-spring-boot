@@ -82,16 +82,22 @@ public class BookingService {
         entity.setFimReserva(LocalDate.parse(dto.getFimReserva(), DateTimeFormatter.ISO_DATE));
         System.out.println("====dto.getProduto()");
         System.out.println(dto.getProduto());
-        Optional<Product> objProd = productRepository.findById(dto.getProduto().getId());
-        Product product = objProd.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-        entity.setProduto(product);
-        entity.setValorReserva(product.getValorDiaria() * Math.toIntExact(ChronoUnit.DAYS.between(entity.getInicioReserva(), entity.getFimReserva())));
-        Optional<City> objCity = cityRepository.findById(dto.getCidade().getId());
-        City city = objCity.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-        entity.setCidade(city);
-        Optional<User> objUser = userRepository.findById(dto.getUsuario().getId());
-        User user = objUser.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
-        entity.setUsuario(user);
+        if (dto.getProduto() != null) {
+            Optional<Product> obj = productRepository.findById(dto.getProduto().getId());
+            Product product = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
+            entity.setProduto(product);
+            entity.setValorReserva(product.getValorDiaria() * Math.toIntExact(ChronoUnit.DAYS.between(entity.getInicioReserva(), entity.getFimReserva())+1));
+        }
+        if (dto.getCidade() != null) {
+            Optional<City> obj = cityRepository.findById(dto.getCidade().getId());
+            City city = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
+            entity.setCidade(city);
+        }
+        if (dto.getUsuario() != null) {
+            Optional<User> obj = userRepository.findById(dto.getUsuario().getId());
+            User user = obj.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
+            entity.setUsuario(user);
+        }
     }
 
 }
