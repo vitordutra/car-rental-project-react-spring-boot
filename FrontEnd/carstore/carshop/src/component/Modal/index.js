@@ -139,7 +139,7 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
                 <div>
                     {detalhes.caracteristicas.map(e => <  >
                     <div className="flex-container">
-                    <img className="modal-atributo-imagem" key={e.characteristic} src={e.imagem} width="30px" height={"30px"}></img> 
+                    <img className="modal-atributo-imagem" key={e.characteristic} src={e.icone} width="30px" height={"30px"}></img> 
                     <p className="modal-atributo-texto" >{e.nome}</p>
                     </div>
                     </>) }
