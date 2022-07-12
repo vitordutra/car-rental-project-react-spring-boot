@@ -25,7 +25,7 @@ public class Booking implements Serializable {
     private LocalDate inicioReserva;
     @Column(nullable = false)
     private LocalDate fimReserva;
-    @Column(nullable = false)
+    @Column
     private Integer valorReserva;
     @ManyToOne
     @JoinColumn(name = "id_produto")

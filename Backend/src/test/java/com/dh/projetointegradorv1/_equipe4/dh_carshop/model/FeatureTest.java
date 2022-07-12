@@ -34,8 +34,9 @@ class FeatureTest {
 
         // expectativas
         String nome = "Rafael";
+        String icone = "url.com";
         String toStringOutput = "Features{" +
-                "id=0, nome='Rafael', " +
+                "id=0, nome='Rafael', icone='url.com'" +
                 "criado=null, " +
                 "atualizado=null" +
                 "}";
@@ -45,6 +46,10 @@ class FeatureTest {
         // teste de get e set de nome
         feature.setNome(nome);
         Assertions.assertEquals(nome, feature.getNome());
+
+        // teste de get e set de icone
+        feature.setIcone(icone);
+        Assertions.assertEquals(icone, feature.getIcone());
 
         // create
         feature = featureService.createFeature(feature);
@@ -61,9 +66,9 @@ class FeatureTest {
         return productService.findProductByCategory(1);
     }
 
-    private ImageDto getImagem() {
+    /*private ImageDto getImagem() {
         return imageService.findImageById(1);
-    }
+    }*/
 
 
 }

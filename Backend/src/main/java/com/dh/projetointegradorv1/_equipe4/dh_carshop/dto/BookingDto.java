@@ -35,11 +35,24 @@ public class BookingDto implements Serializable {
         id = entity.getId();
         inicioReserva = entity.getInicioReserva().format(DateTimeFormatter.ISO_DATE);
         fimReserva = entity.getFimReserva().format(DateTimeFormatter.ISO_DATE);
+        if (entity.getProduto() != null) {
+            produto = new ProductDto(entity.getProduto());
+            valorReserva = entity.getProduto().getValorDiaria() * Math.toIntExact(ChronoUnit.DAYS
+                    .between(entity.getInicioReserva(), entity.getFimReserva())+1);
+        }
+        if (entity.getCidade() != null) {
+            cidade = new CityDto(entity.getCidade());
+        }
+        if (entity.getUsuario() != null) {
+            usuario = new UserDto(entity.getUsuario());
+        }
     }
 
     public BookingDto(Booking entity, Product produto, City cidade, User usuario) {
         this(entity);
         this.produto = new ProductDto(produto);
+        this.valorReserva = produto.getValorDiaria() * Math.toIntExact(ChronoUnit.DAYS
+                .between(entity.getInicioReserva(), entity.getFimReserva())+1);
         this.cidade = new CityDto(cidade);
         this.usuario = new UserDto(usuario);
     }
