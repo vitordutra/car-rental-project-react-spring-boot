@@ -9,6 +9,18 @@
     min-height: calc(100vh - 10vw);
     padding: 5vw;
   }
+
+  .page-container{
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 15px;
+    width: 20%;
+  }
   
   .header-form {
     display: flex;
