@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px; 
-    background-color: #F6ECDD;
+    background-color: #DAA520;
     padding: 10px; 
     flex-wrap: wrap; 
 }
@@ -53,8 +53,8 @@
     width: 200px;
     height: 30px;
     border-radius: 5px ;
-    background-color: #F1C481;
-    border: none;
+    background-color: #f6a52a;
+    border-width: thin;
 }
 
 .pesquisa-titulo-texto{
@@ -69,7 +69,7 @@
 }
 
 #pesquisa-retirar-data{
-    background-color: #F1C481;
+    background-color: #dca417;
     padding: 10px 70px;
 }
 
@@ -87,6 +87,7 @@
 #pesquisa-devolucao-data{
     background-color: #F1C481;
     padding: 10px 70px;
+ 
 }
 
 @media ( max-width:280px){
@@ -101,8 +102,9 @@
     }
 }
 #pesquisa-retirar-local{
-    background-color: #F1C481;
+    background-color: #d49e14;
     padding: 10px 70px;
+    border-width: thin;
 }
 @media ( max-width:280px){
     #pesquisa-retirar-local{
@@ -126,22 +128,22 @@ margin-left: 10px;
 }
 
 .pesquisa-inputs{
-    border-radius: 7px;
-    border: none;
+    border-radius: 5px;
+    border-width: thin;
 }
 
 #pesquisa-botao-buscar {
     text-decoration: none;
     font-weight: 500;
-    border-radius: 9px;
+    border-radius: 5px;
     font-size: 13pt;
-    background-color: #F6A52A;
+    background-color: #d49e14;
     color: black;
     padding: 5px 50px;
-    border: none;
+    border-width: thin;
     cursor: pointer;
     opacity: 0.8;
-    
+    height: 45px;
     justify-content: center;
   }
   @media ( max-width:362px){
@@ -206,4 +208,12 @@ margin-left: 10px;
     cursor: pointer;
     text-align: start;
     margin: 2px 0;
+  }
+
+  .inputBox{
+    width: 200px;
+    height: 45px;
+    border-radius: 5px;
+    border-width: thin;
+    
   }
