@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.dh.projeto-integrador-v1.0_equipe4</groupId>
 	<artifactId>dh_carshop</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>dh_carshop</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -99,12 +99,6 @@
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
-
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
