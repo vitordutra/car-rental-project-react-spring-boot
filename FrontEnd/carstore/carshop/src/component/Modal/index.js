@@ -231,51 +231,39 @@ return listaDeDias
       
 
     return (
-        <>
-            <div id={id} className="ProdutoModal" onClick={handleOutsideClick}>
-                <div className="container2">
-                    <button className="close" onClick={onClose}/>
-                    { /* Organização de pc ou pc pequeno : organização de cell */  }
-                    
+            <>
+                <div id={id} className="ProdutoModal" onClick={handleOutsideClick}>
+                    <div className="container2">
+                        <button className="close" onClick={onClose}/>
+                        { /* Organização de pc ou pc pequeno : organização de cell */  }
+
                     <div className="flex-container">
-                        <div className="flex-child-calendario">
-                        
-                            
-                            <DateRange 
-                                minDate={minDate}
-                                maxDate={maxDate}
-                                
-                                disabledDates={listaDeDatasRealmenteDesabilitadas}
-                                editableDateInputs={false}
-                                moveRangeOnFirstSelection={false}
-                                
-                                months={(windowDimensions.width > 1300)? 2:1}
-                                direction="horizontal"
 
-                            />
-                        </div>
-                        <div className="flex-child-resto">
-                            <h2>{detalhes.title}</h2>
+                                <div className="flex-child-resto">        
+                                            <p className="modal-descricao" >{detalhes.descricao}</p>                           
+                                            <div className="listaAtributosBox">
+                                            {soltarCaracsV2()}
+                                            </div>
+                                                                     
+                                </div>  
+
+                              
+                                    <div className="modal-bloco-valorDiaria-botao-imagem">
+                                        <img className="modal-imagem" src={detalhes.imagens[0].url}  alt="" />
+                                        <p>Valor da diária: R${detalhes.valorDiaria},00</p>
+                                        <button onClick={handleBook} className="ButtonModal" >
+                                        Reserve Agora
+                                        </button>
+                                    
+                                 </div>
                             
-                            <img className="modal-imagem" src={detalhes.imagens[0].url} width="50%"  alt="" />
-                            <div className="flex-container2">
-                            <p className="modal-descricao" >{detalhes.descricao}</p>
-                            
-                            
-                            
-                            <div className="listaAtributosBox">{soltarCaracsV2()}</div>
+                                                          
+                                   
+                              
                             </div>
-
-                            
-                            <p>Valor da diária: R${detalhes.valorDiaria},00</p>
-                            <button onClick={handleBook} className="ButtonModal" >
-                            Reserve Agora
-                            </button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </>
+            </>
     );
 }
 
