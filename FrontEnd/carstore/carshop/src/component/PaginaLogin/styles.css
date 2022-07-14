@@ -35,12 +35,12 @@
 
  .actions button {
    
-    background: #F0A432;
+    background: black;
     height: 35px;
     width:350px;
     border-radius: 3px;
     border: none;
-    color: black;
+    color: white;
     font-weight: 500;
     font-size: 16px;
     transition: ease all 0.2s;
