@@ -8,7 +8,6 @@ export const ProductList = (props) => (
             <TextField source="id" />
             <TextField source="nome" />
             <TextField source="descricao" />
-            <TextField source="qualificacao" />
             <TextField source="valorDiaria" />
             <TextField source="cidade.nome" />
             <EditButton basePath="/Administration" />
@@ -32,6 +31,13 @@ export const ProductCreate = (props) => (
                 { id: '3', name: 'São Luís' },
                 { id: '4', name: 'São Paulo' },
                 { id: '5', name: 'Sorocaba' },
+                { id: '6', name: 'Rio de Janeiro' },
+                { id: '7', name: 'Belo Horizonte' },
+                { id: '8', name: 'Porto Alegre' },
+                { id: '9', name: 'Salvador' },
+                { id: '10', name: 'Recife' },
+                { id: '11', name: 'Brasília' },
+                { id: '12', name: 'Belém' },
             ]} />
 
         </SimpleForm>

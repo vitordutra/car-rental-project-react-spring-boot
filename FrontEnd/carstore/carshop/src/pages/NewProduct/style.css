@@ -48,11 +48,11 @@
 }
 
 ::after{
-    transform: rotate(45deg);
+    transform: rotate(90deg);
 }
 
 ::before{
-    transform: rotate(-45deg);
+    transform: rotate(0);
 }
 .flex-container{
     display: flex;
