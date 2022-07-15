@@ -3,7 +3,7 @@ import axios from "axios";
 const api = axios.create({
   //baseURL: "https://my-json-server.typicode.com/rows15/db-projetointegrador/",
   
-  baseURL: "http://3.15.133.120/",
+  baseURL: "http://3.15.133.120:8080",
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
