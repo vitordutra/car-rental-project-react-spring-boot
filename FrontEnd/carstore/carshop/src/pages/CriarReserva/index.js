@@ -294,11 +294,11 @@ const listaTotalDeDias = []
                 <>
                 
                 
-              <p>Nome: <input type="text" disabled="true" value={(userr.nome+" "+userr.sobrenome)} /> </p>
-              <p>email: <input type="text" disabled="true" value={userr.email}/></p>
-              <p>Data de Início:: <input type="text" disabled="true" value={format(range[0].startDate, "dd/MM/yyyy")}/></p>
-              <p>Data de Devolução: <input type="text" disabled="true" value={format(range[0].endDate, "dd/MM/yyyy")}/></p>
-              <p>Diárias:<input type="text" disabled="true" value={diffDays(range[0].startDate,range[0].endDate)}/></p>
+              <p>Nome: <br/> <input type="text" disabled="true" value={(userr.nome+" "+userr.sobrenome)} /> </p>
+              <p>email:<br/> <input type="text" disabled="true" value={userr.email}/></p>
+              <p>Data de Início:<br/> <input type="text" disabled="true" value={format(range[0].startDate, "dd/MM/yyyy")}/></p>
+              <p>Data de Devolução:<br/> <input type="text" disabled="true" value={format(range[0].endDate, "dd/MM/yyyy")}/></p>
+              <p>Diárias:<br/> <input type="text" disabled="true" value={diffDays(range[0].startDate,range[0].endDate)}/></p>
               <p>Valor Total:</p>
               <p>R$ {produto.valorDiaria*diffDays(range[0].startDate,range[0].endDate)},00</p>
                 
@@ -354,7 +354,8 @@ const listaTotalDeDias = []
                     months={2}
                     disabledDates={soltarEmDias()}
                     direction="horizontal"
-                    className="date"                            
+                className="date" 
+                style={{marginLeft:10,width: 250,height: 100, padding:10}}
                     />
                   </>
           }
@@ -370,13 +371,11 @@ const listaTotalDeDias = []
 
     return (
         <>
-            
+            <h2 className="bloco-titulo-reserva-h2">Confirme sua reserva:</h2>
             <div className="flex-container-reserva">
               <div className="bloco-titulo-reserva">
-                <h5>Nome do carro escolhido: {produto.nome} / Categoria(s): {  handleCategoriaCarro()}</h5>
-                
               </div>
-              <h2>Confirme sua reserva:</h2>
+              
 
             <div className="bloco-detalhes-reserva">
                 <br />
@@ -405,7 +404,7 @@ const listaTotalDeDias = []
                             {/* <Link to="/Sucesso"> */} <button className="button-reserva" onClick={enviarReserva}> Reservar</button> {/* </Link> */}
                 </div>
             </div>
-            <Link to="/Produtos"> <p>voltar aos produtos</p> </Link>
+            <Link to="/Produtos"> <p className="voltarprodutos" >voltar aos produtos</p> </Link>
           
             
         </>
