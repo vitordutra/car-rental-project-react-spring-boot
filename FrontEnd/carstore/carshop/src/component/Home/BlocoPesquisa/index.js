@@ -39,6 +39,9 @@ const BlocoPesquisa = () => {
     console.log('Acionei o useEffect, Linha 39');
     callCidadesApi();
   }, []);
+  useEffect(() => {
+    document.getElementById('pesquisa-retirar-local').value = stringTexto;
+  });
 
   //Parte do calendário ###############################################################################################################
   const minDate = new Date(
@@ -103,8 +106,6 @@ const BlocoPesquisa = () => {
     console.log('Acionei o handleSelectCity, Linha 103');
     setInputValue(stringTexto);
     setStringTexto(text.toString());
-
-    document.getElementById('pesquisa-retirar-local').value = stringTexto;
     setCidade(value);
   };
 
