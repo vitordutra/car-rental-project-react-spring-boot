@@ -1,18 +1,17 @@
 import { useEffect, useState, useRef } from 'react';
 import './styles.css';
 import format from 'date-fns/format';
-import { Link } from 'react-router-dom';
 import api from '../../../services/api';
 
 import { DateRange } from 'react-date-range';
 
-import { addDays, set } from 'date-fns';
+import { addDays, setAddDays } from 'date-fns';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { useNavigate } from 'react-router';
 
-const BlocoPesquisa = ({ handleFilter }) => {
+const BlocoPesquisa = () => {
   const [cidade, setCidade] = useState('');
   const [cidades, setCidades] = useState([]);
   const [inputValue, setInputValue] = useState('');
@@ -20,13 +19,15 @@ const BlocoPesquisa = ({ handleFilter }) => {
   const [openSugestions, setOpenSugestions] = useState(false);
 
   const onChange = event => {
-    setOpenSugestions(true);
+    console.log('Acionei o onChange, Linha 22');
+    setOpenSugestions(true); // -> não faz nada
     handleShowSugestions(true);
     setInputValue(event.target.value);
   };
+
   async function callCidadesApi() {
     try {
-      console.log('Entrou em BlocoPesquisa, Linha 29');
+      console.log('Entrou em BlocoPesquisa, Linha 30');
       const response = await api.get('/api/v1/cities');
       setCidades(response.data);
     } catch (error) {
@@ -35,37 +36,14 @@ const BlocoPesquisa = ({ handleFilter }) => {
   }
 
   useEffect(() => {
+    console.log('Acionei o useEffect, Linha 39');
     callCidadesApi();
   }, []);
-
-  /*   useEffect(() => {
-    callCidadesApi();
-  }, []);
-
-
-  async function callCidadesApi() {
-    try {
-      const response = await api.get("/cities");
-      setCidade(response.data);
-    }
-    catch (error) {
-
-    }
-
-    } */
-
-  async function callProductByCity(id) {
-    try {
-      console.log('Entrou em BlocoPesquisa, Linha 29');
-      const response = await api.get(`products/city/${id}`);
-      handleFilter(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  useEffect(() => {
+    document.getElementById('pesquisa-retirar-local').value = stringTexto;
+  });
 
   //Parte do calendário ###############################################################################################################
-  const refOne = useRef(null);
   const minDate = new Date(
     new Date().getFullYear(),
     new Date().getMonth(),
@@ -76,41 +54,22 @@ const BlocoPesquisa = ({ handleFilter }) => {
     new Date().getMonth() + 2,
     new Date().getDate()
   );
-  /*
-    async function callApiProductsDateRange(range, cidadeEscolhida) {
 
-        try {
-            const DataDeInicio = format(range[0].startDate, "MM-dd-yyyy")
-            const DataDeTermino = format(range[0].endDate, "MM-dd-yyyy")
-            const cidade = cidadeEscolhida;
-            console.log(DataDeInicio);
-            console.log(DataDeTermino);
-            const URL = `products?cityId=${cidade}&data_inicial=${DataDeInicio}&data_final=${DataDeTermino}`;
-            // console.log(URL);
-            const response = await api.get(URL);
-            console.log(response);
-            // handleFilter(response.data);
+  // useEffect(() => {
+  //   console.log('Acionei o useEffect, Linha 56');
+  //   // event listeners
+  //   document.addEventListener('keydown', hideOnEscape, true);
+  // }, []);
 
-
-        }
-        catch (error) {
-            console.log(error)
-        }
-    } */
-
-  useEffect(() => {
-    // event listeners
-    document.addEventListener('keydown', hideOnEscape, true);
-  }, []);
-
-  // hide dropdown on ESC press
-  const hideOnEscape = e => {
-    // console.log(e.key)
-    if (e.key === 'Escape') {
-      setOpen(false);
-      setOpenSugestions(false);
-    }
-  };
+  // // hide dropdown on ESC press
+  // const hideOnEscape = e => {
+  //   console.log('Acionei o hideOnEscape, Linha 63');
+  //   // console.log(e.key)
+  //   if (e.key === 'Escape') {
+  //     setOpen(false);
+  //     setOpenSugestions(false);
+  //   }
+  // };
 
   const [range, setRange] = useState([
     {
@@ -124,6 +83,7 @@ const BlocoPesquisa = ({ handleFilter }) => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
+    console.log('Acionei o handleSearch, Linha 83');
     /* navigate("/Produtos",{state: {range,cidade}}); */
     if (cidade !== '') {
       navigate(
@@ -143,13 +103,14 @@ const BlocoPesquisa = ({ handleFilter }) => {
   };
 
   const handleSelectCity = (value, text) => {
+    console.log('Acionei o handleSelectCity, Linha 103');
+    setInputValue(stringTexto);
     setStringTexto(text.toString());
-
-    document.getElementById('pesquisa-retirar-local').value = stringTexto;
     setCidade(value);
   };
 
   const handleShowSugestions = () => {
+    console.log('Acionei o handleShowSugestions, Linha 113');
     const robson = document.getElementsByClassName('dropdown')[0];
     console.log('robson: ', robson);
     console.log('openSugestions: ', openSugestions);
@@ -158,24 +119,18 @@ const BlocoPesquisa = ({ handleFilter }) => {
     if (openSugestions) {
       robson.style.display = 'none';
       setOpenSugestions(!openSugestions);
-    } else {
-      robson.style.display = '';
+    } else if (!openSugestions) {
+      robson.style.display = 'block';
       setOpenSugestions(!openSugestions);
     }
   };
 
   return (
     <>
+      {console.log('inputValue: ', inputValue)}
       <div>
         <div className='pesquisa-primeira-fileira'>
           <div className='pesquisa-itens-duplos'>
-            {/* <select className="select" name="cidade"  onChange={item => callProductByCity(item.target.value)}>
-              <option  value="">Escolha a cidade</option>
-              {cidade.map((item) => (
-              <option value={item.id}>{item.nome}</option>
-              ))}
-            </select> */}
-
             <div className='search-container'>
               <div className='search-inner'>
                 <input
@@ -187,9 +142,6 @@ const BlocoPesquisa = ({ handleFilter }) => {
                   value={inputValue}
                   onChange={onChange}
                   onClick={handleShowSugestions}
-
-                  /* value={inputValue} */
-                  /* onChange={item =>( setInputValue(item.target.text))} */
                 />
               </div>
 
