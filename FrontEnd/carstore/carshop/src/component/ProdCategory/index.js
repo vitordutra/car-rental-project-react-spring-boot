@@ -7,8 +7,6 @@ import './styles.css';
 export default function ProdCategory({ prmProduct }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  console.log('prmProduct', prmProduct);
-
   return (
     <div id='page-container' className='ProdCategoryBody'>
       <ul className='ProdCategoryLu'>

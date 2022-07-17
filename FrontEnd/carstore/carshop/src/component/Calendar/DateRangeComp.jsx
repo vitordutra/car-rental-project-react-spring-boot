@@ -32,7 +32,6 @@ const DateRangeComp = ({callApiProductsDateRange,cidadeEscolhida}) => {
 
   // hide dropdown on ESC press
   const hideOnEscape = (e) => {
-    // console.log(e.key)
     if( e.key === "Escape" ) {
       setOpen(false)
     }
@@ -40,28 +39,11 @@ const DateRangeComp = ({callApiProductsDateRange,cidadeEscolhida}) => {
 
   // Hide on outside click
   const hideOnClickOutside = (e) => {
-    // console.log(refOne.current)
-    // console.log(e.target)
     if( refOne.current && !refOne.current.contains(e.target) ) {
       setOpen(false)
     }
   }
 
-  /* async function callApiProductsDateRange(range) {
-
-    try {
-      console.log(range[0].startDate)
-      console.log(range[0].endDate)
-      //const URL = "categories"
-      //const URL = `products?categoryId=${id}`
-      //const response = await api.get(URL);
-      //handleFilter(response.data);
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
- */
 
   const minDate = new Date( new Date().getFullYear(), new Date().getMonth(),new Date().getDate());
   const maxDate = new Date( new Date().getFullYear(), new Date().getMonth()+2,new Date().getDate());

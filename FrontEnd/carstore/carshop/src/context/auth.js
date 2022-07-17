@@ -22,8 +22,7 @@ export const AuthProvider = ({ children }) => {
        
      }, []);
 
-    const login = (email, senha) => { 
-        console.log("login auth", { email, senha });
+    const login = (email, senha) => {
         //quando eu recebir inf de email e password iria no servidor e a api criaría  uma seccion
 
         api.post('/authenticate', {
@@ -31,15 +30,12 @@ export const AuthProvider = ({ children }) => {
             senha: senha
         })
         .then((responseJwt) => {
-            console.log('responseJwt', responseJwt);
             const userToken = responseJwt.data;
-            console.log('userToken', userToken);
 
             api.defaults.headers.common["Authorization"] = `Bearer ${userToken.jwt}`;
 
             api.get(`/api/v1/users/email/${email}`)
             .then((responseUser) => {
-            console.log('responseUser', responseUser);
               const loggedUser = {
                 id: responseUser.data.id,
                 nome: responseUser.data.nome,

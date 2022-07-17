@@ -9,11 +9,7 @@ import { DateRange } from 'react-date-range'
 
 
 
-const  Modal = ({id = 'modal' , detalhes, onClose}) => { 
-
-    
-    
-
+const  Modal = ({id = 'modal' , detalhes, onClose}) => {
     const handleOutsideClick = (e) => {
         if (e.target.id === id) onClose();
     }; 
@@ -50,26 +46,21 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
 
 
     async function callProductDetailsApi(id) {
-        try {
-          const response = await api.get(`api/v1/products`);
-          //console.log("productDetails Data")
-          //console.log(response.data)
-          const productDetails = response.data;
-          setListaParaMostrar(filterDetails(productDetails));
-        }
-        catch (error) {     
-        }
+      try {
+        const response = await api.get(`api/v1/products`);
+        const productDetails = response.data;
+        setListaParaMostrar(filterDetails(productDetails));
+      }
+      catch (error) {     
+      }
     } 
    
     const navigate  = useNavigate()
     
     
-    const handleBook = () =>{
-        
-        navigate(`/Reserva/${detalhes.id}/`);
-  
-  
-      }
+    const handleBook = () => {
+      navigate(`/Reserva/${detalhes.id}/`);
+    }
 
 
 
@@ -81,28 +72,20 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
         const listaDeCaracsFiltrada = []
         /* detalhes.caracteristicas.map(n => listaDeCaracs.push(productDetails.filter( e => e.id == n.id ))) */
         detalhes.caracteristicas.map(n => listaDeCaracs.push(n.id))
-        
-        console.log(detalhes.caracteristicas)
-        console.log("Lista v")
-        console.log(listaDeCaracs)
-        console.log("Lista productdetails v")
-        console.log(productDetails)
         listaDeCaracsFiltrada.push(productDetails.filter( e => listaDeCaracs.includes(e.id)))
-        console.log("Lista v2")
-        console.log(listaDeCaracsFiltrada)
 
         
 
         return listaDeCaracsFiltrada
         
-      }catch(error){console.log("ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
-    console.log(error)}}
+      }catch(error){
+        console.error(error)}}
 
-      try {
-        
-      } catch (error) {
-        
-      }
+        try {
+          
+        } catch (error) {
+          
+        }
 
 
       const soltarCaracs = (caracsInput) =>{
@@ -131,9 +114,6 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
     }
     const soltarCaracsV2 = () =>{
         
-
-        
-
         return <>
                 
                 <div>
@@ -154,8 +134,6 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
 
 
 //Parte do calendario
-    console.log("CALENDARIO")
-    console.log(detalhes)
     const disabledDatesList=[]
     //TODO: aumentar aumentar 1 dia
     
@@ -165,16 +143,11 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
     
     const trabalharOsPares =(inicio,fim) =>{
         const listaDeDias = []
-/*         console.log("trabaio")
-        console.log(inicio+" "+fim) */
         inicio = new Date(inicio)
         inicio.setDate(inicio.getDate() + 1);
         fim = new Date(fim)
         fim.setDate(fim.getDate() + 1);
-        /* console.log(inicio)
-        console.log(fim) */
         const diferenca = diffDays(inicio,fim)
-        /* console.log(diferenca) */
 
         var i = 0;
         for (; i < diferenca; i++) {
@@ -182,7 +155,6 @@ const  Modal = ({id = 'modal' , detalhes, onClose}) => {
             
             // more statements
 }
-/* console.log(listaDeDias) */
 
 return listaDeDias
 
@@ -198,28 +170,17 @@ return listaDeDias
 
     const listaTotalDeDias = []
     const soltarEmDias = () => {
-                                        detalhes.reservas.map(e => 
-                                        (datasLista.push([e.inicioReserva,e.fimReserva]))
-                                                             )
-
-
-                                        console.log(datasLista[0])
-                                        
-                                        return datasLista.map(e =>  trabalharOsPares(e[0],e[1])).flat(Infinity)
-                                        
-                                        
-
-                               }
-                              
-    
-        
-    
-        
-        
-        
+      detalhes.reservas.map(e => 
+        (datasLista.push([e.inicioReserva,e.fimReserva]))
+      )
       
+      return datasLista.map(e =>  trabalharOsPares(e[0],e[1])).flat(Infinity)
+                                        
+                                        
+    }
+
     /* detalhes.datas_ocupadas.map(e =>  disabledDatesList.push(new Date(new Date(e.data).getFullYear(),new Date(e.data).getMonth(),new Date(e.data).getDate()+1) )) */
-    /* console.log(disabledDatesList) */
+    
     const minDate: Date = new Date( new Date().getFullYear(), new Date().getMonth(),new Date().getDate());
     const maxDate: Date = new Date( new Date().getFullYear(), new Date().getMonth()+2,new Date().getDate());
 
