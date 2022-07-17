@@ -139,10 +139,17 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public List<ProductDto> findProductByCategory(Integer id) {
+        List<ProductDto> list = new ArrayList<>();
         Optional<Category> obj = categoryRepository.findById(id);
         Category entity = obj.orElseThrow(() -> new RecursoNaoEncontrado("CATEGORIA NÃO ENCONTRADA"));
         CategoryDto dto = new CategoryDto(entity, entity.getProdutos());
-        return dto.getProdutos();
+        for(ProductDto prod : dto.getProdutos()) {
+            Optional<Product> objProd = productRepository.findById(prod.getId());
+            Product entityProd = objProd.orElseThrow(() -> new RecursoNaoEncontrado("ENTIDADE NÃO ENCONTRADA"));
+            list.add(new ProductDto(entityProd, entityProd.getCaracteristicas(), entityProd.getImagens(),
+                    entityProd.getCategorias(), entityProd.getCidade(), entityProd.getReservas()));
+        }
+        return list;
     }
 
     @Transactional
