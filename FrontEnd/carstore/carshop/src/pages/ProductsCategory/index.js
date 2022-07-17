@@ -19,22 +19,15 @@ export default function ProductsCategory() {
   const [endDate, setendDate] = useState(params.endDate);
 
   useEffect(() => {
-    console.log('cidade: ', cidade);
-    console.log('startDate: ', startDate);
-    console.log('endDate: ', endDate);
     if (!!cidade !== false && !(startDate === undefined)) {
-      //console.log("1+2")
       callApiProductsDateCity(cidade, startDate, endDate);
     } else {
       if (!(cidade === undefined)) {
-        //console.log("1")
         callApiProductsCity(cidade);
       } else {
         if (!(startDate === undefined)) {
-          //console.log("2")
           callApiProductsDate(startDate, endDate);
         } else {
-          //console.log("0")
           callApiProducts();
         }
       }
@@ -69,39 +62,26 @@ export default function ProductsCategory() {
 
   async function callApiProductsDateCity(cidade, startDate, endDate) {
     try {
-      console.log(
-        'Entrou em ProductsCategory, callApiProductsDateCity, Linha 72'
-      );
       const DataDeInicio = startDate;
       const DataDeTermino = endDate;
-
-      console.log(DataDeInicio);
-      console.log(DataDeTermino);
       const URL = `api/v1/products?cityId=${cidade}&dataInicio=${DataDeInicio}&dataTermino=${DataDeTermino}`; /* &data_inicial=${DataDeInicio}&data_final=${DataDeTermino}`; */
-      console.log(URL);
+      
       const response = await api.get(URL);
-      console.log(response);
       setProducts(response.data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
   async function callApiProductsDate(startDate, endDate) {
     try {
-      console.log('Entrou em ProductsCategory, callApiProductsDate, Linha 92');
       const DataDeInicio = startDate;
       const DataDeTermino = endDate;
-
-      console.log(DataDeInicio);
-      console.log(DataDeTermino);
       const URL = `api/v1/products?dataInicio=${DataDeInicio}&dataTermino=${DataDeTermino}`;
-      console.log(URL);
       const response = await api.get(URL);
-      console.log(response);
       setProducts(response.data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

@@ -21,8 +21,6 @@ export default function CriarReserva() {
     const [listaDeDatasRealmenteDesabilitadas,setListaDeDatasRealmenteDesabilitadas] = useState([1,2,3]);
 
     const parametro = useParams();
-   /*  console.log("parametro")
-    console.log(parametro) */
     const navigate = useNavigate();
 
 
@@ -64,8 +62,6 @@ export default function CriarReserva() {
     
     const enviarReserva = () => {
       try{
-        console.log(`${format(range[0].startDate, "yyyy-MM-dd")}`)
-        console.log(`${format(range[0].endDate, "yyyy-MM-dd")}`)
         const response = api.post("/api/v1/bookings",
         {
           inicioReserva : `${format(range[0].startDate, "yyyy-MM-dd")}`,
@@ -82,13 +78,11 @@ export default function CriarReserva() {
     }
         }).then(function deuBom(response) {
           // handle success
-          console.log("parabens deu td certo");
           navigate("/Sucesso")
         })
         .catch(function deuRuim(error) {
           
           // handle error
-          console.log("foda em amigo");
           Swal.fire({
             icon: 'error',
             title: 'Ops!',
@@ -97,7 +91,7 @@ export default function CriarReserva() {
             imageWidth: 100,
             width: 350,
           })
-          console.log(error);
+          console.error(error);
         })
 
 
@@ -117,12 +111,8 @@ export default function CriarReserva() {
     async function callApiDetails(x) {
         
         try {
-          console.log(loaded)
           const response = await api.get(`/api/v1/products/${x}`).then(setLoaded(true));
-          setProduto(response.data);
-          
-          
-          
+          setProduto(response.data); 
         }
         catch (error) {      
         }
@@ -156,16 +146,11 @@ export default function CriarReserva() {
     
     const trabalharOsPares =(inicio,fim) =>{
         const listaDeDias = []
-/*         console.log("trabaio")
-        console.log(inicio+" "+fim) */
         inicio = new Date(inicio)
         inicio.setDate(inicio.getDate() + 1);
         fim = new Date(fim)
         fim.setDate(fim.getDate() + 1);
-        /* console.log(inicio)
-        console.log(fim) */
         const diferenca = diffDays(inicio,fim)
-        /* console.log(diferenca) */
 
         var i = 0;
         for (; i < diferenca; i++) {
@@ -173,7 +158,6 @@ export default function CriarReserva() {
             
             // more statements
 }
-/* console.log(listaDeDias) */
 
 return listaDeDias
 
@@ -202,8 +186,7 @@ const listaTotalDeDias = []
         return datasLista.map(e =>  trabalharOsPares(e[0],e[1])).flat(Infinity)
       
     } catch (error) {
-      console.log("erro aqui mane")
-      console.log(error)
+      console.error(error)
       return [1,1,1,1,1]
     }
                                         
@@ -243,7 +226,6 @@ const listaTotalDeDias = []
         const data2 : Date = new Date(2022,7,25);
         const disabledDatesList=[]
         const diff = (data2-data1)/864e5;
-        /* console.log(diff) */
         const d1 = data1
         
         const dates = Array.from(
@@ -256,24 +238,6 @@ const listaTotalDeDias = []
             return `${weekday}`
           }
         )
-        /* console.log(dates) */
-          
-        
-        /* try {
-          
-          produto.datas_ocupadas.map(e =>  disabledDatesList.push(new Date(new Date(e.data).getFullYear(),new Date(e.data).getMonth(),new Date(e.data).getDate()+1) ))
-        } catch (error) {
-          
-        } */
-        
-        
-        /* console.log(produto.datas_ocupadas) */
-        
-        //TODO: aumentar aumentar 1 dia
-        
-        
-        /* console.log(disabledDatesList) */
-        // /\
 
         function estaLogado() {
           try {
@@ -341,7 +305,6 @@ const listaTotalDeDias = []
         }
         function handleSetarDatas (){
           if (loaded === true){
-            console.log(loaded)
             return<>
             <DateRange 
                     
@@ -410,84 +373,3 @@ const listaTotalDeDias = []
         </>
     );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* import api from "../../services/api";
-import './styles.css';
-import {useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
-
-export default function CriarReserva() {
-
-
-
-
-
-
-    const params = useParams();
-
-
-
-
-
-
-    async function callApiDetails(id) {
-        console.log("Calling Api")
-        try {
-          const response = await api.get(`/products/${id}`);
-          console.log(response.data)
-          setDetails(response.data);
-        
-        }
-        catch (error) {      
-        }
-      }
-      
-    const [details,setDetails] = useState();
-
-    
-
-
-    useEffect(() => {
-        callApiDetails(1);
-    }, []); 
-
-          
-
-
-
-
-
-console.log(details);
-
-
-
-
-
-return (
-    <>
-        Você está reservando o carro {params.idProduto}
-        
-        
-        
-      
-        
-    </>
-);
-} */

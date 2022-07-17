@@ -31,19 +31,16 @@ export default function Products({ handleFilter }) {
   }
 
   async function callProductByCity(id) {
-    console.log(id);
     try {
       const URL = `/api/v1/products/city/${id}`;
       const response = await api.get(URL);
-      console.log(response);
       handleFilter(response.data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
   async function callApiProductsCategory(id) {
-    console.log(id);
     try {
       //const URL = "categories"
       const URL = `/api/v1/products/category/${id}`;
@@ -54,7 +51,6 @@ export default function Products({ handleFilter }) {
 
   async function callApiProductsDateRange(range, cidadeEscolhida) {
     try {
-      console.log('Entrou em Products, Linha 94');
       const DataDeInicio = format(
         range[0].startDate,
         'yyyy-MM-dd'
@@ -66,12 +62,10 @@ export default function Products({ handleFilter }) {
       const cidade = cidadeEscolhida;
 
       const URL = `products?cityId=${cidade}&data_inicio=${DataDeInicio}&data_final=${DataDeTermino}`;
-      console.log(URL);
       const response = await api.get(URL);
-      console.log(response.data);
       handleFilter(response.data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
