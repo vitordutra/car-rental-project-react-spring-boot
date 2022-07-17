@@ -35,7 +35,6 @@ const CalendarStatic = () => {
   const data1 : Date = new Date(2022,5,27);
   const data2 : Date = new Date(2022,5,28);
   const disabledDatesList = [data1,data2];
-  console.log(disabledDatesList);
 
   const minDate: Date = new Date( new Date().getFullYear(), new Date().getMonth(),new Date().getDate());
   const maxDate: Date = new Date( new Date().getFullYear(), new Date().getMonth()+2,new Date().getDate());

@@ -19,7 +19,6 @@ const BlocoPesquisa = () => {
   const [openSugestions, setOpenSugestions] = useState(false);
 
   const onChange = event => {
-    console.log('Acionei o onChange, Linha 22');
     setOpenSugestions(true); // -> não faz nada
     handleShowSugestions(true);
     setInputValue(event.target.value);
@@ -27,16 +26,14 @@ const BlocoPesquisa = () => {
 
   async function callCidadesApi() {
     try {
-      console.log('Entrou em BlocoPesquisa, Linha 30');
       const response = await api.get('/api/v1/cities');
       setCidades(response.data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
   useEffect(() => {
-    console.log('Acionei o useEffect, Linha 39');
     callCidadesApi();
   }, []);
   useEffect(() => {
@@ -55,22 +52,6 @@ const BlocoPesquisa = () => {
     new Date().getDate()
   );
 
-  // useEffect(() => {
-  //   console.log('Acionei o useEffect, Linha 56');
-  //   // event listeners
-  //   document.addEventListener('keydown', hideOnEscape, true);
-  // }, []);
-
-  // // hide dropdown on ESC press
-  // const hideOnEscape = e => {
-  //   console.log('Acionei o hideOnEscape, Linha 63');
-  //   // console.log(e.key)
-  //   if (e.key === 'Escape') {
-  //     setOpen(false);
-  //     setOpenSugestions(false);
-  //   }
-  // };
-
   const [range, setRange] = useState([
     {
       startDate: new Date(),
@@ -83,7 +64,6 @@ const BlocoPesquisa = () => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    console.log('Acionei o handleSearch, Linha 83');
     /* navigate("/Produtos",{state: {range,cidade}}); */
     if (cidade !== '') {
       navigate(
@@ -103,18 +83,13 @@ const BlocoPesquisa = () => {
   };
 
   const handleSelectCity = (value, text) => {
-    console.log('Acionei o handleSelectCity, Linha 103');
     setInputValue(stringTexto);
     setStringTexto(text.toString());
     setCidade(value);
   };
 
   const handleShowSugestions = () => {
-    console.log('Acionei o handleShowSugestions, Linha 113');
     const robson = document.getElementsByClassName('dropdown')[0];
-    console.log('robson: ', robson);
-    console.log('openSugestions: ', openSugestions);
-    console.log('cidade: ', cidade);
 
     if (openSugestions) {
       robson.style.display = 'none';
@@ -127,7 +102,6 @@ const BlocoPesquisa = () => {
 
   return (
     <>
-      {console.log('inputValue: ', inputValue)}
       <div>
         <div className='pesquisa-primeira-fileira'>
           <div className='pesquisa-itens-duplos'>

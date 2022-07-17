@@ -14,7 +14,7 @@ const PaginaLogin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log("submit", { email, password });
+        
         login(email, password);// integração com o meu contexto / api
     };
 

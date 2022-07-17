@@ -24,14 +24,14 @@ const PaginaRegistro = ({ onSubmit }) => {
           funcao: funcao,
         })
         .then(responseUser => {
-          console.log('responseUser', responseUser);
+          
           api
             .post('/authenticate', {
               email: values.email,
               senha: values.senha,
             })
             .then(responseJwt => {
-              console.log('responseJwt', responseJwt);
+              
               const userToken = responseJwt.data;
 
               const loggedUser = {
@@ -42,7 +42,7 @@ const PaginaRegistro = ({ onSubmit }) => {
                 funcao: funcao,
                 token: userToken,
               };
-              console.log('loggedUser', loggedUser);
+              
 
               localStorage.setItem('signed', JSON.stringify(loggedUser));
               setUser(loggedUser);

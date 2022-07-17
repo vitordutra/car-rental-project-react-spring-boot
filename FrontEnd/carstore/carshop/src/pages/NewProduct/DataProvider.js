@@ -22,10 +22,6 @@ import {
 
 export default function DataProvider(apiUrl, httpClient = fetchUtils.fetchJson) {
 
-    // console.log('====================================');
-    // console.log('DataProvider');
-    // console.log('====================================');
-
     /**
     * @param {String} type One of the constants appearing at the top if this file, e.g. 'UPDATE'
     * @param {String} resource Name of the resource to fetch, e.g. 'posts'
@@ -33,12 +29,8 @@ export default function DataProvider(apiUrl, httpClient = fetchUtils.fetchJson) 
     * @returns {Object} { url, options } The HTTP request parameters
     */
     const convertDataRequestToHTTP = (type, resource, params) => {
-        // console.log('====================================');
-        // console.log('convertDataRequestToHTTP', { type, resource, params });
-        // console.log('====================================');
         let url = "";
         const options = {};
-        console.log('type', type);
         switch (type) {
             case GET_LIST: {
                 const { page, perPage } = params.pagination;
@@ -64,7 +56,6 @@ export default function DataProvider(apiUrl, httpClient = fetchUtils.fetchJson) 
             }
             case UPDATE:
                 url = `${apiUrl}/${resource}/${params.id}`;
-                console.log('api', api);
                 options.method = "PUT";
                 // options.headers = api.defaults.headers;
                 options.headers = new Headers({ Authorization: api.defaults.headers.common["Authorization"] });
@@ -95,9 +86,6 @@ export default function DataProvider(apiUrl, httpClient = fetchUtils.fetchJson) 
        * @returns {Object} Data response
        */
     const convertHTTPResponse = (response, type, resource, params) => {
-        // console.log('====================================');
-        // console.log('convertHTTPResponse', { response, type, resource, params });
-        // console.log('====================================');
         const { headers, json } = response;
         switch (type) {
             case GET_LIST:
@@ -120,7 +108,6 @@ export default function DataProvider(apiUrl, httpClient = fetchUtils.fetchJson) 
        * @returns {Promise} the Promise for a data response
        */
     return (type, resource, params) => {
-        // console.log('return', { type, resource, params });
         // simple-rest doesn't handle filters on UPDATE route, so we fallback to calling UPDATE n times instead
         if (type === UPDATE_MANY) {
             return Promise.all(
@@ -152,6 +139,6 @@ export default function DataProvider(apiUrl, httpClient = fetchUtils.fetchJson) 
             .then(response =>
                 convertHTTPResponse(response, type, resource, params)
             )
-            .catch(e => console.log('ERROR: ', e.toString()));
+            .catch(e => console.error('ERROR: ', e.toString()));
     };
 };
