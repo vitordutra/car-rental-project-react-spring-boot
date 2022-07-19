@@ -10,7 +10,7 @@ import style from "./style.css";
 
 
 
-const dataProvider = DataProvider("http://localhost:8080");
+const dataProvider = DataProvider("http://3.15.133.120:8080");
 
 const CustomLayout = (props) => <Layout
     {...props}

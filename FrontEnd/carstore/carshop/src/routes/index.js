@@ -18,7 +18,7 @@ import Products from '../pages/Products';
 import Details from '../pages/Details';
 import ProductsCategory from '../pages/ProductsCategory';
 import ReservaSucedida from '../pages/ReservaBemSucedida';
-import ConfirmationNewProduct from '../pages/ConfirmationNewProduct';
+
 import CriarReserva from '../pages/CriarReserva';
 import NewProduct from '../pages/NewProduct';
 
@@ -54,7 +54,7 @@ const Paginas = () => {
             }
           />
           <Route path='/Sucesso' element={<ReservaSucedida />} />
-          <Route path='/novo-produto' element={<ConfirmationNewProduct />} />
+   
 
           <Route
             path='/Reserva/:idProduto'
