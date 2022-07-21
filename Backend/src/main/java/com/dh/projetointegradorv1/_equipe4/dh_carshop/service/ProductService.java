@@ -46,13 +46,20 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public List<ProductDto> listAllProducts() {
+    public List<ProductDto> listAllProducts(Integer pageSize) {
         List<ProductDto> listDto = new ArrayList<>();
         List<Product> list = productRepository.findAll();
+
+        Integer currentSize = 0;
         for(Product prod : list) {
             ProductDto dto = new ProductDto(prod, prod.getCaracteristicas(),
                     prod.getImagens(), prod.getCategorias(), prod.getCidade(), prod.getReservas());
             listDto.add(dto);
+            currentSize++;
+
+            if (currentSize >= pageSize) {
+                break;
+            }
         }
         return listDto;
     }
