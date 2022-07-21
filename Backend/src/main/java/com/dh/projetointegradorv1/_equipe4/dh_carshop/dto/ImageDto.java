@@ -35,7 +35,9 @@ public class ImageDto implements Serializable {
 
     public ImageDto(Image entity, Set<Product> produtos) {
         this(entity);
-        produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
+
+        // parece estar gerando loop infinito (prod -> imagem -> prod -> imagem -> .....)
+        // produtos.forEach(prod -> this.produtos.add(new ProductDto(prod)));
     }
 
 }

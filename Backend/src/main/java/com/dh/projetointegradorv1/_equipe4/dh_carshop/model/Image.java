@@ -1,5 +1,6 @@
 package com.dh.projetointegradorv1._equipe4.dh_carshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

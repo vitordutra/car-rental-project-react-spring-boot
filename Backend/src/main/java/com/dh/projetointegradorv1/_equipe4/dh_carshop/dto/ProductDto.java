@@ -41,6 +41,7 @@ public class ProductDto implements Serializable {
         }
         for (Image image : entity.getImagens()) {
             imagens.add(new ImageDto(image));
+            break;
         }
     }
 
@@ -48,9 +49,10 @@ public class ProductDto implements Serializable {
                       Set<Category> categorias, City cidade, Set<Booking> reservas) {
         this(entity);
         caracteristicas.forEach(car -> this.caracteristicas.add(new FeatureDto(car)));
-        imagens.forEach(img -> this.imagens.add(new ImageDto(img)));
         categorias.forEach(cat -> this.categorias.add(new CategoryDto(cat)));
-        this.cidade = new CityDto(cidade);
+        if (cidade != null) {
+            this.cidade = new CityDto(cidade);
+        }
         reservas.forEach(book -> this.reservas.add(new BookingDto(book)));
     }
 
